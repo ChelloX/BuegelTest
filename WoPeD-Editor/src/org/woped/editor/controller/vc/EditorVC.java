@@ -1195,6 +1195,7 @@ public EditorVC(String id, EditorClipboard clipboard, int modelProcessorType, bo
          * 
          *  
          */
+        getGraph().stopEditing();
         Rectangle2D oldVisRect = getGraph().fromScreen(m_scrollPane.getViewport().getViewRect());
         double scale;
         // Check if absolute
