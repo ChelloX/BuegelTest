@@ -101,6 +101,7 @@ import org.woped.core.utilities.Utils;
 import org.woped.editor.Constants;
 import org.woped.editor.controller.ApplicationMediator;
 import org.woped.editor.controller.EditorClipboard;
+import org.woped.editor.controller.EditorViewEvent;
 import org.woped.editor.controller.PetriNetMarqueeHandler;
 import org.woped.editor.controller.UMLMarqueeHandler;
 import org.woped.editor.controller.VisualController;
@@ -1224,7 +1225,9 @@ public EditorVC(String id, EditorClipboard clipboard, int modelProcessorType, bo
                 visibleRect.getWidth(), visibleRect.getHeight()).getBounds();
         getGraph().scrollRectToVisible(newVisRect);
         if (m_statusbar != null) m_statusbar.updateStatus();
-
+        
+        
+        fireViewEvent(new EditorViewEvent(this,AbstractViewEvent.VIEWEVENTTYPE_GUI,AbstractViewEvent.ZOOMED,new Double(scale*100) ));
     }
 
     /* ########## LISTENER METHODS ########## */

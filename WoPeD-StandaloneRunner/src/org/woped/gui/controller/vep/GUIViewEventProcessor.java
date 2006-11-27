@@ -171,6 +171,13 @@ public class GUIViewEventProcessor extends AbstractEventProcessor
         case AbstractViewEvent.EXIT:
             quit();
             break;
+        case AbstractViewEvent.ZOOMED:
+            toolbar = (ToolBarVC) getMediator().getViewController(ToolBarVC.ID_PREFIX+0);
+            if (toolbar != null)
+            {
+                toolbar.changeZoomChooserValueWithoutListeners(Integer.toString((int)((Double)event.getData()).doubleValue()));
+            }
+            break;
         }
     }
 
