@@ -346,8 +346,17 @@ public class PNMLExport
         	while (innerArcIter.hasNext())
         	{
         		// Dump all inner arcs of connected transitions
-        		ArcModel currentInnerArc = (ArcModel) currentConnectedModel.getSimpleTransContainer().getArcMap().get(innerArcIter.next());
-        		initArc(iNet.addNewArc(), currentInnerArc, null);
+                Object curElement = innerArcIter.next();
+        		ArcModel currentInnerArc = (ArcModel) currentConnectedModel.getSimpleTransContainer().getArcMap().get(curElement);
+                Iterator it = elementContainer.getArcMap().values().iterator();
+                ArcModel outerArc = null;
+                while (it.hasNext() && outerArc==null){
+                    outerArc=(ArcModel)it.next();
+                    if (!outerArc.getSourceId().equals(currentInnerArc.getSourceId()) && !outerArc.getTargetId().equals(currentInnerArc.getTargetId())){
+                        outerArc=null;
+                    }
+                }
+        		initArc(iNet.addNewArc(), outerArc, currentInnerArc);
         	}
         }
     }
