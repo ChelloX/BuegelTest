@@ -1,5 +1,6 @@
 package org.woped.file.controller.vep;
 
+import java.awt.Frame;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -343,14 +344,14 @@ public class FileEventProcessor extends AbstractEventProcessor
                 FileFilterImpl PNMLFilter = new FileFilterImpl(FileFilterImpl.PNMLFilter, "Petri Net Markup Language (1.3.2) (*.pnml)", extensions);
                 jfc.setFileFilter(PNMLFilter);
             }
-            jfc.setDialogTitle("Save as");
+            jfc.setDialogTitle(Messages.getTitle("File.Dialog.SaveAs"));
             int returnVal = jfc.showSaveDialog(null);
             boolean doSave = false;
             if (jfc.getSelectedFile() != null && returnVal == JFileChooser.APPROVE_OPTION)
             {
                 String savePath = jfc.getSelectedFile().getAbsolutePath().substring(0, jfc.getSelectedFile().getAbsolutePath().length() - jfc.getSelectedFile().getName().length());
                 String fileName = Utils.getQualifiedFileName(jfc.getSelectedFile().getName(), extensions);
-                if (!new File(savePath.concat(fileName)).exists() || (Utils.isFileOverride(null, jfc.getSelectedFile().getPath())))
+                if (!new File(savePath.concat(fileName)).exists() || (isFileOverride(null, jfc.getSelectedFile().getPath())))
                 {
                     if (editor != null && new File(savePath).exists())
                     {
@@ -384,6 +385,14 @@ public class FileEventProcessor extends AbstractEventProcessor
 
     }
 
+    
+    public static boolean isFileOverride(Frame owner, String fileName)
+    {
+        return JOptionPane.showConfirmDialog(owner, Messages.getString("File.Dialog.SaveAs.Overwrite.Text", new Object[]{fileName}),
+                Messages.getTitle("File.Dialog.SaveAs.Overwrite"), JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION;
+    }
+
+    
     /**
      * TODO: DOCUMENTATION (silenco)
      */

@@ -93,12 +93,6 @@ public class Utils
         return fileName;
     }
 
-    public static boolean isFileOverride(Frame owner, String fileName)
-    {
-        return JOptionPane.showConfirmDialog(owner, "<HTML><p align=\"center\">The file<br><i>" + fileName + "</i><br>does already exist.<br>Do you want to overwrite it?</p></HTML>",
-                "File already exists.", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION;
-    }
-
     /**
      * Sorts an Array so that Arcs are the first elements. TODO: move to Utils ?
      * 
