@@ -236,8 +236,8 @@ public class MenuBarVC extends JMenuBar implements IViewController, IEditorAware
     {
         if (m_helpMenu == null)
         {
-            m_helpMenu = new JMenu(Messages.getString("Menu.Help.Title")); //$NON-NLS-1$
-            m_helpMenu.setMnemonic(KeyEvent.VK_H);
+            m_helpMenu = new JMenu(Messages.getTitle("Menu.Help")); //$NON-NLS-1$
+            m_helpMenu.setMnemonic(Messages.getMnemonic("Menu.Help"));
             
             m_helpMenu.add(getIndexMenuItem());
             m_helpMenu.add(getContextMenuItem());
@@ -641,8 +641,8 @@ public class MenuBarVC extends JMenuBar implements IViewController, IEditorAware
         if (m_sampleMenu == null)
         {
 
-            m_sampleMenu = new JMenu(Messages.getString("Menu.Help.SampleNets.Title"));
-            m_sampleMenu.setMnemonic(KeyEvent.VK_S);
+            m_sampleMenu = new JMenu(Messages.getTitle("Menu.Help.SampleNets"));
+            m_sampleMenu.setMnemonic(Messages.getMnemonic("Menu.Help.SampleNets"));
 
             try
             {

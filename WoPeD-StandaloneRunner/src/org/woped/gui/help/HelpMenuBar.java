@@ -109,8 +109,8 @@ public class HelpMenuBar extends JMenuBar
     {
         if (m_navigateMenu == null)
         {
-            m_navigateMenu = new JMenu(Messages.getString("Menu.Browser.Navigate.Title"));
-            m_navigateMenu.setMnemonic(KeyEvent.VK_N);
+            m_navigateMenu = new JMenu(Messages.getTitle("Menu.Browser.Navigate"));
+            m_navigateMenu.setMnemonic(Messages.getMnemonic("Menu.Browser.Navigate"));
 
             m_navigateMenu.add(getBackMenuItem());
             m_navigateMenu.add(getForwardMenuItem());
@@ -133,8 +133,8 @@ public class HelpMenuBar extends JMenuBar
     {
         if (m_fileMenu == null)
         {
-            m_fileMenu = new JMenu(Messages.getString("Menu.Browser.File.Title"));
-            m_fileMenu.setMnemonic(KeyEvent.VK_F);
+            m_fileMenu = new JMenu(Messages.getTitle("Menu.Browser.File"));
+            m_fileMenu.setMnemonic(Messages.getMnemonic("Menu.Browser.File"));
             m_fileMenu.add(getCloseMenuItem());
 
         }

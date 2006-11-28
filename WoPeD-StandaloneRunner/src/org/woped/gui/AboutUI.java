@@ -212,9 +212,9 @@ public class AboutUI extends JDialog
                 }
             });
 
-            aboutButton.setMnemonic(KeyEvent.VK_A);
-            aboutButton.setIcon(new ImageIcon(getClass().getResource(Messages.getString("Action.ShowAbout.Icon"))));
-            aboutButton.setText("About");
+            aboutButton.setMnemonic(Messages.getMnemonic("Action.ShowAbout"));
+            aboutButton.setIcon(Messages.getImageIcon("Action.ShowAbout"));
+            aboutButton.setText(Messages.getTitle("Action.ShowAbout"));
             aboutButton.setEnabled(false);
             c1.gridy = 0;
             c1.gridx = 0;
@@ -247,7 +247,6 @@ public class AboutUI extends JDialog
 
             /* Close Button */
             closeButton = new JButton(new DisposeWindowAction());
-            closeButton.setMnemonic(KeyEvent.VK_C);
             closeButton.requestFocus();
 
             c1.gridy = 0;

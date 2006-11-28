@@ -329,9 +329,9 @@ public class PlacePropertyEditor extends JDialog
         {
             buttonOk = new JButton();
             buttonOk.setIcon(Messages.getImageIcon("Button.Ok"));
-            buttonOk.setText(Messages.getString("Button.Ok.Title"));
+            buttonOk.setText(Messages.getTitle("Button.Ok"));
 
-            buttonOk.setMnemonic(KeyEvent.VK_O);
+            buttonOk.setMnemonic(Messages.getMnemonic("Button.Ok"));
             buttonOk.setPreferredSize(new Dimension(100, 25));
             buttonOk.addActionListener(new ActionListener()
             {
@@ -351,9 +351,9 @@ public class PlacePropertyEditor extends JDialog
         if (buttonCancel == null)
         {
             buttonCancel = new JButton();
-            buttonCancel.setText(Messages.getString("Button.Cancel.Title"));
+            buttonCancel.setText(Messages.getTitle("Button.Cancel"));
             buttonCancel.setIcon(Messages.getImageIcon("Button.Cancel"));
-            buttonCancel.setMnemonic(KeyEvent.VK_C);
+            buttonCancel.setMnemonic(Messages.getMnemonic("Button.Cancel"));
             buttonCancel.setPreferredSize(new Dimension(100, 25));
             buttonCancel.addActionListener(new ActionListener()
             {
@@ -373,8 +373,8 @@ public class PlacePropertyEditor extends JDialog
         {
             buttonApply = new JButton();
             buttonApply.setIcon(Messages.getImageIcon("Button.Apply"));
-            buttonApply.setText(Messages.getString("Button.Apply.Title"));
-            buttonApply.setMnemonic(KeyEvent.VK_A);
+            buttonApply.setText(Messages.getTitle("Button.Apply"));
+            buttonApply.setMnemonic(Messages.getMnemonic("ButtonApply"));
             buttonApply.setPreferredSize(new Dimension(100, 25));
             buttonApply.addActionListener(new ActionListener()
             {
