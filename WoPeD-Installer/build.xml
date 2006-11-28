@@ -124,9 +124,9 @@
 			<arg line="/c launch4j.exe buildsetup.cfg" />
 		</exec>
 
-		<zip destfile="dist/WoPeD-install-windows-${WOPEDVERSION}.zip" basedir="dist" includes="WoPeD-install.exe" />
+		<zip destfile="dist/WoPeD-install-windows-${WOPEDVERSION}${SNAPSHOT}.zip" basedir="dist" includes="WoPeD-install.exe" />
 
-		<tar destfile="dist/WoPeD-install-linux-${WOPEDVERSION}.tgz" compression="gzip">
+		<tar destfile="dist/WoPeD-install-linux-${WOPEDVERSION}${SNAPSHOT}.tgz" compression="gzip">
 			<tarfileset dir="dist" mode="755">
 				<include name="WoPeD-install" />
 			</tarfileset>
@@ -135,7 +135,7 @@
 			</tarfileset>
 		</tar>
 
-		<tar destfile="dist/WoPeD-install-macos-${WOPEDVERSION}.tgz" compression="gzip">
+		<tar destfile="dist/WoPeD-install-macos-${WOPEDVERSION}${SNAPSHOT}.tgz" compression="gzip">
 			<tarfileset dir="dist" mode="755">
 				<include name="WoPeD-install.app" />
 			</tarfileset>
