@@ -403,7 +403,7 @@ public class ConfigVC extends JDialog implements TreeSelectionListener, IViewCon
         if (exportButton == null)
         {
             exportButton = new JButton();
-            exportButton.setText(Messages.getString("Button.Export"));
+            exportButton.setText(Messages.getTitle("Button.Export"));
             exportButton.setMnemonic(Messages.getMnemonic("Button.Export"));
             exportButton.setIcon(Messages.getImageIcon("Button.Export"));
             exportButton.addActionListener(new ActionListener()
