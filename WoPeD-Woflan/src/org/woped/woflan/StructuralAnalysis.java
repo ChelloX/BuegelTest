@@ -373,7 +373,8 @@ public class StructuralAnalysis {
 		// Add temporary transition t*, connecting sink to source
 		AbstractElementModel ttemp =
 			AddTStar();
-        netElements.add(ttemp);
+        if (ttemp!=null)
+        	netElements.add(ttemp);
         		
 		// First check for connectedness:
 		// Return connection map presuming that all arcs may be
@@ -389,11 +390,15 @@ public class StructuralAnalysis {
 		if (strongConnectionGraph!=null)
 			NetAlgorithms.GetUnconnectedNodes(ttemp, strongConnectionGraph, m_notStronglyConnectedNodes);
 
-		RemoveTStar(ttemp);
+		if (ttemp!=null)
+			RemoveTStar(ttemp);
 	}
 	
 	AbstractElementModel AddTStar()
 	{
+		if (m_transitions.size()==0)
+			return null;
+		
 		// Create transition 't*'
         CreationMap tempMap = ((AbstractElementModel)m_transitions.iterator().next()).getCreationMap();
         tempMap.setType(AbstractPetriNetModelElement.TRANS_SIMPLE_TYPE);
@@ -511,7 +516,8 @@ public class StructuralAnalysis {
 
 		// Add the temporary transition 't*'
 		AbstractElementModel tStar = AddTStar();
-		netElements.add(tStar);
+		if (tStar!=null)
+			netElements.add(tStar);
 		
 		Iterator sourceIterator = netElements.iterator();
 		while (sourceIterator.hasNext())
@@ -577,6 +583,7 @@ public class StructuralAnalysis {
 		}
 
 		// Remove temporary transition from the net
-		RemoveTStar(tStar);
+		if (tStar!=null)
+			RemoveTStar(tStar);
 	}
 }
