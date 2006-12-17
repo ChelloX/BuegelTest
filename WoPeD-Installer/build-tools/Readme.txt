@@ -1,8 +1,8 @@
 WoPeD (Workflow Petrinet Designer) is an easy-to-use tool to 
 draw, manage, simulate and analyse workflow process definitions 
-using an extended Petrinet notation called "workflow nets".
+using an extended Petri net notation called "workflow nets".
    
-Copyright (C) 2003-2006		
+Copyright (C) 2003-2007		
  
 Contact
 -------
@@ -44,17 +44,16 @@ Note: WoPeD is written in Java. It is necessary that you have installed
 Java 1.4 or higher on your machine. Otherwise download it from 
 http://java.sun.com. 
 
-WoPeD is known to run on Microsoft Windows platforms (2000, ME, XP) 
-and on many Linux systems. Any reports of successfully having installed
-WoPeD on any other systems are very much appreciated, as well as
-negative experiences.
+WoPeD is known to run on Microsoft Windows platforms (2000, ME, XP), on 
+MacOS X and on many Linux systems. Any reports of successfully having 
+installed WoPeD on any other systems are very much appreciated, as 
+well as negative experiences.
    
    
 Download and Run
 ----------------
  
 Download the latest version via the WoPeD website www.woped.org.
-   
 For Microsoft Windows, download the file WoPeD-install-X.Y.Z.zip 
 (where X.Y.Z stands for the current WoPeD version), unpack it with
 an archiving tool (e. g. Winzip) and run the contained executable
@@ -87,9 +86,10 @@ Root directory:
   ./License.txt                     (License file)
   ./Readme.txt                      (This file)
   ./WoPeD-classes-@wopedversion@.jar         (WoPeD program classes)
+  ./WofJava.dll			    		(Calling interface to Woflan tool - Windows only) 				     
   ./WoPeD.exe                       (Launcher for Windows)
   ./WoPeD                           (Launcher for Linux - alternatively)
-  ./WoPeD.app                       (Launcher for MacOS - alternatively)
+  ./WoPeD-starter.zip               (Launcher for MacOS - alternatively)
   ./WoPeD.log                       (Error logging, initially not existing)
   ./WoPeDconfig.xml                 (WoPeD property settings, initially not existing)
 
@@ -102,14 +102,15 @@ lib directory
   ./lib/xbean.jar                   (Bean generation library)
 
 doc directory
-  ./doc/html/                       (Complete HTML online manual)
+  ./doc/html/de                     (Complete HTML online manual in German - still rudimentary)
+  ./doc/html/en                     (Complete HTML online manual in English)
   ./doc/html/images                 (Auxiliary files for online manual)
 
 nets directory
   ./nets                            (Subdirectory for storing your nets)
 
 Uninstaller directory
-  ./Uninstaller/uninstaller.jar     (start with Java to uninstall WoPeD)
+  ./Uninstaller/uninstaller.jar     (uninstaller Java programm)
 	
 	
 Enjoy it, any feedback will be welcome!
