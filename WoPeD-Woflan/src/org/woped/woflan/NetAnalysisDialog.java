@@ -25,7 +25,7 @@ import java.util.*;
 public class NetAnalysisDialog extends JFrame implements WindowListener, TreeSelectionListener{
 	public NetAnalysisDialog(File temporaryFile, IEditor editor)
 	{		
-		super("Analysis Dialog");
+		super(Messages.getString("Analysis.Tree.Title"));
 		
 		// Remember a reference to our model
 		// We need it to deal with selections
