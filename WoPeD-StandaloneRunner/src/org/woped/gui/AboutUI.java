@@ -33,6 +33,9 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -41,7 +44,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
+import org.woped.core.config.DefaultStaticConfiguration;
 import org.woped.editor.action.DisposeWindowAction;
 import org.woped.editor.utilities.Messages;
 import org.woped.gui.help.action.LaunchDefaultBrowserAction;
@@ -53,13 +58,14 @@ import org.woped.gui.help.action.LaunchDefaultBrowserAction;
  * 
  * 17.01.2005
  */
+
 public class AboutUI extends JDialog
 {
     private JLabel              logoLabel       = null;
     private JLabel              aboutTextLabel  = null;
     private JLabel              homepageLabel   = null;
     private JLabel              mailtoLabel     = null;
-    private JLabel              sfLabel         = null;
+    private JLabel              sfLabel         = null;   
     private JButton             closeButton     = null;
     private JButton             aboutButton     = null;
     private JButton             changelogButton = null;
@@ -67,9 +73,6 @@ public class AboutUI extends JDialog
     private JScrollPane         aboutPanel      = null;
     private JScrollPane         changeLogPanel  = null;
     private JPanel              buttonPanel     = null;
-
-    private static String[]     aboutArgs       = { Messages.getWoPeDVersion(true) };
-    private static final String aboutText       = "<html><p>" + Messages.getStringReplaced("About.Text", aboutArgs) + "</p></html>";
 
     public AboutUI()
     {
@@ -98,7 +101,6 @@ public class AboutUI extends JDialog
      */
     private void initialize()
     {
-        GridBagConstraints c = new GridBagConstraints();
         this.setVisible(false);
         this.getContentPane().setLayout(new BorderLayout());
         this.setUndecorated(true);
@@ -119,8 +121,11 @@ public class AboutUI extends JDialog
     }
 
     private JScrollPane getAboutPanel()
-    {
-        if (aboutPanel == null)
+    {    	
+       	String[] aboutArgs       = { Messages.getWoPeDVersion(true) };
+       	String   aboutText       = "<html><p>" + Messages.getStringReplaced("About.Text", aboutArgs) + "</p></html>";
+       
+    	if (aboutPanel == null)
         {
             JPanel panel = new JPanel();
             panel.setLayout(new GridBagLayout());
@@ -142,24 +147,22 @@ public class AboutUI extends JDialog
 
             c.gridy = 2;
             c.insets = new Insets(0, 10, 0, 10);
-            // TODO: move in propertie files (tfreytag)
             homepageLabel = new JLabel("<html><p>" + Messages.getString("About.Homepage") + "</p></html>");
-            homepageLabel.addMouseListener(new LaunchDefaultBrowserAction("http://www.woped.org", homepageLabel));
+            homepageLabel.addMouseListener(new LaunchDefaultBrowserAction(Messages.getString("About.Homepage.Link"), homepageLabel));
             panel.add(homepageLabel, c);
 
             c.gridy = 3;
             c.insets = new Insets(0, 10, 0, 10);
-            // TODO: move in propertie files (tfreytag)
             mailtoLabel = new JLabel("<html><p>" + Messages.getString("About.Email") + "</p></html>");
-            mailtoLabel.addMouseListener(new LaunchDefaultBrowserAction("mailto:info@woped.org", mailtoLabel));
+            mailtoLabel.addMouseListener(new LaunchDefaultBrowserAction(Messages.getString("About.Email.Link"), mailtoLabel));
             panel.add(mailtoLabel, c);
 
             c.gridy = 4;
             c.insets = new Insets(0, 10, 0, 10);
-            // TODO: move in propertie files (tfreytag)
             sfLabel = new JLabel("<html><p>" + Messages.getString("About.Development") + "</p></html>");
-            sfLabel.addMouseListener(new LaunchDefaultBrowserAction("http://sourceforge.net/projects/woped", sfLabel));
+            sfLabel.addMouseListener(new LaunchDefaultBrowserAction(Messages.getString("About.Development.Link"), sfLabel));
             panel.add(sfLabel, c);
+
             aboutPanel = new JScrollPane(panel);
         }
         return aboutPanel;
@@ -169,6 +172,30 @@ public class AboutUI extends JDialog
     {
         if (changeLogPanel == null)
         {
+ 			String changeLog = "";
+        	String path = System.getProperty("user.dir");
+         	
+        	int pos = path.indexOf("\\WoPeD-StandaloneRunner");
+        	if (pos > -1)
+        	{
+        		path = path.substring(0, pos);
+        		path += "\\WoPeD-Installer\\build-tools";
+        	}
+        	
+        	path += "\\Changelog.txt";
+        	
+        	try {
+        		int c;
+            	FileReader f = new FileReader(path);
+            	while ((c = f.read()) != -1) {
+            		changeLog += (char)c;
+            	}
+            	f.close();
+            } 
+        	catch (IOException e) {
+            	changeLog = path + " not found";
+            }
+
             JPanel panel = new JPanel();
             panel.setLayout(new GridBagLayout());
             GridBagConstraints c1 = new GridBagConstraints();
@@ -176,11 +203,11 @@ public class AboutUI extends JDialog
             c1.gridx = 0;
             c1.insets = new Insets(10, 10, 10, 10);
             c1.anchor = GridBagConstraints.WEST;
-
-            // TODO: read changelog information out of the file !!! (silenco)
-            String changeLog = "<html><p><font size=3>" + "<b>WoPeD 0.8.0</b> (2005/03/28)" + "<br>- first official binary release"
-                    + "<br><b>WoPeD untagged versions</b><br>- since May 2003.</font></p></html>";
-            JLabel text = new JLabel(changeLog, JLabel.LEFT);
+            
+            JTextArea text = new JTextArea();
+            text.setFont(DefaultStaticConfiguration.DEFAULT_LABEL_FONT);
+            text.setBackground(panel.getBackground());
+            text.append(changeLog);
             panel.add(text, c1);
             JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
             panel2.add(panel);
@@ -212,9 +239,9 @@ public class AboutUI extends JDialog
                 }
             });
 
-            aboutButton.setMnemonic(Messages.getMnemonic("Action.ShowAbout"));
-            aboutButton.setIcon(Messages.getImageIcon("Action.ShowAbout"));
-            aboutButton.setText(Messages.getTitle("Action.ShowAbout"));
+            aboutButton.setMnemonic(KeyEvent.VK_A);
+            aboutButton.setIcon(new ImageIcon(getClass().getResource(Messages.getString("Action.ShowAbout.Icon"))));
+            aboutButton.setText(Messages.getString("Action.ShowAbout.Title"));
             aboutButton.setEnabled(false);
             c1.gridy = 0;
             c1.gridx = 0;
@@ -237,8 +264,8 @@ public class AboutUI extends JDialog
             });
 
             changelogButton.setMnemonic(KeyEvent.VK_L);
-            changelogButton.setText("Versions");
-            changelogButton.setIcon(new ImageIcon(getClass().getResource("/org/woped/editor/gui/images/changelog16.gif")));
+            changelogButton.setText(Messages.getString("Window.About.Versions"));
+            changelogButton.setIcon(Messages.getImageIcon("Window.About.Versions"));
             c1.gridy = 0;
             c1.gridx = 1;
             c1.insets = new Insets(0, 0, 0, 0);
@@ -247,6 +274,7 @@ public class AboutUI extends JDialog
 
             /* Close Button */
             closeButton = new JButton(new DisposeWindowAction());
+            closeButton.setMnemonic(KeyEvent.VK_C);
             closeButton.requestFocus();
 
             c1.gridy = 0;
