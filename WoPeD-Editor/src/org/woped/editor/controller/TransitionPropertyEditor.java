@@ -154,7 +154,6 @@ public class TransitionPropertyEditor extends JDialog implements ActionListener
     private JPanel                buttonPanel                   = null;
     private JButton               buttonOk                      = null;
     private JButton               buttonCancel                  = null;
-    private JButton               buttonApply                   = null;
 
     public TransitionPropertyEditor(Frame owner, TransitionModel transition, EditorVC editor)
     {
