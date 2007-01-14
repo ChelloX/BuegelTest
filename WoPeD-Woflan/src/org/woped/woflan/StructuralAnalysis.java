@@ -154,6 +154,12 @@ public class StructuralAnalysis {
 		return m_freeChoiceViolations.iterator();		
 	}
 	
+	//! FIXME: Well-structuredness violation detection
+	//! does not always work.
+	//! This algorithm will be replaced with 
+	//! a max-flow min-cut algorithm soon.
+	//! Meanwhile, woflan results will be used
+	//! instead of the results of this method
 	public int GetNumWellStructurednessViolations()
 	{
 		Calculate_WellStructuredness();
@@ -163,6 +169,12 @@ public class StructuralAnalysis {
 	//! Return a list of wellstructuredness violations
 	//! Each violation is represented by a Set of nodes
 	//! defining the violation
+	//! FIXME: Well-structuredness violation detection
+	//! does not always work.
+	//! This algorithm will be replaced with 
+	//! a max-flow min-cut algorithm soon.
+	//! Meanwhile, woflan results will be used
+	//! instead of the results of this method
 	//! @return Iterator through a list of sets
 	//!         of nodes violating the well-structured property
 	public Iterator GetWellStructurednessViolations()

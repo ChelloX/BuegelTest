@@ -370,7 +370,10 @@ public class NetAnalysisDialog extends JFrame implements WindowListener, TreeSel
 		DefaultMutableTreeNode current = new NetInfo("Well-Structuredness");
 		parent.add(current);
 
-		/* Just commented out for now, might need it later
+		// FIXME: We currently have to use Woflan for P/T and T/P handle
+		// detection as our own algorithm is broken
+		// This will be fixed soon (@see StructuralAnalysis.java for details)
+		
 		// Yes, create well-handledness info
     	m_myWofLan.Info(m_netHandle, 
     			m_myWofLan.SetPTH, 0, 0);
@@ -399,7 +402,12 @@ public class NetAnalysisDialog extends JFrame implements WindowListener, TreeSel
 				m_myWofLan.InfoTPHN1Name,
 				
 				-1, 0, false));
-		*/
+		
+		/*
+		// FIXME: We currently have to use Woflan for P/T and T/P handle
+		// detection as our own algorithm is broken
+		// This will be fixed soon (@see StructuralAnalysis.java for details)
+		// Jan. 14th 2007, AE
 		
     	current.add(new NodeGroupListNetInfo("Number of PT/TP handles: "+ m_structuralAnalysis.GetNumWellStructurednessViolations(),
     			m_structuralAnalysis.GetWellStructurednessViolations()) {
@@ -413,7 +421,8 @@ public class NetAnalysisDialog extends JFrame implements WindowListener, TreeSel
     			else
     				return InfoStateOK;
     		}
-    	});
+    	}); 
+    	*/
     	
 		
 	}
