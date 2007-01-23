@@ -228,6 +228,11 @@ public class GUIViewEventProcessor extends AbstractEventProcessor
             {
 				LoggerManager.warn(Constants.GUI_LOGGER, "Could not deiconify the editor");
             }
+            ToolBarVC toolbar = (ToolBarVC) getMediator().getViewController(ToolBarVC.ID_PREFIX+0);
+            if (toolbar != null)
+            {
+                toolbar.changeZoomChooserValueWithoutListeners(Integer.toString((int)(editor.getGraph().getScale()*100)));
+            }
         }
         VisualController.getInstance().propertyChange(new PropertyChangeEvent(this, "FrameSelection", null, editor));
         // notify the editor aware vc
