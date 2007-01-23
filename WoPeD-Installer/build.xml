@@ -17,8 +17,8 @@
 	<!--<taskdef resource="genjar.properties"/>	-->
 
 	<target name="makedistribution" 
-         depends="makesubprojects, makedir, setversion, copyfiles, buildjar, makesrcdist, makeinstaller, start, purge" />
-	<!--  -->
+         depends="makesubprojects, makedir, setversion, copyfiles, buildjar, makeinstaller, start, purge" />
+	<!-- makesrcdist -->
 	<target name="clean">
 		<delete dir="dist" />
 	</target>
