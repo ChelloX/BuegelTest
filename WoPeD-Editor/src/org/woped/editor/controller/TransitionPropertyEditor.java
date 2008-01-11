@@ -29,7 +29,6 @@ import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -50,7 +49,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import org.woped.core.model.CreationMap;
-import org.woped.core.model.IntPair;
 import org.woped.core.model.PetriNetModelProcessor;
 import org.woped.core.model.petrinet.OperatorTransitionModel;
 import org.woped.core.model.petrinet.PetriNetModelElement;
