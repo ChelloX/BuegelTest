@@ -22,10 +22,11 @@
  */
 package org.woped.core.model.petrinet;
 
+import java.awt.Point;
+
 import org.jgraph.graph.AttributeMap;
 import org.jgraph.graph.GraphConstants;
 import org.woped.core.model.CreationMap;
-import org.woped.core.model.IntPair;
 
 /**
  * @author Simon Landes
@@ -41,6 +42,7 @@ public class TransitionModel extends PetriNetModelElement
     private Toolspecific    toolSpecific;
     public static final int WIDTH     = 40;
     public static final int HEIGHT    = 40;
+    
 
     public TransitionModel(CreationMap map)
     {
@@ -83,7 +85,22 @@ public class TransitionModel extends PetriNetModelElement
     {
         return (getToolSpecific().getTransResource() != null);
     }
+    
+    public Point getTriggerPosition()
+    {
+    	if (hasTrigger())
+    		return getToolSpecific().getTrigger().getPosition();
+    	else
+    		return new Point(getX() + 10, getY() - 25);
+    }
 
+    public Point getResourcePosition()
+    {
+    	if (hasResource())
+    		return getToolSpecific().getTransResource().getPosition();
+    	else
+    		return new Point(getX() + 10, getY() - TransitionResourceModel.DEFAULT_HEIGHT - 25);
+    }
 
     public int getDefaultWidth()
     {
@@ -94,19 +111,20 @@ public class TransitionModel extends PetriNetModelElement
     {
         return HEIGHT;
     }
-
+    
     public CreationMap getCreationMap()
     {
         CreationMap map = super.getCreationMap();
         if (hasTrigger())
         {
             map.setTriggerType(getToolSpecific().getTrigger().getTriggertype());
-            map.setTriggerPosition(new IntPair(getToolSpecific().getTrigger().getPosition()));
+            map.setTriggerPosition(new Point(getToolSpecific().getTrigger().getPosition()));
         }
         if (hasResource())
         {
             map.setResourceOrgUnit(getToolSpecific().getTransResource().getTransOrgUnitName());
             map.setResourceRole(getToolSpecific().getTransResource().getTransRoleName());
+            map.setResourcePosition(new Point(getToolSpecific().getTransResource().getPosition()));
         }
 
         return map;

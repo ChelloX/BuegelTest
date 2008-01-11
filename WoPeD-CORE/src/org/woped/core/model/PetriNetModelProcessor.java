@@ -117,25 +117,29 @@ public class PetriNetModelProcessor extends AbstractModelProcessor implements
 					|| map.getType() == PetriNetModelElement.SUBP_TYPE)
 			{
 				// Trigger
-				if (map.getTriggerType() != -1)
+				if (map.getTriggerType() != -1) {
 					newTrigger(map);
-				if (map.getTriggerPosition() != null)
-					((TransitionModel) anElement).getToolSpecific()
-							.getTrigger().setPosition(
-									map.getTriggerPosition().getX1(),
-									map.getTriggerPosition().getX2());
+					if (map.getTriggerPosition() != null)
+						((TransitionModel) anElement).getToolSpecific()
+								.getTrigger().setPosition(
+									map.getTriggerPosition().x,
+									map.getTriggerPosition().y);
+				}
 				if (map.getResourceOrgUnit() != null
-						&& map.getResourceRole() != null)
+						&& map.getResourceRole() != null) {
 					newTransResource(map);
-				if (map.getResourcePosition() != null)
-					((TransitionModel) anElement).getToolSpecific()
+					if (map.getResourcePosition() != null)
+						((TransitionModel) anElement).getToolSpecific()
 							.getTransResource().setPosition(
-									map.getResourcePosition().getX1(),
-									map.getResourcePosition().getX2());
+									map.getResourcePosition().x,
+									map.getResourcePosition().y);
+				}
 				if (map.getTransitionTime()!=-1)
-					((TransitionModel)anElement).getToolSpecific().setTime(map.getTransitionTime());
+					((TransitionModel)anElement).getToolSpecific()
+							.setTime(map.getTransitionTime());
 				if (map.getTransitionTimeUnit()!=-1)
-					((TransitionModel)anElement).getToolSpecific().setTimeUnit(map.getTransitionTimeUnit());
+					((TransitionModel)anElement).getToolSpecific()
+							.setTimeUnit(map.getTransitionTimeUnit());
 			}
 			
 			

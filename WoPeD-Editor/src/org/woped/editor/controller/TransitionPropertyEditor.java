@@ -1406,7 +1406,7 @@ public class TransitionPropertyEditor extends JDialog implements ActionListener
     // f.setVisible(true);
     // }
 
-    private void apply()
+/*    private void apply()
     {
         int selectedTriggerType = -1;
         CreationMap map = transition.getCreationMap();
@@ -1493,6 +1493,62 @@ public class TransitionPropertyEditor extends JDialog implements ActionListener
         getEditor().setSaved(false);
         getEditor().updateNet();
 
+    }*/
+    
+	private void apply()
+    {
+        CreationMap map = transition.getCreationMap();
+        map.setTriggerPosition(transition.getTriggerPosition());
+        map.setResourcePosition(transition.getResourcePosition());
+        
+        // Remove old trigger plus resource classes if existing
+		if (transition.hasTrigger()) {
+			getEditor().deleteCell(transition.getToolSpecific().getTrigger(), true);
+		}
+ 		if (transition.hasResource()) {
+			getEditor().deleteCell(transition.getToolSpecific().getTransResource(), true);
+		}
+       	
+  		// Set new trigger and resource information
+		if (getTriggerResourceRadioButton().isSelected())
+       	{
+       		map.setTriggerType(TriggerModel.TRIGGER_RESOURCE);
+            getEditor().createTrigger(map);
+            
+       		String selectedRole = getRoleComboxBoxModel().getSelectedItem().toString();
+            String selectedGroup = getGroupComboxBoxModel().getSelectedItem().toString();           
+ 
+            if (!selectedRole.equals(ROLE_NONE) && !selectedGroup.equals(GROUP_NONE))
+            {
+                map.setResourceOrgUnit(selectedGroup);
+                map.setResourceRole(selectedRole);
+                getEditor().createTransitionResource(map);
+            } 
+      	} 
+       	else if (getTriggerTimeRadioButton().isSelected())
+       	{
+       		map.setTriggerType(TriggerModel.TRIGGER_TIME);
+            getEditor().createTrigger(map);
+      	} 
+       	else if (getTriggerMessageRadioButton().isSelected())
+       	{
+       		map.setTriggerType(TriggerModel.TRIGGER_EXTERNAL);
+            getEditor().createTrigger(map);
+       	}
+               
+        // Name change handling
+        transition.setNameValue(getNameTextField().getText());
+        
+        // Service time
+        if (!oldTime.equals(serviceTimeTextField.getText()))
+        	transition.getToolSpecific().setTime(Integer.parseInt(serviceTimeTextField.getText()));
+        
+        if (!oldTimeUnit.equals(serviceTimeComboBox.getSelectedItem().toString()))
+        	transition.getToolSpecific().setTimeUnit(serviceTimeComboBox.getSelectedIndex());
+        
+        // Set change flag
+        getEditor().setSaved(false);
+        getEditor().updateNet();
     }
 
     /*

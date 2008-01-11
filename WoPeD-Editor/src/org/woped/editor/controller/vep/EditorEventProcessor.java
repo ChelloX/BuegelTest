@@ -206,40 +206,50 @@ public class EditorEventProcessor extends AbstractEventProcessor
 						if (transEditor.getExitType()==transEditor.etOK)
 						{
 							String command = transEditor.getBranchingButtonGroup().getSelection().getActionCommand();
+							int type = ((TransitionModel) element).getToolSpecific().getOperatorType();
 
-							if (command.equals(Messages.getString("Transition.Properties.Branching.None")))
+							if (command.equals(Messages.getString("Transition.Properties.Branching.None")) &
+								 type != OperatorTransitionModel.TRANS_SIMPLE_TYPE)
 							{
 								transformTransition(editor, cell, element, OperatorTransitionModel.TRANS_SIMPLE_TYPE, -1);
 							}
-							else if (command.equals(Messages.getString("Transition.Properties.Branching.AndJoin")))
+							else if (command.equals(Messages.getString("Transition.Properties.Branching.AndJoin")) &
+									 type != OperatorTransitionModel.AND_JOIN_TYPE)
 							{
 								transformTransition(editor, cell, element, AbstractPetriNetModelElement.TRANS_OPERATOR_TYPE, OperatorTransitionModel.AND_JOIN_TYPE);
 							}
-							else if (command.equals(Messages.getString("Transition.Properties.Branching.AndSplit")))
+							else if (command.equals(Messages.getString("Transition.Properties.Branching.AndSplit")) &
+									 type != OperatorTransitionModel.AND_SPLIT_TYPE)
 							{
 								transformTransition(editor, cell, element, AbstractPetriNetModelElement.TRANS_OPERATOR_TYPE, OperatorTransitionModel.AND_SPLIT_TYPE);
 							}
-							else if (command.equals(Messages.getString("Transition.Properties.Branching.AndSplitJoin")))
+							else if (command.equals(Messages.getString("Transition.Properties.Branching.AndSplitJoin")) &
+									 type != OperatorTransitionModel.AND_SPLITJOIN_TYPE)
 							{
 								transformTransition(editor, cell, element, AbstractPetriNetModelElement.TRANS_OPERATOR_TYPE, OperatorTransitionModel.AND_SPLITJOIN_TYPE);
 							}
-							else if (command.equals(Messages.getString("Transition.Properties.Branching.XorSplit")))
+							else if (command.equals(Messages.getString("Transition.Properties.Branching.XorSplit")) &
+									 type != OperatorTransitionModel.XOR_SPLIT_TYPE)
 							{
 								transformTransition(editor, cell, element, AbstractPetriNetModelElement.TRANS_OPERATOR_TYPE,  OperatorTransitionModel.XOR_SPLIT_TYPE);
 							}
-							else if (command.equals(Messages.getString("Transition.Properties.Branching.XorJoin")))
+							else if (command.equals(Messages.getString("Transition.Properties.Branching.XorJoin")) &
+									 type != OperatorTransitionModel.XOR_JOIN_TYPE)
 							{
 								transformTransition(editor, cell, element, AbstractPetriNetModelElement.TRANS_OPERATOR_TYPE, OperatorTransitionModel.XOR_JOIN_TYPE);
 							}
-							else if (command.equals(Messages.getString("Transition.Properties.Branching.XorSplitJoin")))
+							else if (command.equals(Messages.getString("Transition.Properties.Branching.XorSplitJoin")) &
+									 type != OperatorTransitionModel.XOR_SPLITJOIN_TYPE)
 							{
 								transformTransition(editor, cell, element, AbstractPetriNetModelElement.TRANS_OPERATOR_TYPE, OperatorTransitionModel.XOR_SPLITJOIN_TYPE);
 							}
-							else if (command.equals(Messages.getString("Transition.Properties.Branching.AndJoinXorSplit")))
+							else if (command.equals(Messages.getString("Transition.Properties.Branching.AndJoinXorSplit")) &
+									 type != OperatorTransitionModel.ANDJOIN_XORSPLIT_TYPE)
 							{
 								transformTransition(editor, cell, element, AbstractPetriNetModelElement.TRANS_OPERATOR_TYPE, OperatorTransitionModel.ANDJOIN_XORSPLIT_TYPE);
 							}
-							else if (command.equals(Messages.getString("Transition.Properties.Branching.XorJoinAndSplit")))
+							else if (command.equals(Messages.getString("Transition.Properties.Branching.XorJoinAndSplit")) &
+									 type != OperatorTransitionModel.XORJOIN_ANDSPLIT_TYPE)
 							{
 								transformTransition(editor, cell, element, AbstractPetriNetModelElement.TRANS_OPERATOR_TYPE, OperatorTransitionModel.XORJOIN_ANDSPLIT_TYPE);
 							}
