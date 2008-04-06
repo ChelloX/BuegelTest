@@ -777,7 +777,7 @@ public class EditorVC extends JPanel implements KeyListener,
 	 * @param map
 	 * @return
 	 */
-	private ArcModel createArc(CreationMap map, boolean insertIntoCache)
+	public ArcModel createArc(CreationMap map, boolean insertIntoCache)
 	{
 		ArcModel arc = null;
 		String sourceId = map.getArcSourceId();
@@ -807,8 +807,16 @@ public class EditorVC extends JPanel implements KeyListener,
 					sourceId, targetId))
 			{
 				arc = getModelProcessor().createArc(map.getArcId(), sourceId,
-						targetId, pointArray, true);
+						targetId, pointArray, true);				
 				getGraph().connect(arc, insertIntoCache);
+				// Manually copy arc points
+				for (int i = 0;i<pointArray.length;++i)
+					addPointToArc(arc,pointArray[i]);
+				// Copy probability state of the creation map
+				arc.setProbability(map.getArcProbability());
+				arc.setDisplayOn(map.getDisplayArcProbability());
+				arc.setLabelPosition(new Point2D.Double(map.getArcLabelPosition().getX(),
+						map.getArcLabelPosition().getY()));
 			} else
 			{
 				LoggerManager.debug(Constants.EDITOR_LOGGER, "Connection already exits. Discarded.");

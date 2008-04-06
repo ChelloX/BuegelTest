@@ -48,6 +48,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import org.jgraph.graph.DefaultGraphCell;
 import org.woped.core.model.CreationMap;
 import org.woped.core.model.PetriNetModelProcessor;
 import org.woped.core.model.petrinet.OperatorTransitionModel;
@@ -1500,11 +1501,14 @@ public class TransitionPropertyEditor extends JDialog implements ActionListener
         map.setResourcePosition(transition.getResourcePosition());
         
         // Remove old trigger plus resource classes if existing
-		if (transition.hasTrigger()) {
-			getEditor().deleteCell(transition.getToolSpecific().getTrigger(), true);
+        // Remember them here as deleteCell will cross-update the tool-specific info
+        DefaultGraphCell trigger = transition.hasTrigger()?transition.getToolSpecific().getTrigger():null;
+        DefaultGraphCell resource = transition.hasResource()?transition.getToolSpecific().getTransResource():null;
+		if (trigger!=null) {
+			getEditor().deleteCell(trigger, true);
 		}
- 		if (transition.hasResource()) {
-			getEditor().deleteCell(transition.getToolSpecific().getTransResource(), true);
+ 		if (resource!=null) {
+			getEditor().deleteCell(resource, true);
 		}
        	
   		// Set new trigger and resource information
