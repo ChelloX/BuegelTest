@@ -888,38 +888,43 @@ public class EditorVC implements KeyListener,
 		getGraph().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 		long begin = System.currentTimeMillis();
 
-		// get the Selection
-		// tempContainer = getModelProcessor().getElementContainer();
-		Object[] cells = getGraph().getSelectionCells();
 		m_clipboard.clearClipboard();
 		m_clipboard.setM_sourceEditor(this);
-		AbstractPetriNetElementModel tempElement;
-		ArcModel tempArc;
-		for (int idx = 0; idx < cells.length; idx++) {
-			if (cells[idx] instanceof GroupModel) {
-				cells[idx] = ((GroupModel) cells[idx]).getMainElement();
-			} else if (cells[idx] instanceof NameModel) {
-				cells[idx] = getModelProcessor().getElementContainer()
-						.getElementById(((NameModel) cells[idx]).getOwnerId());
-			} else if (cells[idx] instanceof TriggerModel) {
-				cells[idx] = getModelProcessor().getElementContainer()
+		// get the Selection
+		Object[] cells = getGraph().getSelectionCells();
+		// Fill processing queue with selected cells
+		LinkedList<Object> toBeProcessed = new LinkedList<Object>(Arrays.asList(cells));		
+		// Arcs to be added to the clipboard
+		LinkedList<ArcModel> clipboardArcs = new LinkedList<ArcModel>();
+		
+		while (!toBeProcessed.isEmpty()) {
+			Object currentElement = toBeProcessed.poll();
+			if (currentElement instanceof GroupModel) {
+				currentElement = ((GroupModel) currentElement).getMainElement();
+			} else if (currentElement instanceof NameModel) {
+				currentElement = getModelProcessor().getElementContainer()
+						.getElementById(((NameModel) currentElement).getOwnerId());
+			} else if (currentElement instanceof TriggerModel) {
+				currentElement = getModelProcessor().getElementContainer()
 						.getElementById(
-								((TriggerModel) cells[idx]).getOwnerId());
+								((TriggerModel) currentElement).getOwnerId());
 			}
-			if (cells[idx] instanceof AbstractPetriNetElementModel) {
-				tempElement = (AbstractPetriNetElementModel) cells[idx];
+			if (currentElement instanceof ArcModel) {
+				ArcModel tempArc = (ArcModel) currentElement;
+				clipboardArcs.add(tempArc);
+			}			
+			if (currentElement instanceof AbstractPetriNetElementModel) {
+				AbstractPetriNetElementModel tempElement = (AbstractPetriNetElementModel) currentElement;
 				// copy the element
 				m_clipboard.putElement(tempElement);
 			}
 		}
-		// TODO: delete this in "implicite Arc copy" perhaps in configuration?
-		for (int idx = 0; idx < cells.length; idx++) {
-			if (cells[idx] instanceof ArcModel) {
-				tempArc = (ArcModel) cells[idx];
-				if (m_clipboard.containsElement(tempArc.getSourceId())
-						|| m_clipboard.containsElement(tempArc.getTargetId())) {
-					m_clipboard.putArc(tempArc);
-				}
+		// Add all arcs after all other cells, because those cells need to exist in the clipboard
+		// for a connecting arc to be added
+		for (ArcModel currentArc : clipboardArcs) {
+			if (m_clipboard.containsElement(currentArc.getSourceId())
+					|| m_clipboard.containsElement(currentArc.getTargetId())) {
+				m_clipboard.putArc(currentArc);
 			}
 		}
 		LoggerManager.debug(Constants.EDITOR_LOGGER, "Elements copied. ("
