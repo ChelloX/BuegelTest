@@ -13,9 +13,11 @@ import java.awt.geom.Rectangle2D;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -636,31 +638,37 @@ public class EditorVC implements KeyListener,
 			}
 		}
 
+		// Expand groups --> result will contain all the group elements themselves
+		// plus their content
+		
+		LinkedList<Object>  toBeProcessed = new LinkedList<Object>(Arrays.asList(toDelete));		
 		Vector<Object> result = new Vector<Object>();
-		for (int i = 0; i < toDelete.length; i++) {
-
-			if (toDelete[i] instanceof GroupModel
-					&& !((GroupModel) toDelete[i]).isUngroupable()) {
-				GroupModel tempGroup = (GroupModel) toDelete[i];
-
-				Object cell = tempGroup;
-				while (cell instanceof GroupModel) {
-					cell = ((GroupModel) cell).getMainElement();
-				}
-
-				if (cell instanceof AbstractPetriNetElementModel
-						&& !((AbstractPetriNetElementModel) cell).isReadOnly()) {
-					result.add(tempGroup);
-					for (int j = 0; j < tempGroup.getChildCount(); j++) {
-						result.add(tempGroup.getChildAt(j));
+		
+		while (!toBeProcessed.isEmpty()) {
+			Object currentElement = toBeProcessed.poll();			
+			if (currentElement instanceof GroupModel)
+			{
+				GroupModel tempGroup = (GroupModel) currentElement;
+				if (!tempGroup.isUngroupable()) {
+					Object cell = tempGroup;
+					while (cell instanceof GroupModel) {
+						cell = ((GroupModel) cell).getMainElement();
 					}
-
-				}
+					if (cell instanceof AbstractPetriNetElementModel
+							&& !((AbstractPetriNetElementModel) cell).isReadOnly()) {
+						result.add(tempGroup);
+						for (int j = 0; j < tempGroup.getChildCount(); j++) {
+							result.add(tempGroup.getChildAt(j));
+						}
+					}
+				} else {
+					result.add(currentElement);
+					for (int j = 0; j < tempGroup.getChildCount(); j++)
+						toBeProcessed.offer(tempGroup.getChildAt(j));
+				}		
 			} else {
-
-				result.add(toDelete[i]);
+				result.add(currentElement);
 			}
-
 		}
 
 		HashSet<Object> uniqueResult = new HashSet<Object>();
