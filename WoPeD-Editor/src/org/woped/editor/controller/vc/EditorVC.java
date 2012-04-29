@@ -900,7 +900,19 @@ public class EditorVC implements KeyListener,
 		while (!toBeProcessed.isEmpty()) {
 			Object currentElement = toBeProcessed.poll();
 			if (currentElement instanceof GroupModel) {
-				currentElement = ((GroupModel) currentElement).getMainElement();
+				GroupModel tempGroup = (GroupModel)currentElement;
+				if (tempGroup.isUngroupable()) {
+					// Regular group of multiple elements, add
+					// its elements instead of the group itself
+					for (int j = 0; j < tempGroup.getChildCount(); j++)
+						toBeProcessed.offer(tempGroup.getChildAt(j));
+					// Do not process the group itself
+					currentElement = null;
+				 } else {
+					 // The is just the usual group of main element, name label and other stuff.
+					 // We are only interested in the main model in this case
+					 currentElement = ((GroupModel) currentElement).getMainElement();
+				 }
 			} else if (currentElement instanceof NameModel) {
 				currentElement = getModelProcessor().getElementContainer()
 						.getElementById(((NameModel) currentElement).getOwnerId());
