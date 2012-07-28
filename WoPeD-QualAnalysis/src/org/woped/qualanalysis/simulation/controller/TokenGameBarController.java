@@ -482,6 +482,10 @@ public class TokenGameBarController implements Runnable {
             HistoryVector.add(transition);
         }
     }
+    
+    public int getNumHistoryItems() {
+    	return (HistoryVector!=null)?HistoryVector.size():0;
+    }
 
     /**
      * If History-tracking ("Recording") has been chosen by the user, Every occurred transition is added to this List

@@ -46,6 +46,7 @@ import org.woped.core.config.ConfigurationManager;
 import org.woped.core.controller.AbstractApplicationMediator;
 import org.woped.core.controller.AbstractGraph;
 import org.woped.core.controller.IEditor;
+import org.woped.core.gui.ITokenGameController;
 import org.woped.core.model.ArcModel;
 import org.woped.core.model.petrinet.AbstractPetriNetElementModel;
 import org.woped.core.model.petrinet.EditorLayoutInfo;
@@ -489,7 +490,7 @@ public class VisualController implements PropertyChangeListener, IClipboaredList
 				checkMode();
 			} else if ("TokenGameState".equals(arg0.getPropertyName()))
 			{
-				checkTokenGame();
+				checkTokenGame((ITokenGameController.TokenGameStats)(arg0.getNewValue()));
 			} else if ("UndoRedo".equals(arg0.getPropertyName()))
 			{
 				checkUndoRedo();
@@ -864,11 +865,11 @@ public class VisualController implements PropertyChangeListener, IClipboaredList
 		setStatus(CAN_PASTE, am.getUi().getAllEditors().size() > 0 && !isEmpty);
 	}
 	
-	protected void checkTokenGame() {
-		setStatus(TOKENGAME_SUBPROCESS_TRANSITION_ACTIVE, true);
-		setStatus(TOKENGAME_IN_SUBPROCESS, true);
-		setStatus(TOKENGAME_TRANSITION_ACTIVE, true);
-		setStatus(TOKENGAME_TRANSITION_HISTORY, true);
+	protected void checkTokenGame(ITokenGameController.TokenGameStats tokenGameStats) {
+		setStatus(TOKENGAME_SUBPROCESS_TRANSITION_ACTIVE, tokenGameStats.numActiveSubprocesses == 1);
+		setStatus(TOKENGAME_IN_SUBPROCESS, tokenGameStats.inSubprocess);
+		setStatus(TOKENGAME_TRANSITION_ACTIVE, tokenGameStats.numActiveTransitions == 1);
+		setStatus(TOKENGAME_TRANSITION_HISTORY, tokenGameStats.hasHistory);
 	}
 
 	public boolean isActive()

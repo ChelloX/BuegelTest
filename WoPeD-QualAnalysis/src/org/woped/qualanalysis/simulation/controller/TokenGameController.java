@@ -88,7 +88,9 @@ public class TokenGameController implements ITokenGameController {
     private IEditor thisEditor = null;
     private ReferenceProvider ParentControl = null;
     private TokenGameBarController RemoteControl = null;
+    
     private PropertyChangeSupport m_propertyChangeSupport = null;
+    private TokenGameStats oldState = null;
     
 	private boolean stepIntoSubProcess = false;
 
@@ -289,6 +291,8 @@ public class TokenGameController implements ITokenGameController {
 	 *  
 	 */
     private void checkNet() {
+    	TokenGameStats newState = new TokenGameStats();
+    	
         long begin = System.currentTimeMillis();
         LoggerManager.debug(Constants.QUALANALYSIS_LOGGER, "TokenGame: CHECK NET");
         Iterator<String> transIter = allTransitions.keySet().iterator();
@@ -296,9 +300,15 @@ public class TokenGameController implements ITokenGameController {
         resetArcStatus();
         // Iterate over all Transitions
         while (transIter.hasNext()) {
-            checkTransition((TransitionModel) allTransitions.get(transIter.next()));
+            checkTransition((TransitionModel) allTransitions.get(transIter.next()), newState);
         }
 
+        newState.hasHistory = (RemoteControl.getNumHistoryItems() > 0);
+        newState.inSubprocess = this.thisEditor.isSubprocessEditor();
+        
+		m_propertyChangeSupport.firePropertyChange("TokenGameState", 
+				this.oldState, newState);        
+        
         getGraph().updateUI();
         RemoteControl.fillChoiceBox(); // Fills the Choicebox with the active Transitions that have been encountered through checkTransition()
         // Check if there is a transition to choose in SlimChoiceBox
@@ -329,7 +339,7 @@ public class TokenGameController implements ITokenGameController {
     /*
      * Will check transitions if they have to be activated or not
      */
-    private void checkTransition(TransitionModel transition) {
+    private void checkTransition(TransitionModel transition, TokenGameStats tokenGameStats) {
         Map<String, ArcModel> incomingArcs = getPetriNet().getElementContainer().getIncomingArcs(transition.getId());
 
         Map<String, Object> outgoingArcs = getPetriNet().getElementContainer().getOutgoingArcs(transition.getId());
@@ -342,9 +352,11 @@ public class TokenGameController implements ITokenGameController {
                 // This will add all currently active postSet Transitions to the TokenGameBarVC-Autochoice-List
 
                 RemoteControl.addFollowingItem(transition);
+                tokenGameStats.numActiveTransitions++;   
 
                 if (transition.getType() == AbstractPetriNetElementModel.SUBP_TYPE) {
                     RemoteControl.enableStepDown(transition); // Enables Step-Down Navigation Button
+                    tokenGameStats.numActiveSubprocesses++;   
                 }
             }
         } else
@@ -356,6 +368,7 @@ public class TokenGameController implements ITokenGameController {
                     if (transition.isActivated()) {
                         // This will add the AND-X-Transition to the OccurenceList
                         RemoteControl.addFollowingItem(transition);
+                        tokenGameStats.numActiveTransitions++;                                                        
                     }
 
                 } else
@@ -382,6 +395,7 @@ public class TokenGameController implements ITokenGameController {
                                 XorName = transition.getNameValue() + " -> (" + helpPlace.getNameValue() + ")";
                                 virtualTransition.setNameValue(XorName);
                                 RemoteControl.addFollowingItem(virtualTransition);
+                                tokenGameStats.numActiveTransitions++;                                                                
                                 virtualTransition = null;
                                 XorName = "";
                             }
@@ -416,6 +430,7 @@ public class TokenGameController implements ITokenGameController {
                                         XorName = "(" + helpPlace.getNameValue() + ")-> " + transition.getNameValue();
                                         virtualTransition.setNameValue(XorName);
                                         RemoteControl.addFollowingItem(virtualTransition);
+                                        tokenGameStats.numActiveTransitions++;                                                                        
                                         virtualTransition = null;
                                         XorName = "";
                                     }
@@ -450,7 +465,8 @@ public class TokenGameController implements ITokenGameController {
                                                 getPetriNet().getElementContainer().getArcById(ID).getTargetId());
                                         XorName = transition.getNameValue() + " -> (" + helpPlace.getNameValue() + ")";
                                         virtualTransition.setNameValue(XorName);
-                                        RemoteControl.addFollowingItem(virtualTransition);
+                                        RemoteControl.addFollowingItem(virtualTransition);                                        
+                                        tokenGameStats.numActiveTransitions++;                                                                        
                                         virtualTransition = null;
                                         XorName = "";
                                     }
@@ -486,16 +502,15 @@ public class TokenGameController implements ITokenGameController {
                                             XorName = "(" + helpPlace.getNameValue() + ")-> "
                                                     + transition.getNameValue();
                                             virtualTransition.setNameValue(XorName);
-                                            RemoteControl.addFollowingItem(virtualTransition);
+                                            RemoteControl.addFollowingItem(virtualTransition);                                            
+                                            tokenGameStats.numActiveTransitions++;                                                                            
                                             virtualTransition = null;
                                             XorName = "";
                                         }
                                     }
                                 }
                             }
-            }
-        
-		m_propertyChangeSupport.firePropertyChange("TokenGameState", null, null);        
+            }        
     }
 
     /*
@@ -522,12 +537,15 @@ public class TokenGameController implements ITokenGameController {
                             relativeY = e.getY() - transition.getY();
                         }
                         // the lower left half of the transition will trigger 'step into'
-                        if ((relativeY >= relativeX) || (stepIntoSubProcess)) {
-                            // Step into sub-process and process it in a new modal editor
-                            // dialog in token-game mode
-                            ParentControl = new ReferenceProvider();
-                            ParentControl.setRemoteControlReference(RemoteControl);
-                            thisEditor.openTokenGameSubProcess((SubProcessModel) transition);
+                        
+                        if (relativeY >= relativeX)
+                        	stepIntoSubProcess = true;
+                        if (stepIntoSubProcess) {
+                        	// Step into sub-process and process it in a new modal editor
+                        	// dialog in token-game mode
+                        	ParentControl = new ReferenceProvider();
+                        	ParentControl.setRemoteControlReference(RemoteControl);
+                        	thisEditor.openTokenGameSubProcess((SubProcessModel) transition);
                         }
                     }
                 }
