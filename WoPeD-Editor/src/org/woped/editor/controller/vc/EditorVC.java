@@ -254,7 +254,7 @@ public class EditorVC implements KeyListener,
 			getGraph().getModel().addGraphModelListener(this);
 			getGraph().addKeyListener(this);
 		
-			this.m_tokenGameController = new TokenGameController(this);
+			this.m_tokenGameController = new TokenGameController(this, m_propertyChangeSupport);
 		}
 	}
 

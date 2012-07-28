@@ -25,6 +25,7 @@ package org.woped.qualanalysis.simulation.controller;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.beans.PropertyChangeSupport;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
@@ -87,6 +88,7 @@ public class TokenGameController implements ITokenGameController {
     private IEditor thisEditor = null;
     private ReferenceProvider ParentControl = null;
     private TokenGameBarController RemoteControl = null;
+    private PropertyChangeSupport m_propertyChangeSupport = null;
     
 	private boolean stepIntoSubProcess = false;
 
@@ -96,10 +98,11 @@ public class TokenGameController implements ITokenGameController {
      * @param petrinet
      * @param graph
      */
-    public TokenGameController(IEditor thisEditor) {
+    public TokenGameController(IEditor thisEditor, PropertyChangeSupport propertyChangeSupport) {
         this.petrinet = (PetriNetModelProcessor) thisEditor.getModelProcessor();
         this.graph = thisEditor.getGraph();
         this.thisEditor = thisEditor;
+        this.m_propertyChangeSupport = propertyChangeSupport;
         setVisualTokenGame(graph != null);
         tokenGameMouseHandler = new MouseHandler();
 
@@ -491,6 +494,8 @@ public class TokenGameController implements ITokenGameController {
                                 }
                             }
             }
+        
+		m_propertyChangeSupport.firePropertyChange("TokenGameState", null, null);        
     }
 
     /*

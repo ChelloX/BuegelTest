@@ -1211,6 +1211,9 @@ public class TokenGameBarController implements Runnable {
                 disableBackWardButtons();
             }
         }
+        // Update Ribbon to show Token Game icons
+        desktop.getMediatorReference().getUi()
+        .selectEditor(desktop.getMediatorReference().getUi().getEditorFocus());
     }
 
     public void setPlayIcon(boolean record) {

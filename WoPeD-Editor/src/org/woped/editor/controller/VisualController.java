@@ -179,7 +179,19 @@ public class VisualController implements PropertyChangeListener, IClipboaredList
 	
 	public static final int APROMORE_EXPORT 				= 49;
 	
-	private static final int MAX_ID 						= 50;	
+	// The following describe states that may occur while token game mode
+	// is enabled
+	
+	// Exactly one sub process 'transition' is active and can be executed
+	public static final int TOKENGAME_SUBPROCESS_TRANSITION_ACTIVE = 50;
+	// We are currently executing a sub process
+	public static final int TOKENGAME_IN_SUBPROCESS = 51;
+	// Exactly one transition is active and can occur
+	public static final int TOKENGAME_TRANSITION_ACTIVE		= 52;
+	// Transitions have occurred, so there is history information
+	public static final int TOKENGAME_TRANSITION_HISTORY	= 53;
+	
+	private static final int MAX_ID 						= 54;	
 	
 	private ArrayList<Vector<WoPeDAction>> m_enable = new ArrayList<Vector<WoPeDAction>>();
 
@@ -475,6 +487,9 @@ public class VisualController implements PropertyChangeListener, IClipboaredList
 			} else if ("TokenGameMode".equals(arg0.getPropertyName()))
 			{
 				checkMode();
+			} else if ("TokenGameState".equals(arg0.getPropertyName()))
+			{
+				checkTokenGame();
 			} else if ("UndoRedo".equals(arg0.getPropertyName()))
 			{
 				checkUndoRedo();
@@ -847,6 +862,13 @@ public class VisualController implements PropertyChangeListener, IClipboaredList
 	public void notify(boolean isEmpty)
 	{
 		setStatus(CAN_PASTE, am.getUi().getAllEditors().size() > 0 && !isEmpty);
+	}
+	
+	protected void checkTokenGame() {
+		setStatus(TOKENGAME_SUBPROCESS_TRANSITION_ACTIVE, true);
+		setStatus(TOKENGAME_IN_SUBPROCESS, true);
+		setStatus(TOKENGAME_TRANSITION_ACTIVE, true);
+		setStatus(TOKENGAME_TRANSITION_HISTORY, true);
 	}
 
 	public boolean isActive()
