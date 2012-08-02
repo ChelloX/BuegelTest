@@ -61,12 +61,6 @@ public class TokenGameBarListener implements ActionListener, MouseListener, Chan
     // HistoryManager NameField
     public final static int HM_NAME_CHANGED = 27;
 
-    // AutoChoice List
-    public final static int CHOOSE_TRANSITION = 30;
-
-    // Record Simulation
-    public final static int CHOOSE_RECORD = 31;
-
     // PlaybackManager buttons
     public final static int PM_SAVE_VIEW = 32;
     public final static int PM_FASTFWBW = 33;
@@ -245,19 +239,6 @@ public class TokenGameBarListener implements ActionListener, MouseListener, Chan
             loadExistingHistory();
             break;
 
-        case CHOOSE_TRANSITION:
-            if (RemoteControl.getSelectedChoiceID() > -1) {
-                RemoteControl.proceedTransitionChoice(RemoteControl.getSelectedChoiceID());
-            }
-            break;
-        case CHOOSE_RECORD:
-            if (RemoteControl.isRecordSelected()) {
-                RemoteControl.setPlayIcon(true);
-                RemoteControl.clearHistoryData();
-            } else {
-                RemoteControl.setPlayIcon(false);
-            }
-            break;
         case PM_SAVE_VIEW:
             if (RemoteControl.getViewMode() == TokenGameBarController.EXPERT_VIEW) {
                 PlaybackDialog.savePMView();
@@ -265,9 +246,6 @@ public class TokenGameBarListener implements ActionListener, MouseListener, Chan
             }
             if ((RemoteControl.getViewMode() == TokenGameBarController.SLIM_VIEW)
                     || (RemoteControl.getViewMode() == TokenGameBarController.EYE_VIEW)) {
-                if (RemoteControl.tokengameRunning()) {
-                    RemoteControl.getExpertView().disableRecordButton();
-                }
                 RemoteControl.setViewMode(0);
                 break;
             }
@@ -351,8 +329,6 @@ public class TokenGameBarListener implements ActionListener, MouseListener, Chan
         RemoteControl.getTokenGameController().tokenGameRestore();
         RemoteControl.clearChoiceBox();
         RemoteControl.setStepIn(false);
-        RemoteControl.getSlimView().getSlimPanel().setChoiceListInvisible();
-        RemoteControl.getEyeView().getSlimPanel().setChoiceListInvisible();
     }
 
     /*

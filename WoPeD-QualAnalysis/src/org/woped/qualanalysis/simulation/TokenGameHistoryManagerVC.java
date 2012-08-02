@@ -291,13 +291,7 @@ public class TokenGameHistoryManagerVC extends JDialog
 	  }
 	  
 	  if(load)
-	  {
-		  //When a saved Simulation is loaded the mode must not be record-mode...
-		  if(RemoteControl.isRecordSelected())
-		  {
-			  RemoteControl.getExpertView().doRecordClick();
-		  }
-		  
+	  {		  
 		  //Specify which Simulation has to be opened
 		  SelectedItems = SavedHistory.getSelectionModel();	
 		  if(SelectedItems.isSelectionEmpty())

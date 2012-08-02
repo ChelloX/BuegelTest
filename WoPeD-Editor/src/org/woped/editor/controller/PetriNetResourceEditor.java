@@ -331,6 +331,8 @@ public class PetriNetResourceEditor extends JPanel
 	        DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
 	        renderer.setLeafIcon(Messages.getImageIcon("PetriNet.Resources.Unassign"));
 	        renderer.setOpenIcon(Messages.getImageIcon("PetriNet.Resources.Unassign"));
+
+	        this.updateUI();
 	   }
 
 

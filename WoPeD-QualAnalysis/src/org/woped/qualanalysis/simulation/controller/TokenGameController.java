@@ -72,7 +72,7 @@ import org.woped.qualanalysis.soundness.marking.IMarking;
  *         If you have set the the <code>PetriNet</code> and the <code>WoPeDJGraph</code> with the Constructor you have to call
  *         <code>disableVisualTokenGame()</code>.<br>
  * 
- *         Created on 21.09.2004 Last Change on 13.10.2004
+ *         Created on 21.09.2004
  */
 public class TokenGameController implements ITokenGameController {
 
@@ -178,8 +178,6 @@ public class TokenGameController implements ITokenGameController {
                     .putAll(getPetriNet().getElementContainer().getElementsByType(AbstractPetriNetElementModel.SUBP_TYPE));
 
         }
-        ReferenceProvider refer = new ReferenceProvider();
-        refer.getUIReference().setFirstTransitionActive();        
         // set first transition active
         RemoteControl.startPlayback();
         

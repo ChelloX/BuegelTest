@@ -483,20 +483,7 @@ public class DefaultUserInterface extends MainFrame implements IUserInterface, I
     	// because we will change back to the original frame in an instant
     	boolean modalityFixed = FixModality();
     	if (!modalityFixed)
-    	{
     		getEditorFocus().fireViewEvent(new ViewEvent(getEditorFocus(), AbstractViewEvent.VIEWEVENTTYPE_GUI, AbstractViewEvent.SELECT_EDITOR));
-
- /*   		if (!getEditorFocus().isSubprocessEditor()) {
-    			if (getEditorFocus().isTokenGameEnabled()) {
-    				switchToolBar(true);
-    			} else {
-    				switchToolBar(false);
-//    				getToolBar().addAnalysisButtons();
-    			}
-    		} else {
-    			return;
-    		} */
-    	}
 	}
 
     public void internalFrameClosed(InternalFrameEvent e)

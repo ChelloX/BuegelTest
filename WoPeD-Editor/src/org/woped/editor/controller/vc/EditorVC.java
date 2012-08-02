@@ -1355,23 +1355,12 @@ public class EditorVC implements KeyListener,
 	// 02122008 MarioBeiser --> ChangePanel-Option
 	public void changePanel(boolean change) {
 		ReferenceProvider refer = new ReferenceProvider();
-
-		boolean change_flag = change;
-
-		if (change_flag) {
-			refer.getUIReference().switchToolBar(change_flag);
-			refer.getUIReference().getContentPane().repaint();
-		} else {
-			refer.getUIReference().switchToolBar(change_flag);
-			refer.getUIReference().getContentPane().repaint();
-		}
-
+		refer.getUIReference().getContentPane().repaint();
 	}
 
 	// 02122008 MarioBeiser --> ManualSwitchToolbar
 	public void manualChangePanel() {
 		ReferenceProvider refer = new ReferenceProvider();
-		refer.getUIReference().switchToolBar(false);
 		refer.getUIReference().getContentPane().repaint();
 	}
 
@@ -1935,7 +1924,6 @@ public class EditorVC implements KeyListener,
 
 	public void internalFrameActivated(InternalFrameEvent e) {
 		ReferenceProvider refer = new ReferenceProvider();
-		refer.getUIReference().switchToolBar(tokenGameEnabled);
 	}
 
 	public void internalFrameClosed(InternalFrameEvent e) {
@@ -1944,7 +1932,6 @@ public class EditorVC implements KeyListener,
 	public void internalFrameClosing(InternalFrameEvent e) {
 		// Get the standard-toolbar if the editor is being closed.
 		ReferenceProvider refer = new ReferenceProvider();
-		refer.getUIReference().switchToolBar(false);
 		refer.getUIReference().getContentPane().repaint();
 	}
 

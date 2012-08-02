@@ -1486,42 +1486,6 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
 	}
 
 	@Override
-	public void quit() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void refreshFocusOnFrames() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeToolBar() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setFirstTransitionActive() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setSimulatorBar(Object simulatorBar) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void switchToolBar(boolean change) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void addEditor(IEditor editor) {
 	    getRibbon().setSelectedTask(getEditTask());
 	}
@@ -1561,6 +1525,18 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
 
 	@Override
 	public void updateRecentMenu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void refreshFocusOnFrames() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void quit() {
 		// TODO Auto-generated method stub
 		
 	}
