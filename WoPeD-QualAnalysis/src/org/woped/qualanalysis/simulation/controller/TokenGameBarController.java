@@ -1,31 +1,33 @@
 package org.woped.qualanalysis.simulation.controller;
 
-import java.text.DateFormat;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Vector;
 
 import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
 
-import org.woped.core.config.ConfigurationManager;
 import org.woped.core.controller.IEditor;
 import org.woped.core.model.PetriNetModelProcessor;
 import org.woped.core.model.petrinet.AbstractPetriNetElementModel;
 import org.woped.core.model.petrinet.SimulationModel;
 import org.woped.core.model.petrinet.TransitionModel;
-import org.woped.qualanalysis.simulation.TokenGameHistoryManagerVC;
 import org.woped.qualanalysis.simulation.TokenGameRunnableObject;
-import org.woped.translations.Messages;
 
+/**
+ * The TokenGameBarController class manages all interaction with the
+ * token game toolbar and implements some of the logic to navigate the
+ * token game. It is important to note that there is one TokenGameBarController 
+ * instance per token game, while there is one TokenGameController
+ * per petrinet, where petrinet can be a top-level net or a subprocess. 
+ * If more than one token game is running, two TokenGameBar instances exist.
+ * 
+ * @author weirdsoul
+ *
+ */
 public class TokenGameBarController implements Runnable {
 
     // constants
     // Playback Properties
-    public static final int EYE_VIEW = 2;
-    public static final int SLIM_VIEW = 1;
-    public static final int EXPERT_VIEW = 0;
     
 	private boolean playButtonEnabled = false;
 
@@ -40,7 +42,6 @@ public class TokenGameBarController implements Runnable {
     private TransitionModel TransitionToOccur = null;
     private TransitionModel BackwardTransitionToOccur = null;
     private TransitionModel helpTransition = null;
-    private TransitionModel StepInTransition = null;
 
     // SimulationModels
     private SimulationModel SaveableSimulation = null;
@@ -57,14 +58,12 @@ public class TokenGameBarController implements Runnable {
     private boolean backward = false;
     private boolean newHistory = false;
     private boolean endofautoplay = false;
-    private boolean stepInSubProcess = false;
     private boolean expertViewOnStage = false;
 
     // Integers
     private int HistoryIndex = 0;
     private int occurtimes = 3;
     private int delaytime = 1;
-    private int viewmode = 0;
 
     public TokenGameBarController(TokenGameController tgController, PetriNetModelProcessor PetriNet) {
         this.PetriNet = PetriNet;
@@ -82,16 +81,12 @@ public class TokenGameBarController implements Runnable {
     public void addControlElements() {
     	desktop = new ReferenceProvider();
 
-    	setViewMode(viewmode);
-    	
         // Add InternalFrameListener to the EditorFrame to get informed about changes.
         // Need to manually put the last selected editor to foreground/focus. Cause if not
         // the InternalFrameListener may be bound to the ReachablilityGraph-Frame or another JInternalFrame
         if (desktop.getMediatorReference().getUi().getEditorFocus() instanceof IEditor) {
             desktop.getMediatorReference().getUi()
                     .selectEditor(desktop.getMediatorReference().getUi().getEditorFocus());
-            desktop.getDesktopReference().getSelectedFrame().addInternalFrameListener(
-                    new TokenGameEditorFrameListener(this));
         }
     }
 
@@ -99,12 +94,6 @@ public class TokenGameBarController implements Runnable {
     public void getExpertViewOnStage() {
 
         setExpertViewStatus(true);
-    }
-
-    /**
-     * The TokenGameBar will be removed from the desktop
-     */
-    public void removeControlElements() {
     }
 
     /*
@@ -143,29 +132,12 @@ public class TokenGameBarController implements Runnable {
          * Backward is done with the
          */
         if (BackWard) {
-            stepInSubProcess = false;
             previousItem();
-            /* TODO: This code is broken for all workflow nets. Findings:
-             * 1) It relies on a specific format for transition IDs.
-             * 2) It will skip all history entries that are part of a sub process,
-             *    even when stepping back within a sub process itself 
-             */
-            if (BackwardTransitionToOccur != null) {
-                while ((BackwardTransitionToOccur != null)
-                		&& BackwardTransitionToOccur.getId().contains("sub")
-                        && (BackwardTransitionToOccur.getId().length() > 6)) {
-                    previousItem();
-                    while ((BackwardTransitionToOccur != null)
-                    		&& BackwardTransitionToOccur.getId().contains("a")) {
-                        previousItem();
-                    }
-                }
-                TransitionToOccur = BackwardTransitionToOccur;
-                if (TransitionToOccur == null) {
-                    return;
-                }
-                tgController.occurTransitionbyTokenGameBarVC(TransitionToOccur, BackWard);
-            }
+			if (BackwardTransitionToOccur != null) {
+				TransitionToOccur = BackwardTransitionToOccur;
+				tgController.occurTransitionbyTokenGameBarVC(TransitionToOccur,
+						BackWard);
+			}
         } else {
 
             // AFAIK needed to make automatic backward stepping
@@ -256,9 +228,6 @@ public class TokenGameBarController implements Runnable {
             if (!playbackRunning()) {
                 if (HistoryVector.size() > 0) {
                     BackwardTransitionToOccur = HistoryVector.remove(HistoryVector.size() - 1);
-                    if (isRecordSelected()) {
-                        ahxHistoryContent.remove(ahxHistoryContent.size() - 1);
-                    }
                 } else {
                     BackwardTransitionToOccur = null;
                 }
@@ -297,7 +266,6 @@ public class TokenGameBarController implements Runnable {
             if (acoChoiceItems.get(index) == "--><-- StepIn") {
                 tgController.setStepIntoSubProcess(true);
             }
-            stepInSubProcess = false;
             occurTransition(false);
         }
     }
@@ -339,9 +307,6 @@ public class TokenGameBarController implements Runnable {
         }
         if (!playbackRunning()) {
             clearChoiceBox(); // To ensure that the box is empty
-            if ((getViewMode() > 0) && stepInSubProcess) {
-                followingActivatedTransitions.add(StepInTransition);
-            }
             if (followingActivatedTransitions.size() == 1) {
                 TransitionToOccur = followingActivatedTransitions.get(0);
             }
@@ -349,9 +314,6 @@ public class TokenGameBarController implements Runnable {
                 for (int i = 0; i < followingActivatedTransitions.size(); i++) {
                     helpTransition = followingActivatedTransitions.get(i);
                     acoChoiceItems.addElement(helpTransition.getNameValue());
-                }
-                if ((getViewMode() > 0) && stepInSubProcess) {
-                    acoChoiceItems.set(acoChoiceItems.size() - 1, "--><-- StepIn");
                 }
             }
         }
@@ -423,118 +385,6 @@ public class TokenGameBarController implements Runnable {
                     .getNewElementId(AbstractPetriNetElementModel.SIMULATION_TYPE), "Default",
                     (Vector<TransitionModel>) HistoryVector.clone(), PetriNet.getLogicalFingerprint(), new Date());
             newHistory = true;
-        }
-    }
-
-    /**
-     * Adds the History (SimulationModel) Objekt to the Simulations Vector
-     */
-    public void saveHistory() {
-        PetriNet.addSimulation(SaveableSimulation);
-        tgController.getThisEditor().setSaved(false);
-    }
-
-    /**
-     * Loads the History into the HistoryContent
-     * 
-     * @return [code]true[/code] if simulation was loaded, else [code]false[/code]
-     */
-    @SuppressWarnings("unchecked")
-    public boolean loadHistory(int index) {
-        boolean loaded = false;
-        ahxHistoryContent.clear();
-        SaveableSimulation = PetriNet.getSimulations().get(index);
-        int answer = 0;
-        // check if current fingerprint of the net equals the loaded one
-        // if not ask the user if he want's to keep the simulation
-        //
-        // this check is performed as well on:
-        // - fileixport
-        // - fileexport
-        // when you change it here please do at those locations as well
-        if (!PetriNet.isLogicalFingerprintEqual(SaveableSimulation.getFingerprint())) {
-            Object[] options = { Messages.getString("Tokengame.ChangedNetDialog.ButtonYes"),
-                    Messages.getString("Tokengame.ChangedNetDialog.ButtonNo") };
-            // get the localized message text
-            String message = Messages.getString("Tokengame.ChangedNetDialog.Load.Message");
-            // fill the message text dynamically with the simulationname and simulationdate
-            message = message.replaceAll("##SIMULATIONNAME##", SaveableSimulation.getName());
-            message = message.replaceAll("##SIMULATIONDATE##", DateFormat.getDateTimeInstance(DateFormat.MEDIUM,
-                    DateFormat.MEDIUM, ConfigurationManager.getConfiguration().getLocale()).format(
-                    SaveableSimulation.getSavedDate()));
-
-            answer = JOptionPane.showOptionDialog(null, message,
-                    Messages.getString("Tokengame.ChangedNetDialog.Title"), JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE, null, options, options[0]);
-            // if the user didn't choose one of the buttons but closed the OptionDialog don't drop the simulation
-            if (answer == -1) {
-                answer = 0;
-            }
-        }
-        // if fingerprint is ok or user wants to load it anyway
-        if (answer == 0) {
-            // needs a clone, otherwise, the saved history might be erased when the user just wants to clean the history-box
-            HistoryVector = (Vector<TransitionModel>) SaveableSimulation.getOccuredTransitions().clone();
-            for (int i = 0; i < HistoryVector.size(); i++) {
-                ahxHistoryContent.addElement(HistoryVector.get(i).getNameValue());
-            }
-            loaded = true;
-        }
-        return loaded;
-    }
-
-    /**
-     * Overwrites an existing history with the current one.
-     * 
-     * @param index
-     */
-    @SuppressWarnings("unchecked")
-    public void overwriteHistory(String simulationname) {
-        Vector<SimulationModel> simulations = PetriNet.getSimulations();
-        Iterator<SimulationModel> iter = simulations.iterator();
-        while (iter.hasNext()) {
-            SimulationModel temp = iter.next();
-            if (temp.getName().equals(simulationname)) {
-                SaveableSimulation = temp;
-                break;
-            }
-        }
-        if (SaveableSimulation != null) {
-            SaveableSimulation.setOccuredTransitions((Vector<TransitionModel>) HistoryVector.clone());
-            SaveableSimulation.setSavedDate(new Date());
-
-            // set the pnml-state to unsaved
-            tgController.getThisEditor().setSaved(false);
-        }
-    }
-
-    /**
-     * Deletes the a saved simulation
-     * 
-     * @param index
-     */
-    public void deleteHistory(TokenGameHistoryManagerVC historyManager) {
-        int index = historyManager.getSelection();
-        Object[] options = { Messages.getString("Dialog.Yes"), Messages.getString("Dialog.No") };
-        int answer = JOptionPane.showOptionDialog(historyManager, Messages
-                .getString("Tokengame.HistoryManager.WarningDelete"), Messages
-                .getTitle("Tokengame.HistoryManager.WarningDelete"), JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE, null, options, options[1]);
-        if (answer == 0) {
-            SaveableSimulation = PetriNet.getSimulations().remove(index);
-            tgController.getThisEditor().setSaved(false);
-            historyManager.removeLoadListItem(historyManager.getSelection());
-        }
-    }
-
-    /**
-     * fills the list of saved simulations in the HistoryManager
-     */
-    public void initializeHistoryManagerSimulationlist(TokenGameHistoryManagerVC HistoryDialog) {
-        for (int i = 0; i < getPetriNet().getSimulations().size(); i++) {
-            SimulationModel sm = getPetriNet().getSimulations().get(i);
-            Object[] item = { sm.getName(), sm.getSavedDate() };
-            HistoryDialog.addLoadListItem(item);
         }
     }
 
@@ -650,10 +500,6 @@ public class TokenGameBarController implements Runnable {
         }
     }
 
-    public void setStepIn(boolean StepIn) {
-        stepInSubProcess = StepIn;
-    }
-
     /**
      * sets the EndOfAutoPlay flag
      * 
@@ -661,34 +507,6 @@ public class TokenGameBarController implements Runnable {
      */
     public void setEndOfAutoPlay(boolean end) {
         endofautoplay = end;
-    }
-
-    /**
-     * Determines witch View is switched on
-     * 
-     * @return
-     */
-    public int getViewMode() {
-        return viewmode;
-    }
-
-    /**
-     * Set Viewmode Variable
-     */
-    public void setViewMode(int view) {
-        clearChoiceBox();
-        viewmode = view;
-        switch (viewmode) {
-        case SLIM_VIEW:
-            ahxHistoryContent.clear();
-            break;
-        case EYE_VIEW:
-            autoPlayBack = false;
-            ahxHistoryContent.clear();
-            break;
-        default:
-            break;
-        }
     }
 
     /**
@@ -778,13 +596,6 @@ public class TokenGameBarController implements Runnable {
         return backward;
     }
 
-    /**
-     * Checks if the RecordButton is selected
-     */
-    public boolean isRecordSelected() {
-    	return false;
-    }
-
     public boolean isNewHistory() {
         return newHistory;
     }
@@ -796,7 +607,7 @@ public class TokenGameBarController implements Runnable {
      * @return true / false
      */
     public boolean playbackRunning() {
-        if ((ahxHistoryContent.size() != 0) && (!isRecordSelected())) {
+        if (ahxHistoryContent.size() != 0) {
             return true;
         } else {
             return false;
@@ -825,11 +636,6 @@ public class TokenGameBarController implements Runnable {
      * Enables the StepDown-Button in the ExpertView will show the StepDown-Option on SlimView-PopUp
      */
     public void enableStepDown(TransitionModel transition) {
-        if ((transition != null) && (getViewMode() > 0)) {
-            stepInSubProcess = true;
-            StepInTransition = transition;
-        }
-
     }
 
     /**

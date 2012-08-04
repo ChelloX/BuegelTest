@@ -2,8 +2,6 @@ package org.woped.qualanalysis.simulation.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
@@ -12,10 +10,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import org.woped.qualanalysis.simulation.TokenGameHistoryManagerVC;
-import org.woped.qualanalysis.simulation.TokenGamePlaybackManagerVC;
-
-public class TokenGameBarListener implements ActionListener, MouseListener, ChangeListener, ListSelectionListener,
+public class TokenGameBarListener implements ActionListener, ChangeListener, ListSelectionListener,
         CaretListener {
 
     // Constants
@@ -23,7 +18,6 @@ public class TokenGameBarListener implements ActionListener, MouseListener, Chan
     // Playback configuration
     public final static int CHOOSE_STEPWISE = 1;
     public final static int CHOOSE_PLAYBACK = 2;
-    public final static int OPEN_PLAYBACK_MANAGER = 3;
     public final static int CHANGE_PLAYMODE = 14; // This is used for the SlimView, only
 
     // Navigation Button
@@ -43,30 +37,7 @@ public class TokenGameBarListener implements ActionListener, MouseListener, Chan
     public final static int CHOOSE_AUTO_CHOICE = 13;
 
     // History management
-    public final static int OPEN_HISTORY_MANAGER = 15;
     public final static int CHOOSE_DELETE_CURRENT = 16;
-
-    // HistoryManager buttons
-    public final static int HM_SAVE_HISTORY = 17;
-    public final static int HM_DELETE_SELECTED = 18;
-    public final static int HM_OVERWRITE_SELECTED = 19;
-    public final static int HM_OPEN_SELECTED = 20;
-    public final static int HM_KEYEVENT = 21;
-    // HistoryManager UI-control
-    public final static int HM_ESCAPE = 22;
-    public final static int HM_ENTER = 23;
-    // HistoryManager table
-    public final static int HM_ELEMENT_SELECTED = 25;
-    public final static int HM_TABLE_CLICKED = 26;
-    // HistoryManager NameField
-    public final static int HM_NAME_CHANGED = 27;
-
-    // PlaybackManager buttons
-    public final static int PM_SAVE_VIEW = 32;
-    public final static int PM_FASTFWBW = 33;
-    public final static int PM_DELAYTIME = 34;
-    // PlaybackManager UI-control
-    public final static int PM_ESCAPE = 35;
 
     // Get additional RemoteControls on stage
     public final static int CHOOSE_VIEW = 36;
@@ -82,26 +53,9 @@ public class TokenGameBarListener implements ActionListener, MouseListener, Chan
     // AutoChoice List
     public final static int CHOOSE_REMOTECONTROLL = 43;
 
-    // Action-Variables
-    private ReferenceProvider MainWindowReference = null;
-    private TokenGameHistoryManagerVC HistoryDialog = null;
-
     // Variables
     private int ID = 0;
     private TokenGameBarController RemoteControl = null;
-    private TokenGamePlaybackManagerVC PlaybackDialog = null;
-
-    public TokenGameBarListener(int ElementID, TokenGameBarController RC, TokenGameHistoryManagerVC ToGaHiMan) {
-        ID = ElementID;
-        RemoteControl = RC;
-        HistoryDialog = ToGaHiMan;
-    }
-
-    public TokenGameBarListener(int ElementID, TokenGameBarController RC, TokenGamePlaybackManagerVC ToGaPM) {
-        ID = ElementID;
-        RemoteControl = RC;
-        PlaybackDialog = ToGaPM;
-    }
 
     // Needed for RemoteControlElements
     public TokenGameBarListener(int ElementID, TokenGameBarController RC) {
@@ -117,9 +71,6 @@ public class TokenGameBarListener implements ActionListener, MouseListener, Chan
         case CHOOSE_PLAYBACK:
             RemoteControl.setAutoPlayback(true);
             break;
-        case OPEN_PLAYBACK_MANAGER:
-            showPlaybackManager();
-            break;
         case CLICK_FAST_BACKWARD:
             if (RemoteControl.tokengameRunning()) {
                 RemoteControl.occurTransitionMulti(true);
@@ -129,11 +80,6 @@ public class TokenGameBarListener implements ActionListener, MouseListener, Chan
             /*
              * Will make a step back
              */
-            if (RemoteControl.getViewMode() > 0) {
-                if (RemoteControl.getTokenGameController().getThisEditor().isSubprocessEditor()) {
-                    RemoteControl.changeTokenGameReference(null, true);
-                }
-            }
             if (RemoteControl.tokengameRunning()) {
                 if (RemoteControl.getAutoPlayBack()) {
                     RemoteControl.setEndOfAutoPlay(false);
@@ -200,64 +146,8 @@ public class TokenGameBarListener implements ActionListener, MouseListener, Chan
                 RemoteControl.setAutoPlayback(true);
             }
             break;
-        case OPEN_HISTORY_MANAGER:
-            stopTokenGame();
-            showHistoryManager();
-            break;
         case CHOOSE_DELETE_CURRENT:
             deleteCurrentHistory();
-            break;
-        case HM_ESCAPE:
-            HistoryDialog.setVisible(false);
-            break;
-        case HM_ENTER:
-            if (HistoryDialog.isSaveButtonEnabled()) {
-                HistoryDialog.saveHistory();
-            } else
-                if (HistoryDialog.getSelection() != -1) {
-                    this.loadExistingHistory();
-                }
-            break;
-        case HM_ELEMENT_SELECTED:
-            HistoryDialog.initializeElementStatus();
-            break;
-        case HM_NAME_CHANGED:
-            HistoryDialog.initializeElementStatus();
-            break;
-        case HM_SAVE_HISTORY:
-            saveRecordedHistory();
-            break;
-        case HM_DELETE_SELECTED:
-            if (HistoryDialog.getSelection() > -1) {
-                RemoteControl.deleteHistory(HistoryDialog);
-            }
-            break;
-        case HM_OVERWRITE_SELECTED:
-            HistoryDialog.saveHistory();
-            break;
-        case HM_OPEN_SELECTED:
-            loadExistingHistory();
-            break;
-
-        case PM_SAVE_VIEW:
-            if (RemoteControl.getViewMode() == TokenGameBarController.EXPERT_VIEW) {
-                PlaybackDialog.savePMView();
-                break;
-            }
-            if ((RemoteControl.getViewMode() == TokenGameBarController.SLIM_VIEW)
-                    || (RemoteControl.getViewMode() == TokenGameBarController.EYE_VIEW)) {
-                RemoteControl.setViewMode(0);
-                break;
-            }
-            break;
-        case PM_FASTFWBW:
-            PlaybackDialog.savePropertyOccurtime();
-            break;
-        case PM_DELAYTIME:
-            PlaybackDialog.savePropertyDelaytime();
-            break;
-        case PM_ESCAPE:
-            PlaybackDialog.setVisible(false);
             break;
         case STOP_TG:
             RemoteControl.stopTG();
@@ -276,49 +166,14 @@ public class TokenGameBarListener implements ActionListener, MouseListener, Chan
     private void stopTokenGame() {
         if (RemoteControl.tokengameRunning()) {
             stopAction();
-            if (RemoteControl.isRecordSelected()) {
-                RemoteControl.createSaveableHistory();
-            }
             RemoteControl.enablePlayButton();
             RemoteControl.enableStepDown(null);
             // RemoteControl.enableRecordButton();
         }
     }
 
-    private void showPlaybackManager() {
-        MainWindowReference = new ReferenceProvider();
-        PlaybackDialog = new TokenGamePlaybackManagerVC(MainWindowReference.getUIReference(), RemoteControl);
-        PlaybackDialog.setVisible(true);
-    }
-
-    private void showHistoryManager() {
-        // Calling the Dialog-Box of the HistoryManager
-        // Gets Reference out of Help-Class: ReferenceProvider
-        if (HistoryDialog == null) {
-            MainWindowReference = new ReferenceProvider();
-            HistoryDialog = new TokenGameHistoryManagerVC(MainWindowReference.getUIReference(), RemoteControl);
-            RemoteControl.initializeHistoryManagerSimulationlist(HistoryDialog);
-
-            HistoryDialog.initializeElementStatus();
-            HistoryDialog.setVisible(true);
-
-        } else {
-            HistoryDialog.resetStates();
-            HistoryDialog.initializeElementStatus();
-            HistoryDialog.setVisible(true);
-        }
-    }
-
     private void deleteCurrentHistory() {
         RemoteControl.clearHistoryData();
-    }
-
-    private void saveRecordedHistory() {
-        HistoryDialog.saveHistory();
-    }
-
-    private void loadExistingHistory() {
-        HistoryDialog.openSelected();
     }
 
     private void stopAction() {
@@ -328,7 +183,6 @@ public class TokenGameBarListener implements ActionListener, MouseListener, Chan
         }
         RemoteControl.getTokenGameController().tokenGameRestore();
         RemoteControl.clearChoiceBox();
-        RemoteControl.setStepIn(false);
     }
 
     /*
@@ -338,44 +192,6 @@ public class TokenGameBarListener implements ActionListener, MouseListener, Chan
         // Calls the method for the centralized Action-Handling
         actionRouter();
     }
-
-    public void mouseClicked(MouseEvent e) {
-        switch (ID) {
-        case HM_TABLE_CLICKED:
-            /*
-             * HistoryDialog: When the NameEntry-field is enabled (a simulation can be saved) - a single click puts the name of the selected simulation in the
-             * NameEntry-field - a double click replaces the selected simulation with the currently selected When the NameEntry-field is disabled (no simulation
-             * can be saved, only simulations can be loaded) - a double-click loads the selected simulation
-             */
-            int clickcount = e.getClickCount();
-            if (clickcount == 1) {
-                if (HistoryDialog.isNameEntryEnabled()) {
-                    HistoryDialog.copySelectedNameToNameentry();
-                }
-            } else
-                if (clickcount >= 2) {
-                    if (!HistoryDialog.isNameEntryEnabled()) {
-                        HistoryDialog.openSelected();
-                    } else {
-                        HistoryDialog.copySelectedNameToNameentry();
-                        HistoryDialog.saveHistory();
-                    }
-                }
-            break;
-        default:
-            // Calls the method for the centralized Action-Handling
-            actionRouter();
-            break;
-        }
-    }
-
-    public void mouseEntered(MouseEvent e) {}
-
-    public void mousePressed(MouseEvent e) {}
-
-    public void mouseReleased(MouseEvent e) {}
-
-    public void mouseExited(MouseEvent e) {}
 
     public void stateChanged(ChangeEvent arg0) {
         actionRouter();

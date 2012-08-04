@@ -199,9 +199,6 @@ public class TokenGameController implements ITokenGameController {
             disableVisualTokenGame();
         }
         // animator.stop();
-
-        // Hide and remove Tokengame Remote-Control
-        RemoteControl.removeControlElements();
     }
 
     private void deHighlightRG() {
@@ -585,10 +582,6 @@ public class TokenGameController implements ITokenGameController {
 
                 // Track the "walked way"
                 RemoteControl.addHistoryItem(transition);
-                if (RemoteControl.isRecordSelected()) {
-                    // Track the way in the history-box
-                    RemoteControl.addHistoryListItem(transition);
-                }
                 if (stepIntoSubProcess) {
                     setStepIntoSubProcess(false);
                 } else {
@@ -674,10 +667,6 @@ public class TokenGameController implements ITokenGameController {
                 helpTransitionReference = RemoteControl.getFollowingActivatedTransitions().get(i);
                 if (arc.getId().equals(helpTransitionReference.getId())) {
                     RemoteControl.addHistoryItem(helpTransitionReference);
-                    if (RemoteControl.isRecordSelected()) {
-                        // Track the way in the history
-                        RemoteControl.addHistoryListItem(helpTransitionReference);
-                    }
                 }
             }
             RemoteControl.cleanupTransition();
@@ -697,6 +686,10 @@ public class TokenGameController implements ITokenGameController {
         // Either transition or arc has to be null
         // Remember whether we actually did something here
         // and only deactivate the transition after a *successful* click
+    	//
+    	// TODO: Use PlaceModel.isSource() to step out of a sub-process
+    	// when its source has been "reached"
+    	
         boolean actionPerformed = false;
         if (transition != null) {
             receiveBackwardTokens(getPetriNet().getElementContainer().getIncomingArcs(transition.getId()));
@@ -1085,7 +1078,7 @@ public class TokenGameController implements ITokenGameController {
                 arcClicked(getPetriNet().getElementContainer().getArcById(transition.getId()));
             }
         } else
-            if (checkA == 'S') {
+            if (transition instanceof SubProcessModel) {
                 thisEditor.openTokenGameSubProcess((SubProcessModel) transition);
             } else {
                 if (BackWard) {

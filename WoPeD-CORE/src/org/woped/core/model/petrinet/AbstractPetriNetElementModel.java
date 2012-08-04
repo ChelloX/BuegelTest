@@ -506,6 +506,24 @@ public abstract class AbstractPetriNetElementModel extends DefaultGraphCell impl
 	}
 
 	/**
+	 * Determine whether an element is a source node (no incoming connections in any of the owning containers)
+	 * @return true if element is a source node, false otherwise
+	 */
+	public boolean isSource() {
+		boolean result = true;
+		// An object can have multiple owning containers
+		// Iterate through all of them to get all connections
+		Iterator<ModelElementContainer> ownerIterator = getOwningContainers().iterator();
+		while (ownerIterator.hasNext()) {
+			ModelElementContainer currentContainer = ownerIterator.next();
+			Map<String, AbstractPetriNetElementModel> sourceElements = currentContainer.getSourceElements(getId());
+			if (sourceElements.size()>0)
+				result = false;
+		}
+		return result;
+	}	
+	
+	/**
 	 * While the actual implementation is node-type specific, we have a common definition of what active means for
 	 * all node types: Being active means that the node can fire when triggered to do so.
 	 * This common notion is used to share some of the view and drawing logic around the notion of being active 
