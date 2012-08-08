@@ -40,8 +40,8 @@ public class ActionFactory
     public final static String         ACTIONID_WOFLAN                 = "ToolBar.Woflan";
     public final static String		   ACTIONID_WOPED				   = "ToolBar.Woped";
     
-    public final static String         ACTIONID_OPEN_TOKENGAME         = "ToolBar.OpenTokenGame";
-    public final static String         ACTIONID_CLOSE_TOKENGAME        = "ToolBar.CloseTokenGame";
+    public final static String         ACTIONID_OPEN_TOKENGAME         = "ToolBar.TokenGame.Open";
+    public final static String         ACTIONID_CLOSE_TOKENGAME        = "ToolBar.TokenGame.Close";
     public final static String         ACTIONID_TOKENGAME_BACKWARD     = "ToolBar.TokenGame.Backward";
     public final static String         ACTIONID_TOKENGAME_JUMPINTO     = "ToolBar.TokenGame.JumpInto";
     public final static String         ACTIONID_TOKENGAME_FORWARD      = "ToolBar.TokenGame.Forward";
