@@ -235,7 +235,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
     	
 		super();
 		setApplicationIcon(new logo_woped());
-		setTitle("WoPeD Version " + Messages.getString("Application.Version"));
+		setTitle("WoPeD " + Messages.getString("Application.Version"));
 	}
 	
 	public void initialize(AbstractApplicationMediator mediator) {
