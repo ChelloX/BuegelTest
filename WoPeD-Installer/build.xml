@@ -42,7 +42,7 @@
 	<taskdef name="try" classname="ise.antelope.tasks.TryTask" classpath="build-tools/ant/AntelopeTasks_3.4.2.jar" />
 	<taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler" classpath="build-tools/ant/jarbundler-2.2.0.jar"/>
 
-	<target name="makedistribution" depends="makedir, setversion, makesubprojects, copyfiles, buildjar, makeMacInstaller, makeWindowsInstallerOnMac, makeLinuxInstaller" /> 
+	<target name="makedistribution" depends="makedir, setversion, makesubprojects, copyfiles, buildjar, makeWindowsInstallerOnMac, makeLinuxInstaller, makeMacInstaller" /> 
 
 	<target name="clean">
 		<delete dir="dist" />
@@ -79,7 +79,7 @@
 	</target>
 
 	<target name="buildjar">
-		<jar destfile="dist/WoPeD-classes-${WOPEDVERSION}${SNAPSHOT}.jar" manifest="dist/MANIFEST2.mf">
+		<jar destfile="dist/WoPeD-classes-${WOPEDVERSION}${SNAPSHOT}.jar" manifest="build-tools/MANIFEST2.mf">
 			<fileset dir="../WoPeD-BPELExport/bin" />
 			<fileset dir="../WoPeD-CORE/bin" />
 			<fileset dir="../WoPeD-Editor/bin" />
@@ -178,20 +178,6 @@
 		<unzip src="build-tools/setup/izpack.zip" dest="dist" />
 	</target>
 
-	<target name="makejavadoc">
-		<javadoc packagenames="org.woped.*" sourcepath="../WoPeD-CORE/src" destdir="dist/doc/WoPeD-CORE/api-doc" />
-		<javadoc packagenames="org.woped.*" sourcepath="../WoPeD-Editor/src" destdir="dist/doc/WoPeD-Editor/api-doc" />
-		<javadoc packagenames="org.woped.*" sourcepath="../WoPeD-StandaloneRunner/src" destdir="dist/doc/WoPeD-StandaloneRunner/api-doc" />
-		<javadoc packagenames="org.woped.*" sourcepath="../WoPeD-FileInterface/src" destdir="dist/doc/WoPeD-FileInterface/api-doc" />
-		<javadoc packagenames="org.woped.*" sourcepath="../WoPeD-XMLConfiguration/src" destdir="dist/doc/WoPeD-XMLConfiguration/api-doc" />
-		<javadoc packagenames="org.woped.*" sourcepath="../WoPeD-Translations/src" destdir="dist/doc/WoPeD-Translations/api-doc" />
-		<javadoc packagenames="org.woped.*" sourcepath="../WoPeD-QuantAnalysis/src" destdir="dist/doc/QuantAnalysis/api-doc" />
-		<javadoc packagenames="org.woped.*" sourcepath="../WoPeD-QualAnalysis/src" destdir="dist/doc/WoPeD-QualAnalysis/api-doc" />
-		<javadoc packagenames="org.woped.*" sourcepath="../WoPeD-BPELExport/src" destdir="dist/doc/WoPeD-BPELExport/api-doc" />
-		<javadoc packagenames="org.woped.*" sourcepath="../WoPeD-ProcessMetrics/src" destdir="dist/doc/WoPeD-ProcessMetrics/api-doc" />
-		<javadoc packagenames="org.woped.*" sourcepath="../WoPeD-StandaloneRunner/src" destdir="dist/doc/WoPeD-StandaloneRunner/api-doc" />
-	</target>
-
 	<target name="makesubprojects">
 		<ant antfile="../WoPeD-CORE/build.xml" dir="../WoPeD-CORE" />
 		<ant antfile="../WoPeD-BPELExport/build.xml" dir="../WoPeD-BPELExport" />
@@ -283,7 +269,8 @@
 
 				<jarfileset dir="dist">
 			    	<include name="lib/*.jar" />
-	            	<include name="WoPeD*.jar" />
+	            	<include name="WoPeD.jar" />
+	            	<include name="WoPeD-classes*.jar" />
 	            	<include name="doc/**" />
 	            	<include name="nets/**" />
 	            	<include name="*.txt" />
