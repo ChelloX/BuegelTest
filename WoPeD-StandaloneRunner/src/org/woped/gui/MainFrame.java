@@ -230,14 +230,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
     		getRibbon().setSelectedTask(getEditTask());
 		}
 	}
-	
-    public MainFrame() {	
-    	
-		super();
-		setApplicationIcon(new logo_woped());
-		setTitle("WoPeD " + Messages.getString("Application.Version"));
-	}
-	
+		
 	public void initialize(AbstractApplicationMediator mediator) {
 		
 		setMediator(mediator);

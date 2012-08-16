@@ -41,6 +41,7 @@ import org.woped.editor.controller.vc.SubprocessEditorVC;
 import org.woped.editor.controller.vc.TaskBarVC;
 import org.woped.editor.controller.vep.ViewEvent;
 import org.woped.gui.controller.vc.StatusBarVC;
+import org.woped.gui.icons.logo_woped;
 import org.woped.qualanalysis.simulation.controller.ReferenceProvider;
 import org.woped.translations.Messages;
 
@@ -71,7 +72,8 @@ public class DefaultUserInterface extends MainFrame implements IUserInterface, I
         PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(desktop);
         propertyChangeSupport.addPropertyChangeListener(VisualController.getInstance());
         setIconImage(Messages.getImageIcon("Application").getImage());
-        setTitle("WoPeD Version " + Messages.getString("Application.Version"));
+        setTitle("WoPeD " + Messages.getString("Application.Version"));
+		setApplicationIcon(new logo_woped());
         setBounds(ConfigurationManager.getConfiguration().getWindowX(), ConfigurationManager.getConfiguration().getWindowY(), (int) ConfigurationManager.getConfiguration().getWindowSize().getWidth(),
                 (int) ConfigurationManager.getConfiguration().getWindowSize().getHeight());
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
