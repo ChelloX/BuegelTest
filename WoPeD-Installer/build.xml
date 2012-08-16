@@ -78,21 +78,6 @@
 		<copy file="dist/Messages_de.properties" tofile="../WoPeD-Translations/bin/org/woped/translations/Messages_de.properties" />
 	</target>
 
-	<target name="buildjar">
-		<jar destfile="dist/WoPeD-classes-${WOPEDVERSION}${SNAPSHOT}.jar" manifest="build-tools/MANIFEST2.mf">
-			<fileset dir="../WoPeD-BPELExport/bin" />
-			<fileset dir="../WoPeD-CORE/bin" />
-			<fileset dir="../WoPeD-Editor/bin" />
-			<fileset dir="../WoPeD-FileInterface/bin" />
-			<fileset dir="../WoPeD-ProcessMetrics/bin" />
-			<fileset dir="../WoPeD-QualAnalysis/bin" />
-			<fileset dir="../WoPeD-QuantAnalysis/bin" />
-			<fileset dir="../WoPeD-StandaloneRunner/bin" />
-			<fileset dir="../WoPeD-Translations/bin" />
-			<fileset dir="../WoPeD-XMLConfiguration/bin" />
-		</jar>
-	</target>
-
 	<target name="copyfiles">
 		<copy todir="dist/nets" file="build-tools/Example.pnml" />
 		<copy todir="dist/lib" file="../WoPeD-BPELExport/lib/bpelBeans.jar" />
@@ -189,6 +174,21 @@
 		<ant antfile="../WoPeD-QualAnalysis/build.xml" dir="../WoPeD-QualAnalysis" />
 		<ant antfile="../WoPeD-Translations/build.xml" dir="../WoPeD-Translations" />
 		<ant antfile="../WoPeD-ProcessMetrics/build.xml" dir="../WoPeD-ProcessMetrics" />
+	</target>
+
+	<target name="buildjar">
+		<jar destfile="dist/WoPeD-classes-${WOPEDVERSION}${SNAPSHOT}.jar" manifest="dist/MANIFEST2.mf">
+			<fileset dir="../WoPeD-BPELExport/bin" />
+			<fileset dir="../WoPeD-CORE/bin" />
+			<fileset dir="../WoPeD-Editor/bin" />
+			<fileset dir="../WoPeD-FileInterface/bin" />
+			<fileset dir="../WoPeD-ProcessMetrics/bin" />
+			<fileset dir="../WoPeD-QualAnalysis/bin" />
+			<fileset dir="../WoPeD-QuantAnalysis/bin" />
+			<fileset dir="../WoPeD-StandaloneRunner/bin" />
+			<fileset dir="../WoPeD-Translations/bin" />
+			<fileset dir="../WoPeD-XMLConfiguration/bin" />
+		</jar>
 	</target>
 
 	<target name="makeWindowsInstaller">
