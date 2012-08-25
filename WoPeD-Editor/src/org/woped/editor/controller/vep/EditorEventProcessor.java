@@ -22,7 +22,7 @@ import org.woped.editor.controller.ArcPropertyEditor;
 import org.woped.editor.controller.PlacePropertyEditor;
 import org.woped.editor.controller.TransitionPropertyEditor;
 import org.woped.editor.controller.vc.EditorVC;
-import org.woped.qualanalysis.simulation.controller.TokenGameBarController;
+import org.woped.qualanalysis.simulation.controller.TokenGameSession;
 import org.woped.qualanalysis.simulation.controller.TokenGameBarListener;
 
 public class EditorEventProcessor extends AbstractEventProcessor
@@ -358,7 +358,7 @@ public class EditorEventProcessor extends AbstractEventProcessor
 			case AbstractViewEvent.TOKENGAME_LEAVE:
 			case AbstractViewEvent.TOKENGAME_STEP:
 			case AbstractViewEvent.TOKENGAME_AUTO:
-				TokenGameBarController tgbController =
+				TokenGameSession tgbController =
 					editor.getTokenGameController().getRemoteControl();
 				if (tgbController!=null) {
 					// Adaptor from view event produced by toolbar button to the legacy 

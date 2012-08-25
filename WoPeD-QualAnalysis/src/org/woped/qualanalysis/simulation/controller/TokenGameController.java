@@ -87,7 +87,7 @@ public class TokenGameController implements ITokenGameController {
     private boolean visualTokenGame = false;
     private IEditor thisEditor = null;
     private ReferenceProvider ParentControl = null;
-    private TokenGameBarController RemoteControl = null;
+    private TokenGameSession RemoteControl = null;
     
     private PropertyChangeSupport m_propertyChangeSupport = null;
     private TokenGameStats oldState = null;
@@ -116,7 +116,7 @@ public class TokenGameController implements ITokenGameController {
      * 
      * @return TokenGameBarController instance or null if the token game is not active
      */
-    public TokenGameBarController getRemoteControl() {
+    public TokenGameSession getRemoteControl() {
 		return RemoteControl;
 	}
         
@@ -166,7 +166,7 @@ public class TokenGameController implements ITokenGameController {
             if (RemoteControl != null) {
                 RemoteControl.addControlElements();
             } else {
-                RemoteControl = new TokenGameBarController(this, petrinet);
+                RemoteControl = new TokenGameSession(this, petrinet);
             }
 
             // Storing Transition Reference (simple and operator)
@@ -507,11 +507,36 @@ public class TokenGameController implements ITokenGameController {
                             }
             }        
     }
-
+    
     /*
      * Handles a click on any Transition in any state
-     */
+     */    
     private void transitionClicked(TransitionModel transition, MouseEvent e) {
+    	boolean stepInto = this.stepIntoSubProcess;    	
+    	if (transition.getType() == AbstractPetriNetElementModel.SUBP_TYPE) {
+    		if ((e != null) || (stepIntoSubProcess)) {
+    			int relativeX = 0;
+    			int relativeY = 0;
+    			if (e != null) {
+    				relativeX = e.getX() - transition.getX();
+    				relativeY = e.getY() - transition.getY();
+    			}
+    			// the lower left half of the transition will trigger 'step into'
+
+    			if (relativeY >= relativeX)
+    				stepInto = true;
+    		}
+    	}
+    	occurTransition(transition, stepInto);
+    }    	
+
+    /**
+     * Occur the specified transition
+     * @param transition Transition to occur
+     * @param stepInto   true if we should step into a subprocess rather
+     *                   than stepping over it
+     */
+    private void occurTransition(TransitionModel transition, boolean stepInto) {
         if (transition.isActivated()) {
             // Remember whether we actually did something here
             // and only deactivate the transition after a *successful* click
@@ -524,25 +549,11 @@ public class TokenGameController implements ITokenGameController {
                 receiveTokens(getPetriNet().getElementContainer().getOutgoingArcs(transition.getId()));
                 sendTokens(getPetriNet().getElementContainer().getIncomingArcs(transition.getId()));
                 if (transition.getType() == AbstractPetriNetElementModel.SUBP_TYPE) {
-                    if ((e != null) || (stepIntoSubProcess)) {
-                        int relativeX = 0;
-                        int relativeY = 0;
-                        if (e != null) {
-                            relativeX = e.getX() - transition.getX();
-                            relativeY = e.getY() - transition.getY();
-                        }
-                        // the lower left half of the transition will trigger 'step into'
-                        
-                        if (relativeY >= relativeX)
-                        	stepIntoSubProcess = true;
-                        if (stepIntoSubProcess) {
-                        	// Step into sub-process and process it in a new modal editor
-                        	// dialog in token-game mode
-                        	ParentControl = new ReferenceProvider();
-                        	ParentControl.setRemoteControlReference(RemoteControl);
-                        	thisEditor.openTokenGameSubProcess((SubProcessModel) transition);
-                        }
-                    }
+                	if (stepInto) {
+                		// Step into sub-process and process it in a new modal editor
+                		// dialog in token-game mode
+                		this.openSubProcess((SubProcessModel) transition);
+                	}
                 }
                 actionPerformed = true;
 
@@ -582,13 +593,10 @@ public class TokenGameController implements ITokenGameController {
 
                 // Track the "walked way"
                 RemoteControl.addHistoryItem(transition);
-                if (stepIntoSubProcess) {
-                    setStepIntoSubProcess(false);
-                } else {
+                if (!stepIntoSubProcess) {
                     RemoteControl.cleanupTransition();
                     checkNet();
                 }
-
             }
         }
     }
@@ -1067,9 +1075,12 @@ public class TokenGameController implements ITokenGameController {
     /**
      * will be called by TokenGameBarVC to let active transitions occur
      * 
-     * @param transition
+     * @param transition Specifies the transition to occur
+     * @param BackWard   True if we should step backwards
+     * @param stepInto   True if we should step into sub processes we find
      */
-    public void occurTransitionbyTokenGameBarVC(TransitionModel transition, boolean BackWard) {
+    public void occurTransitionbyTokenGameBarVC(TransitionModel transition, 
+    		boolean BackWard, boolean stepInto) {
         char checkA = transition.getId().charAt(0);
         if (checkA == 'a') {
             if (BackWard) {
@@ -1077,16 +1088,13 @@ public class TokenGameController implements ITokenGameController {
             } else {
                 arcClicked(getPetriNet().getElementContainer().getArcById(transition.getId()));
             }
-        } else
-            if (transition instanceof SubProcessModel) {
-                thisEditor.openTokenGameSubProcess((SubProcessModel) transition);
-            } else {
-                if (BackWard) {
-                    backwardItem(transition, null);
-                } else {
-                    transitionClicked(transition, null);
-                }
-            }
+        } else {
+        	if (BackWard)
+        		backwardItem(transition, null);
+        	else
+        		// When triggered from the toolbar, step into sub process
+        		occurTransition(transition, stepInto);
+        }
     }
 
     /**
@@ -1094,6 +1102,16 @@ public class TokenGameController implements ITokenGameController {
      */
     public void tokenGameCheckNet() {
         checkNet();
+    }
+    
+    /**
+     * Open an new sub process window based on the 
+     * specified sub process transition
+     */
+    private void openSubProcess(SubProcessModel subProcess) {
+    	ParentControl = new ReferenceProvider();
+    	ParentControl.setRemoteControlReference(RemoteControl);            	
+        thisEditor.openTokenGameSubProcess(subProcess);
     }
 
     /**
@@ -1116,12 +1134,6 @@ public class TokenGameController implements ITokenGameController {
         // getGraph().setPortsVisible(true);
         getGraph().refreshNet();
         getGraph().updateUI();
-    }
-
-    // If tokengamebar-user chooses to step into a subprocess
-    public void setStepIntoSubProcess(boolean step) {
-        stepIntoSubProcess = step;
-
     }
 
     public IEditor getThisEditor() {

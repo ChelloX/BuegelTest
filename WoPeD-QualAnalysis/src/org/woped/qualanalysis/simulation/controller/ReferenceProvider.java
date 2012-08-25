@@ -22,7 +22,7 @@ public class ReferenceProvider {
  	private static AbstractApplicationMediator MediatorReference = null;
  	private static IUserInterface              UIReference       = null;
 	private static JDesktopPane                DesktopReference  = null;
-	private static TokenGameBarController      RemoteControl     = null;
+	private static TokenGameSession      RemoteControl     = null;
 	
 	//private static boolean					   changePanel		 = false;
     	
@@ -93,12 +93,12 @@ public class ReferenceProvider {
 		
 	}
 	
-	public void setRemoteControlReference(TokenGameBarController Control)
+	public void setRemoteControlReference(TokenGameSession Control)
 	{
 		RemoteControl = Control;
 	}
 	
-	public TokenGameBarController getRemoteControlReference()
+	public TokenGameSession getRemoteControlReference()
 	{
 		return RemoteControl;
 	}

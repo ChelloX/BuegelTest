@@ -10,21 +10,22 @@ import org.woped.core.controller.IEditor;
 import org.woped.core.model.PetriNetModelProcessor;
 import org.woped.core.model.petrinet.AbstractPetriNetElementModel;
 import org.woped.core.model.petrinet.SimulationModel;
+import org.woped.core.model.petrinet.SubProcessModel;
 import org.woped.core.model.petrinet.TransitionModel;
 import org.woped.qualanalysis.simulation.TokenGameRunnableObject;
 
 /**
- * The TokenGameBarController class manages all interaction with the
+ * The TokenGameSession class manages all interaction with the
  * token game toolbar and implements some of the logic to navigate the
- * token game. It is important to note that there is one TokenGameBarController 
+ * token game. It is important to note that there is one TokenGameSession 
  * instance per token game, while there is one TokenGameController
  * per petrinet, where petrinet can be a top-level net or a subprocess. 
- * If more than one token game is running, two TokenGameBar instances exist.
+ * If more than one token game is running, two TokenGameSession instances exist.
  * 
  * @author weirdsoul
  *
  */
-public class TokenGameBarController implements Runnable {
+public class TokenGameSession implements Runnable {
 
     // constants
     // Playback Properties
@@ -65,7 +66,7 @@ public class TokenGameBarController implements Runnable {
     private int occurtimes = 3;
     private int delaytime = 1;
 
-    public TokenGameBarController(TokenGameController tgController, PetriNetModelProcessor PetriNet) {
+    public TokenGameSession(TokenGameController tgController, PetriNetModelProcessor PetriNet) {
         this.PetriNet = PetriNet;
         this.tgController = tgController;
 
@@ -126,8 +127,13 @@ public class TokenGameBarController implements Runnable {
 
     /**
      * This method let the active transition occur (currently only for sequences, as soon as two transitions are active, the method cannot occur so far)
+     * @param BackWard  If true, specifies that we should occur the transition
+     * 					"backwards", that is sending tokens from post- to pre-set
+     * @param stepsInto If true, specifies that we should step into a sub process.
+     * 					Effective only when not playing from history and not
+     *   				playing backwards 
      */
-    public synchronized void occurTransition(boolean BackWard) {
+    public synchronized void occurTransition(boolean BackWard, boolean stepInto) {    	
         /*
          * Backward is done with the
          */
@@ -136,7 +142,7 @@ public class TokenGameBarController implements Runnable {
 			if (BackwardTransitionToOccur != null) {
 				TransitionToOccur = BackwardTransitionToOccur;
 				tgController.occurTransitionbyTokenGameBarVC(TransitionToOccur,
-						BackWard);
+						BackWard, false);
 			}
         } else {
 
@@ -154,8 +160,10 @@ public class TokenGameBarController implements Runnable {
                             helpTransition = HistoryVector.get(HistoryIndex);
                             if (helpTransition.getId().contains(TransitionToOccur.getId())
                                     && (helpTransition.getId().contains("a") || helpTransition.getId().contains("t"))) {
-                                tgController.setStepIntoSubProcess(true);
-
+                            	// Override and specified decision of whether to step into 
+                            	// a sub process if we find a specific behavior in our
+                            	// records
+                            	stepInto = true;
                             }
                         }
                     }
@@ -186,7 +194,8 @@ public class TokenGameBarController implements Runnable {
                 return;
             }
             if (followingActivatedTransitions.size() > 0) {
-            	tgController.occurTransitionbyTokenGameBarVC(TransitionToOccur, BackWard);
+            	tgController.occurTransitionbyTokenGameBarVC(TransitionToOccur, 
+            			BackWard, stepInto);
             }
         }
     }
@@ -203,17 +212,17 @@ public class TokenGameBarController implements Runnable {
         if (BackWard) {
             while (i != occurtimes) {
                 if (BackwardTransitionToOccur != null) {
-                    occurTransition(BackWard);
+                    occurTransition(BackWard, false);
                 }
                 i++;
             }
         } else {
             while (i != occurtimes) {
                 if ((followingActivatedTransitions.size() < 2) && (!playbackRunning())) {
-                    occurTransition(BackWard);
+                    occurTransition(BackWard, false);
                 } else
                     if (playbackRunning()) {
-                        occurTransition(BackWard);
+                        occurTransition(BackWard, false);
                     }
                 i++;
             }
@@ -258,28 +267,15 @@ public class TokenGameBarController implements Runnable {
     }
 
     /**
-     * This method will be called by the EasyChoice-Event and will handover the chosen transition to the occurTransition() method
-     */
-    public void proceedTransitionChoice(int index) {
-        if ((followingActivatedTransitions != null) && (index < followingActivatedTransitions.size())) {
-            TransitionToOccur = followingActivatedTransitions.get(index);
-            if (acoChoiceItems.get(index) == "--><-- StepIn") {
-                tgController.setStepIntoSubProcess(true);
-            }
-            occurTransition(false);
-        }
-    }
-
-    /**
      * This method generates a random index and choose one transition if their are more then one
      */
     public synchronized void proceedTransitionChoiceAuto() {
         if (!playbackRunning()) {
             int index = (int) Math.round(Math.random() * (followingActivatedTransitions.size() - 1));
             TransitionToOccur = followingActivatedTransitions.get(index);
-            tgController.occurTransitionbyTokenGameBarVC(TransitionToOccur, false);
+            tgController.occurTransitionbyTokenGameBarVC(TransitionToOccur, false, false);
         } else {
-            occurTransition(false);
+            occurTransition(false, false);
         }
     }
 
@@ -437,7 +433,7 @@ public class TokenGameBarController implements Runnable {
             if (followingActivatedTransitions.size() >= 2) {
                 proceedTransitionChoiceAuto();
             } else {
-                occurTransition(false);
+                occurTransition(false, false);
 
             }
         }
@@ -447,7 +443,7 @@ public class TokenGameBarController implements Runnable {
         if (BackwardTransitionToOccur == null) {
             setEndOfAutoPlay(true);
         } else {
-            occurTransition(true);
+            occurTransition(true, false);
         }
     }
 
@@ -730,13 +726,6 @@ public class TokenGameBarController implements Runnable {
     public void disableBackWardButtons() {
     }
 
-    /**
-     * Enable the Forward Buttons if disabled because of more then one activated Transition. Disable Button if AutoChoice is switched off and their are more
-     * then one activated Transition
-     */
-    public void switchAutoChoice() {
-    }
-
     /*
      * MISC
      */
@@ -799,4 +788,21 @@ public class TokenGameBarController implements Runnable {
         desktop.getUIReference().getEditorFocus().toggleTokenGame();
         desktop.getUIReference().getContentPane().repaint();
     }
+
+    /**
+     * Pre-select sub process as the next transition to occur, but only
+     * if there is only one sub process, so the selection is deterministic
+     */
+	public void setSubProcessTransition() {
+		int activatedSubProcessCount = 0;
+		TransitionModel subProcess = null;
+		for (TransitionModel t : followingActivatedTransitions) {
+			if (t instanceof SubProcessModel) {
+				++activatedSubProcessCount;
+				subProcess = t;
+			}
+			if (activatedSubProcessCount == 1)
+				this.TransitionToOccur = subProcess;
+		}
+	}
 }

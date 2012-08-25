@@ -33,12 +33,6 @@ public class TokenGameBarListener implements ActionListener, ChangeListener, Lis
     public final static int CLICK_STEP_UP = 11;
     public final static int CLICK_STEP_DOWN = 12;
 
-    // Auto Choices
-    public final static int CHOOSE_AUTO_CHOICE = 13;
-
-    // History management
-    public final static int CHOOSE_DELETE_CURRENT = 16;
-
     // Get additional RemoteControls on stage
     public final static int CHOOSE_VIEW = 36;
 
@@ -55,10 +49,10 @@ public class TokenGameBarListener implements ActionListener, ChangeListener, Lis
 
     // Variables
     private int ID = 0;
-    private TokenGameBarController RemoteControl = null;
+    private TokenGameSession RemoteControl = null;
 
     // Needed for RemoteControlElements
-    public TokenGameBarListener(int ElementID, TokenGameBarController RC) {
+    public TokenGameBarListener(int ElementID, TokenGameSession RC) {
         ID = ElementID;
         RemoteControl = RC;
     }
@@ -85,11 +79,12 @@ public class TokenGameBarListener implements ActionListener, ChangeListener, Lis
                     RemoteControl.setEndOfAutoPlay(false);
                     RemoteControl.autoOccurAllTransitions(true);
                 } else {
-                    RemoteControl.occurTransition(true);
+                    RemoteControl.occurTransition(true, false);
                 }
             }
             break;
         case CLICK_STOP:
+        	// Stop and reset token game to initial state
             stopTokenGame();
             RemoteControl.disablePlayButtons();
             break;
@@ -99,6 +94,7 @@ public class TokenGameBarListener implements ActionListener, ChangeListener, Lis
             break;
         case CLICK_PAUSE:
             RemoteControl.setEndOfAutoPlay(true);
+            RemoteControl.enablePlayButton();
             break;
         case CLICK_FORWARD:
             if (RemoteControl.tokengameRunning()) {
@@ -106,7 +102,7 @@ public class TokenGameBarListener implements ActionListener, ChangeListener, Lis
                     RemoteControl.setEndOfAutoPlay(false);
                     RemoteControl.autoOccurAllTransitions(false);
                 } else {
-                    RemoteControl.occurTransition(false);
+                    RemoteControl.occurTransition(false, false);
                 }
             }
             break;
@@ -122,13 +118,10 @@ public class TokenGameBarListener implements ActionListener, ChangeListener, Lis
             break;
         case CLICK_STEP_DOWN:
             if (RemoteControl.tokengameRunning()) {
-                RemoteControl.getTokenGameController().setStepIntoSubProcess(true);
-                RemoteControl.occurTransition(false);
-            }
-            break;
-        case CHOOSE_AUTO_CHOICE:
-            if (RemoteControl.tokengameRunning()) {
-                RemoteControl.switchAutoChoice();
+                // Make sure that if there is a sub process transition
+                // it is the one selected to occur
+                RemoteControl.setSubProcessTransition();
+                RemoteControl.occurTransition(false, true);
             }
             break;
         case CHANGE_PLAYMODE:
@@ -146,9 +139,6 @@ public class TokenGameBarListener implements ActionListener, ChangeListener, Lis
                 RemoteControl.setAutoPlayback(true);
             }
             break;
-        case CHOOSE_DELETE_CURRENT:
-            deleteCurrentHistory();
-            break;
         case STOP_TG:
             RemoteControl.stopTG();
             break;
@@ -157,19 +147,14 @@ public class TokenGameBarListener implements ActionListener, ChangeListener, Lis
         default:
             break;
         }
-
     }
 
     /*
      * Reset TokenGame to Startposition and Enable PlayButton
      */
     private void stopTokenGame() {
-        if (RemoteControl.tokengameRunning()) {
-            stopAction();
-            RemoteControl.enablePlayButton();
-            RemoteControl.enableStepDown(null);
-            // RemoteControl.enableRecordButton();
-        }
+    	stopAction();
+    	RemoteControl.enableStepDown(null);
     }
 
     private void deleteCurrentHistory() {
@@ -177,7 +162,6 @@ public class TokenGameBarListener implements ActionListener, ChangeListener, Lis
     }
 
     private void stopAction() {
-        RemoteControl.setEndOfAutoPlay(true);
         while (RemoteControl.getTokenGameController().getThisEditor().isSubprocessEditor()) {
             RemoteControl.changeTokenGameReference(null, true);
         }
