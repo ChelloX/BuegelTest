@@ -14,7 +14,8 @@ public interface ITokenGameController {
 		public int numActiveTransitions;
 		public int numActiveSubprocesses;
 		public boolean inSubprocess;
-		public boolean hasHistory;		
+		public boolean hasHistory;
+		public boolean autoPlayMode;
 	}
 
 	void start();

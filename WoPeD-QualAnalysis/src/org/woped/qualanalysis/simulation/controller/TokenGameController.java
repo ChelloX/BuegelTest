@@ -300,6 +300,7 @@ public class TokenGameController implements ITokenGameController {
 
         newState.hasHistory = (RemoteControl.getNumHistoryItems() > 0);
         newState.inSubprocess = this.thisEditor.isSubprocessEditor();
+        newState.autoPlayMode = this.RemoteControl.getAutoPlayBack();
         
 		m_propertyChangeSupport.firePropertyChange("TokenGameState", 
 				this.oldState, newState);        
