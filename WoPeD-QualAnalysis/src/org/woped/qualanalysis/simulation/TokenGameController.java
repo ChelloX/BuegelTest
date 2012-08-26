@@ -1126,6 +1126,7 @@ public class TokenGameController implements ITokenGameController {
         resetTransitionStatus();
         resetArcStatus();
         resetVirtualTokensInElementContainer(getPetriNet().getElementContainer());
+        RemoteControl.clearHistoryData();
     	checkNet();    	
     }
 
