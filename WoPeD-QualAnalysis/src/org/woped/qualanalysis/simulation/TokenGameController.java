@@ -91,8 +91,6 @@ public class TokenGameController implements ITokenGameController {
     
     private PropertyChangeSupport m_propertyChangeSupport = null;
     private TokenGameStats oldState = null;
-    
-	private boolean stepIntoSubProcess = false;
 
     /**
      * Constructor for the model and visual sided TokenGame.
@@ -512,9 +510,9 @@ public class TokenGameController implements ITokenGameController {
      * Handles a click on any Transition in any state
      */    
     private void transitionClicked(TransitionModel transition, MouseEvent e) {
-    	boolean stepInto = this.stepIntoSubProcess;    	
+    	boolean stepInto = false;    	
     	if (transition.getType() == AbstractPetriNetElementModel.SUBP_TYPE) {
-    		if ((e != null) || (stepIntoSubProcess)) {
+    		if (e != null) {
     			int relativeX = 0;
     			int relativeY = 0;
     			if (e != null) {
@@ -593,9 +591,7 @@ public class TokenGameController implements ITokenGameController {
 
                 // Track the "walked way"
                 RemoteControl.addHistoryItem(transition);
-                if (!stepIntoSubProcess) {
-                    checkNet();
-                }
+                checkNet();
             }
         }
     }
