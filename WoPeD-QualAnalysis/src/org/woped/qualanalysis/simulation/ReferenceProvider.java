@@ -1,7 +1,8 @@
-package org.woped.qualanalysis.simulation.controller;
+package org.woped.qualanalysis.simulation;
 
 import org.woped.core.controller.*;
 import org.woped.core.gui.*;
+
 import javax.swing.*;
 
 /**

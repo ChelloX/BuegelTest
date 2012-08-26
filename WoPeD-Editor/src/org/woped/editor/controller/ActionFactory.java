@@ -265,39 +265,140 @@ public class ActionFactory
 
         STATIC_ACTION_MAP.put(ACTIONID_CLOSE_TOKENGAME, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.CLOSE_TOKENGAME, null, ACTIONID_CLOSE_TOKENGAME));
         VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_CLOSE_TOKENGAME), VisualController.WITH_EDITOR, VisualController.WITH_EDITOR, VisualController.IGNORE);
-        
-        STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_BACKWARD, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_BACKWARD, null, ACTIONID_TOKENGAME_BACKWARD));
-        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_BACKWARD), 
-        		VisualController.TOKENGAME_TRANSITION_HISTORY, VisualController.WITH_EDITOR, VisualController.IGNORE);
-        
-        STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_JUMPINTO, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_JUMPINTO, null, ACTIONID_TOKENGAME_JUMPINTO));        
-        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_JUMPINTO), 
-        		VisualController.TOKENGAME_SUBPROCESS_TRANSITION_ACTIVE, VisualController.WITH_EDITOR, VisualController.IGNORE);
-        
-        STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_FORWARD, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_FORWARD, null, ACTIONID_TOKENGAME_FORWARD));
-        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_FORWARD), 
-        		VisualController.TOKENGAME_TRANSITION_ACTIVE, VisualController.WITH_EDITOR, VisualController.IGNORE);
-        
-        STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_PAUSE, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_PAUSE, null, ACTIONID_TOKENGAME_PAUSE));
-        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_PAUSE), VisualController.WITH_EDITOR, VisualController.WITH_EDITOR, VisualController.IGNORE);
-        
-        STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_START, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_START, null, ACTIONID_TOKENGAME_START));
-        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_START), VisualController.WITH_EDITOR, VisualController.WITH_EDITOR, VisualController.IGNORE);
-        
-        STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_STOP, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_STOP, null, ACTIONID_TOKENGAME_STOP));
-        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_STOP), VisualController.WITH_EDITOR, VisualController.WITH_EDITOR, VisualController.IGNORE);
-                
-        STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_LEAVE, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_LEAVE, null, ACTIONID_TOKENGAME_LEAVE));
-        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_LEAVE), 
-        		VisualController.TOKENGAME_IN_SUBPROCESS, VisualController.WITH_EDITOR, VisualController.IGNORE);
-        
+
         STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_STEP, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_STEP, null, ACTIONID_TOKENGAME_STEP));
         VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_STEP), 
-        		VisualController.TOKENGAME_TRANSITION_ACTIVE, VisualController.WITH_EDITOR, VisualController.IGNORE);
+        		VisualController.TOKENGAME_AUTOPLAY_MODE, VisualController.WITH_EDITOR, VisualController.IGNORE);
+        
+        STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_BACKWARD, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_BACKWARD, null, ACTIONID_TOKENGAME_BACKWARD));
+        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_BACKWARD),
+        		new VisualController.IVisibility() {
+			
+					public boolean getVisible(boolean[] status) {
+						return status[VisualController.WITH_EDITOR];
+					}
+					
+					public boolean getSelected(boolean[] status) {
+						return false;
+					}
+					
+					public boolean getEnabled(boolean[] status) {
+						return ((!status[VisualController.TOKENGAME_AUTOPLAY_MODE]) &&
+								status[VisualController.TOKENGAME_TRANSITION_HISTORY]);
+					}
+				});
+
+        STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_STOP, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_STOP, null, ACTIONID_TOKENGAME_STOP));
+        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_STOP), VisualController.WITH_EDITOR, VisualController.WITH_EDITOR, VisualController.IGNORE);
+        
+        STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_FORWARD, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_FORWARD, null, ACTIONID_TOKENGAME_FORWARD));
+        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_FORWARD),
+        		new VisualController.IVisibility() {
+			
+					public boolean getVisible(boolean[] status) {
+						return status[VisualController.WITH_EDITOR];
+					}
+					
+					public boolean getSelected(boolean[] status) {
+						return false;
+					}
+					
+					public boolean getEnabled(boolean[] status) {
+						return ((!status[VisualController.TOKENGAME_AUTOPLAY_MODE]) &&
+								status[VisualController.TOKENGAME_TRANSITION_ACTIVE]);
+					}
+				});
+                
+        STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_JUMPINTO, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_JUMPINTO, null, ACTIONID_TOKENGAME_JUMPINTO));        
+        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_JUMPINTO),
+        		new VisualController.IVisibility() {
+					
+					public boolean getVisible(boolean[] status) {
+						return status[VisualController.WITH_EDITOR];
+					}
+					
+					public boolean getSelected(boolean[] status) {
+						return false;
+					}
+					
+					public boolean getEnabled(boolean[] status) {
+						return ((!status[VisualController.TOKENGAME_AUTOPLAY_MODE]) &&
+								status[VisualController.TOKENGAME_SUBPROCESS_TRANSITION_ACTIVE]);
+					}
+				});
+        
+        STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_LEAVE, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_LEAVE, null, ACTIONID_TOKENGAME_LEAVE));
+        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_LEAVE),
+        		new VisualController.IVisibility() {
+			
+					public boolean getVisible(boolean[] status) {
+						return status[VisualController.WITH_EDITOR];
+					}
+					
+					public boolean getSelected(boolean[] status) {
+						return false;
+					}
+					
+					public boolean getEnabled(boolean[] status) {
+						return ((!status[VisualController.TOKENGAME_AUTOPLAY_MODE]) &&
+								status[VisualController.TOKENGAME_IN_SUBPROCESS]);
+					}
+				});
         
         STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_AUTO, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_AUTO, null, ACTIONID_TOKENGAME_AUTO));
-        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_AUTO), VisualController.WITH_EDITOR, VisualController.WITH_EDITOR, VisualController.IGNORE);
+        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_AUTO),                
+                		new VisualController.IVisibility() {
+        			
+        					public boolean getVisible(boolean[] status) {
+        						return status[VisualController.WITH_EDITOR];
+        					}
+        					
+        					public boolean getSelected(boolean[] status) {
+        						return false;
+        					}
+        					
+        					public boolean getEnabled(boolean[] status) {
+        						return ((!status[VisualController.TOKENGAME_AUTOPLAY_MODE]) &&
+        								status[VisualController.WITH_EDITOR]);
+        					}
+        				});
 
+        STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_PAUSE, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_PAUSE, null, ACTIONID_TOKENGAME_PAUSE));
+        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_PAUSE), 
+        		new VisualController.IVisibility() {
+			
+					public boolean getVisible(boolean[] status) {
+						return status[VisualController.WITH_EDITOR];
+					}
+					
+					public boolean getSelected(boolean[] status) {
+						return false;
+					}
+					
+					public boolean getEnabled(boolean[] status) {
+						return (status[VisualController.TOKENGAME_AUTOPLAY_MODE] &&
+								status[VisualController.TOKENGAME_AUTOPLAY_PLAYING]);
+					}
+				});
+        
+        STATIC_ACTION_MAP.put(ACTIONID_TOKENGAME_START, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.TOKENGAME_START, null, ACTIONID_TOKENGAME_START));
+        VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_TOKENGAME_START), 
+        		new VisualController.IVisibility() {
+			
+					public boolean getVisible(boolean[] status) {
+						return status[VisualController.WITH_EDITOR];
+					}
+					
+					public boolean getSelected(boolean[] status) {
+						return false;
+					}
+					
+					public boolean getEnabled(boolean[] status) {
+						return (status[VisualController.TOKENGAME_AUTOPLAY_MODE] &&
+								(!status[VisualController.TOKENGAME_AUTOPLAY_PLAYING]));
+					}
+				});
+        		                        
        STATIC_ACTION_MAP.put(ACTIONID_REDO, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_EDIT, AbstractViewEvent.REDO, null, ACTIONID_REDO));
         VisualController.getInstance().addElement(STATIC_ACTION_MAP.get(ACTIONID_REDO), VisualController.CAN_REDO, VisualController.CAN_REDO, VisualController.IGNORE);
         

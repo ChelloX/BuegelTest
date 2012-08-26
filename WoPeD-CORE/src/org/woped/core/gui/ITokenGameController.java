@@ -16,6 +16,7 @@ public interface ITokenGameController {
 		public boolean inSubprocess;
 		public boolean hasHistory;
 		public boolean autoPlayMode;
+		public boolean autoPlayPlaying;
 	}
 
 	void start();

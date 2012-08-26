@@ -1,5 +1,4 @@
 package org.woped.qualanalysis.simulation;
-import  org.woped.qualanalysis.simulation.controller.*;
 
 /**
  * This class is needed for AutoPlayback Action in Tokengame.

@@ -20,7 +20,7 @@
  * For contact information please visit http://woped.dhbw-karlsruhe.de
  *
  */
-package org.woped.qualanalysis.simulation.controller;
+package org.woped.qualanalysis.simulation;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -157,7 +157,6 @@ public class TokenGameController implements ITokenGameController {
             allTransitions
                     .putAll(getPetriNet().getElementContainer().getElementsByType(AbstractPetriNetElementModel.SUBP_TYPE));
             // Find and show active Transitions/Arcs
-            RemoteControl.cleanupTransition();
             checkNet();
         } else {
             // remove highlighting from RG in Editor
@@ -285,13 +284,14 @@ public class TokenGameController implements ITokenGameController {
     /*
 	 *  
 	 */
-    private void checkNet() {
+    public void checkNet() {
     	TokenGameStats newState = new TokenGameStats();
+    	
+        RemoteControl.cleanupTransition();
     	
         long begin = System.currentTimeMillis();
         LoggerManager.debug(Constants.QUALANALYSIS_LOGGER, "TokenGame: CHECK NET");
         Iterator<String> transIter = allTransitions.keySet().iterator();
-        RemoteControl.disableStepDown(); // Disables the stepDown-Navigation button
         resetArcStatus();
         // Iterate over all Transitions
         while (transIter.hasNext()) {
@@ -301,6 +301,7 @@ public class TokenGameController implements ITokenGameController {
         newState.hasHistory = (RemoteControl.getNumHistoryItems() > 0);
         newState.inSubprocess = this.thisEditor.isSubprocessEditor();
         newState.autoPlayMode = this.RemoteControl.getAutoPlayBack();
+        newState.autoPlayPlaying = this.RemoteControl.getAutoPlayBackPlaying();
         
 		m_propertyChangeSupport.firePropertyChange("TokenGameState", 
 				this.oldState, newState);        
@@ -308,7 +309,6 @@ public class TokenGameController implements ITokenGameController {
         getGraph().updateUI();
         RemoteControl.fillChoiceBox(); // Fills the Choicebox with the active Transitions that have been encountered through checkTransition()
         // Check if there is a transition to choose in SlimChoiceBox
-        RemoteControl.checkSlimChoiceBox();
         LoggerManager.debug(Constants.QUALANALYSIS_LOGGER, "           ... DONE ("
                 + (System.currentTimeMillis() - begin) + " ms)");
         setMarkingInRG((BuilderFactory.createCurrentMarking(BuilderFactory.createLowLevelPetriNetWithoutTStarBuilder(
@@ -351,7 +351,6 @@ public class TokenGameController implements ITokenGameController {
                 tokenGameStats.numActiveTransitions++;   
 
                 if (transition.getType() == AbstractPetriNetElementModel.SUBP_TYPE) {
-                    RemoteControl.enableStepDown(transition); // Enables Step-Down Navigation Button
                     tokenGameStats.numActiveSubprocesses++;   
                 }
             }
@@ -595,7 +594,6 @@ public class TokenGameController implements ITokenGameController {
                 // Track the "walked way"
                 RemoteControl.addHistoryItem(transition);
                 if (!stepIntoSubProcess) {
-                    RemoteControl.cleanupTransition();
                     checkNet();
                 }
             }
@@ -678,7 +676,6 @@ public class TokenGameController implements ITokenGameController {
                     RemoteControl.addHistoryItem(helpTransitionReference);
                 }
             }
-            RemoteControl.cleanupTransition();
             checkNet();
 
         }
@@ -748,9 +745,6 @@ public class TokenGameController implements ITokenGameController {
             // transitions and activating them
             // if their input conditions are fulfilled
             // This will also trigger a redraw
-            // Cleans up the RemoteControl. Needed to make sure that in-Editor-click and Remote-click work properly
-            RemoteControl.cleanupTransition();
-            RemoteControl.clearChoiceBox();
             checkNet();
         }
     }
@@ -1132,9 +1126,7 @@ public class TokenGameController implements ITokenGameController {
         resetTransitionStatus();
         resetArcStatus();
         resetVirtualTokensInElementContainer(getPetriNet().getElementContainer());
-        // getGraph().setPortsVisible(true);
-        getGraph().refreshNet();
-        getGraph().updateUI();
+    	checkNet();    	
     }
 
     public IEditor getThisEditor() {

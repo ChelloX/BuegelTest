@@ -1,4 +1,4 @@
-package org.woped.qualanalysis.simulation.controller;
+package org.woped.qualanalysis.simulation;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -12,7 +12,6 @@ import org.woped.core.model.petrinet.AbstractPetriNetElementModel;
 import org.woped.core.model.petrinet.SimulationModel;
 import org.woped.core.model.petrinet.SubProcessModel;
 import org.woped.core.model.petrinet.TransitionModel;
-import org.woped.qualanalysis.simulation.TokenGameRunnableObject;
 
 /**
  * The TokenGameSession class manages all interaction with the
@@ -29,9 +28,6 @@ public class TokenGameSession implements Runnable {
 
     // constants
     // Playback Properties
-    
-	private boolean playButtonEnabled = false;
-
     private ReferenceProvider desktop = null;
     private TokenGameController tgController = null;
     private PetriNetModelProcessor PetriNet = null;
@@ -48,7 +44,6 @@ public class TokenGameSession implements Runnable {
     private SimulationModel SaveableSimulation = null;
 
     // DefaultListModels
-    private DefaultListModel acoChoiceItems = null;
     private DefaultListModel ahxHistoryContent = null;
 
     // Vectors
@@ -58,9 +53,12 @@ public class TokenGameSession implements Runnable {
     private boolean autoPlayBack = false;
     private boolean backward = false;
     private boolean newHistory = false;
-    private boolean endofautoplay = false;
     private boolean expertViewOnStage = false;
 
+    // Threading control for autoplay mode
+    private boolean endofautoplay = false;
+    private Thread  autoPlayThread = null;
+    
     // Integers
     private int HistoryIndex = 0;
     private int occurtimes = 3;
@@ -70,7 +68,6 @@ public class TokenGameSession implements Runnable {
         this.PetriNet = PetriNet;
         this.tgController = tgController;
 
-        acoChoiceItems = new DefaultListModel();
         ahxHistoryContent = new DefaultListModel();
 
         addControlElements();
@@ -102,11 +99,6 @@ public class TokenGameSession implements Runnable {
      */
         
     public void startPlayback() {
-        // Cleanup needed to avoid double ENtries in the ChoiceBox
-        disableStepDown();
-        disablePlayButton();
-        cleanupTransition();
-    	
         // Active TokenGame, disable DrawMode, checkNet and activate transition
         if (getTokenGameController().isVisualTokenGame()) {
             getTokenGameController().tokenGameCheckNet();
@@ -117,7 +109,6 @@ public class TokenGameSession implements Runnable {
             }
         }
         
-        enablePlayButtons();        
     }
     
     /*
@@ -262,8 +253,16 @@ public class TokenGameSession implements Runnable {
      * @param BackWard
      */
     public void autoOccurAllTransitions(boolean BackWard) {
-        backward = BackWard;
-        new Thread(this).start();
+    	// Make sure only one thread is running at a time
+    	if (autoPlayThread == null) {
+    		backward = BackWard;
+    		autoPlayThread = new Thread(this);
+    		autoPlayThread.start();
+    	}
+    }
+    
+    public boolean getAutoPlayBackPlaying() {
+    	return (autoPlayThread != null);
     }
 
     /**
@@ -302,35 +301,15 @@ public class TokenGameSession implements Runnable {
             return;
         }
         if (!playbackRunning()) {
-            clearChoiceBox(); // To ensure that the box is empty
             if (followingActivatedTransitions.size() == 1) {
                 TransitionToOccur = followingActivatedTransitions.get(0);
             }
             if (followingActivatedTransitions.size() > 1) {
                 for (int i = 0; i < followingActivatedTransitions.size(); i++) {
                     helpTransition = followingActivatedTransitions.get(i);
-                    acoChoiceItems.addElement(helpTransition.getNameValue());
                 }
             }
         }
-    }
-
-    /**
-     * clears the multi-Choice box
-     */
-    public void clearChoiceBox() {
-        acoChoiceItems.clear();
-        // if(!autoPlayBack)
-        // {
-        // ExpertView.enableForwardButtons();
-        // }
-    }
-
-    /**
-     * 
-     * this method provides an activity check for the SlimChoiceBox
-     */
-    public void checkSlimChoiceBox() {
     }
 
     /*
@@ -411,7 +390,6 @@ public class TokenGameSession implements Runnable {
      */
     public void auto() {
         if (followingActivatedTransitions != null) {
-            disableButtonforAutoPlayback();
             while (!isEndOfAutoPlay()) {
                 try {
                     javax.swing.SwingUtilities.invokeLater(new TokenGameRunnableObject(this));
@@ -419,10 +397,8 @@ public class TokenGameSession implements Runnable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                clearChoiceBox();
             }
             setEndOfAutoPlay(false);
-            enableButtonforAutoPlayback();
         }
     }
 
@@ -462,10 +438,6 @@ public class TokenGameSession implements Runnable {
         return ahxHistoryContent;
     }
 
-    public DefaultListModel getChoiceItems() {
-        return acoChoiceItems;
-    }
-
     public void setToOldHistory() {
         newHistory = false;
     }
@@ -485,24 +457,28 @@ public class TokenGameSession implements Runnable {
      */
     public void setAutoPlayback(boolean onoff) {
         autoPlayBack = onoff;
-        if (autoPlayBack) {
-            enableStepwiseButton();
-            disableAutoPlaybackButton();
-            clearChoiceBox();
-        } else {
-            enableAutoPlaybackButton();
-            disableStepwiseButton();
+        if (!autoPlayBack)
             fillChoiceBox();
-        }
+        tgController.checkNet();
     }
 
     /**
-     * sets the EndOfAutoPlay flag
+     * Sets the EndOfAutoPlay flag and wait for the auto-play thread to exit if 
+     * parameter is set to true
      * 
-     * @param end
+     * @param end True if auto-play should end, false otherwise
      */
     public void setEndOfAutoPlay(boolean end) {
         endofautoplay = end;
+        if ((end == true) && (autoPlayThread != null) && autoPlayThread.isAlive()) {
+        	try {        	
+        		autoPlayThread.join();
+        		autoPlayThread = null;
+        		tgController.checkNet();
+        	} 
+        	catch (InterruptedException e) {
+        	}
+        }
     }
 
     /**
@@ -610,122 +586,6 @@ public class TokenGameSession implements Runnable {
         }
     }
 
-    /**
-     * checks if the TokenGame is currently running
-     * 
-     * @return true if it is running
-     */
-    public boolean tokengameRunning() {
-        if (!this.playButtonEnabled) {
-            return true;
-        } else {
-            return false;
-        }
-
-    }
-
-    /*
-     * Disable / Enable Buttons from ExpertView and SlimView
-     */
-
-    /**
-     * Enables the StepDown-Button in the ExpertView will show the StepDown-Option on SlimView-PopUp
-     */
-    public void enableStepDown(TransitionModel transition) {
-    }
-
-    /**
-     * Disables the StepDown-Button in the ExpertView and will hide the StepDown-Option on SlimView-PopUp
-     */
-    public void disableStepDown() {
-    }
-
-    /**
-     * Enables the StepWiseButton on ExpertView Toggles the Step/Run Button on SlimView
-     */
-    public void enableStepwiseButton() {
-    }
-
-    /**
-     * Disables the StepWiseButton on ExpertView Un-toggles the Step/Run Button on SlimView
-     */
-    public void disableStepwiseButton() {
-    }
-
-    /**
-     * Enables the AutoPlayButton on ExpertView Un-toggles the Step/Run Button on SlimView
-     */
-    public void enableAutoPlaybackButton() {
-    }
-
-    /**
-     * Disables the AutoPlayButton on ExpertView Toggles the Step/Run Button on SlimView
-     */
-    public void disableAutoPlaybackButton() {
-    }
-
-    /**
-     * enables the Play Buttons on ExpertView
-     */
-    public void enablePlayButtons() {
-    }
-
-    /**
-     * disable the Play Buttons on ExpertView
-     */
-    public void disablePlayButtons() {
-    }
-
-    /**
-     * enables the PlayButton on ExpertView and on SlimView
-     */
-    public void enablePlayButton() {
-    	this.playButtonEnabled = true;
-    }
-
-    /**
-     * disables the PlayButton on ExpertView and on SlimView
-     */
-    public void disablePlayButton() {
-    	this.playButtonEnabled = false;
-    }
-
-    /**
-     * Enables the RecordButton. This Button is only available in ExpertView
-     */
-    public void enableRecordButton() {
-    }
-
-    /**
-     * Disables the RecordButton. This Button is only available in ExpertView
-     */
-    public void disableRecordButton() {
-    }
-
-    /**
-     * Calls the ExpertView enableButtonforAutoPlayback
-     */
-    public void enableButtonforAutoPlayback() {
-    }
-
-    /**
-     * Calls the ExpertView disableButtonforAutoPlayback
-     */
-    public void disableButtonforAutoPlayback() {
-    }
-
-    /**
-     * Calls the ExpertView enableBackWardButtons
-     */
-    public void enableBackWardButtons() {
-    }
-
-    /**
-     * Calls the ExpertView disableBackWardButtons
-     */
-    public void disableBackWardButtons() {
-    }
-
     /*
      * MISC
      */
@@ -735,7 +595,6 @@ public class TokenGameSession implements Runnable {
      * through the net with in-Editor-clicks or Remote-clicks
      */
     public void cleanupTransition() {
-        clearChoiceBox();
         if (followingActivatedTransitions != null) {
             followingActivatedTransitions.clear();
         }
@@ -756,10 +615,6 @@ public class TokenGameSession implements Runnable {
                 tgController.tokenGameRestore();
                 tgController.closeSubProcess();
                 tgController = ProcessEditors.removeLast();
-                if (!tgController.getThisEditor().isSubprocessEditor()) {
-                    enableBackWardButtons();
-                }
-                cleanupTransition();
                 tgController.tokenGameCheckNet();
 
             }
@@ -769,9 +624,6 @@ public class TokenGameSession implements Runnable {
             }
             ProcessEditors.add(tgController);
             tgController = newReference;
-            if (tgController.getThisEditor().isSubprocessEditor()) {
-                disableBackWardButtons();
-            }
         }
         // Update Ribbon to show Token Game icons
         desktop.getMediatorReference().getUi()

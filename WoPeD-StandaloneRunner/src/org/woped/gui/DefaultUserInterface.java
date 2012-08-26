@@ -42,7 +42,7 @@ import org.woped.editor.controller.vc.TaskBarVC;
 import org.woped.editor.controller.vep.ViewEvent;
 import org.woped.gui.controller.vc.StatusBarVC;
 import org.woped.gui.icons.logo_woped;
-import org.woped.qualanalysis.simulation.controller.ReferenceProvider;
+import org.woped.qualanalysis.simulation.ReferenceProvider;
 import org.woped.translations.Messages;
 
 @SuppressWarnings("serial")

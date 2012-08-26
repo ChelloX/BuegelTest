@@ -229,10 +229,10 @@ public class VisualController implements PropertyChangeListener, IClipboaredList
 	public static final int TOKENGAME_TRANSITION_ACTIVE		= 52;
 	// Transitions have occurred, so there is history information
 	public static final int TOKENGAME_TRANSITION_HISTORY	= 53;
-	// The token game is in auto-play mode (TOKENGAME_AUTOPLAY_ON) or
-	// not (TOKENGAME_AUTOPLAY_OFF)
-	public static final int TOKENGAME_AUTOPLAY_ON			= 54;
-	public static final int TOKENGAME_AUTOPLAY_OFF			= 55;
+	// The token game is in auto-play mode
+	public static final int TOKENGAME_AUTOPLAY_MODE			= 54;
+	// Auto play is running 
+	public static final int TOKENGAME_AUTOPLAY_PLAYING		= 55;
 	
 	private static final int MAX_ID 						= 56;
 
@@ -265,7 +265,10 @@ public class VisualController implements PropertyChangeListener, IClipboaredList
 	}
 
 	/**
-	 * Adds a object which is supposed to be controlled.
+	 * Adds a object which is supposed to be controlled, using DefaultVisibility.
+	 * Note that each aspect of an action's visibility (enabled, visible, selected)
+	 * must depend on exactly one attribute. If this is too simplistic for you,
+	 * please supply a custom IVisibility implementation using the method below
 	 * 
 	 * @param obj
 	 *            the newly added Object
@@ -280,10 +283,24 @@ public class VisualController implements PropertyChangeListener, IClipboaredList
 	{
 		IVisibility visibilityConfiguration = 
 				new DefaultVisibility(enable, visible, selected);
+		addElement(action, visibilityConfiguration);
+	}
+
+
+	/**
+	 * Adds a object which is supposed to be controlled, using a custom visibility object.
+	 * 
+	 * @param obj
+	 *            the newly added Object
+	 * @param visibility
+	 *            decide about visibility options for the specified WoPeDAction
+	 */
+	public void addElement(WoPeDAction action, IVisibility visibilityConfiguration)
+	{
 		actionVisibilityMap.put(action, visibilityConfiguration);
 		updateStatus(action);
 	}
-
+	
 	/**
 	 * Changes the enabling status of all targets belonging to action
 	 * 
@@ -830,8 +847,8 @@ public class VisualController implements PropertyChangeListener, IClipboaredList
 		setStatus(TOKENGAME_IN_SUBPROCESS, tokenGameStats.inSubprocess);
 		setStatus(TOKENGAME_TRANSITION_ACTIVE, tokenGameStats.numActiveTransitions == 1);
 		setStatus(TOKENGAME_TRANSITION_HISTORY, tokenGameStats.hasHistory);
-		setStatus(TOKENGAME_AUTOPLAY_ON, tokenGameStats.autoPlayMode);
-		setStatus(TOKENGAME_AUTOPLAY_OFF, tokenGameStats.autoPlayMode);		
+		setStatus(TOKENGAME_AUTOPLAY_MODE, tokenGameStats.autoPlayMode);
+		setStatus(TOKENGAME_AUTOPLAY_PLAYING, tokenGameStats.autoPlayPlaying);
 	}
 
 	public boolean isActive()
