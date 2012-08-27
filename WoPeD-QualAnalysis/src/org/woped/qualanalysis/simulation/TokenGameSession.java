@@ -7,6 +7,7 @@ import java.util.Vector;
 import javax.swing.DefaultListModel;
 
 import org.woped.core.controller.IEditor;
+import org.woped.core.model.ModelElementContainer;
 import org.woped.core.model.PetriNetModelProcessor;
 import org.woped.core.model.petrinet.AbstractPetriNetElementModel;
 import org.woped.core.model.petrinet.SimulationModel;
@@ -43,9 +44,6 @@ public class TokenGameSession implements Runnable {
     // SimulationModels
     private SimulationModel SaveableSimulation = null;
 
-    // DefaultListModels
-    private DefaultListModel ahxHistoryContent = null;
-
     // Vectors
     private Vector<TransitionModel> HistoryVector = null;
 
@@ -68,9 +66,29 @@ public class TokenGameSession implements Runnable {
         this.PetriNet = PetriNet;
         this.tgController = tgController;
 
-        ahxHistoryContent = new DefaultListModel();
-
         addControlElements();
+    }
+
+    /**
+     * Reset a token game session into it's initial state. 
+     * This spans across sub processes and will bring execution back
+     * to the initial state of the main process
+     */
+    public void resetTokenGameSession() {
+    	setEndOfAutoPlay(true);
+        while (getTokenGameController().getThisEditor().isSubprocessEditor()) {
+            changeTokenGameReference(null, true);
+        }
+        clearHistoryData();
+        getTokenGameController().tokenGameRestore();
+    }
+    
+    
+    public void terminateTokenGameSession() {
+    	resetTokenGameSession();
+    	getTokenGameController().getThisEditor().disableTokenGame();
+    	
+    	
     }
 
     /**
@@ -92,23 +110,6 @@ public class TokenGameSession implements Runnable {
     public void getExpertViewOnStage() {
 
         setExpertViewStatus(true);
-    }
-
-    /*
-     * Start playback. Executed when token game is enabled
-     */
-        
-    public void startPlayback() {
-        // Active TokenGame, disable DrawMode, checkNet and activate transition
-        if (getTokenGameController().isVisualTokenGame()) {
-            getTokenGameController().tokenGameCheckNet();
-            if (playbackRunning()) {
-                startHistoryPlayback();
-            } else {
-                clearHistoryData();
-            }
-        }
-        
     }
     
     /*
@@ -132,53 +133,48 @@ public class TokenGameSession implements Runnable {
             previousItem();
 			if (BackwardTransitionToOccur != null) {
 				TransitionToOccur = BackwardTransitionToOccur;
+				
+				// Check if the transition to be executed belongs to the current net
+				ModelElementContainer currentContainer = 
+						tgController.getThisEditor().getModelProcessor().getElementContainer();
+				
+				boolean thisContainer =
+						(currentContainer.getElementById(TransitionToOccur.getId()) != null);
+				if (!thisContainer) {
+					// First check if we need to step upwards (after reaching
+					// the initial state of a sub process)
+					boolean foundStepUp = false;
+					if (TransitionToOccur instanceof SubProcessModel) {
+						SubProcessModel subProcessElement = 
+								(SubProcessModel)TransitionToOccur;
+						if (subProcessElement.getElementContainer() == currentContainer) {
+							// Yup. We're returning from a sub process and this
+							// is the sub process transition itself. Close the sub process
+							this.changeTokenGameReference(null, true);
+							foundStepUp = true;
+						} 
+					}
+					if (!foundStepUp) {
+						// TODO: Rework history to include references to sub processes
+						// and their respective states before the were left.
+						// This will allow us to step back into a sub process
+						// when going backwards
+						//
+						// Skip all sub process elements, don't open any subprocesses
+						// while going backwards
+						do {
+							previousItem();
+							TransitionToOccur = BackwardTransitionToOccur;							
+						} while (currentContainer.getElementById(TransitionToOccur.getId()) == null);
+					}
+				}
+
 				tgController.occurTransitionbyTokenGameBarVC(TransitionToOccur,
 						BackWard, false);
 			}
         } else {
-
             // AFAIK needed to make automatic backward stepping
             BackwardTransitionToOccur = TransitionToOccur;
-            if (playbackRunning()) {
-                if ((HistoryIndex < HistoryVector.size()) && (HistoryIndex >= 0)) {
-                    TransitionToOccur = HistoryVector.get(HistoryIndex++);
-
-                    /*
-                     * If History steps into a SubProcess, do so as well
-                     */
-                    if ((!TransitionToOccur.getId().contains("t")) && (!TransitionToOccur.getId().contains("a"))) {
-                        if (HistoryIndex < HistoryVector.size()) {
-                            helpTransition = HistoryVector.get(HistoryIndex);
-                            if (helpTransition.getId().contains(TransitionToOccur.getId())
-                                    && (helpTransition.getId().contains("a") || helpTransition.getId().contains("t"))) {
-                            	// Override and specified decision of whether to step into 
-                            	// a sub process if we find a specific behavior in our
-                            	// records
-                            	stepInto = true;
-                            }
-                        }
-                    }
-                    /*
-                     * If History is in a Subprocess and it is finished, step out automatically
-                     */
-                    if (HistoryIndex < HistoryVector.size()) {
-                        helpTransition = HistoryVector.get(HistoryIndex);
-                        if (TransitionToOccur.getId().contains("t") || TransitionToOccur.getId().contains("a")) {
-                            if (TransitionToOccur.getId().length() >= (helpTransition.getId().length() + 3)) {
-                                changeTokenGameReference(null, true);
-                            }
-                        } else {
-                            if (TransitionToOccur.getId().length() >= (helpTransition.getId().length() + 5)) {
-                                changeTokenGameReference(null, true);
-                            }
-                        }
-                    }
-
-                    // Secure the net, so that no playback further than the last Simulation point can be done
-                } else {
-                    HistoryIndex = HistoryVector.size();
-                }
-            }
             // If end of net is not reached yet or there is still something to occur
             // If AutoChoice is Selected, occur without choice
             if (TransitionToOccur == null) {
@@ -192,58 +188,15 @@ public class TokenGameSession implements Runnable {
     }
 
     /**
-     * This method let the multiple transition occur (now 3 times) (only for sequences, as two transitions are active, the method will stop)
-     * 
-     */
-    public void occurTransitionMulti(boolean BackWard) {
-        int i = 0;
-        if (followingActivatedTransitions == null) {
-            return;
-        }
-        if (BackWard) {
-            while (i != occurtimes) {
-                if (BackwardTransitionToOccur != null) {
-                    occurTransition(BackWard, false);
-                }
-                i++;
-            }
-        } else {
-            while (i != occurtimes) {
-                if ((followingActivatedTransitions.size() < 2) && (!playbackRunning())) {
-                    occurTransition(BackWard, false);
-                } else
-                    if (playbackRunning()) {
-                        occurTransition(BackWard, false);
-                    }
-                i++;
-            }
-        }
-    }
-
-    /**
      * will fill the "BackwardTransitionToOccur" with Data
      */
     public void previousItem() {
         if (HistoryVector != null) {
-            if (!playbackRunning()) {
-                if (HistoryVector.size() > 0) {
-                    BackwardTransitionToOccur = HistoryVector.remove(HistoryVector.size() - 1);
-                } else {
-                    BackwardTransitionToOccur = null;
-                }
-            }
-            // If playback running
-            else {
-                if (HistoryIndex > 0) {
-                    HistoryIndex--;
-                    BackwardTransitionToOccur = HistoryVector.get(HistoryIndex);
-                    return;
-                } else // if(HistoryIndex < 0)
-                {
-                    BackwardTransitionToOccur = null;
-                    return;
-                }
-            }
+        	if (HistoryVector.size() > 0) {
+        		BackwardTransitionToOccur = HistoryVector.remove(HistoryVector.size() - 1);
+        	} else {
+        		BackwardTransitionToOccur = null;
+        	}
         }
     }
 
@@ -269,13 +222,9 @@ public class TokenGameSession implements Runnable {
      * This method generates a random index and choose one transition if their are more then one
      */
     public synchronized void proceedTransitionChoiceAuto() {
-        if (!playbackRunning()) {
-            int index = (int) Math.round(Math.random() * (followingActivatedTransitions.size() - 1));
-            TransitionToOccur = followingActivatedTransitions.get(index);
-            tgController.occurTransitionbyTokenGameBarVC(TransitionToOccur, false, false);
-        } else {
-            occurTransition(false, false);
-        }
+    	int index = (int) Math.round(Math.random() * (followingActivatedTransitions.size() - 1));
+    	TransitionToOccur = followingActivatedTransitions.get(index);
+    	tgController.occurTransitionbyTokenGameBarVC(TransitionToOccur, false, false);
     }
 
     /*
@@ -300,15 +249,13 @@ public class TokenGameSession implements Runnable {
         if (followingActivatedTransitions == null) {
             return;
         }
-        if (!playbackRunning()) {
-            if (followingActivatedTransitions.size() == 1) {
-                TransitionToOccur = followingActivatedTransitions.get(0);
-            }
-            if (followingActivatedTransitions.size() > 1) {
-                for (int i = 0; i < followingActivatedTransitions.size(); i++) {
-                    helpTransition = followingActivatedTransitions.get(i);
-                }
-            }
+        if (followingActivatedTransitions.size() == 1) {
+        	TransitionToOccur = followingActivatedTransitions.get(0);
+        }
+        if (followingActivatedTransitions.size() > 1) {
+        	for (int i = 0; i < followingActivatedTransitions.size(); i++) {
+        		helpTransition = followingActivatedTransitions.get(i);
+        	}
         }
     }
 
@@ -330,24 +277,12 @@ public class TokenGameSession implements Runnable {
     public void addHistoryItem(TransitionModel transition) {
         if (HistoryVector == null) {
             HistoryVector = new Vector<TransitionModel>(1);
-            ahxHistoryContent.clear();
         }
-        if (!playbackRunning()) {
-            HistoryVector.add(transition);
-        }
+        HistoryVector.add(transition);
     }
     
     public int getNumHistoryItems() {
     	return (HistoryVector!=null)?HistoryVector.size():0;
-    }
-
-    /**
-     * If History-tracking ("Recording") has been chosen by the user, Every occurred transition is added to this List
-     * 
-     * @param transition
-     */
-    public void addHistoryListItem(TransitionModel transition) {
-        ahxHistoryContent.addElement(transition.getNameModel());
     }
 
     /**
@@ -367,7 +302,6 @@ public class TokenGameSession implements Runnable {
      * Will clear the History-Vector, the HistoryContent and will set the newHistory-variable to "true"
      */
     public void clearHistoryData() {
-        ahxHistoryContent.clear();
         HistoryVector = null; // Set reference to null, so that a new history-Vector will be created!
         newHistory = false;
     }
@@ -432,10 +366,6 @@ public class TokenGameSession implements Runnable {
 
     public SimulationModel getHistoryData() {
         return SaveableSimulation;
-    }
-
-    public DefaultListModel getHistoryContent() {
-        return ahxHistoryContent;
     }
 
     public void setToOldHistory() {
@@ -572,20 +502,6 @@ public class TokenGameSession implements Runnable {
         return newHistory;
     }
 
-    /**
-     * this method is to check whether a real playback is running, a walkthrough without recording or a record session. If it is a real playback, the
-     * application will not give the user any choice-possibility but it will just follow the history in the history-box
-     * 
-     * @return true / false
-     */
-    public boolean playbackRunning() {
-        if (ahxHistoryContent.size() != 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     /*
      * MISC
      */
@@ -615,8 +531,6 @@ public class TokenGameSession implements Runnable {
                 tgController.tokenGameRestore();
                 tgController.closeSubProcess();
                 tgController = ProcessEditors.removeLast();
-                tgController.tokenGameCheckNet();
-
             }
         } else {
             if (ProcessEditors == null) {

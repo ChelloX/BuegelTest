@@ -84,7 +84,6 @@ public class TokenGameController implements ITokenGameController {
     // ! (Visual token game only!)
     private Set<PlaceModel> sinkPlaces = null;
     private MouseHandler tokenGameMouseHandler = null;
-    private boolean visualTokenGame = false;
     private IEditor thisEditor = null;
     private ReferenceProvider ParentControl = null;
     private TokenGameSession RemoteControl = null;
@@ -103,7 +102,6 @@ public class TokenGameController implements ITokenGameController {
         this.graph = thisEditor.getGraph();
         this.thisEditor = thisEditor;
         this.m_propertyChangeSupport = propertyChangeSupport;
-        setVisualTokenGame(graph != null);
         tokenGameMouseHandler = new MouseHandler();
 
     }
@@ -117,19 +115,7 @@ public class TokenGameController implements ITokenGameController {
     public TokenGameSession getRemoteControl() {
 		return RemoteControl;
 	}
-        
-    /**
-     * Constructor for the model sided TokenGame.
-     * 
-     * @param petrinet
-     */
-    public TokenGameController(PetriNetModelProcessor petrinet) {
-        this.petrinet = petrinet;
-        this.graph = null;
-        this.thisEditor = null;
-        setVisualTokenGame(false);
-        tokenGameMouseHandler = new MouseHandler();
-    }
+
 
     /* ###################### Controller Methods ###################### */
 
@@ -163,6 +149,10 @@ public class TokenGameController implements ITokenGameController {
             if (RemoteControl != null) {
                 RemoteControl.addControlElements();
             } else {
+            	// A session spans across all the sub processes of a workflow.
+            	// While associated with one net (and thus one token game controller) at a time,
+            	// it can be associated to multiple token game controllers throughout its lifetime.
+            	// Note that we preserve history inside a token game session
                 RemoteControl = new TokenGameSession(this, petrinet);
             }
 
@@ -174,9 +164,10 @@ public class TokenGameController implements ITokenGameController {
             allTransitions
                     .putAll(getPetriNet().getElementContainer().getElementsByType(AbstractPetriNetElementModel.SUBP_TYPE));
 
+            // Find and show active Transitions/Arcs
+            checkNet();
+            
         }
-        // set first transition active
-        RemoteControl.startPlayback();
         
     }
 
@@ -192,9 +183,7 @@ public class TokenGameController implements ITokenGameController {
         // restore origin tokencount
         resetVirtualTokensInElementContainer(getPetriNet().getElementContainer());
         // disable visualTokenGame
-        if (isVisualTokenGame()) {
-            disableVisualTokenGame();
-        }
+        disableVisualTokenGame();
         // animator.stop();
     }
 
@@ -237,8 +226,6 @@ public class TokenGameController implements ITokenGameController {
      * Enables the visual TokenGame.
      */
     public void enableVisualTokenGame() {
-        this.visualTokenGame = true;
-
         // disable editor access
         thisEditor.setReadOnly(false);
         getGraph().enableMarqueehandler(false);
@@ -688,9 +675,6 @@ public class TokenGameController implements ITokenGameController {
         // Either transition or arc has to be null
         // Remember whether we actually did something here
         // and only deactivate the transition after a *successful* click
-    	//
-    	// TODO: Use PlaceModel.isSource() to step out of a sub-process
-    	// when its source has been "reached"
     	
         boolean actionPerformed = false;
         if (transition != null) {
@@ -928,23 +912,6 @@ public class TokenGameController implements ITokenGameController {
      * ################################### Getter & Setter ########################################
      */
 
-    /**
-     * Returns if the visual TokenGame is enabled.
-     * 
-     * @return Returns the visualTokenGame.
-     */
-    public boolean isVisualTokenGame() {
-        return visualTokenGame;
-    }
-
-    /*
-     * use with caution. does not affect the TokenGame Controlling directly. Just for setting the initial variable value. @param visualTokenGame The
-     * visualTokenGame to set.
-     */
-    private void setVisualTokenGame(boolean visualTokenGame) {
-        this.visualTokenGame = visualTokenGame;
-    }
-
     /*
      * @return Returns the graph.
      */
@@ -991,9 +958,6 @@ public class TokenGameController implements ITokenGameController {
 		 *  
 		 */
         public void mouseReleased(MouseEvent e) {
-            if (RemoteControl.playbackRunning()) {
-                return;
-            }
             Vector<Object> allCells = getGraph().getAllCellsForLocation(e.getPoint().x, e.getPoint().y);
             TransitionModel transition = findTransitionInCell(allCells);
             PlaceModel place = findPlaceInCell(allCells);
@@ -1087,13 +1051,6 @@ public class TokenGameController implements ITokenGameController {
         		occurTransition(transition, stepInto);
         }
     }
-
-    /**
-     * method to call private checkNet() method from TokenGameBar
-     */
-    public void tokenGameCheckNet() {
-        checkNet();
-    }
     
     /**
      * Open an new sub process window based on the 
@@ -1122,7 +1079,6 @@ public class TokenGameController implements ITokenGameController {
         resetTransitionStatus();
         resetArcStatus();
         resetVirtualTokensInElementContainer(getPetriNet().getElementContainer());
-        RemoteControl.clearHistoryData();
     	checkNet();    	
     }
 

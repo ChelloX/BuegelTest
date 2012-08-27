@@ -1327,6 +1327,67 @@ public class EditorVC implements KeyListener,
 			}
 		}
 	}
+	
+	/* ########## View and utils methods ########### */
+	
+	/**
+	 * Enable TokenGame Mode for this net. <br>
+	 * In TokenGame-Mode the net is not editable, but you call pefrorm a simple
+	 * token movements.
+	 * 
+	 * @see TokenGameController
+	 */
+	public void enableTokenGame() {
+		if (isTokenGameEnabled()) {
+			LoggerManager.error(Constants.EDITOR_LOGGER, "TokenGame already running");
+			return;
+		}
+		
+		LoggerManager.debug(Constants.EDITOR_LOGGER, "START TokenGame");		
+		tokenGameEnabled = true;
+		setDrawingMode(false);
+		m_tokenGameController.start();
+		
+		m_propertyChangeSupport.firePropertyChange("TokenGameMode", null, null);
+	}
+	
+	/* ########## View and utils methods ########### */
+	/**
+	 * Disable TokenGame Mode for this net. <br>
+	 * In TokenGame-Mode the net is not editable, but you call pefrorm a simple
+	 * token movements.
+	 * 
+	 * @see TokenGameController
+	 */
+	public void disableTokenGame() {
+		if (!isTokenGameEnabled()) {
+			LoggerManager.error(Constants.EDITOR_LOGGER, "TokenGame not running");
+			return;
+		}
+		
+		LoggerManager.debug(Constants.EDITOR_LOGGER, "STOP TokenGame");
+		tokenGameEnabled = false;
+		m_tokenGameController.stop();
+		m_centralMediator.getUi().refreshFocusOnFrames();
+		
+		m_propertyChangeSupport.firePropertyChange("TokenGameMode", null, null);
+	}	
+	
+	
+	/**
+	 * Terminates a running token game session this net is part of.
+	 * A token game session spans across multiple nets if sub processes exist.
+	 * This method will close all sub processes and reset the token game to 
+	 * it's initial state, then will disable the token game for the top net
+	 */
+	public void terminateTokenGameSession() {
+		if (!isTokenGameEnabled()) {
+			LoggerManager.error(Constants.EDITOR_LOGGER, "TokenGame not running");
+			return;
+		}
+		
+		m_tokenGameController.getRemoteControl().terminateTokenGameSession();
+	}
 
 	/* ########## View and utils methods ########### */
 	/**
@@ -1338,18 +1399,10 @@ public class EditorVC implements KeyListener,
 	 */
 	public void toggleTokenGame() {
 		if (isTokenGameEnabled()) {
-			LoggerManager.debug(Constants.EDITOR_LOGGER, "STOP TokenGame");
-			tokenGameEnabled = false;
-			m_tokenGameController.stop();
-			m_centralMediator.getUi().refreshFocusOnFrames();
-
+			disableTokenGame();
 		} else {
-			LoggerManager.debug(Constants.EDITOR_LOGGER, "START TokenGame");
-			tokenGameEnabled = true;
-			setDrawingMode(false);
-			m_tokenGameController.start();
+			enableTokenGame();
 		}
-		m_propertyChangeSupport.firePropertyChange("TokenGameMode", null, null);
 	}
 
 	// 02122008 MarioBeiser --> ChangePanel-Option

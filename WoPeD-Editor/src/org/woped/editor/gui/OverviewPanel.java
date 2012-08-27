@@ -75,7 +75,7 @@ public class OverviewPanel extends JPanel
 		PropertyChangeListener
 {
     protected AbstractGraph    graph;
-    protected EditorVC         editor;
+    protected IEditor         editor;
     protected JGraph           originalGraph;
     protected PannerViewfinder v;
     protected Rectangle        r;

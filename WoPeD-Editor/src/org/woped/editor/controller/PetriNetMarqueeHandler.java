@@ -41,6 +41,7 @@ import org.woped.core.config.ConfigurationManager;
 import org.woped.core.controller.AbstractApplicationMediator;
 import org.woped.core.controller.AbstractMarqueeHandler;
 import org.woped.core.controller.AbstractViewEvent;
+import org.woped.core.controller.IEditor;
 import org.woped.core.model.petrinet.AbstractPetriNetElementModel;
 import org.woped.core.model.ArcModel;
 import org.woped.core.model.CreationMap;
@@ -49,7 +50,6 @@ import org.woped.core.model.petrinet.NameModel;
 import org.woped.core.model.petrinet.PlaceModel;
 import org.woped.core.model.petrinet.SubProcessModel;
 import org.woped.core.model.petrinet.TransitionModel;
-import org.woped.editor.controller.vc.EditorVC;
 import org.woped.editor.controller.vep.ViewEvent;
 import org.woped.editor.gui.PopupMenuPetrinet;
 import org.woped.editor.utilities.Cursors;
@@ -73,7 +73,7 @@ public class PetriNetMarqueeHandler extends AbstractMarqueeHandler {
      * 
      * @param editor
      */
-    public PetriNetMarqueeHandler(EditorVC editor, AbstractApplicationMediator mediator) {
+    public PetriNetMarqueeHandler(IEditor editor, AbstractApplicationMediator mediator) {
         super(editor);
         this.mediator = mediator;
     }

@@ -64,7 +64,7 @@ public class TokenGameBarListener implements ActionListener, ChangeListener, Lis
             break;
         case CLICK_STOP:
         	// Stop and reset token game to initial state
-            stopTokenGame();
+            RemoteControl.resetTokenGameSession();
             break;
         case CLICK_PLAY:
             RemoteControl.setEndOfAutoPlay(false);
@@ -88,24 +88,6 @@ public class TokenGameBarListener implements ActionListener, ChangeListener, Lis
         default:
             break;
         }
-    }
-
-    /*
-     * Reset TokenGame to Startposition and Enable PlayButton
-     */
-    private void stopTokenGame() {
-    	stopAction();
-    }
-
-    private void stopAction() {
-    	// The stop action will reset the net into it's initial state.
-    	// Since the stop action is enabled in auto-play mode, we need to 
-    	// make sure we stop auto-play before we reset the net.
-    	RemoteControl.setEndOfAutoPlay(true);
-        while (RemoteControl.getTokenGameController().getThisEditor().isSubprocessEditor()) {
-            RemoteControl.changeTokenGameReference(null, true);
-        }
-        RemoteControl.getTokenGameController().tokenGameRestore();
     }
 
     /*

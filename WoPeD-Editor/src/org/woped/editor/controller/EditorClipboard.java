@@ -26,10 +26,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 
+import org.woped.core.controller.IEditor;
 import org.woped.core.model.ArcModel;
 import org.woped.core.model.CreationMap;
 import org.woped.core.model.petrinet.AbstractPetriNetElementModel;
-import org.woped.editor.controller.vc.EditorVC;
 
 
 /**
@@ -44,7 +44,7 @@ public class EditorClipboard
     private HashMap<String, CreationMap> copiedArcsList     = new HashMap<String, CreationMap>();
     
     private Vector<IClipboaredListener> m_listeners = new Vector<IClipboaredListener>();
-    private EditorVC m_sourceEditor = null;
+    private IEditor m_sourceEditor = null;
     
     
     public EditorClipboard()
@@ -106,11 +106,11 @@ public class EditorClipboard
         return copiedElementsList.containsKey(key);
     }
     
-	public EditorVC getM_sourceEditor() {
+	public IEditor getM_sourceEditor() {
 		return m_sourceEditor;
 	}
 
-	public void setM_sourceEditor(EditorVC editor) {
+	public void setM_sourceEditor(IEditor editor) {
 		m_sourceEditor = editor;
 	}
 }
