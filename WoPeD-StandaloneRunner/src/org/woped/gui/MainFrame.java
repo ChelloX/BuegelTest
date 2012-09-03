@@ -1257,6 +1257,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
 					fn = fn.replaceAll("%20", " ");
 					JarFile jf = new JarFile(fn);
 					Enumeration<JarEntry> e = jf.entries();
+					jf.close();
 					ZipEntry ze;
 					// process entries
 					while (e.hasMoreElements()) {
