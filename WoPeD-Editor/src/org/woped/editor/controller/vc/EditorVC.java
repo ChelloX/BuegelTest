@@ -37,7 +37,6 @@ import org.jgraph.event.GraphSelectionListener;
 import org.jgraph.graph.AttributeMap;
 import org.jgraph.graph.BasicMarqueeHandler;
 import org.jgraph.graph.DefaultGraphCell;
-import org.jgraph.graph.DefaultGraphModel;
 import org.jgraph.graph.DefaultPort;
 import org.jgraph.graph.GraphCell;
 import org.jgraph.graph.GraphConstants;
@@ -74,6 +73,7 @@ import org.woped.editor.controller.EditorViewEvent;
 import org.woped.editor.controller.PetriNetMarqueeHandler;
 import org.woped.editor.controller.VisualController;
 import org.woped.editor.controller.WoPeDJGraph;
+import org.woped.editor.controller.WoPeDJGraphGraphModel;
 import org.woped.editor.controller.WoPeDUndoManager;
 import org.woped.editor.controller.vep.ViewEvent;
 import org.woped.editor.graphbeautifier.AdvancedDialog;
@@ -237,7 +237,7 @@ public class EditorVC implements KeyListener,
 		marqueehandler = new PetriNetMarqueeHandler(this, mediator);
 		this.modelProcessor = new PetriNetModelProcessor();
 		if (loadUI)
-			this.m_graph = new WoPeDJGraph(new DefaultGraphModel(),
+			this.m_graph = new WoPeDJGraph(new WoPeDJGraphGraphModel(this),
 					marqueehandler,
 					undoSupport ? new WoPeDUndoManager(this) : null,
 							viewFactory);

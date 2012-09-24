@@ -31,10 +31,10 @@ import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoableEdit;
 
-import org.jgraph.graph.DefaultGraphModel;
 import org.jgraph.graph.GraphUndoManager;
 import org.woped.core.model.ModelElementContainer;
 import org.woped.core.model.petrinet.SubProcessModel;
+import org.woped.editor.controller.WoPeDJGraphGraphModel.WoPeDUndoableEdit;
 import org.woped.editor.controller.vc.EditorVC;
 import org.woped.translations.Messages;
 
@@ -170,11 +170,8 @@ public class WoPeDUndoManager extends GraphUndoManager
     public synchronized boolean addEdit(UndoableEdit arg0)
     {
         if (m_enabled)
-        {
-            WoPeDUndoableEdit edit = new WoPeDUndoableEdit((DefaultGraphModel.GraphModelEdit) arg0, m_editor);
-//            LoggerManager.debug(Constants.EDITOR_LOGGER, edit.toString());
-            return super.addEdit(edit);
-        }
+            return super.addEdit(arg0);
+        
         return false;
     }
 
