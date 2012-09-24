@@ -87,23 +87,26 @@ public class WoPeDUndoManager extends GraphUndoManager
     	if (arg0 == null || !isInProgress())
     		super.undo();
     	else {
-    		WoPeDUndoableEdit edit = (WoPeDUndoableEdit) super.editToBeUndone();
+    		UndoableEdit edit = super.editToBeUndone();
     		if (edit == null)
-    			throw new CannotUndoException();
-    		doIt = true;
-    		if (edit.getInserted() != null){
-    			for (int i = 0; i < edit.getInserted().length; i++){
-    				
-    				if (edit.getInserted()[i] instanceof SubProcessModel){
-    				Object[] options = {
-    						Messages.getString("Popup.Confirm.SubProcess.Ok"),
-    						Messages.getString("Popup.Confirm.SubProcess.No") };
-    				int j = JOptionPane.showOptionDialog(null,
-    						Messages.getString("Popup.Confirm.SubProcess.Info"),
-    						Messages.getString("Popup.Confirm.SubProcess.Warn"),
-    						JOptionPane.DEFAULT_OPTION,
-    						JOptionPane.WARNING_MESSAGE, null, options, options[0]);
-    				if ( j != 0) doIt = false;
+    			throw new CannotUndoException();    		
+			doIt = true;
+    		if (edit instanceof WoPeDUndoableEdit) {
+    			WoPeDUndoableEdit wopedEdit = (WoPeDUndoableEdit) edit; 
+    			if (wopedEdit.getInserted() != null){
+    				for (int i = 0; i < wopedEdit.getInserted().length; i++){
+
+    					if (wopedEdit.getInserted()[i] instanceof SubProcessModel){
+    						Object[] options = {
+    								Messages.getString("Popup.Confirm.SubProcess.Ok"),
+    								Messages.getString("Popup.Confirm.SubProcess.No") };
+    						int j = JOptionPane.showOptionDialog(null,
+    								Messages.getString("Popup.Confirm.SubProcess.Info"),
+    								Messages.getString("Popup.Confirm.SubProcess.Warn"),
+    								JOptionPane.DEFAULT_OPTION,
+    								JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+    						if ( j != 0) doIt = false;
+    					}
     				}
     			}
     		}
@@ -124,23 +127,26 @@ public class WoPeDUndoManager extends GraphUndoManager
 	if (arg0 == null || !isInProgress())
 		super.redo();
 	else {
-		WoPeDUndoableEdit edit = (WoPeDUndoableEdit) super.editToBeRedone();
+		UndoableEdit edit = super.editToBeRedone();
 		if (edit == null)
-			throw new CannotRedoException();
+			throw new CannotUndoException();    		
 		doIt = true;
-		if (edit.getRemoved() != null){
-			for (int i = 0; i < edit.getRemoved().length; i++){
-				
-				if (edit.getRemoved()[i] instanceof SubProcessModel){
-				Object[] options = {
-						Messages.getString("Popup.Confirm.SubProcess.Ok"),
-						Messages.getString("Popup.Confirm.SubProcess.No") };
-				int j = JOptionPane.showOptionDialog(null,
-						Messages.getString("Popup.Confirm.SubProcess.Info"),
-						Messages.getString("Popup.Confirm.SubProcess.Warn"),
-						JOptionPane.DEFAULT_OPTION,
-						JOptionPane.WARNING_MESSAGE, null, options, options[0]);
-				if ( j != 0) doIt = false;
+		if (edit instanceof WoPeDUndoableEdit) {
+			WoPeDUndoableEdit wopedEdit = (WoPeDUndoableEdit) edit; 
+			if (wopedEdit.getRemoved() != null){
+				for (int i = 0; i < wopedEdit.getRemoved().length; i++){
+
+					if (wopedEdit.getRemoved()[i] instanceof SubProcessModel){
+						Object[] options = {
+								Messages.getString("Popup.Confirm.SubProcess.Ok"),
+								Messages.getString("Popup.Confirm.SubProcess.No") };
+						int j = JOptionPane.showOptionDialog(null,
+								Messages.getString("Popup.Confirm.SubProcess.Info"),
+								Messages.getString("Popup.Confirm.SubProcess.Warn"),
+								JOptionPane.DEFAULT_OPTION,
+								JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+						if ( j != 0) doIt = false;
+					}
 				}
 			}
 		}

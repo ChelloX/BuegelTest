@@ -973,7 +973,7 @@ public class EditorVC implements KeyListener,
 		
 		// Start an atomic transaction on the graph (to make paste appear as a 
 		// single undoable operation
-		// getGraph().getModel().beginUpdate();
+		getGraph().getModel().beginUpdate();
 		
 		copyFlag = true;
 
@@ -1180,7 +1180,7 @@ public class EditorVC implements KeyListener,
 		}
 
 		// End of atomic graph update
-		// getGraph().getModel().endUpdate();
+		getGraph().getModel().endUpdate();
 		
 		// select the new element
 		LoggerManager.debug(Constants.EDITOR_LOGGER, "Elements pasted. ("
