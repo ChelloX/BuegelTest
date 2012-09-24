@@ -971,6 +971,10 @@ public class EditorVC implements KeyListener,
 		Map<String, CreationMap> pasteElements = m_clipboard
 				.getCopiedElementsList();
 		
+		// Start an atomic transaction on the graph (to make paste appear as a 
+		// single undoable operation
+		// getGraph().getModel().beginUpdate();
+		
 		copyFlag = true;
 
 		Map<String, CreationMap> pasteArcs = m_clipboard.getCopiedArcsList();
@@ -1174,6 +1178,10 @@ public class EditorVC implements KeyListener,
 				toSelectElements.add(tempArc);
 			}
 		}
+
+		// End of atomic graph update
+		// getGraph().getModel().endUpdate();
+		
 		// select the new element
 		LoggerManager.debug(Constants.EDITOR_LOGGER, "Elements pasted. ("
 				+ (System.currentTimeMillis() - begin) + " ms)");
@@ -1184,6 +1192,8 @@ public class EditorVC implements KeyListener,
 		copySelection();
 		getGraph().setCursor(Cursor.getDefaultCursor());
 		getEditorPanel().m_understandColoring.update();
+		
+		
 	}
 
 	private Point getMiddleOfSelection(Map<String, CreationMap> maps) {

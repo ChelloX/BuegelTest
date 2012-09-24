@@ -277,6 +277,15 @@ public class WoPeDUndoableEdit implements UndoableEdit
     {
         return m_innerEdit;
     }
+    
+    public Object[] getInserted() {
+    	return m_inserted;
+    }
+    
+    public Object[] getRemoved() {
+    	return m_removed;    	
+    }
+    
 
     public String toString()
     {

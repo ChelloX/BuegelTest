@@ -91,10 +91,10 @@ public class WoPeDUndoManager extends GraphUndoManager
     		if (edit == null)
     			throw new CannotUndoException();
     		doIt = true;
-    		if (edit.m_inserted != null){
-    			for (int i = 0; i < edit.m_inserted.length; i++){
+    		if (edit.getInserted() != null){
+    			for (int i = 0; i < edit.getInserted().length; i++){
     				
-    				if (edit.m_inserted[i] instanceof SubProcessModel){
+    				if (edit.getInserted()[i] instanceof SubProcessModel){
     				Object[] options = {
     						Messages.getString("Popup.Confirm.SubProcess.Ok"),
     						Messages.getString("Popup.Confirm.SubProcess.No") };
@@ -128,10 +128,10 @@ public class WoPeDUndoManager extends GraphUndoManager
 		if (edit == null)
 			throw new CannotRedoException();
 		doIt = true;
-		if (edit.m_removed != null){
-			for (int i = 0; i < edit.m_removed.length; i++){
+		if (edit.getRemoved() != null){
+			for (int i = 0; i < edit.getRemoved().length; i++){
 				
-				if (edit.m_removed[i] instanceof SubProcessModel){
+				if (edit.getRemoved()[i] instanceof SubProcessModel){
 				Object[] options = {
 						Messages.getString("Popup.Confirm.SubProcess.Ok"),
 						Messages.getString("Popup.Confirm.SubProcess.No") };
@@ -204,7 +204,7 @@ public class WoPeDUndoManager extends GraphUndoManager
     	if (super.canUndo())
     	{WoPeDUndoableEdit edit = (WoPeDUndoableEdit) super.editToBeUndone();
     	
-    	if (edit.m_inserted != null)    
+    	if (edit.getInserted() != null)    
     		return (container.getIdMap().size() > 2);
     	else return true;
     }return false;
