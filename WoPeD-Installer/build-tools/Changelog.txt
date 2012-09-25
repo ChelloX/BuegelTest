@@ -1,9 +1,12 @@
-WoPeD 3.0.0 (2012/14/04)
-- Support for AProMoRe repository access
+WoPeD 3.0.0 (2012/10/01)
 - New GUI in Flamingo Ribbon style
-- Improved editor sidbar management
-- Many small improvements of usability and user interface
-- Lots of bugfixes and feature improvement
+- More convenient preference panel
+- Improved editor sidebar management
+- Improvement of semantic check wizards
+- Various improvements of usability and user interface
+- Lots of small and medium bugfixes
+- MacOS installer and launcher
+- Java 7 compatibility
 
 WoPeD 2.6.0 (2011/06/06)
 - Support for process metrics including metrics editor
