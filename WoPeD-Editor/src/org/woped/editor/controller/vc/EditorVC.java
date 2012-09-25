@@ -1669,8 +1669,7 @@ public class EditorVC implements KeyListener,
 	 * Fires a ViewEvent to each listener as long as the event is not consumed.
 	 * The event is also set with a reference to the current listener.
 	 */
-	@SuppressWarnings("unchecked")
-	public final void fireViewEvent(AbstractViewEvent viewevent) {
+ 	public final void fireViewEvent(AbstractViewEvent viewevent) {
 		if (viewevent == null) {
 			return;
 		}
@@ -1986,7 +1985,7 @@ public class EditorVC implements KeyListener,
 	}
 
 	public void internalFrameActivated(InternalFrameEvent e) {
-		ReferenceProvider refer = new ReferenceProvider();
+		new ReferenceProvider();
 	}
 
 	public void internalFrameClosed(InternalFrameEvent e) {

@@ -59,14 +59,12 @@ public class EditorClipboard
         fireClipboardChange();
     }
 
-    @SuppressWarnings("unchecked")
-	public Map<String, CreationMap> getCopiedArcsList()
+  	public Map<String, CreationMap> getCopiedArcsList()
     {
         return (Map<String, CreationMap>)copiedArcsList.clone();
     }
 
-    @SuppressWarnings("unchecked")
-	public Map<String, CreationMap> getCopiedElementsList()
+  	public Map<String, CreationMap> getCopiedElementsList()
     {
         return (Map<String, CreationMap>)copiedElementsList.clone();
     }

@@ -26,6 +26,7 @@ public class WoPeDJGraphGraphModel extends DefaultGraphModel {
 	private static final long serialVersionUID = -3150678294281824631L;
 	private EditorVC editor;
 	
+	@SuppressWarnings("serial")
 	public class WoPeDUndoableEdit extends DefaultGraphModel.GraphModelEdit
 	{
 	    private EditorVC                         m_editor;
@@ -39,7 +40,7 @@ public class WoPeDJGraphGraphModel extends DefaultGraphModel {
 	     * @param editor
 	     */
 	    WoPeDUndoableEdit(Object[] inserted, Object[] removed, 
-	    		Map attributes, ConnectionSet connectionSet, ParentMap parentMap,
+	    		Map<?, ?> attributes, ConnectionSet connectionSet, ParentMap parentMap,
 	    		EditorVC editor) 	    		
 	    {
 	    	super(inserted, removed, attributes, connectionSet, parentMap);

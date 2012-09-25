@@ -27,7 +27,6 @@ import java.beans.PropertyChangeEvent;
 
 import javax.swing.JOptionPane;
 import javax.swing.event.UndoableEditEvent;
-import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoableEdit;
 

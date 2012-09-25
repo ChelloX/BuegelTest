@@ -37,8 +37,6 @@ public class TokenGameSession implements Runnable {
     // Occurring Transitions
     private TransitionModel TransitionToOccur = null;
     private TransitionModel BackwardTransitionToOccur = null;
-    private TransitionModel helpTransition = null;
-
     // SimulationModels
     private SimulationModel SaveableSimulation = null;
 
@@ -252,7 +250,7 @@ public class TokenGameSession implements Runnable {
         }
         if (followingActivatedTransitions.size() > 1) {
         	for (int i = 0; i < followingActivatedTransitions.size(); i++) {
-        		helpTransition = followingActivatedTransitions.get(i);
+        		followingActivatedTransitions.get(i);
         	}
         }
     }
@@ -286,7 +284,6 @@ public class TokenGameSession implements Runnable {
     /**
      * Will create a Simulation-Object that can be added to the Simulations-Vector
      */
-    @SuppressWarnings("unchecked")
     public void createSaveableHistory() {
         if (HistoryVector != null) {
             SaveableSimulation = new SimulationModel(PetriNet

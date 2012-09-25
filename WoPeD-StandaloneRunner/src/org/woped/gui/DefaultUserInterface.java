@@ -54,7 +54,6 @@ public class DefaultUserInterface extends MainFrame implements IUserInterface, I
     private StatusBarVC           statusBar              = null;
     private DefaultEditorFrame    frame                  = null;
     
-    private int                   m_numEditors           = 0;
     private List<IEditor>         editorList             = new ArrayList<IEditor>();
     
     //! Stores a list of internal frames that should stay in foreground
@@ -145,10 +144,6 @@ public class DefaultUserInterface extends MainFrame implements IUserInterface, I
             
             editorList.add(frame.getEditor());
             ((EditorVC)frame.getEditor()).getEditorPanel().setContainer(frame);
-            // frame.setBounds((int) position.getX(), (int) position.getY(),
-            // (int) frame.getBounds().getWidth(), (int)
-            // frame.getBounds().getHeight());
-            m_numEditors++;
             frame.setVisible(true);
            
             // Notify MainFrame
@@ -182,7 +177,6 @@ public class DefaultUserInterface extends MainFrame implements IUserInterface, I
     	((DefaultEditorFrame) ((EditorVC)editor).getEditorPanel().getContainer()).dispose();
     	editorList.remove(editor);
     	m_modalityStack.remove(((DefaultEditorFrame) ((EditorVC)editor).getEditorPanel().getContainer()));
-    	m_numEditors--;
     	// try to Select a different Frame
     	if (desktop.getAllFrames().length > 0)
     	{

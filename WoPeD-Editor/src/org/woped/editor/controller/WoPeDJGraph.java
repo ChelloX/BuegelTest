@@ -42,7 +42,6 @@ import javax.swing.JToolTip;
 import org.jgraph.JGraph;
 import org.jgraph.graph.AttributeMap;
 import org.jgraph.graph.BasicMarqueeHandler;
-import org.jgraph.graph.DefaultGraphModel;
 import org.jgraph.graph.Edge;
 import org.jgraph.graph.ParentMap;
 import org.jgraph.plaf.GraphUI;
