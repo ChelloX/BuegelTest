@@ -262,9 +262,9 @@ public class ConfigVC extends JDialog implements IViewController
     		tabbedPane.addTab(Messages.getString("Configuration.Metrics.Title"), metricsPanel);
     		confPanels.put(metricsPanel.getPanelName(), metricsPanel);
     		
-    		aproPanel = new ConfApromorePanel(Messages.getString("Configuration.Apromore.Title"));
+/*    		aproPanel = new ConfApromorePanel(Messages.getString("Configuration.Apromore.Title"));
     		tabbedPane.addTab(Messages.getString("Configuration.Apromore.Title"), aproPanel);
-    		confPanels.put(aproPanel.getPanelName(), aproPanel);
+    		confPanels.put(aproPanel.getPanelName(), aproPanel);*/
     		
     		readConfiguration();
     		

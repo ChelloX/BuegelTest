@@ -355,7 +355,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
 		
 		if (fileTask == null) {
 			if (ConfigurationManager.getConfiguration().getApromoreUse())
-				fileTask = new RibbonTask(Messages.getTitle("Task.File"), getDocumentBand(), getSaveBand(), getOutputBand(), getApromoreBand());	
+				fileTask = new RibbonTask(Messages.getTitle("Task.File"), getDocumentBand(), getSaveBand(), getOutputBand()/*, getApromoreBand()*/);	
 			else
 				fileTask = new RibbonTask(Messages.getTitle("Task.File"), getDocumentBand(), getSaveBand(), getOutputBand());						
 			fileTask.setResizeSequencingPolicy(new CoreRibbonResizeSequencingPolicies.CollapseFromLast(fileTask));
@@ -614,6 +614,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
 			tokengameCloseBand = new JRibbonBand(Messages.getString("Tokengame.CloseBand.title"),new tokengame_play_start());
 			tokengameCloseBand.setResizePolicies(CoreRibbonResizePolicies.getCorePoliciesNone(tokengameCloseBand));
 			tokengameCloseBand.addCommandButton(getTokengameCloseButton(), RibbonElementPriority.TOP);		
+			tokengameCloseBand.addCommandButton(getStopButton(), RibbonElementPriority.TOP);
 		}
 		
 		return tokengameCloseBand;
@@ -627,7 +628,6 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
 		
 			tokengameStepBand.addCommandButton(getStepWiseButton(), RibbonElementPriority.TOP);
 			tokengameStepBand.addCommandButton(getBackwardButton(), RibbonElementPriority.TOP);
-			tokengameStepBand.addCommandButton(getStopButton(), RibbonElementPriority.TOP);
 			tokengameStepBand.addCommandButton(getForwardButton(), RibbonElementPriority.TOP);
 			tokengameStepBand.addCommandButton(getJumpIntoSubProcessButton(), RibbonElementPriority.TOP);
 			tokengameStepBand.addCommandButton(getJumpOutOfSubprocessButton(), RibbonElementPriority.TOP);
@@ -1257,7 +1257,6 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
 					fn = fn.replaceAll("%20", " ");
 					JarFile jf = new JarFile(fn);
 					Enumeration<JarEntry> e = jf.entries();
-					jf.close();
 					ZipEntry ze;
 					// process entries
 					while (e.hasMoreElements()) {
@@ -1278,6 +1277,8 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
 							m_sampleMenu.addMenuButton(sampleItem);
 						}
 					}
+					
+					jf.close();
 				}
 				// Normal dir access
 				else {
