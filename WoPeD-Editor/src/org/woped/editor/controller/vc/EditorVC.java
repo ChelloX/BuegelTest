@@ -805,7 +805,10 @@ public class EditorVC implements KeyListener,
 	 * will be deleted too.
 	 */
 	public void deleteSelection() {
+		// Delete atomically
+		getGraph().getModel().beginUpdate();
 		deleteCells(getGraph().getSelectionCells(), true);
+		getGraph().getModel().endUpdate();		
 	}
 
 	/* ########## ELEMENT MODIFICATION METHODS ########### */
