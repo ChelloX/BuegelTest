@@ -95,7 +95,7 @@ public class PetriNetMarqueeHandler extends AbstractMarqueeHandler {
         if (getGraph().getSelectionCell() instanceof NameModel)
          	getGraph().clearSelection();
 	    
-        if (SwingUtilities.isRightMouseButton(e)) {
+        if (SwingUtilities.isRightMouseButton(e) || e.getClickCount() == 2) {
  	        getEditor().setDrawingMode(false);
  	    }
                  
@@ -308,7 +308,7 @@ public class PetriNetMarqueeHandler extends AbstractMarqueeHandler {
     		} else if ((cell instanceof GroupModel || cell instanceof AbstractPetriNetElementModel || cell instanceof NameModel)
     				&& getGraph().isEnabled()) {
     			// Set Cursor on Graph (Automatically Reset)
-    			getGraph().setPortsVisible(true);
+    			getGraph().setPortsVisible(false);
     			getGraph().setCursor(new Cursor(Cursor.MOVE_CURSOR));
      			e.consume();
     		}
