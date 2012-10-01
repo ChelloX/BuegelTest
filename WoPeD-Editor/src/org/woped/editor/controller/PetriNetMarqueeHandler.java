@@ -189,8 +189,9 @@ public class PetriNetMarqueeHandler extends AbstractMarqueeHandler {
             getEditor().setLastMousePosition(e.getPoint());
             getGraph().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));            
             object = getGraph().getFirstCellForLocation(e.getX(), e.getY());
+            int numCells = getGraph().getSelectionCount();
             
-            if (object != null)
+            if (object != null && numCells <= 1)
         		getGraph().setSelectionCell(object);
 
             if (SwingUtilities.isRightMouseButton(e)) {
