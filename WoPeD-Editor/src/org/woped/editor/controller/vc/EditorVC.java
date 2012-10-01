@@ -1169,6 +1169,12 @@ public class EditorVC implements KeyListener,
 				cmap.setArcSourceId(currentArcMap.getArcSourceId());
 				cmap.setArcTargetId(currentArcMap.getArcTargetId());
 				tempArc = createArc(cmap, true);
+				
+				// It is possible that an arc could not be created, because either its source
+				// or target element are missing. Simply ignore the arc in this case
+				if (tempArc == null)
+					continue;
+				
 				for (short k = 0; k < currentArcMap.getArcPoints().size(); k++) {
 
 					IntPair ip = (IntPair) currentArcMap.getArcPoints().get(k);

@@ -163,6 +163,9 @@ public class WoPeDJGraph extends AbstractGraph
      */
     public boolean isValidConnection(AbstractPetriNetElementModel sourceCell, AbstractPetriNetElementModel targetCell)
     {
+    	if ((sourceCell == null) || (targetCell == null))
+    		return false;
+    	
     	boolean result = false;
     	Set<Integer> destinations = connectionTypes.get(new Integer(sourceCell.getType()));
     	if (destinations!=null)
