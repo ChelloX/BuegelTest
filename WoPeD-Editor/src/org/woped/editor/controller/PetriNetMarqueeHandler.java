@@ -195,7 +195,7 @@ public class PetriNetMarqueeHandler extends AbstractMarqueeHandler {
 		Object currentCell = getGraph().getFirstCellForLocation(e.getX(), e.getY());
 		
 		// Set selection to object under cursor unless group selection is active
-		if (currentCell != null && getGraph().getSelectionCount() <= 1 && !(currentCell instanceof GroupModel))
+		if (currentCell != null && getGraph().getSelectionCount() <= 1)
 			getGraph().setSelectionCell(currentCell);
 
 		// Handle right mouse button behaviour
