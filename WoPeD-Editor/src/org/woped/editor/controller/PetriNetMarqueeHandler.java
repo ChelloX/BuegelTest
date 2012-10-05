@@ -219,10 +219,11 @@ public class PetriNetMarqueeHandler extends AbstractMarqueeHandler {
 				}
 			
 				// Double click on subprocess element opens subprocess editor
-				if (currentCell instanceof SubProcessModel)
+				if (currentCell instanceof SubProcessModel) {
 					getEditor().fireViewEvent(
 						new ViewEvent(this, AbstractViewEvent.VIEWEVENTTYPE_GUI, 
 											AbstractViewEvent.OPEN_SUBPROCESS));
+				}
 				// Double click on normal element opens property dialog
 				else {
 					getEditor().setLastMousePosition(e.getPoint());
@@ -287,13 +288,14 @@ public class PetriNetMarqueeHandler extends AbstractMarqueeHandler {
 						e.consume();
 					}
 				}
-			}
 			
-			// Handle special case for arc point selecetion
-			if (getGraph().getFirstCellForLocation(e.getX(), e.getY()) instanceof ArcModel) {
-				getEditor().setLastMousePosition(e.getPoint());
-				getEditor().addPointToSelectedArc();
+				// Handle special case for arc point selection
+				if (getGraph().getFirstCellForLocation(e.getX(), e.getY()) instanceof ArcModel) {
+					getEditor().setLastMousePosition(e.getPoint());
+					getEditor().addPointToSelectedArc();
+				}
 			}
+
 
 			super.mouseReleased(e);
 			e.consume();
