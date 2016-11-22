@@ -1,4 +1,4 @@
-WoPeD 3.5.1 (2016/11/22)
+WoPeD 3.5.2 (2016/11/22)
 - Fixed bug in token game with XORSplitJoin operator
 - Various small bugfixes
 
