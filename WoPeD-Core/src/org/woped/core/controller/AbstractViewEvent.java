@@ -277,8 +277,10 @@ public abstract class AbstractViewEvent extends ActionEvent
     public static final int TWITTER     			  = 1098;
     public static final int COMMUNITY     			  = 1099;
     public static final int P2T						  = 1100;
+    public static final int AUTOUPDATE				  = 1103;
     public static final int INCREASE_ARC_WEIGHT = 1101;
     public static final int DECREASE_ARC_WEIGHT = 1102;
+
 
     // Keys for coverability graph events are in the range from 10.000 to 10.100;
     // The can be found at CoverabilityGraphViewEvents in the coverability graph module

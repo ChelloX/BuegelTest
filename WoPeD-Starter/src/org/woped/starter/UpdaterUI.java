@@ -54,18 +54,17 @@ import org.woped.gui.lookAndFeel.WopedButton;
 import org.woped.gui.translations.Messages;
 
 /**
- * @author <a href="mailto:freytag@dhbw-karlsruhe.de">Thomas Freytag </a> <br>
+ * @author Steffen Goehrig </a> <br>
  *         <br>
- *         TODO: DOCUMENTATION (tfreytag)
- * 
- * 17.01.2005
+ *         
+ * 15.05.2017
  */
 
 @SuppressWarnings("serial")
-public class AboutUI extends JDialog
+public class UpdaterUI extends JDialog
 {
     private JLabel              logoLabel       = null;
-    private JLabel              aboutTextLabel  = null;
+    private JLabel              updateTextLabel  = null;
     private JLabel              javaTextLabel   = null;
     private JLabel              homepageLabel   = null;
     private JLabel              mailtoLabel     = null;
@@ -73,33 +72,29 @@ public class AboutUI extends JDialog
     private JLabel              icLabel         = null;    
     private WopedButton             closeButton     = null;
     private WopedButton             updateButton     = null;
-    private WopedButton             aboutButton     = null;
     private WopedButton             changelogButton = null;
 
-    private JScrollPane         aboutPanel      = null;
+    private JScrollPane         updaterPanel      = null;
     private JScrollPane         changeLogPanel  = null;
     private JPanel              buttonPanel     = null;
 
-    public AboutUI()
+    public UpdaterUI()
     {
         this(null);
     }
 
     /**
-     * Constructor for AboutUI.
+     * Constructor for UpdaterUI.
      * 
      * @param owner
      * @throws HeadlessException
      */
-    public AboutUI(Frame owner) throws HeadlessException
+    public UpdaterUI(Frame owner) throws HeadlessException
     {
         super(owner, true);
         initialize();
     }
 
-    /*
-     * public static void main(String[] args) { new AboutUI(null); }
-     */
     /**
      * This method initializes and layouts the about information
      * 
@@ -111,9 +106,9 @@ public class AboutUI extends JDialog
         this.getContentPane().setLayout(new BorderLayout());
         this.setUndecorated(false);
         this.setResizable(false);
-        this.getContentPane().add(getAboutPanel(), BorderLayout.NORTH);
+        this.getContentPane().add(getUpdaterPanel(), BorderLayout.NORTH);
         this.getContentPane().add(getButtonPanel(), BorderLayout.SOUTH);
-        this.setTitle(Messages.getTitle("Action.ShowAbout"));
+        this.setTitle(Messages.getTitle("OptionsAndHelp.Updater"));
         this.pack();
 
         if (getOwner() != null)
@@ -128,67 +123,40 @@ public class AboutUI extends JDialog
         this.setSize(this.getWidth(), this.getHeight());
     }
 
-    private JScrollPane getAboutPanel()
+    private JScrollPane getUpdaterPanel()
     {    	
-       	String[] aboutArgs       = { Messages.getWoPeDVersionWithTimestamp() };
-       	String   aboutText       = "<html><p>" + Messages.getStringReplaced("About.Text", aboutArgs) + 
-       								Messages.getString("About.Members") +
-       								Messages.getString("About.Thanks") +
-       								"</p></html>";
-       	String   javaText 		 = "<html><p><b>" + Messages.getString("About.Java") + ": </b>" + System.getProperty("java.version") + "</p></html>";
-       	
-       	if (aboutPanel == null)
+       	String[] updaterArgs       = { Messages.getWoPeDVersionWithTimestamp() };
+       	String updaterText;
+       	if (updaterPanel == null)
         {
             JPanel panel = new JPanel();
             panel.setLayout(new GridBagLayout());
             GridBagConstraints c = new GridBagConstraints();
-
-            c.gridx = 0;
-            c.gridy = 0;
-            c.anchor = GridBagConstraints.CENTER;
-            c.insets = new Insets(10, 10, 10, 10);
-            logoLabel = new JLabel(new ImageIcon(getClass().getResource(Messages.getString("Window.About.Image"))));
-            panel.add(logoLabel, c);
-
-            c.gridy = 1;
-            c.insets = new Insets(0, 10, 0, 10);
-            c.anchor = GridBagConstraints.WEST;
-            javaTextLabel = new JLabel(javaText);
-            panel.add(javaTextLabel, c);
-
+           	if(AutoUpdaterCall.getUpdateVerfuegbarBoolean()){
+           		 updaterText	="<html><p>"+Messages.getStringReplaced("OptionsAndHelp.Updater.UItext1", updaterArgs)+"</p></html>";	
+           	}
+           	else{
+           		 updaterText	="<html><p>"+Messages.getStringReplaced("OptionsAndHelp.Updater.UItext2", updaterArgs)+"</p></html>";	
+           	}
+           
             c.gridy = 2;
             c.insets = new Insets(0, 10, 0, 10);
             c.anchor = GridBagConstraints.WEST;
-            aboutTextLabel = new JLabel(aboutText);
-            panel.add(aboutTextLabel, c);
-
+            updateTextLabel = new JLabel(updaterText);
+            panel.add(updateTextLabel, c);
+            
+            if(AutoUpdaterCall.getUpdateVerfuegbarBoolean()){
             c.gridy = 3;
             c.insets = new Insets(0, 10, 0, 10);
-            homepageLabel = new JLabel("<html><p>" + Messages.getString("About.Homepage") + "</p></html>");
-            homepageLabel.addMouseListener(new LaunchDefaultBrowserAction(Messages.getString("About.Homepage.Link"), homepageLabel));
-            panel.add(homepageLabel, c);
+            homepageLabel = new JLabel("<html><p>" + Messages.getString("OptionsAndHelp.Updater.UIlinktext") + "</p></html>");
+            homepageLabel.addMouseListener(new LaunchDefaultBrowserAction(Messages.getString("OptionsAndHelp.Updater.UIlink"),homepageLabel));
+            panel.add(homepageLabel, c);}
+            else{}
 
-            c.gridy = 4;
-            c.insets = new Insets(0, 10, 0, 10);
-            mailtoLabel = new JLabel("<html><p>" + Messages.getString("About.Email") + "</p></html>");
-            mailtoLabel.addMouseListener(new LaunchDefaultBrowserAction(Messages.getString("About.Email.Link"), mailtoLabel));
-            panel.add(mailtoLabel, c);
-
-            c.gridy = 5;
-            c.insets = new Insets(0, 10, 0, 10);
-            sfLabel = new JLabel("<html><p>" + Messages.getString("About.Development") + "</p></html>");
-            sfLabel.addMouseListener(new LaunchDefaultBrowserAction(Messages.getString("About.Development.Link"), sfLabel));
-            panel.add(sfLabel, c);
-
-            c.gridy = 6;
-            c.insets = new Insets(0, 10, 0, 10);
-            icLabel = new JLabel("<html><p>" + Messages.getString("About.Iconset") + "</p></html>");
-            icLabel.addMouseListener(new LaunchDefaultBrowserAction(Messages.getString("About.Iconset.Link"), icLabel));
-            panel.add(icLabel, c);
-
-            aboutPanel = new JScrollPane(panel);
+     
+            updaterPanel = new JScrollPane(panel);
         }
-        return aboutPanel;
+        return updaterPanel;
     }
 
     private JScrollPane getChangeLogPanel() throws IOException
@@ -197,7 +165,7 @@ public class AboutUI extends JDialog
         	
         	// Try to find the current working directory where Changelog.txt is located
  			String changeLog = "";
- 			URL main = AboutUI.class.getResource("RunWoPeD.class");
+ 			URL main = UpdaterUI.class.getResource("RunWoPeD.class");
  			File file = new File(main.getPath());  
  			String path = file.getAbsolutePath();
  			
@@ -250,7 +218,7 @@ public class AboutUI extends JDialog
             JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
             panel2.add(panel);
             changeLogPanel = new JScrollPane(panel2);
-            changeLogPanel.setPreferredSize(getAboutPanel().getSize());
+            changeLogPanel.setPreferredSize(getUpdaterPanel().getSize());
         }
         return changeLogPanel;
     }
@@ -262,85 +230,25 @@ public class AboutUI extends JDialog
             buttonPanel = new JPanel();
             buttonPanel.setLayout(new GridBagLayout());
             GridBagConstraints c1 = new GridBagConstraints();
-
-            /* About Button */
-            aboutButton = new WopedButton(new AbstractAction()
-            {
-                public void actionPerformed(ActionEvent arg0)
-                {
-                    try {
-						getContentPane().remove(getChangeLogPanel());
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-                    getContentPane().add(getAboutPanel(), BorderLayout.CENTER, 0);
-                    aboutButton.setEnabled(false);
-                    changelogButton.setEnabled(true);
-                    pack();
-                    repaint();
-                }
-            });
-
-            aboutButton.setMnemonic(KeyEvent.VK_A);
-            aboutButton.setIcon(new ImageIcon(getClass().getResource(Messages.getString("Action.ShowAbout.Icon"))));
-            aboutButton.setText(Messages.getString("Action.ShowAbout.Title"));
-            aboutButton.setEnabled(false);
+            
+            updateButton = new WopedButton(new ExecuteUpdate());
+            updateButton.setMnemonic(KeyEvent.VK_A);
+            updateButton.setIcon(new ImageIcon(getClass().getResource(Messages.getString("OptionsAndHelp.Updater.Icon"))));
+            updateButton.setText(Messages.getString("OptionsAndHelp.Updater.ExecuteButton"));
+           	updateButton.setEnabled(AutoUpdaterCall.getUpdateVerfuegbarBoolean());
+           	
             c1.gridy = 0;
             c1.gridx = 0;
             c1.insets = new Insets(10, 10, 10, 10);
             c1.anchor = GridBagConstraints.WEST;
-            buttonPanel.add(aboutButton, c1);
-
-            /* Changelog Button */
-            changelogButton = new WopedButton(new AbstractAction()
-            {
-                public void actionPerformed(ActionEvent arg0)
-                {
-                    getContentPane().remove(getAboutPanel());
-                    try {
-						getContentPane().add(getChangeLogPanel(), BorderLayout.CENTER, 0);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-                    aboutButton.setEnabled(true);
-                    changelogButton.setEnabled(false);
-                    pack();
-                    repaint();
-                }
-            });
-
-            changelogButton.setMnemonic(KeyEvent.VK_L);
-            changelogButton.setText(Messages.getString("Window.About.Versions"));
-            changelogButton.setIcon(Messages.getImageIcon("Window.About.Versions"));
-            c1.gridy = 0;
-            c1.gridx = 1;
-            c1.insets = new Insets(0, 0, 0, 0);
-            c1.anchor = GridBagConstraints.CENTER;
-            buttonPanel.add(changelogButton, c1);
-
-            /* UpdatButton Button */
-            updateButton = new WopedButton(new ExecuteUpdate());
-            updateButton.setMnemonic(KeyEvent.VK_U);
-            updateButton.setIcon(new ImageIcon(getClass().getResource(Messages.getString("OptionsAndHelp.Updater.Icon"))));
-            updateButton.setText(Messages.getString("OptionsAndHelp.Updater.ExecuteButton"));
-           	updateButton.setEnabled(AutoUpdaterCall.getUpdateVerfuegbarBoolean());
- 
-            c1.gridy = 0;
-            c1.gridx = 2;
-            c1.insets = new Insets(0, 0, 0, 0);
-            c1.anchor = GridBagConstraints.CENTER;
             buttonPanel.add(updateButton, c1);
-            //closeButton.requestFocus();
-            
+
             /* Close Button */
             closeButton = new WopedButton(new DisposeWindowAction());
             closeButton.setMnemonic(KeyEvent.VK_C);
-            closeButton.requestFocus();            
-
+            closeButton.requestFocus();
             c1.gridy = 0;
-            c1.gridx = 3;
+            c1.gridx = 1;
             c1.insets = new Insets(10, 10, 10, 10);
             c1.anchor = GridBagConstraints.EAST;
             buttonPanel.add(closeButton, c1);

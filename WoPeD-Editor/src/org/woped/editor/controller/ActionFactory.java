@@ -29,7 +29,8 @@ public class ActionFactory
     public final static String         ACTIONID_PRINT 				   = "Action.PrintEditor";
 
     public final static String         ACTIONID_SHOWCONFIG             = "Action.ShowConfig";
-    public final static String         ACTIONID_SHOWABOUT              = "Action.ShowAbout";
+    public final static String         ACTIONID_SHOWABOUT              = "OptionsAndHelp.Updater.Icon";
+    public final static String		   ACTIONID_AUTOUPDATE			   = "Action.AutoUpdate";
     public final static String         ACTIONID_SHOWBUGREPORT          = "Action.ShowBugReport";
     public final static String         ACTIONID_SHOWHELPINDEX          = "Menu.Help.Index";
     public final static String         ACTIONID_SHOWHELPCONTENTS       = "Menu.Help.Contents";
@@ -61,7 +62,8 @@ public class ActionFactory
     public final static String		   ACTIONID_METRICSBUILDER		   = "Menu.Metric.MetricsBuilder";
     public final static String         ACTIONID_UPDATENETS             = "Action.UpdateNets";
     
-    public final static String		   ACTIONID_P2T					   = "ToolBar.P2T";	
+    public final static String		   ACTIONID_P2T					   = "ToolBar.P2T";
+
 
     public final static String         ACTIONID_DRAWMODE_PLACE         = "ToolBar.DrawPlace";
     public final static String         ACTIONID_DRAWMODE_TRANSITION    = "ToolBar.DrawTransition";
@@ -176,6 +178,8 @@ public class ActionFactory
         STATIC_ACTION_MAP.put(ACTIONID_SHOWCONFIG, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_APPLICATION, AbstractViewEvent.CONFIG, null, ACTIONID_SHOWCONFIG));
         
         STATIC_ACTION_MAP.put(ACTIONID_SHOWABOUT, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_GUI, AbstractViewEvent.ABOUT, null, ACTIONID_SHOWABOUT));
+        
+        STATIC_ACTION_MAP.put(ACTIONID_AUTOUPDATE, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_GUI, AbstractViewEvent.AUTOUPDATE, null, ACTIONID_AUTOUPDATE));
         
         STATIC_ACTION_MAP.put(ACTIONID_SHOWBUGREPORT, new WoPeDAction(am, AbstractViewEvent.VIEWEVENTTYPE_GUI, AbstractViewEvent.BUGREPORT, null, ACTIONID_SHOWBUGREPORT));
         

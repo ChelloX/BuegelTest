@@ -29,6 +29,7 @@ import org.woped.core.controller.AbstractViewEvent;
 import org.woped.core.controller.ViewEvent;
 import org.woped.core.utilities.LoggerManager;
 import org.woped.core.utilities.Platform;
+import org.woped.editor.action.AutoUpdaterCall;
 import org.woped.starter.controller.vc.DefaultApplicationMediator;
 import org.woped.starter.utilities.WopedLogger;
 
@@ -244,7 +245,8 @@ public class RunWoPeD extends JFrame {
 		catch(InterruptedException ignored){
 		} 
 				
-		new AskToStartWoPeDUI(this).setVisible(true);	
+		new AskToStartWoPeDUI(this).setVisible(true);
+		new AutoUpdaterCall();
 	}
 	
 	/**

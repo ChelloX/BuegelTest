@@ -54,6 +54,7 @@ import org.woped.starter.AboutUI;
 import org.woped.starter.BugReportUI;
 import org.woped.starter.Constants;
 import org.woped.starter.RegistrationUI;
+import org.woped.starter.UpdaterUI;
 import org.woped.starter.controller.vc.DefaultApplicationMediator;
 import org.woped.gui.translations.Messages;
 
@@ -136,7 +137,18 @@ public class GUIViewEventProcessor extends AbstractEventProcessor
 			}
 			about.setVisible(true);
 			break;
-
+		case AbstractViewEvent.AUTOUPDATE:
+			UpdaterUI updater;
+			if (getMediator().getUi() != null
+					&& getMediator().getUi().getComponent() instanceof JFrame)
+			{
+				updater = new UpdaterUI((JFrame) getMediator().getUi());
+			} else
+			{
+				updater = new UpdaterUI();
+			}
+			updater.setVisible(true);
+			break;
 		case AbstractViewEvent.BUGREPORT:
 			BugReportUI bugReport;
 			if (getMediator().getUi() != null

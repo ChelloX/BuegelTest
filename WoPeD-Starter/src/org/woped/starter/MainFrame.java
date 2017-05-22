@@ -153,6 +153,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
     private JCommandButton sampleNetsButton = null;
     private JCommandButton reportBugButton = null;
     private JCommandButton aboutButton = null;
+    private JCommandButton updateButton = null;
 
     private JCommandButton tokengameCloseButton = null;
 
@@ -983,6 +984,8 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
                     RibbonElementPriority.TOP);
             optionsAndHelpBand.addCommandButton(getReportBugButton(),
                     RibbonElementPriority.TOP);
+            optionsAndHelpBand.addCommandButton(getUpdateButton(),
+                    RibbonElementPriority.TOP);
             optionsAndHelpBand.addCommandButton(getAboutButton(),
                     RibbonElementPriority.TOP);
         }
@@ -1676,8 +1679,16 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
             aboutButton.addActionListener(new ActionButtonListener(m_mediator, ActionFactory.ACTIONID_SHOWABOUT, AbstractViewEvent.ABOUT, aboutButton));
             setTooltip(aboutButton, "OptionsAndHelp.About");
         }
-
         return aboutButton;
+    }
+//TODO: Eignes Bild einbauen -> Update-icon.png
+    private JCommandButton getUpdateButton() {
+        if (updateButton == null) {
+        	updateButton = new JCommandButton(Messages.getString("OptionsAndHelp.Updater.text"),new help_update());
+        	updateButton.addActionListener(new ActionButtonListener(m_mediator, ActionFactory.ACTIONID_AUTOUPDATE, AbstractViewEvent.AUTOUPDATE, updateButton));
+            setTooltip(updateButton, "OptionsAndHelp.Updater.text");
+        }
+        return updateButton;
     }
 
     private JCommandButton getTokengameStartButton() {
