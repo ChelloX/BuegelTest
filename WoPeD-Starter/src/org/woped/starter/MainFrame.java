@@ -1684,7 +1684,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
 //TODO: Eignes Bild einbauen -> Update-icon.png
     private JCommandButton getUpdateButton() {
         if (updateButton == null) {
-        	updateButton = new JCommandButton(Messages.getString("OptionsAndHelp.Updater.text"),new help_update());
+        	updateButton = new JCommandButton(Messages.getString("OptionsAndHelp.Updater.text"),new update_Icon());
         	updateButton.addActionListener(new ActionButtonListener(m_mediator, ActionFactory.ACTIONID_AUTOUPDATE, AbstractViewEvent.AUTOUPDATE, updateButton));
             setTooltip(updateButton, "OptionsAndHelp.Updater.text");
         }
