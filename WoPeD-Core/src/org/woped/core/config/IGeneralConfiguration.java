@@ -505,6 +505,10 @@ public interface IGeneralConfiguration extends IConfiguration {
 
 	public void setProcess2TextUse(boolean selected);
 
+	// Auto-Updater
+	public boolean getAutoUpdateEnabled();
+
+	public void setAutoUpdateEnabled(boolean selected);
 	
 	//dashboard
 	public int getBusinessDashboardServerPort();

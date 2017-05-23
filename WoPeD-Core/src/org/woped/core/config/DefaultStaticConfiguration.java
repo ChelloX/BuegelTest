@@ -85,6 +85,7 @@ public class DefaultStaticConfiguration implements IGeneralConfiguration {
 	public static int DEFAULT_PROCESS2TEXT_PORT = 8080;
 	public static String DEFAULT_PROCESS2TEXT_URI = "/ProcessToTextWebService/ProcessToText?wsdl";
 	public static boolean DEFAULT_PROCESS2TEXT_USE = false;
+	public static boolean DEFAULT_AUTOUPDATERENABLE = true;
 
 	public static int DEFAULT_BUSINESSDASHBOARD_PORT = 2711;
 	public static int DEFAULT_BUSINESSDASHBOARD_MAXVALUES = 1000;
@@ -1032,6 +1033,17 @@ public class DefaultStaticConfiguration implements IGeneralConfiguration {
 	@Override
 	public void setBusinessDashboardMaxValues(int maxvalues) {
 		this.businessdashboard_maxvalues = maxvalues;
+		
+	}
+
+	@Override
+	public boolean getAutoUpdateEnabled() {
+		return this.DEFAULT_AUTOUPDATERENABLE;
+	}
+
+	@Override
+	public void setAutoUpdateEnabled(boolean selected) {
+		this.DEFAULT_AUTOUPDATERENABLE=selected;
 		
 	}
 

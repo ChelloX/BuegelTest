@@ -59,6 +59,7 @@ import org.woped.editor.gui.config.ConfMetricsPanel;
 import org.woped.editor.gui.config.ConfProcess2TextPanel;
 import org.woped.editor.gui.config.ConfBusinessDashboardPanel;
 import org.woped.editor.gui.config.ConfUnderstandabilityPanel;
+import org.woped.editor.gui.config.ConfUpdaterPanel;
 import org.woped.gui.lookAndFeel.WopedButton;
 import org.woped.gui.translations.Messages;
 
@@ -94,6 +95,7 @@ public class ConfigVC extends JDialog implements IViewController {
 	private AbstractConfPanel p2tPanel = null;
 	private AbstractConfPanel aproPanel = null;
 	private AbstractConfPanel businessdashboardPanel = null;
+	private AbstractConfPanel autoUpdatePanel = null;
 	// ButtonPanel
 	private JPanel buttonPanel = null;
 	private WopedButton okButton = null;
@@ -292,10 +294,14 @@ public class ConfigVC extends JDialog implements IViewController {
 			tabbedPane.addTab(Messages.getString("Configuration.P2T.Title"),
 					p2tPanel);
 			confPanels.put(p2tPanel.getPanelName(), p2tPanel);
-			
+			// Auto-Updater
 			businessdashboardPanel = new ConfBusinessDashboardPanel("Business Dashboard");
 			tabbedPane.addTab("Business Dashboard", businessdashboardPanel);
 			confPanels.put(businessdashboardPanel.getPanelName(), businessdashboardPanel);
+			
+			autoUpdatePanel = new ConfUpdaterPanel(Messages.getTitle("Configuration.AutoUpdater.Panel"));
+			tabbedPane.addTab(autoUpdatePanel.getPanelName(), autoUpdatePanel);
+			confPanels.put(autoUpdatePanel.getPanelName(), autoUpdatePanel);
 			
 			readConfiguration();
 			/*
