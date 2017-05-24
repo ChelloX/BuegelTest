@@ -52,6 +52,7 @@ import org.woped.editor.controller.ApplicationMediator;
 import org.woped.editor.action.EditorViewEvent;
 import org.woped.editor.gui.config.AbstractConfPanel;
 import org.woped.editor.gui.config.ConfApromorePanel;
+import org.woped.editor.gui.config.ConfAutoUpdatePanel;
 import org.woped.editor.gui.config.ConfEditorPanel;
 import org.woped.editor.gui.config.ConfFilePanel;
 import org.woped.editor.gui.config.ConfLanguagePanel;
@@ -59,7 +60,7 @@ import org.woped.editor.gui.config.ConfMetricsPanel;
 import org.woped.editor.gui.config.ConfProcess2TextPanel;
 import org.woped.editor.gui.config.ConfBusinessDashboardPanel;
 import org.woped.editor.gui.config.ConfUnderstandabilityPanel;
-import org.woped.editor.gui.config.ConfUpdaterPanel;
+//import org.woped.editor.gui.config.ConfUpdaterPanel;
 import org.woped.gui.lookAndFeel.WopedButton;
 import org.woped.gui.translations.Messages;
 
@@ -294,12 +295,13 @@ public class ConfigVC extends JDialog implements IViewController {
 			tabbedPane.addTab(Messages.getString("Configuration.P2T.Title"),
 					p2tPanel);
 			confPanels.put(p2tPanel.getPanelName(), p2tPanel);
-			// Auto-Updater
+			
 			businessdashboardPanel = new ConfBusinessDashboardPanel("Business Dashboard");
 			tabbedPane.addTab("Business Dashboard", businessdashboardPanel);
 			confPanels.put(businessdashboardPanel.getPanelName(), businessdashboardPanel);
 			
-			autoUpdatePanel = new ConfUpdaterPanel(Messages.getTitle("Configuration.AutoUpdater.Panel"));
+			// Auto-Updater
+			autoUpdatePanel = new ConfAutoUpdatePanel(Messages.getTitle("Configuration.AutoUpdater.Panel"));
 			tabbedPane.addTab(autoUpdatePanel.getPanelName(), autoUpdatePanel);
 			confPanels.put(autoUpdatePanel.getPanelName(), autoUpdatePanel);
 			

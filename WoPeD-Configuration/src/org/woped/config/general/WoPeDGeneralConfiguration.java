@@ -1645,4 +1645,17 @@ public class WoPeDGeneralConfiguration extends WoPeDConfiguration implements
 		getConfDocument().getConfiguration().getBusinessdashboard().setMaxvalues(maxvalues);
 		
 	}
+
+	@Override
+	public boolean getAutoUpdateEnabled() {
+		// TODO Auto-generated method stub
+		//getConfDocument().getConfiguration().getMetrics().getShowNamesInBuilder()
+		return false;
+	}
+
+	@Override
+	public void setAutoUpdateEnabled(boolean selected) {
+		// TODO Auto-generated method stub
+		
+	}
 }

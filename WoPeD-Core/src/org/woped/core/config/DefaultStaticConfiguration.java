@@ -143,6 +143,10 @@ public class DefaultStaticConfiguration implements IGeneralConfiguration {
     private int businessdashboard_serverport = DEFAULT_BUSINESSDASHBOARD_PORT;
 	private int businessdashboard_maxvalues = DEFAULT_BUSINESSDASHBOARD_MAXVALUES;
 	private boolean businessdashboard_usebydefault = DEFAULT_BUSINESSDASHBOARD_USEBYDEFAULT;
+	
+	// Auto-Update
+	private boolean autoUpdaterenable = DEFAULT_AUTOUPDATERENABLE;
+	
 	// Understandability Coloring
 	private boolean colorOn = false;
 	private int coloringAlgorithmMode = 0;
@@ -1038,13 +1042,15 @@ public class DefaultStaticConfiguration implements IGeneralConfiguration {
 
 	@Override
 	public boolean getAutoUpdateEnabled() {
-		return this.DEFAULT_AUTOUPDATERENABLE;
+		System.out.println("GETAutoUpdateEnabled");
+		return this.autoUpdaterenable;
+		
 	}
 
 	@Override
 	public void setAutoUpdateEnabled(boolean selected) {
 		this.DEFAULT_AUTOUPDATERENABLE=selected;
-		
+		System.out.println("autoUpdaterenable");
 	}
 
 
