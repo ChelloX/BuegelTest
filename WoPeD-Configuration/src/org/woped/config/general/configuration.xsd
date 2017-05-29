@@ -193,7 +193,6 @@
 			<xs:element name="launchCounter" 	type="xs:int" 		default="0" 	minOccurs="0" maxOccurs="1"/>
 			<xs:element name="showOnStartup" 	type="xs:boolean" 	default="true"  minOccurs="0" maxOccurs="1"/>
 			<xs:element name="registered" 	 	type="xs:boolean" 	default="false" minOccurs="0" maxOccurs="1"/>
-			<xs:element name="update" 	 		type="xs:boolean" 	default="false" minOccurs="0" maxOccurs="1"/>
 		</xs:sequence>
 	</xs:complexType>
 </xs:schema>

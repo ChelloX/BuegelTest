@@ -90,7 +90,6 @@
 		<launchCounter>0</launchCounter>
 		<showOnStartup>true</showOnStartup>
 		<registered>false</registered>
-		<update>false</update>
 	</registration>
 	<apromoreServers>
 		<apromoreServer>
