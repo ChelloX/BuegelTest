@@ -60,7 +60,6 @@ import org.woped.editor.gui.config.ConfMetricsPanel;
 import org.woped.editor.gui.config.ConfProcess2TextPanel;
 import org.woped.editor.gui.config.ConfBusinessDashboardPanel;
 import org.woped.editor.gui.config.ConfUnderstandabilityPanel;
-//import org.woped.editor.gui.config.ConfUpdaterPanel;
 import org.woped.gui.lookAndFeel.WopedButton;
 import org.woped.gui.translations.Messages;
 

@@ -40,16 +40,10 @@ public class HttpDownloadUtility {
 	 */
 	public static void downloadFile(String fileURL, String saveDir)
 			throws IOException {
-		//trustFixing();
+
 		URL url = new URL(fileURL);
-		HttpsURLConnection httpConn = (HttpsURLConnection) url.openConnection();
-		// Versuch SSL:
-		httpConn.setHostnameVerifier(new HostnameVerifier() {
-		    public boolean verify(String hostname, SSLSession session) {
-		      return true;
-		    }
-		  });
-		
+		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
+
 		int responseCode = httpConn.getResponseCode();
 
 		// always check HTTP response code first
@@ -69,7 +63,7 @@ public class HttpDownloadUtility {
 			} else {
 				// extracts file name from URL
 				//fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1,fileURL.length());
-				fileName ="woped.zip";
+				fileName ="icon";
 				//fileName ="woped.tgz";
 				//fileName ="woped.dmg";
 			}

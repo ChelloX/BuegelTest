@@ -85,12 +85,12 @@
 		<algorithmDecimalPlaces>2</algorithmDecimalPlaces>
 		<useAlgorithmHighlighting>false</useAlgorithmHighlighting>
 		<showNamesInBuilder>true</showNamesInBuilder>
-		<activateAutoUpdater>true</activateAutoUpdater>
 	</metrics>
 	<registration>
 		<launchCounter>0</launchCounter>
 		<showOnStartup>true</showOnStartup>
 		<registered>false</registered>
+		<update>false</update>
 	</registration>
 	<apromoreServers>
 		<apromoreServer>

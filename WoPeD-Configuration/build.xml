@@ -10,7 +10,7 @@
 	
 	<target name="updateCONFbeans" unless="ConfigBeansUpToDate">
 		<echo message="Compiling the config schema..." />
-		<xmlbean schema="src/org/woped/config/general/configuration.xsd" destfile="../WoPeD-CommonLibs/lib/confBeans.jar" debug="on" classpath="../WoPeD-CommonLibs/lib/xmlbeansbuild-2.3.0.jar" />
+		<xmlbean schema="src/org/woped/config/general/configuration.xsd" destfile="../WoPeD-CommonLibs/lib/confBeans.jar" verbose="true" debug="on" classpath="../WoPeD-CommonLibs/lib/xmlbeansbuild-2.3.0.jar" />
 	</target>
 	
 	<target name="updateMETRICSbeans" unless="MetricsBeansUpToDate">

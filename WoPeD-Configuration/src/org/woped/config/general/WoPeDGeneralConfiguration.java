@@ -1646,16 +1646,16 @@ public class WoPeDGeneralConfiguration extends WoPeDConfiguration implements
 		
 	}
 
-	@Override
+	/*@Override
 	public boolean getAutoUpdateEnabled() {
-		// TODO Auto-generated method stub
-		//getConfDocument().getConfiguration().getMetrics().getShowNamesInBuilder()
-		return false;
+		return getConfDocument().getConfiguration().getRegistration().isSetRegistered();
+		
 	}
 
 	@Override
 	public void setAutoUpdateEnabled(boolean selected) {
 		// TODO Auto-generated method stub
-		
-	}
+		getConfDocument().getConfiguration().getRegistration().setRegistered(selected);
+		System.out.println("Shown on Startup ist auf "+ selected +"gesetzt");
+	}*/
 }

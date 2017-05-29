@@ -85,7 +85,7 @@ public class DefaultStaticConfiguration implements IGeneralConfiguration {
 	public static int DEFAULT_PROCESS2TEXT_PORT = 8080;
 	public static String DEFAULT_PROCESS2TEXT_URI = "/ProcessToTextWebService/ProcessToText?wsdl";
 	public static boolean DEFAULT_PROCESS2TEXT_USE = false;
-	public static boolean DEFAULT_AUTOUPDATERENABLE = true;
+	//public static boolean DEFAULT_AUTOUPDATERENABLE = true;
 
 	public static int DEFAULT_BUSINESSDASHBOARD_PORT = 2711;
 	public static int DEFAULT_BUSINESSDASHBOARD_MAXVALUES = 1000;
@@ -145,7 +145,7 @@ public class DefaultStaticConfiguration implements IGeneralConfiguration {
 	private boolean businessdashboard_usebydefault = DEFAULT_BUSINESSDASHBOARD_USEBYDEFAULT;
 	
 	// Auto-Update
-	private boolean autoUpdaterenable = DEFAULT_AUTOUPDATERENABLE;
+	//private boolean autoUpdaterenable = DEFAULT_AUTOUPDATERENABLE;
 	
 	// Understandability Coloring
 	private boolean colorOn = false;
@@ -1040,7 +1040,7 @@ public class DefaultStaticConfiguration implements IGeneralConfiguration {
 		
 	}
 
-	@Override
+	/*@Override
 	public boolean getAutoUpdateEnabled() {
 		System.out.println("GETAutoUpdateEnabled");
 		return this.autoUpdaterenable;
@@ -1049,10 +1049,10 @@ public class DefaultStaticConfiguration implements IGeneralConfiguration {
 
 	@Override
 	public void setAutoUpdateEnabled(boolean selected) {
-		this.DEFAULT_AUTOUPDATERENABLE=selected;
+		this.autoUpdaterenable=selected;
 		System.out.println("autoUpdaterenable");
 	}
-
+*/
 
 
 }
