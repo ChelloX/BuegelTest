@@ -79,7 +79,7 @@ public class AutoUpdaterCall extends WoPeDAction{
 	                StringBuilder builder = new StringBuilder(1024);
 	                while ((str = in.readLine()) != null) {
 	                   builder.append(str);
-	                   builder.append("\n"); //damit es hinterher auch so aussieht wie vorher ;-)
+	                   builder.append("\n");
 	                }
 	                in.close();
 	                str= builder.toString();

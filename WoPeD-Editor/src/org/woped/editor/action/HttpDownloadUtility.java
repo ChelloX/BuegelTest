@@ -63,7 +63,7 @@ public class HttpDownloadUtility {
 			} else {
 				// extracts file name from URL
 				//fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1,fileURL.length());
-				fileName ="icon";
+				fileName ="icon.png";
 				//fileName ="woped.tgz";
 				//fileName ="woped.dmg";
 			}

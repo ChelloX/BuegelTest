@@ -31,12 +31,14 @@ import org.woped.core.controller.AbstractViewEvent;
 import org.woped.core.controller.IViewController;
 import org.woped.core.controller.ViewEvent;
 import org.woped.core.gui.IUserInterface;
+import org.woped.editor.action.AutoUpdaterCall;
 import org.woped.editor.controller.ApplicationMediator;
 import org.woped.editor.controller.vc.TaskBarVC;
 import org.woped.file.controller.vep.FileEventProcessor;
 import org.woped.qualanalysis.coverabilitygraph.gui.CoverabilityGraphEventProcessor;
 import org.woped.qualanalysis.simulation.ReferenceProvider;
 import org.woped.starter.DefaultUserInterface;
+import org.woped.starter.UpdaterUICall;
 import org.woped.starter.controller.vep.GUIViewEventProcessor;
 
 /**
@@ -83,6 +85,11 @@ public class DefaultApplicationMediator extends ApplicationMediator
 						AbstractViewEvent.VIEWEVENTTYPE_FILE,
 						AbstractViewEvent.OPEN, f));
 			}
+		}
+        AutoUpdaterCall a1=new AutoUpdaterCall();
+		if(a1.getUpdateVerfuegbarBoolean()){
+			System.out.println("Trigger");
+			new UpdaterUICall().checkOnStart();
 		}
     }
 	

@@ -46,6 +46,7 @@ public class ConfAutoUpdatePanel extends AbstractConfPanel {
 
 	private JPanel settingsPanel = null;
 	private JCheckBox useByDefaultBox = null;
+	private JLabel updaterTooltipLAbel = null;
 	/**
 	 * Constructor for ConfToolsPanel.
 	 */
@@ -112,7 +113,7 @@ public class ConfAutoUpdatePanel extends AbstractConfPanel {
 					.setBorder(BorderFactory.createCompoundBorder(
 							BorderFactory
 									.createTitledBorder(Messages
-											.getString("Configuration.AutoUpdater.Boolean.Title")),
+											.getString("Configuration.AutoUpdater.Panel.Title")),
 							BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
 			
@@ -121,6 +122,12 @@ public class ConfAutoUpdatePanel extends AbstractConfPanel {
 			c.gridy = 0;
 		
 			settingsPanel.add(getUseByDefaultBox(),c);
+			
+			c.weightx = 1;
+			c.gridx = 0;
+			c.gridy = 2;
+			c.gridwidth = 1;
+			settingsPanel.add(getUpdateLabel(), c);
 		}
 
 //		settingsPanel.setVisible(getUseByDefaultBox().isSelected());
@@ -136,10 +143,10 @@ public class ConfAutoUpdatePanel extends AbstractConfPanel {
 	public JCheckBox getUseByDefaultBox() {
 		if (useByDefaultBox == null) {
 			useByDefaultBox = new JCheckBox(
-					Messages.getString("Configuration.AutoUpdater.Boolean.Text"));
+					Messages.getString("Configuration.AutoUpdater.Boolean.Title"));
 			useByDefaultBox.setEnabled(true);
 			useByDefaultBox.setToolTipText("<html>"
-					+ Messages.getString("Configuration.AutoUpdater.Boolean.Text")
+					+ Messages.getString("Configuration.AutoUpdater.Boolean.Title")
 					+ "</html>");
 			
 		}
@@ -150,7 +157,14 @@ public class ConfAutoUpdatePanel extends AbstractConfPanel {
 	public void setUseByDefaultBox(JCheckBox useByDefaultBox) {
 		this.useByDefaultBox = useByDefaultBox;
 	}
-
+	public JLabel getUpdateLabel() {
+		if (updaterTooltipLAbel == null) {
+			updaterTooltipLAbel = new JLabel("<html>"
+					+ Messages.getString("Configuration.AutoUpdater.Boolean.Text")
+					+ "</html>");
+			updaterTooltipLAbel.setHorizontalAlignment(JLabel.RIGHT);
+		}
+		return updaterTooltipLAbel;
+	}
 	
-	// ################## GUI COMPONENTS #################### */
 }

@@ -43,6 +43,10 @@ public class UpdaterUICall extends WoPeDAction{
         
 			updater.setVisible(true);
 	    }
+	    public void checkOnStart(){
+	    	actionPerformed(null);
+	    }
+	    
 }
 
 

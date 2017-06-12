@@ -29,8 +29,8 @@ public class ActionFactory
     public final static String         ACTIONID_PRINT 				   = "Action.PrintEditor";
 
     public final static String         ACTIONID_SHOWCONFIG             = "Action.ShowConfig";
-    public final static String         ACTIONID_SHOWABOUT              = "OptionsAndHelp.Updater.Icon";
-    public final static String		   ACTIONID_AUTOUPDATE			   = "Action.AutoUpdate";
+    public final static String         ACTIONID_SHOWABOUT              = "Action.ShowAbout";
+    public final static String		   ACTIONID_AUTOUPDATE			   = "OptionsAndHelp.Updater";
     public final static String         ACTIONID_SHOWBUGREPORT          = "Action.ShowBugReport";
     public final static String         ACTIONID_SHOWHELPINDEX          = "Menu.Help.Index";
     public final static String         ACTIONID_SHOWHELPCONTENTS       = "Menu.Help.Contents";

@@ -1681,7 +1681,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
         }
         return aboutButton;
     }
-//TODO: Eignes Bild einbauen -> Update-icon.png
+
     private JCommandButton getUpdateButton() {
         if (updateButton == null) {
         	updateButton = new JCommandButton(Messages.getString("OptionsAndHelp.Updater.text"),new update_Icon());

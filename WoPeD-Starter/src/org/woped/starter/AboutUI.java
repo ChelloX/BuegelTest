@@ -326,27 +326,12 @@ public class AboutUI extends JDialog
             c1.anchor = GridBagConstraints.CENTER;
             buttonPanel.add(changelogButton, c1);
 
-            /* UpdatButton Button */ 
-/*            updateButton = new WopedButton(new ExecuteUpdate());
-            updateButton.setMnemonic(KeyEvent.VK_U);
-            updateButton.setIcon(new ImageIcon(getClass().getResource(Messages.getString("OptionsAndHelp.Updater.Icon"))));
-            updateButton.setText(Messages.getString("OptionsAndHelp.Updater.ExecuteButton"));
-           	updateButton.setEnabled(AutoUpdaterCall.getUpdateVerfuegbarBoolean());
-           	*/
             updateButton = new WopedButton(new UpdaterUICall());
             updateButton.setMnemonic(KeyEvent.VK_U);
             updateButton.setIcon(new ImageIcon(getClass().getResource(Messages.getString("OptionsAndHelp.Updater.Icon"))));
             updateButton.setText(Messages.getString("OptionsAndHelp.Updater.text"));
            	updateButton.setEnabled(AutoUpdaterCall.getUpdateVerfuegbarBoolean());
            	
-           	/*private JCommandButton getUpdateButton() {
-                if (updateButton == null) {
-                	updateButton = new JCommandButton(Messages.getString("OptionsAndHelp.Updater.text"),new update_Icon());
-                	updateButton.setIcon(new ImageIcon(getClass().getResource(Messages.getString("OptionsAndHelp.Updater.Icon"))));
-                	updateButton.addActionListener(new ActionButtonListener(m_mediator, ActionFactory.ACTIONID_AUTOUPDATE, AbstractViewEvent.AUTOUPDATE, updateButton));
-                    setTooltip(updateButton, "OptionsAndHelp.Updater.text");
-                }
-                return updateButton;*/
             c1.gridy = 0;
             c1.gridx = 2;
             c1.insets = new Insets(0, 0, 0, 0);
