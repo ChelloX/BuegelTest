@@ -78,6 +78,10 @@ public class WoPeDGeneralConfiguration extends WoPeDConfiguration implements
 			// <metrics> tag is not existing yet -> create it
 			if (getConfDocument().getConfiguration().getMetrics() == null)
 				getConfDocument().getConfiguration().addNewMetrics();
+			
+			// <autoUpdater> tag is not existing yet -> create it
+			if (getConfDocument().getConfiguration().getAutoupdater() == null)
+				getConfDocument().getConfiguration().addNewAutoupdater();
 
 			// Check if metrics configuration should be loaded
 			// and react accordingly
@@ -275,6 +279,9 @@ public class WoPeDGeneralConfiguration extends WoPeDConfiguration implements
 			setColorOn(config.getColoring().getColorOn());
 
 			setRegistered(config.getRegistration().getRegistered());
+			
+			//AutoUpdater
+			setAutoUpdateEnabled(config.getAutoupdater().getShowOnStartup());
 
 			LoggerManager.info(Constants.CONFIG_LOGGER,
 					rb.getString("Init.Config.LoadingSuccess") + ".");
@@ -1646,16 +1653,14 @@ public class WoPeDGeneralConfiguration extends WoPeDConfiguration implements
 		
 	}
 
-	/*@Override
+	@Override
 	public boolean getAutoUpdateEnabled() {
-		return getConfDocument().getConfiguration().getRegistration().isSetRegistered();
-		
+			return getConfDocument().getConfiguration().getAutoupdater().getShowOnStartup();
 	}
 
 	@Override
 	public void setAutoUpdateEnabled(boolean selected) {
 		// TODO Auto-generated method stub
-		getConfDocument().getConfiguration().getRegistration().setRegistered(selected);
-		System.out.println("Shown on Startup ist auf "+ selected +"gesetzt");
-	}*/
+		getConfDocument().getConfiguration().getAutoupdater().setShowOnStartup(selected);
+	}
 }

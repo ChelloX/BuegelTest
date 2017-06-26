@@ -39,7 +39,7 @@ import org.woped.gui.translations.Messages;
  * <br>
  *         The <code>ConfLanguagePanel</code> is the
  *         <code>AbstractConfPanel</code> for the configuration of the language. <br>
- *         Created on: 26.11.2004 Last Change on: 14.11.2005
+ *         Created on: 14.05.2017
  */
 @SuppressWarnings("serial")
 public class ConfAutoUpdatePanel extends AbstractConfPanel {
@@ -60,14 +60,14 @@ public class ConfAutoUpdatePanel extends AbstractConfPanel {
 	 */
 	public boolean applyConfiguration() {
 		boolean newsetting = useByDefaultBox.isSelected();
-		/*boolean oldsetting = ConfigurationManager.getConfiguration().getAutoUpdateEnabled();
+		boolean oldsetting = ConfigurationManager.getConfiguration().getAutoUpdateEnabled();
 
 		if (newsetting != oldsetting) {
 			ConfigurationManager.getConfiguration().setAutoUpdateEnabled(
 					useByDefaultBox.isSelected());	
 			System.out.println("Wert abgespeichert"+useByDefaultBox.isSelected());
 		}
-		*/
+		
 		return true;
 	}
 
@@ -75,10 +75,10 @@ public class ConfAutoUpdatePanel extends AbstractConfPanel {
 	 * @see AbstractConfPanel#readConfiguration()
 	 */
 	public void readConfiguration() {
-		/*getUseByDefaultBox().setSelected(
+		getUseByDefaultBox().setSelected(
 				ConfigurationManager.getConfiguration().getAutoUpdateEnabled());
 		System.out.println("Wert ausgelesen"+ConfigurationManager.getConfiguration().getAutoUpdateEnabled());
-	*/}
+	}
 
 	private void initialize() {
 		JPanel contentPanel = new JPanel();
