@@ -38,7 +38,7 @@ public class HttpDownloadUtility {
 	 * param saveDir path of the directory to save the file
 	 * throws IOException
 	 */
-	public static void downloadFile(String fileURL, String saveDir)
+	public static void downloadFile(String fileURL, String saveDir, String filename)
 			throws IOException {
 
 		URL url = new URL(fileURL);
@@ -48,7 +48,7 @@ public class HttpDownloadUtility {
 
 		// always check HTTP response code first
 		if (responseCode == HttpURLConnection.HTTP_OK) {
-			String fileName = "";
+			String fileName = filename;
 			String disposition = httpConn.getHeaderField("Content-Disposition");
 			String contentType = httpConn.getContentType();
 			int contentLength = httpConn.getContentLength();
@@ -61,11 +61,6 @@ public class HttpDownloadUtility {
 							disposition.length() - 1);
 				}
 			} else {
-				// extracts file name from URL
-				//fileName = fileURL.substring(fileURL.lastIndexOf("/") + 1,fileURL.length());
-				fileName ="icon.png";
-				//fileName ="woped.tgz";
-				//fileName ="woped.dmg";
 			}
 
 			System.out.println("Content-Type = " + contentType);
@@ -94,77 +89,5 @@ public class HttpDownloadUtility {
 			System.out.println("No file to download. Server replied HTTP code: " + responseCode);
 		}
 		httpConn.disconnect();
-	}
-	/*public SSLSocketFactory createSslSocketFactory() throws Exception {
-			TrustManager[] byPassTrustManagers = new TrustManager[] { new X509TrustManager() {
-			 public X509Certificate[] getAcceptedIssuers() {
-			 return new X509Certificate[0];
-			}
-			public void checkClientTrusted(X509Certificate[] chain, String authType) {
-			}
-			public void checkServerTrusted(X509Certificate[] chain, String authType) {
-			 }
-			@Override
-			public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType)
-					throws CertificateException {
-				// TODO Auto-generated method stub
-				
-			}
-			@Override
-			public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType)
-					throws CertificateException {
-				// TODO Auto-generated method stub
-				
-			}
-			@Override
-			public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			} };
-			SSLContext sslContext = SSLContext.getInstance("TLS");
-			sslContext.init(null, byPassTrustManagers, new SecureRandom());return sslContext.getSocketFactory();
-				
-	}*/
-	public void trustMethod(){
-		/*
-		// Load CAs from an InputStream
-		// (could be from a resource or ByteArrayInputStream or ...)
-		CertificateFactory cf = CertificateFactory.getInstance("X.509");
-		// From https://www.washington.edu/itconnect/security/ca/load-der.crt
-		InputStream caInput = new BufferedInputStream(new FileInputStream("load-der.crt"));
-		@SuppressWarnings("deprecation")
-		Certificate ca;
-		try {
-		    ca =cf.generateCertificate(caInput);
-		    System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
-		} finally {
-		    caInput.close();
-		}
-
-		// Create a KeyStore containing our trusted CAs
-		String keyStoreType = KeyStore.getDefaultType();
-		KeyStore keyStore = KeyStore.getInstance(keyStoreType);
-		keyStore.load(null, null);
-		keyStore.setCertificateEntry("ca", ca);
-
-		// Create a TrustManager that trusts the CAs in our KeyStore
-		String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-		TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-		tmf.init(keyStore);
-
-		// Create an SSLContext that uses our TrustManager
-		SSLContext context = SSLContext.getInstance("TLS");
-		context.init(null, tmf.getTrustManagers(), null);
-
-		// Tell the URLConnection to use a SocketFactory from our SSLContext
-		URL url = new URL("https://certs.cac.washington.edu/CAtest/");
-		HttpsURLConnection urlConnection =
-		    (HttpsURLConnection)url.openConnection();
-		urlConnection.setSSLSocketFactory(context.getSocketFactory());
-		InputStream in = urlConnection.getInputStream();
-		copyInputStreamToOutputStream(in, System.out);
-*/
-	}
-	
+	}	
 }

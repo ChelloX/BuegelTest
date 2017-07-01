@@ -8,12 +8,23 @@ public class HttpDownloader {
 
 	public static void download() {
     	
-        final String urlWin = "http://woped.dhbw-karlsruhe.de/woped/wp-content/uploads/2013/03/Woped-Logo.png";
-        //final String urlLix = "https://sourceforge.net/projects/woped/files/woped/3.5.3/WoPeD-install-linux-3.5.3.tgz/download";
-        //final String urlMac = "https://sourceforge.net/projects/woped/files/woped/3.5.3/WoPeD-install-macos-3.5.3.dmg/download";
-		String saveDir = "C:/Users/Steffen/Downloads";
+		String version=GetVersionWebservice.getVersionString();
+		String osName=System.getProperty("os.name").toLowerCase();
+		String filename="",url="";
+
+		if(osName.contains("win")){
+			filename="WoPeD-install-windows-"+version+".zip";
+			url="http://woped.dhbw-karlsruhe.de/woped/wp-content/uploads/2017/06/WoPeD-install-windows-"+version+".zip";
+		}else if(osName.contains("nix") || osName.contains("nux") || osName.contains("aix")){
+			filename="WoPeD-install-linux-"+version+".tgz";
+			url="http://woped.dhbw-karlsruhe.de/woped/wp-content/uploads/2017/06/WoPeD-install-linux-"+version+".tgz";
+		}else if(osName.contains("mac") ){
+			filename="WoPeD-install-macos-"+version+".dmg";
+			url="http://woped.dhbw-karlsruhe.de/woped/wp-content/uploads/2017/06/WoPeD-install-macos-"+version+".dmg";
+		}
+        String saveDir = "C:/Users/Steffen/Downloads";
 		try {
-			HttpDownloadUtility.downloadFile(urlWin, saveDir);
+			HttpDownloadUtility.downloadFile(url, saveDir,filename);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
