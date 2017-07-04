@@ -1,12 +1,13 @@
 package org.woped.editor.action;
 
+import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 
 public class HttpDownloader {
 
-	public static void download() {
+	public static String download() {
     	
 		String version=GetVersionWebservice.getVersionString();
 		String osName=System.getProperty("os.name").toLowerCase();
@@ -22,11 +23,13 @@ public class HttpDownloader {
 			filename="WoPeD-install-macos-"+version+".dmg";
 			url="http://woped.dhbw-karlsruhe.de/woped/wp-content/uploads/2017/06/WoPeD-install-macos-"+version+".dmg";
 		}
-        String saveDir = "C:/Users/Steffen/Downloads";
+		
+        String saveDir = new File("").getAbsolutePath();
 		try {
 			HttpDownloadUtility.downloadFile(url, saveDir,filename);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
+		return filename;
 	}
 }
