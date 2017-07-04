@@ -44,7 +44,7 @@ public class Updater {
 
 		cleanup(rootPath, fileName);
 		//TODO: Woped im aktuellen pfad starten
-		String[] cmd = { new File("").getAbsolutePath() /*TODO: For testing pls insert absolute path of woped exe*/ };
+		String[] cmd = { new File("").getAbsolutePath() + "\\WoPeD.exe"  /*TODO: For testing pls insert absolute path of woped exe*/ };
 		try {
 			Runtime runtime = Runtime.getRuntime();
 			runtime.exec(cmd);
