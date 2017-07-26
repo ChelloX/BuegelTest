@@ -127,6 +127,7 @@ public class UpdaterUI extends JDialog
     {    	
        	String[] updaterArgs       = { Messages.getWoPeDVersionWithTimestamp() };
        	String updaterText;
+       	try{
        	if (updaterPanel == null)
         {
             JPanel panel = new JPanel();
@@ -156,6 +157,9 @@ public class UpdaterUI extends JDialog
      
             updaterPanel = new JScrollPane(panel);
         }
+       	}
+        catch(Exception e){}
+       	
         return updaterPanel;
     }
 
@@ -235,7 +239,12 @@ public class UpdaterUI extends JDialog
             updateButton.setMnemonic(KeyEvent.VK_A);
             updateButton.setIcon(new ImageIcon(getClass().getResource(Messages.getString("OptionsAndHelp.Updater.Icon"))));
             updateButton.setText(Messages.getString("OptionsAndHelp.Updater.ExecuteButton"));
-           	updateButton.setEnabled(AutoUpdaterCall.getUpdateVerfuegbarBoolean());
+           	
+            try
+            {
+            	updateButton.setEnabled(AutoUpdaterCall.getUpdateVerfuegbarBoolean());
+            }
+            catch(Exception e){}
            	
             c1.gridy = 0;
             c1.gridx = 0;

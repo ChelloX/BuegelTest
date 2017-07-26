@@ -33,17 +33,18 @@ public class ExecuteUpdate extends WoPeDAction{
 	        super("Window.Dispose");
 	    }
 	    public void actionPerformed(ActionEvent arg0)
-	    {
+	    {	
+	    	try {
 	    	String fileName = HttpDownloader.download();
 
 	    	ProcessBuilder builder = new ProcessBuilder("java","-jar","woped_updater.jar",fileName);
 	    	String path = new File("").getAbsolutePath();
 	    	builder.directory(new File(path+"\\"));
-	    	try {
+	    	
 				builder.start();
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			} catch (Exception e){}
 	    	
 	    	System.exit( 0 );
 	    }
