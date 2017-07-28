@@ -259,10 +259,6 @@
 		
 	<target name="makeLinuxInstaller">
 		<try>
-			<exec dir="dist" executable="/bin/sh">
-				<arg line="buildLinuxSetup" />
-			</exec>
-			<jar destfile="dist/WoPeD.jar" basedir="dist/run" manifest="dist/MANIFEST.mf" />
 			<tar destfile="installers/WoPeD-install-linux-${WOPEDVERSION}${SNAPSHOT}.tgz" compression="gzip">
 				<tarfileset dir="dist" mode="755">
 					<include name="WoPeD-install-linux" />
