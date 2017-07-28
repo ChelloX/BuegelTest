@@ -330,8 +330,10 @@ public class AboutUI extends JDialog
             updateButton.setMnemonic(KeyEvent.VK_U);
             updateButton.setIcon(new ImageIcon(getClass().getResource(Messages.getString("OptionsAndHelp.Updater.Icon"))));
             updateButton.setText(Messages.getString("OptionsAndHelp.Updater.text"));
+            try{
            	updateButton.setEnabled(AutoUpdaterCall.getUpdateVerfuegbarBoolean());
-           	
+            }
+            catch(Exception e){}
             c1.gridy = 0;
             c1.gridx = 2;
             c1.insets = new Insets(0, 0, 0, 0);

@@ -39,7 +39,7 @@ public class HttpDownloadUtility {
 	 * throws IOException
 	 */
 	public static void downloadFile(String fileURL, String saveDir, String filename)
-			throws IOException {
+			throws Exception {
 
 		URL url = new URL(fileURL);
 		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
@@ -62,12 +62,12 @@ public class HttpDownloadUtility {
 				}
 			} else {
 			}
-
+/*
 			System.out.println("Content-Type = " + contentType);
 			System.out.println("Content-Disposition = " + disposition);
 			System.out.println("Content-Length = " + contentLength);
 			System.out.println("fileName = " + fileName);
-
+*/
 			// opens input stream from the HTTP connection
 			InputStream inputStream = httpConn.getInputStream();
 			String saveFilePath = saveDir + File.separator + fileName;

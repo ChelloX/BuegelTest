@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.woped.gui.translations.Messages;
 
 public class AutoUpdaterCall extends WoPeDAction{
-	 public static boolean getUpdateVerfuegbarBoolean(){
+	 public static boolean getUpdateVerfuegbarBoolean() throws Exception{
 		 return compareVersion();	 
 	 }
 	 public AutoUpdaterCall(String propertiesPrefix)

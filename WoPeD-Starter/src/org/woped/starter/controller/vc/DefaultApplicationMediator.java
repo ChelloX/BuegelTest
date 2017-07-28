@@ -26,6 +26,7 @@ import java.io.File;
 
 import javax.swing.JFrame;
 
+import org.woped.core.config.ConfigurationManager;
 import org.woped.core.config.IGeneralConfiguration;
 import org.woped.core.controller.AbstractViewEvent;
 import org.woped.core.controller.IViewController;
@@ -87,10 +88,12 @@ public class DefaultApplicationMediator extends ApplicationMediator
 			}
 		}
         AutoUpdaterCall a1=new AutoUpdaterCall();
-		if(a1.getUpdateVerfuegbarBoolean()){
-			System.out.println("Trigger");
+        try{
+		if(ConfigurationManager.getConfiguration().getAutoUpdateEnabled() && a1.getUpdateVerfuegbarBoolean()){
 			new UpdaterUICall().checkOnStart();
 		}
+        }
+        catch(Exception e){}
     }
 	
     public IViewController createViewController(int type)

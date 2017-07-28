@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
@@ -32,8 +33,19 @@ public class ExecuteUpdate extends WoPeDAction{
 	        super("Window.Dispose");
 	    }
 	    public void actionPerformed(ActionEvent arg0)
-	    {
-	    	HttpDownloader.download();
+	    {	
+	    	try {
+	    	String fileName = HttpDownloader.download();
+
+	    	ProcessBuilder builder = new ProcessBuilder("java","-jar","woped_updater.jar",fileName);
+	    	String path = new File("").getAbsolutePath();
+	    	builder.directory(new File(path+"\\"));
+	    	
+				builder.start();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (Exception e){}
+	    	
 	    	System.exit( 0 );
 	    }
 	   
