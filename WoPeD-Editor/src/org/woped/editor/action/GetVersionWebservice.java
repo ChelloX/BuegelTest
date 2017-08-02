@@ -26,7 +26,6 @@ import java.util.ArrayList;
 					(conn.getInputStream())));
 				String output=br.readLine();
 
-				System.out.println("Version ist:"+ output);
 				int index=output.indexOf(":");
 				index=index+2;
 				int indexEnd=output.indexOf("\"}");
@@ -38,16 +37,13 @@ import java.util.ArrayList;
 				  } catch (MalformedURLException e) {
 
 					e.printStackTrace();
-					System.out.println("Error");
 					return "";
 				  } catch (IOException e) {
 
 					e.printStackTrace();
-					System.out.println("Error");
 					return "";
 				  } catch (Exception e) {
 						e.printStackTrace();
-						System.out.println("Error");
 						return "";
 				}
 		}
@@ -68,9 +64,6 @@ import java.util.ArrayList;
             tempIndex=tempVersNummer.indexOf(".");
            }
             arrayInt.add(Integer.parseInt(tempVersNummer.substring(0)));
-             for(Integer version:arrayInt){
-            	System.out.println("Array:"+version);
-            }
              
 			return arrayInt;
 		}

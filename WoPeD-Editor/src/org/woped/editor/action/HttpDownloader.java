@@ -20,7 +20,6 @@ public class HttpDownloader {
 		
         String saveDir = new File("").getAbsolutePath();
 		try {
-			System.out.println(url);
 			HttpDownloadUtility.downloadFile(url, saveDir,filename);
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -47,7 +46,7 @@ public class HttpDownloader {
 			         return ""+i+"/"+y;
 		    	 }		         
 		      } catch (Exception e) {
-		    	  System.out.println("Error bei checkUploadTime");
+
 		      }finally{
 		         if(is!= null)
 		            try {is.close();} catch (IOException e){ }

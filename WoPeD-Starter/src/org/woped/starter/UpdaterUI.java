@@ -40,12 +40,16 @@ import java.net.URL;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
+import org.woped.core.config.ConfigurationManager;
 import org.woped.editor.action.AutoUpdaterCall;
 import org.woped.editor.action.DisposeWindowAction;
 import org.woped.editor.action.ExecuteUpdate;
@@ -77,10 +81,10 @@ public class UpdaterUI extends JDialog
     private JScrollPane         updaterPanel      = null;
     private JScrollPane         changeLogPanel  = null;
     private JPanel              buttonPanel     = null;
-
-    public UpdaterUI()
+    private boolean onStart;
+    public UpdaterUI(boolean onStart)
     {
-        this(null);
+        this(null,onStart);
     }
 
     /**
@@ -89,10 +93,10 @@ public class UpdaterUI extends JDialog
      * @param owner
      * @throws HeadlessException
      */
-    public UpdaterUI(Frame owner) throws HeadlessException
+    public UpdaterUI(Frame owner,boolean onStart) throws HeadlessException
     {
         super(owner, true);
-        initialize();
+        initialize(onStart);
     }
 
     /**
@@ -100,8 +104,9 @@ public class UpdaterUI extends JDialog
      * 
      * @return void
      */
-    private void initialize()
+    private void initialize(boolean onStart)
     {
+    	this.onStart=onStart;
         this.setVisible(false);
         this.getContentPane().setLayout(new BorderLayout());
         this.setUndecorated(false);
@@ -151,18 +156,50 @@ public class UpdaterUI extends JDialog
             c.insets = new Insets(0, 10, 0, 10);
             homepageLabel = new JLabel("<html><p>" + Messages.getString("OptionsAndHelp.Updater.UIlinktext") + "</p></html>");
             homepageLabel.addMouseListener(new LaunchDefaultBrowserAction(Messages.getString("OptionsAndHelp.Updater.UIlink"),homepageLabel));
-            panel.add(homepageLabel, c);}
+            panel.add(homepageLabel, c);
+            
+            
+            c.gridy = 4;
+            c.insets = new Insets(0, 10, 0, 10);
+           if(onStart){
+            JCheckBox useByDefaultBox = new JCheckBox(
+            		Messages.getString("OptionsAndHelp.Updater.DeaktivateOnStart"));
+    			useByDefaultBox.setEnabled(true);
+    			useByDefaultBox.setSelected(!
+    					ConfigurationManager.getConfiguration().getAutoUpdateEnabled());
+    			useByDefaultBox.setToolTipText("<html>"
+    					+ Messages.getString("OptionsAndHelp.Updater.DeaktivateOnStart")
+    					+ "</html>");
+    			panel.add(useByDefaultBox, c);
+    			useByDefaultBox.addChangeListener(
+    					new ChangeListener(){
+    				public void stateChanged(ChangeEvent e){
+    					ConfigurationManager.getConfiguration().setAutoUpdateEnabled(
+    							!useByDefaultBox.isSelected());	
+    					
+    				}
+    					}		
+    			);
+            }
+            
             else{}
-
      
             updaterPanel = new JScrollPane(panel);
         }
+       	}
        	}
         catch(Exception e){}
        	
         return updaterPanel;
     }
-
+    // Möglichkeit das AutoUpdate beim Starten zu deaktivieren
+    /*public void deactivatePopUp(){
+    	
+    	
+			
+		}
+    	
+    }*/
     private JScrollPane getChangeLogPanel() throws IOException
     {
         if (changeLogPanel == null) {

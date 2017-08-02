@@ -142,10 +142,10 @@ public class GUIViewEventProcessor extends AbstractEventProcessor
 			if (getMediator().getUi() != null
 					&& getMediator().getUi().getComponent() instanceof JFrame)
 			{
-				updater = new UpdaterUI((JFrame) getMediator().getUi());
+				updater = new UpdaterUI((JFrame) getMediator().getUi(),false);
 			} else
 			{
-				updater = new UpdaterUI();
+				updater = new UpdaterUI(false);
 			}
 			updater.setVisible(true);
 			break;

@@ -65,7 +65,6 @@ public class ConfAutoUpdatePanel extends AbstractConfPanel {
 		if (newsetting != oldsetting) {
 			ConfigurationManager.getConfiguration().setAutoUpdateEnabled(
 					useByDefaultBox.isSelected());	
-			System.out.println("Wert abgespeichert"+useByDefaultBox.isSelected());
 		}
 		
 		return true;
@@ -77,8 +76,7 @@ public class ConfAutoUpdatePanel extends AbstractConfPanel {
 	public void readConfiguration() {
 		getUseByDefaultBox().setSelected(
 				ConfigurationManager.getConfiguration().getAutoUpdateEnabled());
-		System.out.println("Wert ausgelesen"+ConfigurationManager.getConfiguration().getAutoUpdateEnabled());
-	}
+		}
 
 	private void initialize() {
 		JPanel contentPanel = new JPanel();

@@ -1042,7 +1042,6 @@ public class DefaultStaticConfiguration implements IGeneralConfiguration {
 
 	@Override
 	public boolean getAutoUpdateEnabled() {
-		System.out.println("GETAutoUpdateEnabled");
 		return this.autoUpdaterenable;
 		
 	}
@@ -1050,7 +1049,6 @@ public class DefaultStaticConfiguration implements IGeneralConfiguration {
 	@Override
 	public void setAutoUpdateEnabled(boolean selected) {
 		this.autoUpdaterenable=selected;
-		System.out.println("autoUpdaterenable");
 	}
 
 
