@@ -90,7 +90,7 @@ public class DefaultApplicationMediator extends ApplicationMediator
         AutoUpdaterCall a1=new AutoUpdaterCall();
         try{
 		if(ConfigurationManager.getConfiguration().getAutoUpdateEnabled() && a1.getUpdateVerfuegbarBoolean()){
-			new UpdaterUICall().checkOnStart();
+			new UpdaterUICall().checkOnStart(true);
 		}
         }
         catch(Exception e){}

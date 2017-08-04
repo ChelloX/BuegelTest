@@ -58,7 +58,7 @@ public class HttpDownloadUtility {
 			outputStream.close();
 			inputStream.close();
 
-			System.out.println("File downloaded");
+
 		} else {
 			System.out.println("No file to download. Server replied HTTP code: " + responseCode);
 		}

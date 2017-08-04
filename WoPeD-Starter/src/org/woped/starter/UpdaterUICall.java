@@ -34,9 +34,12 @@ public class UpdaterUICall extends WoPeDAction{
 	    {
 	        super("Window.Dispose");
 	    }
-	    public void actionPerformed(ActionEvent arg0)
+	    public void actionPerformed(ActionEvent arg0){
+	    	actionPerformed(null,false);
+	    }
+	    public void actionPerformed(ActionEvent arg0,boolean onStart)
 	    {
-	    	UpdaterUI updater= new UpdaterUI();
+	    	UpdaterUI updater= new UpdaterUI(onStart);
 
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             updater.setLocation((screenSize.width - updater.getWidth()) / 2, (screenSize.height - updater.getHeight()) / 2);
@@ -44,7 +47,10 @@ public class UpdaterUICall extends WoPeDAction{
 			updater.setVisible(true);
 	    }
 	    public void checkOnStart(){
-	    	actionPerformed(null);
+	    	actionPerformed(null,false);
+	    }
+	    public void checkOnStart(boolean onStart){
+	    	actionPerformed(null,onStart);
 	    }
 	    
 }
