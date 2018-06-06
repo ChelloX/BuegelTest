@@ -115,11 +115,11 @@ public class RunWoPeD extends JFrame {
 		initLogging();
 		m_dam = new DefaultApplicationMediator(null, new WoPeDGeneralConfiguration());
 
-		if (ConfigurationManager.getConfiguration().getProcess2TextUse()) {
+/*		if (ConfigurationManager.getConfiguration().getProcess2TextUse()) {
 
 			(new Thread(new WorldModelExecution())).start();
 
-		}
+		}*/
 
 		initUI();
 	}
