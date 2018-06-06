@@ -77,7 +77,7 @@ public class TransitionPropertyEditor extends JDialog implements
 	private JPanel contentPanel = null;
 	private JPanel bpelContentPanel = null;
 	private JPanel bpelPanel = null;
-	private JTabbedPane tabPane = null;
+//	private JTabbedPane tabPane = null;
 	private JPanel activityChoosePanel = null;
 
 	private JComboBox<BPELadditionalPanel> activityChooseComboBox = null;
@@ -183,30 +183,30 @@ public class TransitionPropertyEditor extends JDialog implements
 		this.editor = editor;
 		this.setVisible(false);
 		initialize();
-		this.setSize(650, 620);
+		this.setSize(640, 600);
 		this.setLocationRelativeTo(null); // center dialog on screen
 		this.setVisible(true);
 	}
 
 	private void initialize() {
 		this.setTitle(Messages.getString("Transition.Properties"));
-		this.getContentPane().add(getTabbedPane(), BorderLayout.NORTH);
+		this.getContentPane().add(getContentPanel(), BorderLayout.NORTH);
 		this.getContentPane().add(getButtonPanel(), BorderLayout.SOUTH);
 		this.oldTime = serviceTimeTextField.getText();
 		this.oldTimeUnit = serviceTimeComboBox.getSelectedItem().toString();
 		getNameTextField().requestFocus();
 	}
 
-	private JTabbedPane getTabbedPane() {
+/*	private JTabbedPane getTabbedPane() {
 		if (tabPane == null) {
 			tabPane = new JTabbedPane();
 			tabPane.addTab(Messages.getString("Transition.Properties.General"),
 					getContentPanel());
-			tabPane.addTab(Messages.getString("Transition.Properties.BPEL"),
-					getBPELContentPanel());
+//			tabPane.addTab(Messages.getString("Transition.Properties.BPEL"),
+//					getBPELContentPanel());
 		}
 		return tabPane;
-	}
+	}*/
 
 	// ********************main panel 1: ContentPanel********************
 
@@ -1330,6 +1330,8 @@ public class TransitionPropertyEditor extends JDialog implements
 			c.gridwidth = 1;
 			c.insets = new Insets(5, 5, 5, 0);
 			resourcePanel.add(getNumResourcesTextField(), c);
+			
+			this.setResourceTriggerGUI(this.getTriggerResourceRadioButton().isSelected());
 		}
 
 		return resourcePanel;
@@ -1735,7 +1737,7 @@ public class TransitionPropertyEditor extends JDialog implements
 					String selectedRole = getRoleComboxBoxModel().getSelectedItem().toString();
 					String selectedGroup = getGroupComboxBoxModel().getSelectedItem().toString();
 
-					((BPELadditionalPanel) activityChooseComboBox.getSelectedItem()).saveInfomation();
+	//				((BPELadditionalPanel) activityChooseComboBox.getSelectedItem()).saveInfomation();
 
 					if (selectedRole.equals(ROLE_NONE) && selectedGroup.equals(GROUP_NONE) || !selectedRole.equals(ROLE_NONE) && !selectedGroup.equals(GROUP_NONE)) {
 						apply();
@@ -1883,6 +1885,18 @@ public class TransitionPropertyEditor extends JDialog implements
 		getEditor().updateNet();
 	}
 
+	private void setResourceTriggerGUI(boolean b) {
+		getResourceRoleComboBox().setEnabled(b);
+		getResourceGroupComboBox().setEnabled(b);
+		getNumResourcesLabel().setEnabled(b);
+		getResourceRoleLabel().setEnabled(b);
+		getResourceGroupLabel().setEnabled(b);
+		getNumResourcesTextField().setEnabled(b);
+		getserviceTimeLabel().setEnabled(b);
+		getserviceTimeTextfield().setEnabled(b);
+		getserviceTimeComboBox().setEnabled(b);
+	}
+
 	/*
 	 * 
 	 */
@@ -1890,28 +1904,10 @@ public class TransitionPropertyEditor extends JDialog implements
 		if (e.getActionCommand().equals(TRIGGER_MESSAGE) || e.getActionCommand().equals(TRIGGER_NONE) ||
 				e.getActionCommand().equals(TRIGGER_TIME)) {
 			// Disable all elements
-			getResourceRoleComboBox().setEnabled(false);
-			getResourceGroupComboBox().setEnabled(false);
-			getNumResourcesLabel().setEnabled(false);
-			getResourceRoleLabel().setEnabled(false);
-			getResourceGroupLabel().setEnabled(false);
-			getNumResourcesTextField().setEnabled(false);
-			getserviceTimeLabel().setEnabled(false);
-			getserviceTimeTextfield().setEnabled(false);
-			getserviceTimeComboBox().setEnabled(false);
-
+			setResourceTriggerGUI(false);
 		} else {
 			// Enable all elements for resource triggered transition
-			getResourceRoleComboBox().setEnabled(true);
-			getResourceGroupComboBox().setEnabled(true);
-			getResourceRoleLabel().setEnabled(true);
-			getResourceGroupLabel().setEnabled(true);
-			getNumResourcesLabel().setEnabled(true);
-			getNumResourcesTextField().setEnabled(true);
-			getserviceTimeLabel().setEnabled(true);
-			getserviceTimeTextfield().setEnabled(true);
-			getserviceTimeComboBox().setEnabled(true);
-
+			setResourceTriggerGUI(true);
 		}
 
 		if (transition.getToolSpecific().isSubprocess()
@@ -1972,7 +1968,7 @@ public class TransitionPropertyEditor extends JDialog implements
 	}
 
 	public void repaintTabPane() {
-		tabPane.repaint();
+		repaint();
 	}
 	
 	private void transformTransition(int nodeType, int operatorType)
