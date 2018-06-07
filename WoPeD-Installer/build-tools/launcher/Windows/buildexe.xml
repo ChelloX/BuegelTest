@@ -1,7 +1,7 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>WoPeD.jar</jar>
+  <jar>WoPeD-classes-3.7.0.jar</jar>
   <outfile>WoPeD.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
@@ -15,7 +15,7 @@
   <icon>WoPeD.ico</icon>
   <jre>
     <path>.</path>
-    <minVersion>1.7.0</minVersion>
+    <minVersion>1.8.0</minVersion>
     <jdkPreference>preferJre</jdkPreference>
   </jre>
 </launch4jConfig>
