@@ -31,6 +31,7 @@ import java.util.EventObject;
 import java.util.Locale;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -77,6 +78,11 @@ public class RunWoPeD extends JFrame {
 		boolean forceGerman = false;
 		boolean forceEnglish = false;
 
+		if (!System.getProperty("java.specification.version").contains("1.8")) {
+			JOptionPane.showMessageDialog(null, "WoPeD does not yet support Java versions 9.0 or above. Please use Java 1.8 instead.");
+			System.exit(0);
+		}
+		
 		for (String arg : args) {
 
 			if (arg.equals("-delay")) {
@@ -170,7 +176,7 @@ public class RunWoPeD extends JFrame {
 		/* If we are running on a Mac, set associated screen menu handlers */
 		if (Platform.isMac()) {
 
-			if (System.getProperty("java.version").equals("10.0.1")) {
+			if (System.getProperty("java.version").contains("10.0")) {
 				/* Alternative code for Java 10 */
 				OSXHandler.setAboutHandler(this,
 						getClass().getDeclaredMethod("about", new Class[] { EventObject.class }));
