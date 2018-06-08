@@ -77,9 +77,11 @@ public class RunWoPeD extends JFrame {
 		boolean startDelayed = false;
 		boolean forceGerman = false;
 		boolean forceEnglish = false;
-
-		if (!System.getProperty("java.specification.version").contains("1.8")) {
-			JOptionPane.showMessageDialog(null, "WoPeD does not yet support Java versions 9.0 or above. Please use Java 1.8 instead.");
+		String vers = System.getProperty("java.specification.version");
+		
+		
+		if (!vers.contains("1.8")) {
+			JOptionPane.showMessageDialog(null, "You are running Java " + vers + ".\nWoPeD does not yet support Java versions 9.0 or above.\nPlease use Java 1.8 instead.");
 			System.exit(0);
 		}
 		
