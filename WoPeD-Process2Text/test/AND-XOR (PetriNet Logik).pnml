@@ -14,6 +14,9 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <position x="40" y="230"/>
         <dimension x="40" y="40"/>
       </graphics>
+      <initialMarking>
+        <text>1</text>
+      </initialMarking>
     </place>
     <place id="p2">
       <name>
@@ -43,11 +46,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>receipt is printed</text>
         <graphics>
-          <offset x="370" y="210"/>
+          <offset x="540" y="210"/>
         </graphics>
       </name>
       <graphics>
-        <position x="370" y="170"/>
+        <position x="536" y="170"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
@@ -55,11 +58,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>database is updated</text>
         <graphics>
-          <offset x="360" y="310"/>
+          <offset x="550" y="310"/>
         </graphics>
       </name>
       <graphics>
-        <position x="360" y="268"/>
+        <position x="543" y="262"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
@@ -67,11 +70,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>payment is processed</text>
         <graphics>
-          <offset x="470" y="250"/>
+          <offset x="740" y="250"/>
         </graphics>
       </name>
       <graphics>
-        <position x="469" y="209"/>
+        <position x="735" y="209"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
@@ -79,11 +82,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>product ist available</text>
         <graphics>
-          <offset x="670" y="180"/>
+          <offset x="1120" y="180"/>
         </graphics>
       </name>
       <graphics>
-        <position x="668" y="140"/>
+        <position x="1108" y="140"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
@@ -91,11 +94,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>product ist not available</text>
         <graphics>
-          <offset x="670" y="310"/>
+          <offset x="1120" y="310"/>
         </graphics>
       </name>
       <graphics>
-        <position x="668" y="270"/>
+        <position x="1108" y="270"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
@@ -103,11 +106,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>product is send</text>
         <graphics>
-          <offset x="780" y="180"/>
+          <offset x="1380" y="190"/>
         </graphics>
       </name>
       <graphics>
-        <position x="778" y="137"/>
+        <position x="1373" y="142"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
@@ -115,11 +118,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>p10</text>
         <graphics>
-          <offset x="570" y="250"/>
+          <offset x="1020" y="250"/>
         </graphics>
       </name>
       <graphics>
-        <position x="569" y="209"/>
+        <position x="1009" y="209"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
@@ -127,11 +130,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>product is ordered</text>
         <graphics>
-          <offset x="780" y="310"/>
+          <offset x="1390" y="310"/>
         </graphics>
       </name>
       <graphics>
-        <position x="780" y="270"/>
+        <position x="1381" y="270"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
@@ -139,11 +142,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>t4</text>
         <graphics>
-          <offset x="420" y="250"/>
+          <offset x="660" y="250"/>
         </graphics>
       </name>
       <graphics>
-        <position x="420" y="210"/>
+        <position x="659" y="210"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
@@ -156,11 +159,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>t5</text>
         <graphics>
-          <offset x="610" y="180"/>
+          <offset x="1060" y="180"/>
         </graphics>
       </name>
       <graphics>
-        <position x="608" y="140"/>
+        <position x="1048" y="140"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
@@ -173,11 +176,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>t6</text>
         <graphics>
-          <offset x="610" y="310"/>
+          <offset x="1060" y="310"/>
         </graphics>
       </name>
       <graphics>
-        <position x="608" y="270"/>
+        <position x="1048" y="270"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
@@ -190,11 +193,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>send product</text>
         <graphics>
-          <offset x="720" y="180"/>
+          <offset x="1270" y="180"/>
         </graphics>
       </name>
       <graphics>
-        <position x="718" y="140"/>
+        <position x="1263" y="140"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
@@ -207,11 +210,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>order product</text>
         <graphics>
-          <offset x="720" y="310"/>
+          <offset x="1270" y="310"/>
         </graphics>
       </name>
       <graphics>
-        <position x="718" y="270"/>
+        <position x="1263" y="270"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
@@ -224,11 +227,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>check availability of product</text>
         <graphics>
-          <offset x="520" y="250"/>
+          <offset x="860" y="250"/>
         </graphics>
       </name>
       <graphics>
-        <position x="519" y="209"/>
+        <position x="857" y="209"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
@@ -275,11 +278,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>update customer database</text>
         <graphics>
-          <offset x="290" y="300"/>
+          <offset x="300" y="300"/>
         </graphics>
       </name>
       <graphics>
-        <position x="290" y="260"/>
+        <position x="301" y="260"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
@@ -376,14 +379,14 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <inscription>
         <text>1</text>
         <graphics>
-          <offset x="500.0" y="-12.0"/>
+          <offset x="500.0" y="6.0"/>
         </graphics>
       </inscription>
       <graphics/>
       <toolspecific tool="WoPeD" version="1.0">
         <probability>1.0</probability>
         <displayProbabilityOn>false</displayProbabilityOn>
-        <displayProbabilityPosition x="500.0" y="12.0"/>
+        <displayProbabilityPosition x="1000.0" y="6.0"/>
       </toolspecific>
     </arc>
     <arc id="a14" source="t5" target="p7">
@@ -570,11 +573,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
     </arc>
     <toolspecific tool="WoPeD" version="1.0">
       <bounds>
-        <position x="11" y="33"/>
-        <dimension x="968" y="648"/>
+        <position x="2" y="31"/>
+        <dimension x="2139" y="1052"/>
       </bounds>
-      <scale>20</scale>
-      <treeWidthRight>763</treeWidthRight>
+      <scale>150</scale>
+      <treeWidthRight>1759</treeWidthRight>
       <overviewPanelVisible>true</overviewPanelVisible>
       <treeHeightOverview>100</treeHeightOverview>
       <treePanelVisible>true</treePanelVisible>

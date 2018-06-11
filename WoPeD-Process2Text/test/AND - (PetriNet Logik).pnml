@@ -46,11 +46,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>receipt is printed</text>
         <graphics>
-          <offset x="410" y="120"/>
+          <offset x="480" y="120"/>
         </graphics>
       </name>
       <graphics>
-        <position x="410" y="80"/>
+        <position x="482" y="80"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
@@ -58,11 +58,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>database is updated</text>
         <graphics>
-          <offset x="410" y="250"/>
+          <offset x="480" y="250"/>
         </graphics>
       </name>
       <graphics>
-        <position x="410" y="210"/>
+        <position x="482" y="210"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
@@ -70,11 +70,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>payment is processed</text>
         <graphics>
-          <offset x="570" y="180"/>
+          <offset x="640" y="180"/>
         </graphics>
       </name>
       <graphics>
-        <position x="570" y="140"/>
+        <position x="642" y="140"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
@@ -82,11 +82,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>t4</text>
         <graphics>
-          <offset x="490" y="180"/>
+          <offset x="560" y="180"/>
         </graphics>
       </name>
       <graphics>
-        <position x="490" y="140"/>
+        <position x="562" y="140"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
@@ -288,11 +288,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
     </arc>
     <toolspecific tool="WoPeD" version="1.0">
       <bounds>
-        <position x="11" y="33"/>
-        <dimension x="968" y="648"/>
+        <position x="2" y="31"/>
+        <dimension x="2139" y="1052"/>
       </bounds>
-      <scale>100</scale>
-      <treeWidthRight>648</treeWidthRight>
+      <scale>180</scale>
+      <treeWidthRight>1644</treeWidthRight>
       <overviewPanelVisible>true</overviewPanelVisible>
       <treeHeightOverview>100</treeHeightOverview>
       <treePanelVisible>true</treePanelVisible>
