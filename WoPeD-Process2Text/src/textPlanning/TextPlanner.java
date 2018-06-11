@@ -78,6 +78,10 @@ public class TextPlanner {
 	 * @throws FileNotFoundException 
 	 */
 	public void convertToText(RPSTNode<ControlFlow, Node> root, int level) throws JWNLException, FileNotFoundException {
+		if(root == null) {
+			return;
+		}
+
 		// Order nodes of current level with respect to control flow
 		ArrayList<RPSTNode<ControlFlow, Node>> orderedTopNodes = PlanningHelper.sortTreeLevel(root, root.getEntry(), rpst);
 

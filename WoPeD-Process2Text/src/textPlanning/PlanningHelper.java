@@ -3,6 +3,7 @@ package textPlanning;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 
 import dataModel.process.Activity;
 import dataModel.process.Annotation;
@@ -463,15 +464,15 @@ public class PlanningHelper {
 	
 
 	public static boolean containsRigid(RPSTNode<ControlFlow, Node> root, int level, RPST<ControlFlow,Node> rpst) {
+		if(root == null) {
+			return false;
+		}
+
 		ArrayList<RPSTNode<ControlFlow, Node>> orderedTopNodes = PlanningHelper.sortTreeLevel(root, root.getEntry(), rpst);
 		for (RPSTNode<ControlFlow,Node> node: orderedTopNodes) {
-			int depth = PlanningHelper.getDepth(node, rpst);
 			if (isRigid(node)) {
 				return true;
 			}
-			if (depth > 0) {
-				printTree(node, level+1, rpst);
-			} 
 		}
 		return false;
 	}
