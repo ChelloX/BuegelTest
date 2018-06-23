@@ -45,6 +45,9 @@ public class Test {
 
         System.out.println("Every test will be run up to five times (unless an error occurs) to ensure consistency across different runs.");
         for (Map.Entry<String, String> test : tests.entrySet()) {
+            boolean testException = false;
+            boolean testFailed = false;
+
             for (int i = 0; i < 5; i++) {
                 String expected = removeNewLinesAndSurroundingSpaces("<text>" + test.getValue() + "</text>");
                 String result;
@@ -53,20 +56,27 @@ public class Test {
                     result = removeNewLinesAndSurroundingSpaces(textGenerator.toText(BASE_PATH + test.getKey(), true));
                 } catch (Exception e) {
                     exceptions.add(e);
+                    testException = true;
                     System.out.println(TEST_EXCEPTION + test.getKey() + " failed with exception: " + e + " (expected: " + expected + ")");
                     error++;
                     break;
                 }
 
-                if (result.equals(expected)) {
-                    System.out.println(TEST_SUCCESS + test.getKey() + " succeeded.");
-                    successful++;
-                } else {
+                if (!result.equals(expected)) {
                     System.out.println(TEST_FAILED + test.getKey() + " failed.");
                     printDifference(expected, result);
-                    failed++;
+                    testFailed = true;
                     break;
                 }
+            }
+
+            if(testException) {
+                error++;
+            } else if(testFailed) {
+                failed++;
+            } else {
+                System.out.println(TEST_SUCCESS + test.getKey() + " succeeded.");
+                successful++;
             }
         }
 

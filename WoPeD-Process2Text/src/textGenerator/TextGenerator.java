@@ -10,6 +10,7 @@ import dataModel.process.ProcessModel;
 import de.hpi.bpt.graph.algo.rpst.RPST;
 import de.hpi.bpt.process.ControlFlow;
 import de.hpi.bpt.process.Node;
+import net.didion.jwnl.data.Exc;
 import preprocessing.FormatConverter;
 import preprocessing.RigidStructurer;
 import sentencePlanning.DiscourseMarker;
@@ -37,8 +38,12 @@ public class TextGenerator {
 	public String getContextPath() {
 		return this.contextPath;
 	}
-	
+
 	public String toText(String input) throws Exception {
+	    return toText(input, false);
+    }
+
+	public String toText(String input, boolean surfaceOnly) throws Exception {
 		
 			String imperativeRole = ""; 
 			boolean imperative = false;	
@@ -101,6 +106,11 @@ public class TextGenerator {
 				surfaceText = surfaceRealizer.cleanTextForImperativeStyle(surfaceText, imperativeRole, model.getLanes());
 			}			
 			surfaceText = surfaceRealizer.postProcessText(surfaceText);
+
+			if(surfaceOnly) {
+			    return surfaceText;
+            }
+
 			String newFile = appendTextToFile(input, surfaceText);
 //			System.out.println(newFile);
 			return newFile;
