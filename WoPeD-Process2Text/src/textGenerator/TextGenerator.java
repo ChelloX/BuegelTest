@@ -10,7 +10,6 @@ import dataModel.process.ProcessModel;
 import de.hpi.bpt.graph.algo.rpst.RPST;
 import de.hpi.bpt.process.ControlFlow;
 import de.hpi.bpt.process.Node;
-import net.didion.jwnl.data.Exc;
 import preprocessing.FormatConverter;
 import preprocessing.RigidStructurer;
 import sentencePlanning.DiscourseMarker;
@@ -25,125 +24,106 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TextGenerator {
-	
-	private String contextPath = "";
-	
-	public TextGenerator(String contextPath) {
-		this.contextPath = contextPath;
-	}
-	
-	public TextGenerator() {
-	}
-	
-	public String getContextPath() {
-		return this.contextPath;
-	}
 
-	public String toText(String input) throws Exception {
-	    return toText(input, false);
+    private String contextPath = "";
+
+    public TextGenerator(String contextPath) {
+        this.contextPath = contextPath;
     }
 
-	public String toText(String input, boolean surfaceOnly) throws Exception {
-		
-			String imperativeRole = ""; 
-			boolean imperative = false;	
-			
-			File inputFile = new File(input); 
-			PNMLReader pnmlReader = new PNMLReader();
-			PetriNet petriNet = pnmlReader.getPetriNetFromPNML(inputFile);
-			PetriNetToProcessConverter pnConverter = new PetriNetToProcessConverter();
-			ProcessModel model = pnConverter.convertToProcess(petriNet);
-			//petriNet.print();
-			//pnmlReader.test();
-			//model.print();
-			//pnConverter.printConversion();
-	
-			HashMap<Integer, String> transformedElemsRev = pnConverter.transformedElemsRev;
-			
-			EnglishLabelHelper lHelper = new EnglishLabelHelper(contextPath);
-			EnglishLabelDeriver lDeriver  = new EnglishLabelDeriver(lHelper);
-			
-			// Annotate model
-			model.annotateModel(0,lDeriver,lHelper);
-			
-			// Convert to RPST
-			FormatConverter formatConverter = new FormatConverter();
-			de.hpi.bpt.process.Process p = formatConverter.transformToRPSTFormat(model);
-			RPST<ControlFlow,Node> rpst = new RPST<ControlFlow,Node>(p);
-			
-			//System.out.println(rpst);
-			
-			// Check for Rigids
-			boolean containsRigids = PlanningHelper.containsRigid(rpst.getRoot(), 1, rpst);
-			
-			// Structure Rigid and convert back
-			if (containsRigids) {
-				p =  formatConverter.transformToRigidFormat(model);
-				RigidStructurer rigidStructurer = new RigidStructurer();
-				p = rigidStructurer.structureProcess(p);
-				model = formatConverter.transformFromRigidFormat(p);
-				p = formatConverter.transformToRPSTFormat(model);
-				rpst = new RPST<ControlFlow, Node>(p);
-			}
-			
-			// Convert to Text
-			TextPlanner converter = new TextPlanner(rpst, model, lDeriver, lHelper, imperativeRole, imperative, false);
-			converter.convertToText(rpst.getRoot(), 0);
-			ArrayList <DSynTSentence> sentencePlan = converter.getSentencePlan();
-			//converter.testprint();
-			
-			// Aggregation
-			SentenceAggregator sentenceAggregator = new SentenceAggregator(lHelper);
-			sentencePlan = sentenceAggregator.performRoleAggregation(sentencePlan, model);
-			
-			// Referring Expression
-			ReferringExpressionGenerator refExpGenerator = new ReferringExpressionGenerator(lHelper);
-			sentencePlan  = refExpGenerator.insertReferringExpressions(sentencePlan, model, false);
-			
-			// Discourse Marker 
-			DiscourseMarker discourseMarker = new DiscourseMarker();
-			sentencePlan = discourseMarker.insertSequenceConnectives(sentencePlan);
-	
-			// Realization
-			SurfaceRealizer surfaceRealizer = new SurfaceRealizer();
-			String surfaceText = surfaceRealizer.realizeSentenceMap(sentencePlan, transformedElemsRev);
-			
-			// Cleaning
-			if (imperative == true) {
-				surfaceText = surfaceRealizer.cleanTextForImperativeStyle(surfaceText, imperativeRole, model.getLanes());
-			}			
-			surfaceText = surfaceRealizer.postProcessText(surfaceText);
+    public TextGenerator() {
+    }
 
-			if(surfaceOnly) {
-			    return surfaceText;
+    public String toText(String input) throws Exception {
+        return toText(input, false);
+    }
+
+    public String toText(String input, boolean surfaceOnly) throws Exception {
+        String imperativeRole = "";
+        File inputFile = new File(input);
+        PNMLReader pnmlReader = new PNMLReader();
+        PetriNet petriNet = pnmlReader.getPetriNetFromPNML(inputFile);
+        PetriNetToProcessConverter pnConverter = new PetriNetToProcessConverter();
+        ProcessModel model = pnConverter.convertToProcess(petriNet);
+
+        HashMap<Integer, String> transformedElemsRev = pnConverter.transformedElemsRev;
+
+        EnglishLabelHelper lHelper = new EnglishLabelHelper(contextPath);
+        EnglishLabelDeriver lDeriver = new EnglishLabelDeriver(lHelper);
+
+        // Annotate model
+        model.annotateModel(0, lDeriver, lHelper);
+
+        // Convert to RPST
+        FormatConverter formatConverter = new FormatConverter();
+        de.hpi.bpt.process.Process p = formatConverter.transformToRPSTFormat(model);
+        RPST<ControlFlow, Node> rpst = new RPST<>(p);
+
+        // Check for Rigids
+        boolean containsRigids = PlanningHelper.containsRigid(rpst.getRoot(), 1, rpst);
+
+        // Structure Rigid and convert back
+        if (containsRigids) {
+            p = formatConverter.transformToRigidFormat(model);
+            RigidStructurer rigidStructurer = new RigidStructurer();
+            p = rigidStructurer.structureProcess(p);
+            model = formatConverter.transformFromRigidFormat(p);
+            p = formatConverter.transformToRPSTFormat(model);
+            rpst = new RPST<>(p);
+        }
+
+        // Convert to Text
+        TextPlanner converter = new TextPlanner(rpst, model, lDeriver, lHelper, imperativeRole, false, false);
+        converter.convertToText(rpst.getRoot(), 0);
+        ArrayList<DSynTSentence> sentencePlan = converter.getSentencePlan();
+
+        // Aggregation
+        SentenceAggregator sentenceAggregator = new SentenceAggregator();
+        sentencePlan = sentenceAggregator.performRoleAggregation(sentencePlan);
+
+        // Referring Expression
+        ReferringExpressionGenerator refExpGenerator = new ReferringExpressionGenerator(lHelper);
+        sentencePlan = refExpGenerator.insertReferringExpressions(sentencePlan, model, false);
+
+        // Discourse Marker
+        DiscourseMarker discourseMarker = new DiscourseMarker();
+        sentencePlan = discourseMarker.insertSequenceConnectives(sentencePlan);
+
+        // Realization
+        SurfaceRealizer surfaceRealizer = new SurfaceRealizer();
+        String surfaceText = surfaceRealizer.realizeSentenceMap(sentencePlan, transformedElemsRev);
+
+        // Cleaning
+        surfaceText = surfaceRealizer.postProcessText(surfaceText);
+
+        if (surfaceOnly) {
+            return surfaceText;
+        }
+
+        return appendTextToFile(input, surfaceText);
+    }
+
+    private String appendTextToFile(String file, String text) {
+        StringBuilder newFile = new StringBuilder();
+        try {
+            FileInputStream fstream = new FileInputStream(file);
+            DataInputStream in = new DataInputStream(fstream);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String strLine;
+
+            //Read File Line By Line
+            while ((strLine = br.readLine()) != null) {
+                if (!strLine.equals("</pnml>")) {
+                    newFile.append(strLine).append("\n");
+                } else {
+                    newFile.append(text).append("\n</pnml>");
+                }
             }
-
-			String newFile = appendTextToFile(input, surfaceText);
-//			System.out.println(newFile);
-			return newFile;
-	}
-	
-	private String appendTextToFile(String file, String text) {
-		String newFile = "";
-		try {	
-			FileInputStream fstream = new FileInputStream(file);
-			DataInputStream in = new DataInputStream(fstream);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
-			String strLine;
-
-			//Read File Line By Line
-			while ((strLine = br.readLine()) != null)   {
-				if (!strLine.equals("</pnml>")) {
-					newFile = newFile + strLine + "\n";
-				} else {
-					newFile = newFile + text + "\n</pnml>"; 
-				}
-			}
-			in.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return newFile;
-	}
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newFile.toString();
+    }
 
 }

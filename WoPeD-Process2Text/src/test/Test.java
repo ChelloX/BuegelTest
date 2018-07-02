@@ -14,7 +14,7 @@ public class Test {
     private static final String TEST_EXCEPTION = ANSI_RED + "\u2757\t" + ANSI_RESET;
 
     private static final String BASE_PATH = "./WoPeD-Process2Text/test/";
-    private static SortedMap<String, List<String>> tests = new TreeMap<String, List<String>>();
+    private static final SortedMap<String, List<String>> tests = new TreeMap<>();
 
     static {
         // Key = Dateiname, Value = Erwartetes Ergebnis
@@ -69,7 +69,7 @@ public class Test {
         int failed = 0;
         int error = 0;
 
-        List<Exception> exceptions = new ArrayList<Exception>();
+        List<Exception> exceptions = new ArrayList<>();
 
         for (Map.Entry<String, List<String>> test : tests.entrySet()) {
             List<String> expected = test.getValue();

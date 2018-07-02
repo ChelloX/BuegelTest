@@ -23,14 +23,15 @@
  * questions.
  */
 
-package com.sun.tools.javac.util;
+package utils;
 
-/** A generic class for pairs.
+/**
+ * A generic class for pairs.
  *
- *  <p><b>This is NOT part of any supported API.
- *  If you write code that depends on this, you do so at your own risk.
- *  This code and its internal interfaces are subject to change or
- *  deletion without notice.</b>
+ * <p><b>This is NOT part of any supported API.
+ * If you write code that depends on this, you do so at your own risk.
+ * This code and its internal interfaces are subject to change or
+ * deletion without notice.</b>
  */
 public class Pair<A, B> {
 
@@ -51,19 +52,14 @@ public class Pair<A, B> {
     }
 
     public boolean equals(Object other) {
-        return
-            other instanceof Pair<?,?> &&
-            equals(fst, ((Pair<?,?>)other).fst) &&
-            equals(snd, ((Pair<?,?>)other).snd);
+        return other instanceof Pair<?, ?>
+                && equals(fst, ((Pair<?, ?>) other).fst)
+                && equals(snd, ((Pair<?, ?>) other).snd);
     }
 
     public int hashCode() {
         if (fst == null) return (snd == null) ? 0 : snd.hashCode() + 1;
         else if (snd == null) return fst.hashCode() + 2;
         else return fst.hashCode() * 17 + snd.hashCode();
-    }
-
-    public static <A,B> Pair<A,B> of(A a, B b) {
-        return new Pair<A,B>(a,b);
     }
 }
