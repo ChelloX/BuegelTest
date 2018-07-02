@@ -57,6 +57,7 @@ public class TextPlanner {
 	
 	private boolean imperative;
 	private String imperativeRole;
+	boolean check = false;
 	
 	public TextPlanner(RPST<ControlFlow,Node> rpst, ProcessModel process, EnglishLabelDeriver lDeriver, EnglishLabelHelper lHelper, String imperativeRole, boolean imperative, boolean isAlternative) throws FileNotFoundException, JWNLException {
 		this.rpst = rpst;
@@ -71,6 +72,7 @@ public class TextPlanner {
 		this.imperative = imperative;
 		this.imperativeRole = imperativeRole;
 		this.isAlternative = isAlternative;
+		
 	}
 	
 	/**
@@ -664,6 +666,10 @@ public class TextPlanner {
 	
 	public ArrayList<DSynTSentence> getSentencePlan() {
 		return sentencePlan;
+	}
+	
+	public void testprint() {
+		System.out.println(check);
 	}
 
 }

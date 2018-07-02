@@ -53,6 +53,10 @@ public class TextGenerator {
 			PetriNet petriNet = pnmlReader.getPetriNetFromPNML(inputFile);
 			PetriNetToProcessConverter pnConverter = new PetriNetToProcessConverter();
 			ProcessModel model = pnConverter.convertToProcess(petriNet);
+			//petriNet.print();
+			//pnmlReader.test();
+			//model.print();
+			//pnConverter.printConversion();
 	
 			HashMap<Integer, String> transformedElemsRev = pnConverter.transformedElemsRev;
 			
@@ -66,6 +70,8 @@ public class TextGenerator {
 			FormatConverter formatConverter = new FormatConverter();
 			de.hpi.bpt.process.Process p = formatConverter.transformToRPSTFormat(model);
 			RPST<ControlFlow,Node> rpst = new RPST<ControlFlow,Node>(p);
+			
+			//System.out.println(rpst);
 			
 			// Check for Rigids
 			boolean containsRigids = PlanningHelper.containsRigid(rpst.getRoot(), 1, rpst);
@@ -84,6 +90,7 @@ public class TextGenerator {
 			TextPlanner converter = new TextPlanner(rpst, model, lDeriver, lHelper, imperativeRole, imperative, false);
 			converter.convertToText(rpst.getRoot(), 0);
 			ArrayList <DSynTSentence> sentencePlan = converter.getSentencePlan();
+			//converter.testprint();
 			
 			// Aggregation
 			SentenceAggregator sentenceAggregator = new SentenceAggregator(lHelper);

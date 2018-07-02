@@ -13,8 +13,8 @@ public class Test {
     private static final String TEST_FAILED = ANSI_RED + "\u2716\t" + ANSI_RESET;
     private static final String TEST_EXCEPTION = ANSI_RED + "\u2757\t" + ANSI_RESET;
 
-    private static final String BASE_PATH = "./WoPeD-Process2Text/test/";
-    private static SortedMap<String, String> tests = new TreeMap<>();
+    private static final String BASE_PATH = "./test/";
+    private static SortedMap<String, String> tests = new TreeMap<String, String>();
 
     static {
         // Key = Dateiname, Value = Erwartetes Ergebnis
@@ -41,7 +41,7 @@ public class Test {
         int failed = 0;
         int error = 0;
 
-        List<Exception> exceptions = new ArrayList<>();
+        List<Exception> exceptions = new ArrayList<Exception>();
 
         System.out.println("Every test will be run up to five times (unless an error occurs) to ensure consistency across different runs.");
         for (Map.Entry<String, String> test : tests.entrySet()) {
