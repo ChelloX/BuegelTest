@@ -37,22 +37,9 @@ public class AbstractMultiDirectedHyperGraph<E extends IDirectedHyperEdge<V>, V 
 
     /*
      * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.IDirectedHyperGraph#addEdge(java.util.Collection, java.util.Collection)
-     */
-    @SuppressWarnings("unchecked")
-    public E addEdge(Collection<V> ss, Collection<V> ts) {
-        if (ss == null || ts == null) return null;
-
-        E e = (E) new AbstractDirectedHyperEdge<V>(this);
-        e.addSourceAndTagetVertices(ss, ts);
-        return e;
-    }
-
-    /*
-     * (non-Javadoc)
      * @see de.hpi.bpt.hypergraph.abs.IDirectedHyperGraph#getEdgesWithSource(de.hpi.bpt.hypergraph.abs.IVertex)
      */
-    public Collection<E> getEdgesWithSource(V v) {
+    Collection<E> getEdgesWithSource(V v) {
         Collection<E> result = new ArrayList<>();
 
         Collection<E> es = this.getEdges(v);
@@ -114,7 +101,7 @@ public class AbstractMultiDirectedHyperGraph<E extends IDirectedHyperEdge<V>, V 
      * (non-Javadoc)
      * @see de.hpi.bpt.hypergraph.abs.IDirectedHyperGraph#getEdgesWithTarget(de.hpi.bpt.hypergraph.abs.IVertex)
      */
-    public Collection<E> getEdgesWithTarget(V v) {
+    Collection<E> getEdgesWithTarget(V v) {
         Collection<E> result = new ArrayList<>();
 
         for (E e : this.getEdges(v)) {
@@ -175,24 +162,6 @@ public class AbstractMultiDirectedHyperGraph<E extends IDirectedHyperEdge<V>, V 
         for (E e : es) result.addAll(e.getTargetVertices());
 
         return new ArrayList<>(result);
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.AbstractMultiHyperGraph#addEdge(java.util.Collection)
-     */
-    @Override
-    public E addEdge(Collection<V> vs) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException();
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.AbstractMultiHyperGraph#addEdge(de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    @Override
-    public E addEdge(V v) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException();
     }
 
     /*

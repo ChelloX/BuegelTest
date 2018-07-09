@@ -18,25 +18,6 @@ public class AbstractMultiDirectedGraph<E extends IDirectedEdge<V>, V extends IV
         implements IDirectedGraph<E, V>, IGraph<E, V> {
     /*
      * (non-Javadoc)
-     * @see de.hpi.bpt.graph.abs.IGraph#areAdjacent(de.hpi.bpt.hypergraph.abs.IVertex, de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    public boolean areAdjacent(V v1, V v2) {
-        E e = this.getEdge(v1, v2);
-
-        return e != null;
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.AbstractMultiDirectedHyperGraph#addEdge(java.util.Collection, java.util.Collection)
-     */
-    @Override
-    public E addEdge(Collection<V> ss, Collection<V> ts) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException();
-    }
-
-    /*
-     * (non-Javadoc)
      * @see de.hpi.bpt.hypergraph.abs.AbstractMultiDirectedHyperGraph#isMultiGraph()
      */
     @Override
@@ -58,33 +39,6 @@ public class AbstractMultiDirectedGraph<E extends IDirectedEdge<V>, V extends IV
 
             this.vertices.remove(v);
             return v;
-        }
-
-        return null;
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.AbstractMultiHyperGraph#removeVertices(java.util.Collection)
-     */
-    @Override
-    public Collection<V> removeVertices(Collection<V> vs) {
-        Collection<V> result = new ArrayList<>();
-
-        for (V v : vs) {
-            if (this.removeVertex(v) != null)
-                result.add(v);
-        }
-        return (result.size() > 0) ? result : null;
-    }
-
-    public E getEdge(V v1, V v2) {
-        Collection<E> es = this.vertices.get(v1);
-        if (es == null) return null;
-
-        for (E e : es) {
-            if (e.connectsVertex(v1) && e.connectsVertex(v2))
-                return e;
         }
 
         return null;

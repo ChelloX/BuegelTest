@@ -5,15 +5,16 @@
 
 package processtotext.ws;
 
-import java.io.File;
-import java.io.PrintWriter;
+import textGenerator.TextGenerator;
+
 import javax.annotation.Resource;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 import javax.servlet.ServletContext;
 import javax.xml.ws.WebServiceContext;
-import textGenerator.TextGenerator;
+import java.io.File;
+import java.io.PrintWriter;
 
 @WebService
 public class ProcessToTextWebService {
@@ -32,7 +33,7 @@ public class ProcessToTextWebService {
         PrintWriter writer = new PrintWriter(tempFile, "UTF-8");
         writer.println(processSpecification);
         writer.close();
-        ServletContext servletContext = (ServletContext)this.context.getMessageContext().get("javax.xml.ws.servlet.context");
+        ServletContext servletContext = (ServletContext) this.context.getMessageContext().get("javax.xml.ws.servlet.context");
         String contextPath = servletContext.getRealPath("/");
         TextGenerator textGenerator = new TextGenerator(contextPath);
         String result = textGenerator.toText(tempFile.getAbsolutePath());

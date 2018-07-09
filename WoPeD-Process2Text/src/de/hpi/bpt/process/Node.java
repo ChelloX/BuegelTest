@@ -7,10 +7,6 @@ public abstract class Node extends Vertex {
         super();
     }
 
-    Node(String name, String desc) {
-        super(name, desc);
-    }
-
     Node(String name) {
         super(name);
     }

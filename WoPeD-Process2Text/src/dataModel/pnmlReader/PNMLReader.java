@@ -15,40 +15,20 @@ import java.io.File;
 import java.util.HashMap;
 
 public class PNMLReader {
-    public PetriNet getPetriNetFromPNML(File file) {
-        try {
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            Document doc = db.parse(file);
-            doc.getDocumentElement().normalize();
-
-            PetriNet petriNet = new PetriNet();
-            extractElements(doc, "place", petriNet);
-            extractElements(doc, "transition", petriNet);
-            extractFlow(doc, petriNet);
-            extractRoles(doc);
-
-            return petriNet;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    //Hashmap to check for existing arcs
-    private static HashMap<String, Arc> arcs;
+    private static final String[] roles = new String[100];
 
     private static void extractFlow(Document doc, PetriNet petriNet) {
         NodeList list = doc.getElementsByTagName("arc");
         for (int i = 0; i < list.getLength(); i++) {
             Node fstNode = list.item(i);
             Element arc = (Element) fstNode;
-            String id = (arc.getAttribute("id").toString());
+            String id = (arc.getAttribute("id"));
             String source = arc.getAttribute("source");
             String target = arc.getAttribute("target");
 
             //If there is already an arc with the same ID --> new ID neccessary
-            arcs = petriNet.getArcs();
+            //Hashmap to check for existing arcs
+            HashMap<String, Arc> arcs = petriNet.getArcs();
             if (arcs.keySet().contains(id)) {
                 id = id + "_vorhanden";
             }
@@ -56,9 +36,6 @@ public class PNMLReader {
             petriNet.addArc(new Arc(id, source, target));
         }
     }
-
-    private static final String[] roles = new String[100];
-    public static String x = "1";
 
     private static void extractRoles(Document doc) {
         NodeList list = doc.getElementsByTagName("transition");
@@ -84,16 +61,12 @@ public class PNMLReader {
         }
     }
 
-    public void test() {
-        System.out.println(roles[0]);
-    }
-
     private static void extractElements(Document doc, String type, PetriNet petriNet) {
         NodeList list = doc.getElementsByTagName(type);
         for (int i = 0; i < list.getLength(); i++) {
             Node fstNode = list.item(i);
             Element element = (Element) fstNode;
-            String id = (element.getAttribute("id").toString());
+            String id = (element.getAttribute("id"));
             NodeList fstNodeElems = fstNode.getChildNodes();
             for (int j = 0; j < fstNodeElems.getLength(); j++) {
                 Node sndNode = fstNodeElems.item(j);
@@ -105,7 +78,7 @@ public class PNMLReader {
                             if (type.equals("place")) {
                                 petriNet.addElements(new Place(id, thdNode.getTextContent()));
                             } else {
-                                petriNet.addElements(new Transition(id, thdNode.getTextContent(), roles[i]));
+                                petriNet.addElements(new Transition(id, thdNode.getTextContent()));
                             }
                         }
                     }
@@ -113,4 +86,25 @@ public class PNMLReader {
             }
         }
     }
+
+    public PetriNet getPetriNetFromPNML(File file) {
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(file);
+            doc.getDocumentElement().normalize();
+
+            PetriNet petriNet = new PetriNet();
+            extractElements(doc, "place", petriNet);
+            extractElements(doc, "transition", petriNet);
+            extractFlow(doc, petriNet);
+            extractRoles(doc);
+
+            return petriNet;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

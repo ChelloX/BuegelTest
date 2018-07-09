@@ -29,26 +29,22 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class TextPlanner {
+    private static final String[] quantifiers = {"a", "the", "all", "any", "more", "most", "none", "some", "such", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
     private final RPST<ControlFlow, Node> rpst;
     private final ProcessModel process;
     private final TextToIntermediateConverter textToIMConverter;
     private final ArrayList<ConditionFragment> passedFragments;
-    private ModifierRecord passedMod = null; // used for AND-Splits
     private final ArrayList<ModifierRecord> passedMods; // used for Skips
-
-    private boolean tagWithBullet = false;
-    private boolean start = true;
     private final boolean isAlternative;
-
     private final ArrayList<DSynTSentence> sentencePlan;
     private final ArrayList<Pair<Integer, DSynTSentence>> activitiySentenceMap;
     private final EnglishLabelHelper lHelper;
     private final EnglishLabelDeriver lDeriver;
-
-    private static final String[] quantifiers = {"a", "the", "all", "any", "more", "most", "none", "some", "such", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
-
     private final boolean imperative;
     private final String imperativeRole;
+    private ModifierRecord passedMod = null; // used for AND-Splits
+    private boolean tagWithBullet = false;
+    private boolean start = true;
 
     public TextPlanner(RPST<ControlFlow, Node> rpst, ProcessModel process, EnglishLabelDeriver lDeriver, EnglishLabelHelper lHelper, String imperativeRole, boolean imperative, boolean isAlternative) {
         this.rpst = rpst;

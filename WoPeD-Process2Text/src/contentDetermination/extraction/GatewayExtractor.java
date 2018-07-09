@@ -8,14 +8,13 @@ import java.util.HashMap;
 
 public class GatewayExtractor {
     private final Node gateway;
-    private String verb;
-    private String bo;
-    private HashMap<String, ModifierRecord> modList;
     private final EnglishLabelHelper lHelper;
-
     public boolean bo_isPlural = false;
     public boolean bo_hasArticle = true;
     public boolean hasVerb = true;
+    private String verb;
+    private String bo;
+    private HashMap<String, ModifierRecord> modList;
 
     public GatewayExtractor(Node gateway, EnglishLabelHelper lHelper) {
         this.lHelper = lHelper;

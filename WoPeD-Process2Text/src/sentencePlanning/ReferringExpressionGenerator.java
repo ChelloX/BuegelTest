@@ -4,7 +4,6 @@ import contentDetermination.labelAnalysis.EnglishLabelHelper;
 import dataModel.dsynt.DSynTMainSentence;
 import dataModel.dsynt.DSynTSentence;
 import dataModel.intermediate.ExecutableFragment;
-import dataModel.process.ProcessModel;
 import net.didion.jwnl.JWNLException;
 import net.didion.jwnl.data.IndexWord;
 import net.didion.jwnl.data.POS;

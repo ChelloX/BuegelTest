@@ -8,28 +8,19 @@ import de.hpi.bpt.hypergraph.abs.IVertex;
 import de.hpi.bpt.hypergraph.abs.Vertex;
 
 public class RPSTNode<E extends IDirectedEdge<V>, V extends IVertex> extends Vertex {
+    private final RPSTSkeleton<E, V> skeleton = new RPSTSkeleton<>();
+    private final AbstractDirectedGraph<E, V> fragment = new AbstractDirectedGraph<>();
     private boolean isQuasi = false;
-
     private V entry = null;
-
     private V exit = null;
-
     private TCType type = TCType.UNDEFINED;
 
-    private final RPSTSkeleton<E, V> skeleton = new RPSTSkeleton<>();
-
-    private final AbstractDirectedGraph<E, V> fragment = new AbstractDirectedGraph<>();
-
-    public boolean isQuasi() {
-        return isQuasi;
+    void setQuasi(boolean isQuasi) {
+        this.isQuasi = isQuasi;
     }
 
     public IDirectedGraph<E, V> getFragment() {
         return this.fragment;
-    }
-
-    void setQuasi(boolean isQuasi) {
-        this.isQuasi = isQuasi;
     }
 
     public V getEntry() {

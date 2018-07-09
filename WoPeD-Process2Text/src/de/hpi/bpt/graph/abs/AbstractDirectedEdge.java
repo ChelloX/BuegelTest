@@ -100,42 +100,6 @@ public class AbstractDirectedEdge<V extends IVertex> extends AbstractDirectedHyp
 
     /*
      * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.AbstractDirectedHyperEdge#addSourceVertex(de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    @Override
-    public V addSourceVertex(V v) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException();
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.AbstractDirectedHyperEdge#addTargetVertex(de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    @Override
-    public V addTargetVertex(V v) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException();
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.AbstractDirectedHyperEdge#removeSourceVertex(de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    @Override
-    public V removeSourceVertex(V v) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException();
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.AbstractDirectedHyperEdge#removeTargetVertex(de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    @Override
-    public V removeTargetVertex(V v) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException();
-    }
-
-    /*
-     * (non-Javadoc)
      * @see de.hpi.bpt.hypergraph.abs.AbstractDirectedHyperEdge#addSourceAndTagetVertices(java.util.Collection, java.util.Collection)
      */
     @Override

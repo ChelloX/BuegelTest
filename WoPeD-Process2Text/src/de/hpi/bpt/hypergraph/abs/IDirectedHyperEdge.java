@@ -11,22 +11,6 @@ import java.util.Collection;
  */
 public interface IDirectedHyperEdge<V extends IVertex> extends IHyperEdge<V> {
     /**
-     * Add source vertex to the edge
-     *
-     * @param v Source vertex to add
-     * @return Source vertex added to the edge, <code>null</code> upon failure
-     */
-    V addSourceVertex(V v);
-
-    /**
-     * Add target vertex to the edge
-     *
-     * @param v Target vertex to add
-     * @return Target vertex added to the edge, <code>null</code> upon failure
-     */
-    V addTargetVertex(V v);
-
-    /**
      * Add source and target vertices to the edge
      *
      * @param ss Source vertices
@@ -34,31 +18,6 @@ public interface IDirectedHyperEdge<V extends IVertex> extends IHyperEdge<V> {
      * @return Collection of vertices added to the edge, <code>null</code> upon failure
      */
     Collection<V> addSourceAndTagetVertices(Collection<V> ss, Collection<V> ts);
-
-    /**
-     * Remove source vertex from the edge
-     *
-     * @param v Source vertex to remove
-     * @return Source vertex that was removed, <code>null</code> upon failure
-     */
-    V removeSourceVertex(V v);
-
-    /**
-     * Remove target vertex from the edge
-     *
-     * @param v Target vertex to remove
-     * @return Target vertex that was removed, <code>null</code> upon failure
-     */
-    V removeTargetVertex(V v);
-
-    /**
-     * Remove source and target vertices from the edge
-     *
-     * @param ss Source vertices
-     * @param ts Target vertices
-     * @return Collection of vertices removed from the edge, <code>null</code> upon failure
-     */
-    Collection<V> removeSourceAndTagetVertices(Collection<V> ss, Collection<V> ts);
 
     /**
      * Get source vertices

@@ -2,7 +2,10 @@ package de.hpi.bpt.graph.abs;
 
 import de.hpi.bpt.hypergraph.abs.IVertex;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 /**
@@ -15,8 +18,8 @@ import java.util.Map.Entry;
  */
 public class AbstractMultiGraphFragment<E extends IEdge<V>, V extends IVertex> extends AbstractMultiGraph<E, V> {
 
-    private final Map<E, E> esMap = new HashMap<>();
     protected final IGraph<E, V> graph;
+    private final Map<E, E> esMap = new HashMap<>();
 
     /**
      * Constructor

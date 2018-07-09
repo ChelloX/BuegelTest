@@ -21,13 +21,6 @@ public class Process extends AbstractDirectedGraph<ControlFlow, Node> {
     }
 
     /**
-     * Construct an empty process with name
-     */
-    public Process(String name) {
-        this.name = name;
-    }
-
-    /**
      * Create a control flow
      *
      * @param from Source node
@@ -91,15 +84,6 @@ public class Process extends AbstractDirectedGraph<ControlFlow, Node> {
         types.add(GatewayType.OR);
         types.add(GatewayType.UNDEFINED);
         return this.getGateways(types);
-    }
-
-    /**
-     * Get process nodes
-     *
-     * @return A collection of process nodes
-     */
-    public Collection<Node> getNodes() {
-        return this.getVertices();
     }
 
     /**

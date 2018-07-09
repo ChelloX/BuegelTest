@@ -25,9 +25,7 @@ import java.util.Vector;
  */
 @SuppressWarnings("unchecked")
 public class SplitCompDFS<E extends IEdge<V>, V extends IVertex> extends AbstractDFS<E, V> {
-    private boolean showDebugInformation = false;
     private final TSItem EOS = new TSItem();
-    private V dfsRoot = null;
     private final EdgeList<E, V> eStack = new EdgeList<>();
     private final Stack<TSItem> tStack = new Stack<>();
     private final Vector<EdgeList<E, V>> comp;
@@ -42,6 +40,8 @@ public class SplitCompDFS<E extends IEdge<V>, V extends IVertex> extends Abstrac
     private final NodeMap<V> treeArc;
     private final NodeMap<V> highpt;
     private final NodeMap<V> numNotVisitedTreeEdges;
+    private boolean showDebugInformation = false;
+    private V dfsRoot = null;
 
     /**
      * Constructor for SplitCompDFS.

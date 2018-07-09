@@ -9,12 +9,12 @@ import textPlanning.PlanningHelper;
 import java.util.ArrayList;
 
 public class GatewayPropertyRecord {
+    private final RPSTNode<ControlFlow, Node> node;
+    private final RPST<ControlFlow, Node> rpst;
     private int maxPathDepth = 0;
     private int maxPathActivityNumber = 0;
     private boolean isGatewayLabeled = false;
     private boolean hasYNArcs = false;
-    private final RPSTNode<ControlFlow, Node> node;
-    private final RPST<ControlFlow, Node> rpst;
 
     public GatewayPropertyRecord(RPSTNode<ControlFlow, Node> node, RPST<ControlFlow, Node> rpst) {
         this.node = node;

@@ -12,36 +12,12 @@ import java.util.Collection;
  */
 public interface IHyperGraph<E extends IHyperEdge<V>, V extends IVertex> extends IGObject {
     /**
-     * Add edge to the graph
-     *
-     * @param v Vertex to create edge from
-     * @return Edge that was added to the graph, <code>null</code> otherwise
-     */
-    E addEdge(V v);
-
-    /**
-     * Add edge to the graph
-     *
-     * @param vs Vertices to create edge from
-     * @return Edge that was added to the graph, <code>null</code> otherwise
-     */
-    E addEdge(Collection<V> vs);
-
-    /**
      * Add vertex to the graph
      *
      * @param v Vertex to add
      * @return Vertex that was added to the graph, <code>null</code> otherwise
      */
     V addVertex(V v);
-
-    /**
-     * Add vertices to the graph
-     *
-     * @param vs Vertices to add
-     * @return Vertices that were added to the graph, <code>null</code> if no vertex was added
-     */
-    Collection<V> addVertices(Collection<V> vs);
 
     /**
      * Remove edge from the graph
@@ -52,28 +28,12 @@ public interface IHyperGraph<E extends IHyperEdge<V>, V extends IVertex> extends
     E removeEdge(E e);
 
     /**
-     * Remove edges from the graph
-     *
-     * @param es Edges to remove
-     * @return Edges that were removed from the graph, <code>null</code> if no edge was removed
-     */
-    Collection<E> removeEdges(Collection<E> es);
-
-    /**
      * Remove vertex from the graph
      *
      * @param v Vertex to remove
      * @return Vertex that was removed from the graph, <code>null</code> if vertex was not removed
      */
     V removeVertex(V v);
-
-    /**
-     * Remove vertices from the graph
-     *
-     * @param vs Vertices to remove
-     * @return Vertices that were removed from the graph, <code>null</code> if no vertex was not removed
-     */
-    Collection<V> removeVertices(Collection<V> vs);
 
     /**
      * Get graph vertices
@@ -98,35 +58,12 @@ public interface IHyperGraph<E extends IHyperEdge<V>, V extends IVertex> extends
     Collection<E> getEdges(V v);
 
     /**
-     * Get a collection of all edges that connect vertices 'vs'
-     *
-     * @param vs Collection of vertices
-     * @return Collection of all edges that connect vertices 'vs'
-     */
-    Collection<E> getEdges(Collection<V> vs);
-
-    /**
-     * Check if graph contains edge
-     *
-     * @param e Edge to check
-     * @return <code>true</code> on success, <code>false</code> otherwise
-     */
-    boolean contains(E e);
-
-    /**
      * Check if graph contains vertex
      *
      * @param v Vertex to check
      * @return <code>true</code> on success, <code>false</code> otherwise
      */
     boolean contains(V v);
-
-    /**
-     * Get all vertices connected by some edge
-     *
-     * @return Connected vertices
-     */
-    Collection<V> getConnectedVertices();
 
     /**
      * Get all vertices not connected by any edge
@@ -141,11 +78,4 @@ public interface IHyperGraph<E extends IHyperEdge<V>, V extends IVertex> extends
      * @return The number of vertices in this graph
      */
     int countVertices();
-
-    /**
-     * Check if graph is a multi graph (multiple edges allowed)
-     *
-     * @return <code>true</code> if graph is a multi graph, <code>false</code> otherwise
-     */
-    boolean isMultiGraph();
 }

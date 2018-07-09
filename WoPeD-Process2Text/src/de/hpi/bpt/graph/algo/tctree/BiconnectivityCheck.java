@@ -7,28 +7,12 @@ import de.hpi.bpt.hypergraph.abs.IVertex;
 import java.util.*;
 
 class BiconnectivityCheck<E extends IEdge<V>, V extends IVertex> {
-    class NodeAttrs {
-        boolean visited;
-        V parent;
-        int low;
-        int dis;
-
-        NodeAttrs() {
-            visited = false;
-            parent = null;
-            low = 0;
-            dis = 0;
-        }
-    }
-
     private final IGraph<E, V> graph;
     private final Hashtable<V, NodeAttrs> attrs;
-
     private final Collection<EdgeList<E, V>> components = new ArrayList<>();
     private final Stack<E> s = new Stack<>();
-    private int time;
-
     private final boolean isBiconnected;
+    private int time;
 
     BiconnectivityCheck(IGraph<E, V> graph) {
         Iterator<V> nodes = graph.getVertices().iterator();
@@ -111,5 +95,19 @@ class BiconnectivityCheck<E extends IEdge<V>, V extends IVertex> {
 
     private void prepareNode(V node) {
         attrs.put(node, new NodeAttrs());
+    }
+
+    class NodeAttrs {
+        boolean visited;
+        V parent;
+        int low;
+        int dis;
+
+        NodeAttrs() {
+            visited = false;
+            parent = null;
+            low = 0;
+            dis = 0;
+        }
     }
 }

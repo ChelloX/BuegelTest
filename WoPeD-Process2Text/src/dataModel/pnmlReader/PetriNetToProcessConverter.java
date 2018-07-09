@@ -7,20 +7,21 @@ import dataModel.process.*;
 import java.util.HashMap;
 
 public class PetriNetToProcessConverter {
-    private HashMap<String, Integer> transformedElems;
-    public HashMap<Integer, String> transformedElemsRev;
     private final String[] loopSet = new String[100];
+    public HashMap<Integer, String> transformedElemsRev;
+    private HashMap<String, Integer> transformedElems;
     private int xor_split;
     private int xor_join;
     private int and_join;
     private int and_split;
     private int transitions;
     private int places;
+    private int x = 0;
 
     public ProcessModel convertToProcess(PetriNet petriNet) {
-        ProcessModel model = new ProcessModel(1, "PetriNet");
-        Pool pool = new Pool(model.getNewId(), "");
-        Lane lane = new Lane(model.getId(), "", pool);
+        ProcessModel model = new ProcessModel();
+        Pool pool = new Pool("");
+        Lane lane = new Lane("");
         model.addPool("");
         model.addLane("");
 
@@ -31,8 +32,6 @@ public class PetriNetToProcessConverter {
         transformElem(startElem, -1, petriNet, model, pool, lane);
         return model;
     }
-
-    private int x = 0;
 
     private void transformElem(Element elem, int precElem, PetriNet petriNet, ProcessModel model, Pool pool, Lane lane) {
         // Id of current petri net element
@@ -86,7 +85,7 @@ public class PetriNetToProcessConverter {
                     } else {
                         //PetriNet ends with a XOR-Join
                         int newId2 = model.getNewId();
-                        model.addActivity(new Activity(newId2, "finish", null, null, ActivityType.NONE));
+                        model.addActivity(new Activity(newId2, "finish", null, null));
                         model.addArc(new Arc(model.getNewId(), "", model.getElem(newId), model.getElem(newId2)));
                         int newId3 = model.getNewId();
                         model.addGateway(new Gateway(newId3, "", lane, pool, GatewayType.XOR));
@@ -124,7 +123,7 @@ public class PetriNetToProcessConverter {
                     loopSet[x] = elemId + ": simple transition, one incoming, one outgoing arc";
                     x++;
                     int newId = model.getNewId();
-                    model.addActivity(new Activity(newId, elem.getLabel(), null, null, ActivityType.NONE));
+                    model.addActivity(new Activity(newId, elem.getLabel(), null, null));
                     transformedElems.put(elemId, newId);
                     transformedElemsRev.put(newId, elemId);
                     if (precElem != -1) {

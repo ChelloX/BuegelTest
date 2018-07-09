@@ -21,10 +21,6 @@ public class Annotation {
         businessObjects.add(bo);
     }
 
-    public void setAddition(String add) {
-        addition = add;
-    }
-
     public ArrayList<String> getActions() {
         return actions;
     }
@@ -35,6 +31,10 @@ public class Annotation {
 
     public String getAddition() {
         return addition;
+    }
+
+    public void setAddition(String add) {
+        addition = add;
     }
 
     public String toString() {

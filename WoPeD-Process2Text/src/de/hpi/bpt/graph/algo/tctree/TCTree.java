@@ -18,28 +18,10 @@ import java.util.Iterator;
  * @author Christian Wiggert
  */
 public class TCTree<E extends IEdge<V>, V extends IVertex> extends AbstractDirectedGraph<TCTreeEdge<E, V>, TCTreeNode<E, V>> {
-    private IGraph<E, V> graph;
     private final Collection<TCTreeNode<E, V>> nodes = new ArrayList<>();
+    private IGraph<E, V> graph;
     private E backEdge;
     private TCTreeNode<E, V> root = null;
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.graph.abs.AbstractDirectedGraph#addEdge(de.hpi.bpt.hypergraph.abs.IVertex, de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    @Override
-    public TCTreeEdge<E, V> addEdge(TCTreeNode<E, V> v1, TCTreeNode<E, V> v2) {
-        if (v1 == null || v2 == null) return null;
-
-        Collection<TCTreeNode<E, V>> ss = new ArrayList<>();
-        ss.add(v1);
-        Collection<TCTreeNode<E, V>> ts = new ArrayList<>();
-        ts.add(v2);
-
-        if (!this.checkEdge(ss, ts)) return null;
-
-        return new TCTreeEdge<>(this, v1, v2);
-    }
 
     /**
      * This class decomposes the given a given biconnected graph into a tree of triconnected components.
@@ -95,17 +77,26 @@ public class TCTree<E extends IEdge<V>, V extends IVertex> extends AbstractDirec
         }
     }
 
-    private boolean isTrivialCase() {
-        return this.graph.getEdges().size() == 1 && !(this.graph.getVertices().size() > 2);
+    /*
+     * (non-Javadoc)
+     * @see de.hpi.bpt.graph.abs.AbstractDirectedGraph#addEdge(de.hpi.bpt.hypergraph.abs.IVertex, de.hpi.bpt.hypergraph.abs.IVertex)
+     */
+    @Override
+    public TCTreeEdge<E, V> addEdge(TCTreeNode<E, V> v1, TCTreeNode<E, V> v2) {
+        if (v1 == null || v2 == null) return null;
+
+        Collection<TCTreeNode<E, V>> ss = new ArrayList<>();
+        ss.add(v1);
+        Collection<TCTreeNode<E, V>> ts = new ArrayList<>();
+        ts.add(v2);
+
+        if (!this.checkEdge(ss, ts)) return null;
+
+        return new TCTreeEdge<>(this, v1, v2);
     }
 
-    /**
-     * Get original graph
-     *
-     * @return Graph
-     */
-    IGraph<E, V> getGraph() {
-        return this.graph;
+    private boolean isTrivialCase() {
+        return this.graph.getEdges().size() == 1 && !(this.graph.getVertices().size() > 2);
     }
 
     /**

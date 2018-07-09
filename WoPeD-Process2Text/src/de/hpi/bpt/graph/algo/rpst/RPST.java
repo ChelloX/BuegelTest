@@ -26,64 +26,48 @@ import java.util.*;
  */
 public class RPST<E extends IDirectedEdge<V>, V extends IVertex>
         extends AbstractDirectedGraph<RPSTEdge<E, V>, RPSTNode<E, V>> {
-    private IDirectedGraph<E, V> graph = null;
 
     private Collection<E> extraEdges = null;
 
     private RPSTNode<E, V> root = null;
 
-    @Override
-    public RPSTEdge<E, V> addEdge(RPSTNode<E, V> v1, RPSTNode<E, V> v2) {
-        if (v1 == null || v2 == null) return null;
-
-        Collection<RPSTNode<E, V>> ss = new ArrayList<>();
-        ss.add(v1);
-        Collection<RPSTNode<E, V>> ts = new ArrayList<>();
-        ts.add(v2);
-
-        if (!this.checkEdge(ss, ts)) return null;
-
-        return new RPSTEdge<>(this, v1, v2);
-    }
-
     @SuppressWarnings("unchecked")
     public RPST(IDirectedGraph<E, V> g) {
         if (g == null) return;
-        this.graph = g;
 
         DirectedGraphAlgorithms<E, V> dga = new DirectedGraphAlgorithms<>();
-        Collection<V> sources = dga.getInputVertices(this.graph);
-        Collection<V> sinks = dga.getOutputVertices(this.graph);
+        Collection<V> sources = dga.getInputVertices(g);
+        Collection<V> sinks = dga.getOutputVertices(g);
         if (sources.size() != 1 || sinks.size() != 1) return;
 
         V src = sources.iterator().next();
         V snk = sinks.iterator().next();
 
-        E backEdge = this.graph.addEdge(snk, src);
+        E backEdge = g.addEdge(snk, src);
 
         // expand mixed vertices
         this.extraEdges = new ArrayList<>();
         Map<V, V> map = new HashMap<>();
-        for (V v : this.graph.getVertices()) {
-            if (this.graph.getIncomingEdges(v).size() > 1 &&
-                    this.graph.getOutgoingEdges(v).size() > 1) {
+        for (V v : g.getVertices()) {
+            if (g.getIncomingEdges(v).size() > 1 &&
+                    g.getOutgoingEdges(v).size() > 1) {
                 V newV = (V) (new Vertex());
                 newV.setName(v.getName() + "*");
                 map.put(newV, v);
-                this.graph.addVertex(newV);
+                g.addVertex(newV);
 
-                for (E e : this.graph.getOutgoingEdges(v)) {
-                    this.graph.addEdge(newV, e.getTarget());
-                    this.graph.removeEdge(e);
+                for (E e : g.getOutgoingEdges(v)) {
+                    g.addEdge(newV, e.getTarget());
+                    g.removeEdge(e);
                 }
 
-                E newE = this.graph.addEdge(v, newV);
+                E newE = g.addEdge(v, newV);
                 this.extraEdges.add(newE);
             }
         }
 
         // compute TCTree
-        TCTree<IEdge<V>, V> tct = new TCTree(this.graph, backEdge);
+        TCTree<IEdge<V>, V> tct = new TCTree(g, backEdge);
 
         // remove extra edges
         Set<TCTreeNode<IEdge<V>, V>> quasi = new HashSet<>();
@@ -176,11 +160,11 @@ public class RPST<E extends IDirectedEdge<V>, V extends IVertex>
 
         // fix graph
         for (E e : this.extraEdges) {
-            for (E e2 : this.graph.getOutgoingEdges(e.getTarget())) {
-                this.graph.addEdge(e.getSource(), e2.getTarget());
-                this.graph.removeEdge(e2);
+            for (E e2 : g.getOutgoingEdges(e.getTarget())) {
+                g.addEdge(e.getSource(), e2.getTarget());
+                g.removeEdge(e2);
             }
-            this.graph.removeVertex(e.getTarget());
+            g.removeVertex(e.getTarget());
         }
 
         this.iterativePreorder();
@@ -194,7 +178,7 @@ public class RPST<E extends IDirectedEdge<V>, V extends IVertex>
 
                 int cinf = n.getFragment().getIncomingEdges(entry).size();
                 int coutf = n.getFragment().getOutgoingEdges(entry).size();
-                int coutg = this.graph.getOutgoingEdges(entry).size();
+                int coutg = g.getOutgoingEdges(entry).size();
 
                 if (cinf == 0 || coutf == coutg) continue;
 
@@ -204,7 +188,21 @@ public class RPST<E extends IDirectedEdge<V>, V extends IVertex>
             }
         }
 
-        this.graph.removeEdge(backEdge);
+        g.removeEdge(backEdge);
+    }
+
+    @Override
+    public RPSTEdge<E, V> addEdge(RPSTNode<E, V> v1, RPSTNode<E, V> v2) {
+        if (v1 == null || v2 == null) return null;
+
+        Collection<RPSTNode<E, V>> ss = new ArrayList<>();
+        ss.add(v1);
+        Collection<RPSTNode<E, V>> ts = new ArrayList<>();
+        ts.add(v2);
+
+        if (!this.checkEdge(ss, ts)) return null;
+
+        return new RPSTEdge<>(this, v1, v2);
     }
 
     private void iterativePreorder() {
@@ -236,15 +234,6 @@ public class RPST<E extends IDirectedEdge<V>, V extends IVertex>
         }
 
         return false;
-    }
-
-    /**
-     * Get original graph
-     *
-     * @return original graph
-     */
-    public IDirectedGraph<E, V> getGraph() {
-        return this.graph;
     }
 
     /**
@@ -287,16 +276,5 @@ public class RPST<E extends IDirectedEdge<V>, V extends IVertex>
     private boolean isRoot(RPSTNode<E, V> node) {
         if (node == null) return false;
         return node.equals(this.root);
-    }
-
-    public Collection<RPSTNode<E, V>> getVertices(TCType type) {
-        Collection<RPSTNode<E, V>> result = new ArrayList<>();
-
-        for (RPSTNode<E, V> n : this.getVertices()) {
-            if (n.getType() == type)
-                result.add(n);
-        }
-
-        return result;
     }
 }

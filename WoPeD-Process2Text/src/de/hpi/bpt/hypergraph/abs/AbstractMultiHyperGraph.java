@@ -18,30 +18,6 @@ public class AbstractMultiHyperGraph<E extends IHyperEdge<V>, V extends IVertex>
         implements IHyperGraph<E, V> {
     /*
      * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.IHyperGraph#addEdge(de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    @SuppressWarnings("unchecked")
-    public E addEdge(V v) {
-        E e = (E) new AbstractHyperEdge<V>(this);
-        e.addVertex(v);
-
-        return e;
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.IHyperGraph#addEdge(java.util.Collection)
-     */
-    @SuppressWarnings("unchecked")
-    public E addEdge(Collection<V> vs) {
-        E e = (E) new AbstractHyperEdge<V>(this);
-        e.addVertices(vs);
-
-        return e;
-    }
-
-    /*
-     * (non-Javadoc)
      * @see de.hpi.bpt.hypergraph.abs.IHyperGraph#removeEdge(de.hpi.bpt.hypergraph.abs.IHyperEdge)
      */
     public E removeEdge(E e) {
@@ -116,19 +92,6 @@ public class AbstractMultiHyperGraph<E extends IHyperEdge<V>, V extends IVertex>
 
     /*
      * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.IHyperGraph#removeVertices(java.util.Collection)
-     */
-    public Collection<V> removeVertices(Collection<V> vs) {
-        if (vs == null || vs.size() == 0) return null;
-
-        Collection<E> es = this.getEdges(vs.iterator().next());
-        for (E e : es) e.removeVertices(vs);
-
-        return new ArrayList<>(vs);
-    }
-
-    /*
-     * (non-Javadoc)
      * @see de.hpi.bpt.hypergraph.abs.IHyperGraph#getVertices()
      */
     public Collection<V> getVertices() {
@@ -194,7 +157,7 @@ public class AbstractMultiHyperGraph<E extends IHyperEdge<V>, V extends IVertex>
      * (non-Javadoc)
      * @see de.hpi.bpt.hypergraph.abs.IHyperGraph#contains(de.hpi.bpt.hypergraph.abs.IHyperEdge)
      */
-    public boolean contains(E e) {
+    boolean contains(E e) {
         return this.getEdges().contains(e);
     }
 
@@ -210,7 +173,7 @@ public class AbstractMultiHyperGraph<E extends IHyperEdge<V>, V extends IVertex>
      * (non-Javadoc)
      * @see de.hpi.bpt.hypergraph.abs.IHyperGraph#getConnectedVertices()
      */
-    public Collection<V> getConnectedVertices() {
+    Collection<V> getConnectedVertices() {
         Set<V> result = new HashSet<>();
 
         for (E e : this.getEdges()) result.addAll(e.getVertices());

@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ProcessModel {
-    private final int id;
-    private final String name;
     private final HashMap<Integer, Arc> arcs;
     private final HashMap<Integer, Activity> activities;
     private final HashMap<Integer, Event> events;
@@ -17,6 +15,16 @@ public class ProcessModel {
     private final ArrayList<String> lanes;
     private final ArrayList<String> pools;
     private final HashMap<Integer, ProcessModel> alternativePaths;
+
+    public ProcessModel() {
+        arcs = new HashMap<>();
+        activities = new HashMap<>();
+        events = new HashMap<>();
+        gateways = new HashMap<>();
+        lanes = new ArrayList<>();
+        pools = new ArrayList<>();
+        alternativePaths = new HashMap<>();
+    }
 
     public int getNewId() {
         int base = 0;
@@ -62,89 +70,7 @@ public class ProcessModel {
         return null;
     }
 
-    public void normalize() {
-        // Clean arcs
-        ArrayList<Integer> toBeDeleted = new ArrayList<>();
-        for (int key : arcs.keySet()) {
-            if (arcs.get(key).getTarget() == null) {
-                toBeDeleted.add(key);
-            }
-        }
-        for (int key : toBeDeleted) {
-            arcs.remove(key);
-        }
-
-        for (int activityKey : activities.keySet()) {
-            int count = 0;
-
-            // Count arcs (incoming)
-            for (Arc arc : arcs.values()) {
-                if (arc.getTarget().getId() == activityKey) {
-                    count++;
-                }
-            }
-            if (count > 1) {
-                Activity a = activities.get(activityKey);
-                int gwId = getNewId();
-                Gateway xorGateway = new Gateway(gwId, "", a.getLane(), a.getPool(), GatewayType.XOR);
-                gateways.put(gwId, xorGateway);
-                // Modify target of incoming arcs to new gateway
-                for (Arc arc : arcs.values()) {
-                    if (arc.getTarget().getId() == activityKey) {
-                        arc.setTarget(xorGateway);
-                    }
-                }
-
-                // Create new arc from gateway to activity
-                int arcId = getNewId();
-                Arc arc = new Arc(arcId, "", xorGateway, a);
-                arcs.put(arcId, arc);
-                System.out.println("Gateway for incoming arcs inserted (" + activityKey + ") :" + gwId);
-            }
-
-            count = 0;
-            // Count arcs (outgoing)
-            for (Arc arc : arcs.values()) {
-                if (arc.getSource().getId() == activityKey) {
-                    count++;
-                }
-            }
-            if (count > 1) {
-                Activity a = activities.get(activityKey);
-                int gwId = getNewId();
-                boolean isAND = true;
-                for (Arc arc : arcs.values()) {
-                    if (arc.getType().equals("VirtualFlow")) {
-                        isAND = false;
-                    }
-                }
-
-                Gateway gateway;
-                if (isAND) {
-                    gateway = new Gateway(gwId, "", a.getLane(), a.getPool(), GatewayType.AND);
-                } else {
-                    gateway = new Gateway(gwId, "", a.getLane(), a.getPool(), GatewayType.XOR);
-                }
-                gateways.put(gwId, gateway);
-                System.out.println("Gateway for outgoing arcs inserted: " + gwId);
-
-                // Modify target of incoming arcs to new gateway
-                for (Arc arc : arcs.values()) {
-                    if (arc.getSource().getId() == activityKey) {
-                        arc.setSource(gateway);
-                    }
-                }
-
-                // Create new arc from gateway to activity
-                int arcId = getNewId();
-                Arc arc = new Arc(arcId, "", a, gateway);
-                arcs.put(arcId, arc);
-            }
-        }
-    }
-
     public void annotateModel(EnglishLabelDeriver lDeriver, EnglishLabelHelper lHelper) {
-        ArrayList<contentDetermination.labelAnalysis.structure.Activity> modela = new ArrayList<>();
         for (Activity a : activities.values()) {
             EnglishLabelProperties props = new EnglishLabelProperties();
             try {
@@ -158,10 +84,7 @@ public class ProcessModel {
                 }
 
                 String[] labelSplit = label.split(" ");
-
-                new contentDetermination.labelAnalysis.structure.Activity(label, modela);
                 lDeriver.deriveFromVOS(a.getLabel(), labelSplit, props);
-
                 Annotation anno = new Annotation();
 
                 // No Conjunction label
@@ -216,18 +139,6 @@ public class ProcessModel {
         }
     }
 
-    public ProcessModel(int id, String name) {
-        this.id = id;
-        this.name = name;
-        arcs = new HashMap<>();
-        activities = new HashMap<>();
-        events = new HashMap<>();
-        gateways = new HashMap<>();
-        lanes = new ArrayList<>();
-        pools = new ArrayList<>();
-        alternativePaths = new HashMap<>();
-    }
-
     public int getElemAmount() {
         return activities.size() + gateways.size() + events.size();
     }
@@ -268,14 +179,6 @@ public class ProcessModel {
         return gateways;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
     public Activity getActivity(int id) {
         return activities.get(id);
     }
@@ -290,19 +193,4 @@ public class ProcessModel {
         lanes.add(temp);
     }
 
-    public void print() {
-        System.out.println("Process Model: " + this.name + " (" + this.getId() + ")");
-        for (Activity a : activities.values()) {
-            System.out.println("Activity (" + a.getId() + ") " + a.getLabel());
-        }
-        for (Event e : events.values()) {
-            System.out.println("Event (" + e.getId() + ") " + e.getLabel() + " - Type: " + e.getType());
-        }
-        for (Gateway g : gateways.values()) {
-            System.out.println("Gatewyay (" + g.getId() + ")" + " " + g.getType());
-        }
-        for (Arc arc : arcs.values()) {
-            System.out.println("Arc: (s: " + arc.getSource().getId() + " t: " + arc.getTarget().getId() + ")" + "- " + arc.getId());
-        }
-    }
 }

@@ -7,9 +7,6 @@ import org.w3c.dom.Element;
 import textPlanning.IntermediateToDSynTConverter;
 
 public class DSynTConditionSentence extends DSynTSentence {
-    // General attributes
-    public int type;
-
     // Private elements
     private final ConditionFragment cFrag;
     private Element cVerb;
@@ -55,9 +52,7 @@ public class DSynTConditionSentence extends DSynTSentence {
 
         // Create if Node
         Element condition = IntermediateToDSynTConverter.createConditionNode(doc, cFrag);
-        if (cFrag != null) {
-            cVerb.appendChild(condition);
-        }
+        cVerb.appendChild(condition);
     }
 
     /**

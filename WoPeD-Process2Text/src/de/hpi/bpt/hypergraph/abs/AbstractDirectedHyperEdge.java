@@ -27,54 +27,6 @@ public class AbstractDirectedHyperEdge<V extends IVertex> extends AbstractHyperE
 
     /*
      * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.IDirectedHyperEdge#addSourceVertex(de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    @SuppressWarnings("unchecked")
-    public V addSourceVertex(V v) {
-        if (this.graph == null) return null;
-        if (v == null) return null;
-        boolean result;
-
-        if (!this.graph.isMultiGraph()) {
-            Collection<V> vs = new ArrayList<>(this.source);
-            vs.add(v);
-
-            if (!this.checkEdge(vs, this.target)) return null;
-        }
-
-        super.addVertex(v);
-        result = this.source.add(v);
-        this.graph.addIndex(this, v);
-
-        return result ? v : null;
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.IDirectedHyperEdge#addTargetVertex(de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    @SuppressWarnings("unchecked")
-    public V addTargetVertex(V v) {
-        if (this.graph == null) return null;
-        if (v == null) return null;
-        boolean result;
-
-        if (!this.graph.isMultiGraph()) {
-            Collection<V> vs = new ArrayList<>(this.target);
-            vs.add(v);
-
-            if (!this.checkEdge(this.source, vs)) return null;
-        }
-
-        super.addVertex(v);
-        result = this.target.add(v);
-        this.graph.addIndex(this, v);
-
-        return result ? v : null;
-    }
-
-    /*
-     * (non-Javadoc)
      * @see de.hpi.bpt.hypergraph.abs.IDirectedHyperEdge#addSourceAndTagetVertices(java.util.Collection, java.util.Collection)
      */
     @SuppressWarnings("unchecked")
@@ -111,54 +63,6 @@ public class AbstractDirectedHyperEdge<V extends IVertex> extends AbstractHyperE
         }
 
         return result ? vresult : null;
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.IDirectedHyperEdge#removeSourceVertex(de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    @SuppressWarnings("unchecked")
-    public V removeSourceVertex(V v) {
-        if (this.graph == null) return null;
-        if (v == null) return null;
-        boolean result;
-
-        if (!this.graph.isMultiGraph()) {
-            Collection<V> vs = new ArrayList<>(this.source);
-            vs.remove(v);
-
-            if (!this.checkEdge(vs, this.target)) return null;
-        }
-
-        super.removeVertex(v);
-        result = this.source.remove(v);
-        this.graph.removeIndex(this, v);
-
-        return result ? v : null;
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.IDirectedHyperEdge#removeTargetVertex(de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    @SuppressWarnings("unchecked")
-    public V removeTargetVertex(V v) {
-        if (this.graph == null) return null;
-        if (v == null) return null;
-        boolean result;
-
-        if (!this.graph.isMultiGraph()) {
-            Collection<V> vs = new ArrayList<>(this.target);
-            vs.remove(v);
-
-            if (!this.checkEdge(this.source, vs)) return null;
-        }
-
-        super.removeVertex(v);
-        result = this.target.remove(v);
-        this.graph.removeIndex(this, v);
-
-        return result ? v : null;
     }
 
     /*
@@ -298,15 +202,6 @@ public class AbstractDirectedHyperEdge<V extends IVertex> extends AbstractHyperE
 
     /*
      * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.AbstractHyperEdge#addVertex(de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    @Override
-    public V addVertex(V v) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException();
-    }
-
-    /*
-     * (non-Javadoc)
      * @see de.hpi.bpt.hypergraph.abs.AbstractHyperEdge#addVertices(java.util.Collection)
      */
     @Override
@@ -315,7 +210,7 @@ public class AbstractDirectedHyperEdge<V extends IVertex> extends AbstractHyperE
     }
 
     @SuppressWarnings("unchecked")
-    boolean checkEdge(Collection<V> ss, Collection<V> ts) {
+    private boolean checkEdge(Collection<V> ss, Collection<V> ts) {
         Collection<IDirectedHyperEdge<V>> es = this.graph.getEdgesWithSourcesAndTargets(ss, ts);
         if (es.size() > 0) {
             for (IDirectedHyperEdge<V> e : es) {

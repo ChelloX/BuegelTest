@@ -11,36 +11,12 @@ import java.util.Collection;
  */
 public interface IHyperEdge<V extends IVertex> extends IGObject {
     /**
-     * Add vertex to the edge
-     *
-     * @param v Vertex to add
-     * @return Vertex added to the edge, <code>null</code> upon failure
-     */
-    V addVertex(V v);
-
-    /**
-     * Add collection of vertices to the edge
-     *
-     * @param vs Collection of vertices to add
-     * @return Collection of vertices added to the edge, <code>null</code> if no vertex was added
-     */
-    Collection<V> addVertices(Collection<V> vs);
-
-    /**
      * Remove vertex from the edge
      *
      * @param v Vertex to remove
      * @return Vertex that was removed, <code>null</code> upon failure
      */
     V removeVertex(V v);
-
-    /**
-     * Remove collection of vertices from the edge
-     *
-     * @param vs Collection of vertices to remove
-     * @return Collection of vertices removed from the edge, <code>null</code> if no vertex was removed
-     */
-    Collection<V> removeVertices(Collection<V> vs);
 
     /**
      * Check if the edge connects vertex

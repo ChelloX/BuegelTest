@@ -1,9 +1,9 @@
 package dataModel.pnmlReader.PetriNet;
 
 public class Arc {
-    private String id;
-    private String source;
-    private String target;
+    private final String id;
+    private final String source;
+    private final String target;
 
     public Arc(String id, String source, String target) {
         this.id = id;

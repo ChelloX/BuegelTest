@@ -2,7 +2,7 @@ package dataModel.process;
 
 public class Event extends Element {
     private final int type;
-    private boolean isAttached;
+    private final boolean isAttached;
     private boolean leadsToEnd;
 
     public Event(int id, String label, Lane lane, Pool pool, int type) {
@@ -22,10 +22,6 @@ public class Event extends Element {
 
     public boolean isAttached() {
         return isAttached;
-    }
-
-    public void setAttached(boolean isAttached) {
-        this.isAttached = isAttached;
     }
 
     public int getType() {

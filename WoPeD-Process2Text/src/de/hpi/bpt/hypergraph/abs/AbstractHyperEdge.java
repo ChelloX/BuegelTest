@@ -11,38 +11,15 @@ import java.util.Iterator;
  * @author Artem Polyvyanyy
  */
 public class AbstractHyperEdge<V extends IVertex> extends GObject implements IHyperEdge<V> {
+    private final Collection<V> vertices;
     @SuppressWarnings("unchecked")
     private AbstractMultiHyperGraph graph;
-
-    private final Collection<V> vertices;
 
     @SuppressWarnings("unchecked")
     protected AbstractHyperEdge(AbstractMultiHyperGraph g) {
         super();
         this.vertices = new ArrayList<>();
         this.graph = g;
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.IHyperEdge#addVertex(de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    @SuppressWarnings("unchecked")
-    public V addVertex(V v) {
-        if (this.graph == null) return null;
-        if (v == null) return null;
-
-        if (!this.graph.isMultiGraph()) {
-            Collection<V> vs = new ArrayList<>(this.vertices);
-            vs.add(v);
-
-            if (!this.checkEdge(vs)) return null;
-        }
-
-        boolean result = this.vertices.add(v);
-        this.graph.addIndex(this, v);
-
-        return result ? v : null;
     }
 
     /*

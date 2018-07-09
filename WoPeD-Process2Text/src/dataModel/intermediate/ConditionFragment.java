@@ -13,19 +13,9 @@ public class ConditionFragment extends AbstractFragment {
     public static final int TYPE_NONE = 4;
     public static final int TYPE_WHEN = 5;
     public static final int TYPE_IN_CASE = 6;
-
-    public boolean sen_headPosition = true;
     private final int type;
-
     private final ArrayList<ConditionFragment> sentenceList = new ArrayList<>();
-
-    public ArrayList<ConditionFragment> getSentenceList() {
-        return sentenceList;
-    }
-
-    public void addCondition(ConditionFragment c) {
-        sentenceList.add(c);
-    }
+    public boolean sen_headPosition = true;
 
     public ConditionFragment(String action, String bo, String role, String addition, int type) {
         super(action, bo, role, addition);
@@ -35,6 +25,14 @@ public class ConditionFragment extends AbstractFragment {
     public ConditionFragment(String action, String bo, String role, String addition, int type, HashMap<String, ModifierRecord> modList) {
         super(action, bo, role, addition, modList);
         this.type = type;
+    }
+
+    public ArrayList<ConditionFragment> getSentenceList() {
+        return sentenceList;
+    }
+
+    public void addCondition(ConditionFragment c) {
+        sentenceList.add(c);
     }
 
     public int getType() {

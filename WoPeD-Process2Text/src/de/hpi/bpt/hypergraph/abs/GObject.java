@@ -11,7 +11,6 @@ public abstract class GObject implements IGObject, Cloneable {
     private String id = "";
     private String name = "";
     private String desc = "";
-    private Object tag = null;
 
     /**
      * Empty constructor
@@ -29,14 +28,6 @@ public abstract class GObject implements IGObject, Cloneable {
     }
 
     /**
-     * Constructor with object name and description parameters
-     */
-    GObject(String name, String desc) {
-        this(name);
-        setDescription(desc);
-    }
-
-    /**
      * Get unique identifier
      */
     public String getId() {
@@ -50,24 +41,6 @@ public abstract class GObject implements IGObject, Cloneable {
      */
     public void setId(String id) {
         this.id = id;
-    }
-
-    /**
-     * Get graph object associated tag object
-     *
-     * @return Tag object
-     */
-    public Object getTag() {
-        return this.tag;
-    }
-
-    /**
-     * Set graph object associated tag object
-     *
-     * @param tag Tag object to set
-     */
-    public void setTag(Object tag) {
-        this.tag = tag;
     }
 
     /**

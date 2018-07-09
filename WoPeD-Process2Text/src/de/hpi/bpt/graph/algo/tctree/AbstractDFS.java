@@ -14,55 +14,45 @@ import de.hpi.bpt.hypergraph.abs.IVertex;
  * @author Christian Wiggert
  */
 public class AbstractDFS<E extends IEdge<V>, V extends IVertex> {
-    final V INVALID_NODE = null;
-    final E INVALID_EDGE = null;
-
+    /**
+     * Tree edge
+     */
+    static final int TREE_EDGE = 1;
     /**
      * Vertex not yet visited
      */
     private static final int WHITE = 0;
-
     /**
      * Vertex visited, but not yet finished
      */
     private static final int GRAY = 1;
-
     /**
      * Vertex processed completely
      */
     private static final int BLACK = 2;
     private static final int EDGE_NOT_VISITED = 0;
-
-    /**
-     * Tree edge
-     */
-    static final int TREE_EDGE = 1;
-
     /**
      * Back edge
      */
     private static final int BACK_EDGE = 2;
-
-    /**
-     * Adjacency Map
-     */
-    private final NodeMap<V> adj;
-
+    final V INVALID_NODE = null;
+    final E INVALID_EDGE = null;
     /**
      * The graph to operate on
      */
     final IGraph<E, V> g;
-
     /**
      * The MetaInfoContainer for the additional maps related to the graph
      */
     final MetaInfoContainer meta;
-
     /**
      * NodeMap storing DFS-Numbers
      */
     final NodeMap<V> dfsNumMap;
-
+    /**
+     * Adjacency Map
+     */
+    private final NodeMap<V> adj;
     /**
      * NodeMap storing Completion Numbers
      */

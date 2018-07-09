@@ -7,7 +7,6 @@ import de.hpi.bpt.hypergraph.abs.IVertex;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * Implementation of SPQR-tree fragment skeleton
@@ -87,30 +86,5 @@ public class TCTreeSkeleton<E extends IEdge<V>, V extends IVertex> extends Abstr
             E newE = this.addEdge(e.getV1(), e.getV2());
             newE.setDescription(e.getDescription());
         }
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.graph.abs.AbstractMultiGraphFragment#getComplementary()
-     */
-    public TCTreeSkeleton<E, V> getComplementary() {
-        TCTreeSkeleton<E, V> result = new TCTreeSkeleton<>(this.graph);
-        if (this.graph == null) return result;
-
-        Collection<E> es = this.graph.getEdges();
-
-        Iterator<E> i = this.getEdges().iterator();
-        while (i.hasNext()) {
-            es.remove(this.getOriginal(i.next()));
-        }
-
-        i = es.iterator();
-        while (i.hasNext()) {
-            E e = i.next();
-            E newE = result.addEdge(e.getV1(), e.getV2());
-            newE.setDescription(e.getDescription());
-        }
-
-        return result;
     }
 }

@@ -21,63 +21,12 @@ public interface IDirectedHyperGraph<E extends IDirectedHyperEdge<V>, V extends 
     E addEdge(V s, V t);
 
     /**
-     * Add edge to the graph
-     *
-     * @param ss Collection of source vertices to create edge from
-     * @param ts Collection of target vertices to create edge from
-     * @return Edge that was added to the graph, <code>null</code> otherwise
-     */
-    E addEdge(Collection<V> ss, Collection<V> ts);
-
-    /**
-     * Get collection of edges that contain target vertex 'v'
-     *
-     * @param v Vertex
-     * @return Collection of edges that contain target vertex 'v'
-     */
-    Collection<E> getEdgesWithTarget(V v);
-
-    /**
-     * Get collection of edges that contain source vertex 'v'
-     *
-     * @param v Vertex
-     * @return Collection edges that contain source vertex 'v'
-     */
-    Collection<E> getEdgesWithSource(V v);
-
-    /**
-     * Get collection of edges that contain source vertex 's' and target vertex 't'
-     *
-     * @param s Source vertex
-     * @param t Target vertex
-     * @return Collection of edges that contain source vertex 's' and target vertex 't'
-     */
-    Collection<E> getEdgesWithSourceAndTarget(V s, V t);
-
-    /**
-     * Get collection of edges that contain source vertices 'ss' and target vertices 'ts'
-     *
-     * @param ss Source vertices
-     * @param ts Target vertices
-     * @return Collection of edges that contain source vertices 'ss' and target vertices 'ts'
-     */
-    Collection<E> getEdgesWithSourcesAndTargets(Collection<V> ss, Collection<V> ts);
-
-    /**
      * Get collection of vertices that are predecessors to a given vertex
      *
      * @param v Vertex
      * @return Collection of predecessor vertices
      */
     Collection<V> getPredecessors(V v);
-
-    /**
-     * Get first arbitrary predecessor of the vertex
-     *
-     * @param v Vertex
-     * @return Arbitrary predecessor of vertex, <code>null</code> if it does not exist
-     */
-    V getFirstPredecessor(V v);
 
     /**
      * Get collection of vertices that are successors to a given vertex

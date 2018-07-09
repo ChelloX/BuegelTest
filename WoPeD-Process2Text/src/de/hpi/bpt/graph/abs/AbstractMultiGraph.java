@@ -18,16 +18,6 @@ public class AbstractMultiGraph<E extends IEdge<V>, V extends IVertex>
         implements IGraph<E, V> {
     /*
      * (non-Javadoc)
-     * @see de.hpi.bpt.graph.abs.IGraph#areAdjacent(de.hpi.bpt.hypergraph.abs.IVertex, de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    public boolean areAdjacent(V v1, V v2) {
-        E e = this.getEdge(v1, v2);
-
-        return e != null;
-    }
-
-    /*
-     * (non-Javadoc)
      * @see de.hpi.bpt.graph.abs.IGraph#getEdge(de.hpi.bpt.hypergraph.abs.IVertex, de.hpi.bpt.hypergraph.abs.IVertex)
      */
     public E getEdge(V v1, V v2) {
@@ -40,24 +30,6 @@ public class AbstractMultiGraph<E extends IEdge<V>, V extends IVertex>
         }
 
         return null;
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.AbstractMultiHyperGraph#addEdge(java.util.Collection)
-     */
-    @Override
-    public E addEdge(Collection<V> vs) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException();
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see de.hpi.bpt.hypergraph.abs.AbstractMultiHyperGraph#addEdge(de.hpi.bpt.hypergraph.abs.IVertex)
-     */
-    @Override
-    public E addEdge(V v) throws UnsupportedOperationException {
-        throw new UnsupportedOperationException();
     }
 
     /*

@@ -8,15 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public abstract class AbstractFragment {
-    private String action;
-    private String bo;
-    private String role;
-    private String addition;
-    private int fragmentType;
-    private HashMap<String, ModifierRecord> modList;
-
     public static final int TYPE_JOIN = 1;
     public static final List<String> DEM_PRONOUNS;
+    public static final List<String> PRONOUNS;
 
     static {
         DEM_PRONOUNS = new ArrayList<>();
@@ -26,8 +20,6 @@ public abstract class AbstractFragment {
         DEM_PRONOUNS.add("those");
     }
 
-    public static final List<String> PRONOUNS;
-
     static {
         PRONOUNS = new ArrayList<>();
         PRONOUNS.add("he");
@@ -35,37 +27,30 @@ public abstract class AbstractFragment {
         PRONOUNS.add("it");
     }
 
+    private final ArrayList<Integer> associatedActivities = new ArrayList<>();
     public boolean bo_replaceWithPronoun = false;
     public boolean bo_isSubject = false;
     public boolean bo_isPlural = false;
     public boolean bo_hasArticle = true;
     public boolean bo_hasIndefArticle = false;
-
     public boolean verb_IsPassive = false;
     public boolean verb_isParticiple = false;
     public boolean verb_isPast = false;
     public boolean verb_isNegated = false;
     public boolean verb_isImperative = false;
-
     public boolean add_hasArticle = true;
-
     public boolean sen_isCoord = true;
     public boolean sen_hasConnective = false;
     public boolean sen_hasBullet = false;
     public int sen_level = 0;
     public boolean sen_hasComma = false;
-
     public boolean role_isImperative = false;
-
-    private final ArrayList<Integer> associatedActivities = new ArrayList<>();
-
-    public ArrayList<Integer> getAssociatedActivities() {
-        return associatedActivities;
-    }
-
-    public void addAssociation(Integer id) {
-        associatedActivities.add(id);
-    }
+    private String action;
+    private String bo;
+    private String role;
+    private String addition;
+    private int fragmentType;
+    private HashMap<String, ModifierRecord> modList;
 
     AbstractFragment(String action, String bo, String role, String addition) {
         this.action = action;
@@ -83,6 +68,14 @@ public abstract class AbstractFragment {
         this.addition = addition;
         this.modList = modList;
         fragmentType = -1;
+    }
+
+    public ArrayList<Integer> getAssociatedActivities() {
+        return associatedActivities;
+    }
+
+    public void addAssociation(Integer id) {
+        associatedActivities.add(id);
     }
 
     public boolean hasBO() {
@@ -117,18 +110,6 @@ public abstract class AbstractFragment {
         return modList.get(mod).getTarget();
     }
 
-    public void setBo(String bo) {
-        this.bo = bo;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public void setAddition(String addition) {
-        this.addition = addition;
-    }
-
     public String getAction() {
         return action;
     }
@@ -137,11 +118,23 @@ public abstract class AbstractFragment {
         return bo;
     }
 
+    public void setBo(String bo) {
+        this.bo = bo;
+    }
+
     public String getRole() {
         return role;
     }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public String getAddition() {
         return addition;
+    }
+
+    public void setAddition(String addition) {
+        this.addition = addition;
     }
 }
