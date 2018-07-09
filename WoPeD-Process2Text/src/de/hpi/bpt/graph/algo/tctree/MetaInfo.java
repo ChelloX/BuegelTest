@@ -1,4 +1,5 @@
 package de.hpi.bpt.graph.algo.tctree;
+
 /**
  * @author Martin Mader
  * @author Christian Wiggert

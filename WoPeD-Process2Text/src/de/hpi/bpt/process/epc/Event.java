@@ -6,7 +6,6 @@ package de.hpi.bpt.process.epc;
  * @author Artem Polyvyanyy
  */
 public class Event extends FlowObject implements IEvent {
-
 	public Event() {
 		super();
 	}
@@ -27,5 +26,4 @@ public class Event extends FlowObject implements IEvent {
 	public FlowObjectType getType() {
 		return FlowObjectType.EVENT;
 	}
-
 }

@@ -1,19 +1,15 @@
 package de.hpi.bpt.process;
 
+abstract class Activity extends Node {
+    Activity() {
+        super();
+    }
 
-public abstract class Activity extends Node {
-	
-	public Activity() {
-		super();
-	}
+    Activity(String name, String desc) {
+        super(name, desc);
+    }
 
-	public Activity(String name, String desc) {
-		super(name, desc);
-	}
-
-	public Activity(String name) {
-		super(name);
-	}
-
-	
+    Activity(String name) {
+        super(name);
+    }
 }

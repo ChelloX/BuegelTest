@@ -23,6 +23,7 @@ public class ProcessToTextWebService {
     public ProcessToTextWebService() {
     }
 
+    @SuppressWarnings({"unused", "ResultOfMethodCallIgnored"})
     @WebMethod(
             operationName = "generateTextFromProcessSpecification"
     )

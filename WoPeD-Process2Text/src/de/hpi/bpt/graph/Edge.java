@@ -9,10 +9,10 @@ import de.hpi.bpt.hypergraph.abs.Vertex;
  * 
  * @author Artem Polyvyanyy
  */
-public class Edge extends AbstractEdge<Vertex>
+class Edge extends AbstractEdge<Vertex>
 {
 	@SuppressWarnings("unchecked")
-	protected Edge(AbstractMultiGraph g, Vertex v1, Vertex v2) {
+    Edge(AbstractMultiGraph g, Vertex v1, Vertex v2) {
 		super(g, v1, v2);
 	}	
 }

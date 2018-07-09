@@ -12,8 +12,7 @@ import org.w3c.dom.NodeList;
  *
  */
 public class ERDFObject implements IERDFObject {
-
-	Map<String, String> spans = new HashMap<String,String>();
+	private final Map<String, String> spans = new HashMap<>();
 	
 	/*
 	 * (non-Javadoc)
@@ -53,7 +52,4 @@ public class ERDFObject implements IERDFObject {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
-
 }

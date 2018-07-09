@@ -4,6 +4,7 @@ import textGenerator.TextGenerator;
 
 import java.util.*;
 
+@SuppressWarnings("ArraysAsListWithZeroOrOneArgument")
 public class Test {
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_RED = "\u001B[31m";
@@ -85,7 +86,7 @@ public class Test {
                 continue;
             }
 
-            if(result.isEmpty()) {
+            if (result.isEmpty()) {
                 System.out.println(TEST_FAILED + test.getKey() + " failed with no result.");
                 failed++;
                 continue;
@@ -103,8 +104,8 @@ public class Test {
         }
 
         System.out.println("\n=============================================");
-        System.out.println(TEST_SUCCESS + successful + " test successful.");
-        System.out.println(TEST_FAILED + failed + " test failed.");
+        System.out.println(TEST_SUCCESS + successful + " tests successful.");
+        System.out.println(TEST_FAILED + failed + " tests failed.");
         System.out.println(TEST_EXCEPTION + error + " test failed with exception.");
         System.out.println(ICON_SUM + (successful + failed + error) + " tests executed.");
 
@@ -124,8 +125,8 @@ public class Test {
     }
 
     private static boolean equals(String result, List<String> control) {
-        for(String c : control) {
-            if(result.equals(removeNewLinesAndSurroundingSpaces(c))) {
+        for (String c : control) {
+            if (result.equals(removeNewLinesAndSurroundingSpaces(c))) {
                 return true;
             }
         }
@@ -146,7 +147,7 @@ public class Test {
         }
 
         System.out.println("\tExpected one of: ");
-        for(String s : expected) {
+        for (String s : expected) {
             System.out.println("\t\t\t- " + s);
         }
         System.out.println("\tBut got:  " + actual);

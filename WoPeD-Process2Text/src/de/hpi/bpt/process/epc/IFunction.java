@@ -5,17 +5,18 @@ package de.hpi.bpt.process.epc;
  *
  * @author Artem Polyvyanyy
  */
-public interface IFunction extends IFlowObject {
-	
-	/**
-	 * Get function duration in milliseconds
-	 * @return Function duration
-	 */
-	public long getDuration();
-	
-	/**
-	 * Set function duration
-	 * @param duration Duration in milliseconds
-	 */
-	public void setDuration(long duration);
+interface IFunction extends IFlowObject {
+    /**
+     * Get function duration in milliseconds
+     *
+     * @return Function duration
+     */
+    long getDuration();
+
+    /**
+     * Set function duration
+     *
+     * @param duration Duration in milliseconds
+     */
+    void setDuration(long duration);
 }

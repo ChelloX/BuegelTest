@@ -1,6 +1,5 @@
 package textPlanning.recordClasses;
 
-import dataModel.process.ProcessModel;
 import de.hpi.bpt.graph.algo.rpst.RPST;
 import de.hpi.bpt.graph.algo.rpst.RPSTNode;
 import de.hpi.bpt.process.ControlFlow;
@@ -17,8 +16,7 @@ public class GatewayPropertyRecord {
     private final RPSTNode<ControlFlow, Node> node;
     private final RPST<ControlFlow, Node> rpst;
 
-
-    public GatewayPropertyRecord(RPSTNode<ControlFlow, Node> node, RPST<ControlFlow, Node> rpst, ProcessModel process) {
+    public GatewayPropertyRecord(RPSTNode<ControlFlow, Node> node, RPST<ControlFlow, Node> rpst) {
         this.node = node;
         this.rpst = rpst;
         setGatewayPropertyRecord();
@@ -46,19 +44,15 @@ public class GatewayPropertyRecord {
         hasYNArcs = true;
     }
 
-
     public int getMaxPathDepth() {
         return maxPathDepth;
     }
-
 
     public boolean isGatewayLabeled() {
         return isGatewayLabeled;
     }
 
-
     public boolean hasYNArcs() {
         return hasYNArcs;
     }
-
 }

@@ -6,7 +6,6 @@ package de.hpi.bpt.process.epc;
  *
  */
 public class System extends NonFlowObject implements ISystem {
-
 	public System() {
 		super();
 	}

@@ -22,11 +22,11 @@ public class AbstractDirectedGraph<E extends IDirectedEdge<V>, V extends IVertex
 	 */
 	@Override
 	public E addEdge(V s, V t) {
-		Collection<V> ss = new ArrayList<V>(); ss.add(s);
-		Collection<V> ts = new ArrayList<V>(); ts.add(t);
+		Collection<V> ss = new ArrayList<>(); ss.add(s);
+		Collection<V> ts = new ArrayList<>(); ts.add(t);
 		if (!this.checkEdge(ss,ts)) return null;
 		
-		return (E)(new AbstractDirectedEdge<V>(this,s,t));
+		return (E)(new AbstractDirectedEdge<>(this, s, t));
 	}
 	
 	@Override

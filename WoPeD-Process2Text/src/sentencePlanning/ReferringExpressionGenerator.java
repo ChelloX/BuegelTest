@@ -23,7 +23,7 @@ public class ReferringExpressionGenerator {
         this.lHelper = lHelper;
     }
 
-    public ArrayList<DSynTSentence> insertReferringExpressions(ArrayList<DSynTSentence> textPlan, ProcessModel process, boolean male) {
+    public ArrayList<DSynTSentence> insertReferringExpressions(ArrayList<DSynTSentence> textPlan, boolean male) {
         String prevRole = null;
         ExecutableFragment prevFragment = null;
         DSynTSentence prevSentence = null;
@@ -71,7 +71,6 @@ public class ReferringExpressionGenerator {
 
     // Checks WordNet HypernymTree whether "role" is a person
     private boolean isPerson(String role) {
-
         try {
             IndexWord word = lHelper.getDictionary().getIndexWord(POS.NOUN, role.toLowerCase());
             if (word != null) {

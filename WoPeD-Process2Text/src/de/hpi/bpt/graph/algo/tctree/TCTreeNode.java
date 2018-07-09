@@ -1,64 +1,61 @@
 package de.hpi.bpt.graph.algo.tctree;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import de.hpi.bpt.graph.abs.IEdge;
 import de.hpi.bpt.hypergraph.abs.IVertex;
 import de.hpi.bpt.hypergraph.abs.Vertex;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class TCTreeNode<E extends IEdge<V>, V extends IVertex> extends Vertex {
+    private TCType type = TCType.UNDEFINED;
+    private TCTreeSkeleton<E, V> skeleton;
+    private Collection<V> boundary = new ArrayList<>();
 
-	protected TCType type = TCType.UNDEFINED;
-	
-	protected TCTreeSkeleton<E,V> skeleton;
-	
-	protected Collection<V> boundary = new ArrayList<V>();
-	
-	/**
-	 * Constructor
-	 */
-	public TCTreeNode() {
-		super();
-	}
-	
-	/**
-	 * Constructor
-	 * @param name Node name
-	 */
-	public TCTreeNode(String name) {
-		super(name);
-	}
+    /**
+     * Constructor
+     */
+    TCTreeNode() {
+        super();
+    }
 
-	public TCType getType() {
-		return type;
-	}
+    /**
+     * Constructor
+     *
+     * @param name Node name
+     */
+    TCTreeNode(String name) {
+        super(name);
+    }
 
-	protected void setType(TCType type) {
-		this.type = type;
-	}
-	
-	public TCTreeSkeleton<E,V> getSkeleton() {
-		return this.skeleton;
-	}
+    public TCType getType() {
+        return type;
+    }
 
-	protected void setSkeleton(TCTreeSkeleton<E,V> skeleton) {
-		this.skeleton = skeleton;
-	}
-	
-	public Collection<V> getBoundaryNodes() {
-		return new ArrayList<V>(this.boundary);
-	}
+    void setType(TCType type) {
+        this.type = type;
+    }
 
-	protected void setBoundaryNodes(Collection<V> boundary) {
-		if (boundary == null || boundary.size()!=2) return;
-		
-		this.boundary = new ArrayList<V>(boundary);
-	}
-	
-	@Override
-	public String toString() {
-		return this.getName() + " " + this.getBoundaryNodes() + " - " + this.getSkeleton() + " - " + this.getSkeleton().getVirtualEdges();
-	}
+    public TCTreeSkeleton<E, V> getSkeleton() {
+        return this.skeleton;
+    }
 
+    void setSkeleton(TCTreeSkeleton<E, V> skeleton) {
+        this.skeleton = skeleton;
+    }
+
+    public Collection<V> getBoundaryNodes() {
+        return new ArrayList<>(this.boundary);
+    }
+
+    void setBoundaryNodes(Collection<V> boundary) {
+        if (boundary == null || boundary.size() != 2) return;
+
+        this.boundary = new ArrayList<>(boundary);
+    }
+
+    @Override
+    public String toString() {
+        return this.getName() + " " + this.getBoundaryNodes() + " - " + this.getSkeleton() + " - " + this.getSkeleton().getVirtualEdges();
+    }
 }

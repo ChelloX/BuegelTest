@@ -11,11 +11,11 @@ public class Vertex extends GObject implements IVertex
 		super();
 	}
 
-	public Vertex(String name, String desc) {
+	protected Vertex(String name, String desc) {
 		super(name, desc);
 	}
 
-	public Vertex(String name) {
+	protected Vertex(String name) {
 		super(name);
 	}
 }

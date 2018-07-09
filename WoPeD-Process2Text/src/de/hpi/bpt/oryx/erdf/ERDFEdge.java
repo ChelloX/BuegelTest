@@ -12,13 +12,12 @@ import de.hpi.bpt.graph.abs.AbstractMultiDirectedGraph;
  */
 public class ERDFEdge<V extends ERDFNode> extends AbstractDirectedEdge<V> implements IERDFObject {
 	
-	private IERDFObject obj = new ERDFObject();
+	private final IERDFObject obj = new ERDFObject();
 	
 	@SuppressWarnings("unchecked")
 	protected ERDFEdge(AbstractMultiDirectedGraph g, V source, V target) {
 		super(g, source, target);
 	}
-	
 	
 	/*
 	 * (non-Javadoc)

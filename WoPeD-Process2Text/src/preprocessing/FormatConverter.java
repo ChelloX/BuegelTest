@@ -14,10 +14,8 @@ import de.hpi.bpt.process.Process;
 import de.hpi.bpt.process.Task;
 
 public class FormatConverter {
-	
 	private HashMap<Integer, Element> converterMap;
 	private int newElems;
-	
 	
 	/**
 	 * Reconstructs the ProcessModel format from HPI Process Model after Rigid Structuring 
@@ -25,8 +23,8 @@ public class FormatConverter {
 	public ProcessModel transformFromRigidFormat(Process p) {
 		ProcessModel pm = new ProcessModel(0, "Structured Model");
 		
-		HashMap<String,Integer> idMap = new HashMap<String, Integer>();
-		HashMap<Integer,Element> elemMap = new HashMap<Integer, Element>();
+		HashMap<String,Integer> idMap = new HashMap<>();
+		HashMap<Integer,Element> elemMap = new HashMap<>();
 		newElems = 0;
 		
 		for (Task t: p.getTasks()) {
@@ -98,8 +96,8 @@ public class FormatConverter {
 	 */
 	public Process transformToRigidFormat(dataModel.process.ProcessModel pm) {
 		Process p = new Process();
-		converterMap = new HashMap<Integer, Element>();
-		HashMap <Integer, Node> elementMap = new HashMap<Integer, Node>();
+		converterMap = new HashMap<>();
+		HashMap <Integer, Node> elementMap = new HashMap<>();
 		
 		// Transform activities
 		for (dataModel.process.Activity a: pm.getActivites().values()) {
@@ -146,14 +144,12 @@ public class FormatConverter {
 		return p;
 	}
 	
-	
 	/**
 	 * Transforms given ProcessModel to HPI format
 	 */
 	public Process transformToRPSTFormat(dataModel.process.ProcessModel pm) {
-		
 		Process p = new Process();
-		HashMap <Integer, Node> elementMap = new HashMap<Integer, Node>();
+		HashMap <Integer, Node> elementMap = new HashMap<>();
 		
 		// Transform activities
 		for (dataModel.process.Activity a: pm.getActivites().values()) {

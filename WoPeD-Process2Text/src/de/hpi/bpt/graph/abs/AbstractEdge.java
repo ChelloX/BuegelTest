@@ -1,12 +1,11 @@
 package de.hpi.bpt.graph.abs;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-
 import de.hpi.bpt.hypergraph.abs.AbstractHyperEdge;
 import de.hpi.bpt.hypergraph.abs.IDirectedHyperEdge;
 import de.hpi.bpt.hypergraph.abs.IVertex;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Abstract edge implementation
@@ -18,11 +17,11 @@ import de.hpi.bpt.hypergraph.abs.IVertex;
  */
 public class AbstractEdge<V extends IVertex> extends AbstractHyperEdge<V> implements IEdge<V> {
 	
-	protected V v1;
-	protected V v2;
+	private V v1;
+	private V v2;
 	
 	@SuppressWarnings("unchecked")
-	private AbstractMultiGraph graph = null;
+	private AbstractMultiGraph graph;
 
 	@SuppressWarnings("unchecked")
 	protected AbstractEdge(AbstractMultiGraph g, V v1, V v2) {
@@ -47,8 +46,7 @@ public class AbstractEdge<V extends IVertex> extends AbstractHyperEdge<V> implem
 	 * @see de.hpi.bpt.graph.abs.IEdge#isSelfLoop()
 	 */
 	public boolean isSelfLoop() {
-		if (v1.equals(v2) && v1 != null && v2 != null) return true;
-		else return false;
+		return v1.equals(v2);
 	}
 
 	/*
@@ -61,21 +59,19 @@ public class AbstractEdge<V extends IVertex> extends AbstractHyperEdge<V> implem
 		if (v1 == null || v2 == null) return;
 		
 		if (!this.graph.isMultiGraph()) {
-			Collection<V> vs = new ArrayList<V>();
+			Collection<V> vs = new ArrayList<>();
 			vs.add(v1); vs.add(v2);
 			
 			Collection<IDirectedHyperEdge<V>> es = this.graph.getEdges(vs);
 			if (es.size()>0) {
-				Iterator<IDirectedHyperEdge<V>> i = es.iterator();
-				while (i.hasNext()) {
-					IDirectedHyperEdge<V> e = i.next();
-					if (e.getVertices().size()==2)
+				for (IDirectedHyperEdge<V> e : es) {
+					if (e.getVertices().size() == 2)
 						return;
 				}
 			}
 		}
 		
-		Collection<V> vs = new ArrayList<V>();
+		Collection<V> vs = new ArrayList<>();
 		vs.add(this.v1); vs.add(this.v2);
 		super.removeVertices(vs);
 		
@@ -85,20 +81,6 @@ public class AbstractEdge<V extends IVertex> extends AbstractHyperEdge<V> implem
 		this.v1 = v1;
 		this.v2 = v2;		
 	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see de.hpi.bpt.hypergraph.abs.AbstractHyperEdge#equals(java.lang.Object)
-	 */
-	/*@SuppressWarnings("unchecked")
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (!(obj instanceof AbstractEdge)) return false;
-		AbstractEdge<V> e = (AbstractEdge<V>) obj;
-		
-		return this.compareMultiSets(this.getVertices(), e.getVertices());
-	}*/
 	
 	/*
 	 * (non-Javadoc)

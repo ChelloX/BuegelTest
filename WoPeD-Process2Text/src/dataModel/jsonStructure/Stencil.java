@@ -1,14 +1,13 @@
 package dataModel.jsonStructure;
 
 public class Stencil {
+    private String id;
 
-	String id;
-	
-	public String getId() {
-		return id;
-	}
-	
-	public String toString() {
-		return id;
-	}
+    public String getId() {
+        return id;
+    }
+
+    public String toString() {
+        return id;
+    }
 }

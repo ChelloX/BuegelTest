@@ -1,11 +1,6 @@
 package de.hpi.bpt.hypergraph.abs;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Notification mechanism of edge updates to graph
@@ -16,26 +11,25 @@ import java.util.Set;
  * @param <V> Vertex type employed in the graph
  */
 public abstract class AbstractGraphNotifier<E extends IHyperEdge<V>, V extends IVertex> extends GObject {
-	
-	protected Map<V,Set<E>> vertices = new Hashtable<V, Set<E>>();
-	protected Map<E,Set<V>> edges = new Hashtable<E, Set<V>>();
+	protected final Map<V,Set<E>> vertices = new Hashtable<>();
+	final Map<E,Set<V>> edges = new Hashtable<>();
 	
 	/**
 	 * Index vertex in the edge
 	 * @param e Edge
 	 * @param v Vertex
 	 */
-	protected void addIndex(E e, V v) {
+    void addIndex(E e, V v) {
 		if (e == null || v == null) return;
 		if (!this.edges.containsKey(e))
-			this.edges.put((E) e,new HashSet<V>());
+			this.edges.put(e, new HashSet<>());
 			
 		this.edges.get(e).add(v);
 		
 		if (!this.vertices.containsKey(v))
-			this.vertices.put(v,new HashSet<E>());
+			this.vertices.put(v, new HashSet<>());
 			
-		this.vertices.get(v).add((E) e);
+		this.vertices.get(v).add(e);
 	}
 	
 	/**
@@ -43,11 +37,10 @@ public abstract class AbstractGraphNotifier<E extends IHyperEdge<V>, V extends I
 	 * @param e Edge
 	 * @param vs Collection of vertices
 	 */
-	protected void addIndex(E e, Collection<V> vs) {
+    void addIndex(E e, Collection<V> vs) {
 		if (e == null || vs == null) return;
-		Iterator<V> i = vs.iterator();
-		while (i.hasNext()) {
-			this.addIndex(e, i.next());
+		for (V v : vs) {
+			this.addIndex(e, v);
 		}
 	}
 	
@@ -56,7 +49,7 @@ public abstract class AbstractGraphNotifier<E extends IHyperEdge<V>, V extends I
 	 * @param e Edge
 	 * @param v Vertex
 	 */
-	protected void removeIndex(E e, V v) {
+    void removeIndex(E e, V v) {
 		if (e == null || v == null) return;
 		if (this.edges.containsKey(e))
 		{
@@ -80,11 +73,10 @@ public abstract class AbstractGraphNotifier<E extends IHyperEdge<V>, V extends I
 	 * @param e Edge
 	 * @param vs Collection of vertices
 	 */
-	protected void removeIndex(E e, Collection<V> vs) {
+    void removeIndex(E e, Collection<V> vs) {
 		if (e == null || vs == null) return;
-		Iterator<V> i = vs.iterator();
-		while (i.hasNext()) {
-			this.removeIndex(e, i.next());
+		for (V v : vs) {
+			this.removeIndex(e, v);
 		}
 	}
 }

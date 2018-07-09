@@ -1,22 +1,20 @@
 package de.hpi.bpt.process.epc;
 
-
 /**
  * Abstract non flow object implementation
  * @author Artem Polyvyanyy
  *
  */
 public abstract class NonFlowObject extends Node implements INonFlowObject {
-
-	public NonFlowObject() {
+	NonFlowObject() {
 		super();
 	}
 
-	public NonFlowObject(String name, String desc) {
+	NonFlowObject(String name, String desc) {
 		super(name, desc);
 	}
 
-	public NonFlowObject(String name) {
+	NonFlowObject(String name) {
 		super(name);
 	}
 

@@ -1,22 +1,20 @@
 package de.hpi.bpt.process.epc;
 
-
 /**
  * EPC flow object implementation
  * 
  * @author Artem Polyvyanyy
  */
 public abstract class FlowObject extends Node implements IFlowObject {
-
-	public FlowObject() {
+	FlowObject() {
 		super();
 	}
 
-	public FlowObject(String name, String desc) {
+	FlowObject(String name, String desc) {
 		super(name, desc);
 	}
 
-	public FlowObject(String name) {
+	FlowObject(String name) {
 		super(name);
 	}
 
