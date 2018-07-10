@@ -74,8 +74,7 @@ public class AbstractMultiGraph<E extends IEdge<V>, V extends IVertex>
      * (non-Javadoc)
      * @see de.hpi.bpt.hypergraph.abs.AbstractMultiHyperGraph#removeVertices(java.util.Collection)
      */
-    @Override
-    public Collection<V> removeVertices(Collection<V> vs) {
+    protected Collection<V> removeVertices(Collection<V> vs) {
         Collection<V> result = new ArrayList<>();
 
         for (V v : vs) {
