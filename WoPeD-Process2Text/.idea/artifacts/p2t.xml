@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="Process2TextWebService">
+  <artifact type="war" name="p2t">
     <output-path>$PROJECT_DIR$/build/war</output-path>
-    <root id="archive" name="Process2TextWebService.war">
+    <root id="archive" name="p2t.war">
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/web/META-INF/MANIFEST.MF" />
       </element>
