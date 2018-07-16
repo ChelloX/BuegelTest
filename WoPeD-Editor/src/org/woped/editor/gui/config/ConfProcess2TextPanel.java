@@ -558,7 +558,8 @@ public class ConfProcess2TextPanel extends AbstractConfPanel {
 		URL url = null;
 		String connection = "http://" + getServerURLText().getText() + ":"
 				+ getServerPortText().getText()
-				+ getManagerPathText().getText();
+				+ getManagerPathText().getText() + "?wsdl";
+		new Exception(connection).printStackTrace();
 		try {
 			url = new URL(connection);
 			URLConnection urlConnection = url.openConnection();
@@ -592,7 +593,7 @@ public class ConfProcess2TextPanel extends AbstractConfPanel {
 		URL url = null;
 		String connection = "http://" + getServerURLText_T2P().getText() + ":"
 				+ getServerPortText_T2P().getText()
-				+ getManagerPathText_T2P().getText();
+				+ getManagerPathText_T2P().getText() + "?wsdl";
 		try {
 			url = new URL(connection);
 			URLConnection urlConnection = url.openConnection();
