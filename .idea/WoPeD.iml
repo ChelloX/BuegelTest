@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WoPeD-BPELExport/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WoPeD-AProMoRe/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WoPeD-CommonLibs/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WoPeD-Configuration/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WoPeD-Core/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WoPeD-Editor/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WoPeD-FileInterface/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WoPeD-GUI/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WoPeD-ProcessMetrics/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WoPeD-QualAnalysis/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WoPeD-QuantAnalysis/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WoPeD-Starter/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WoPeD-UnitTests/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

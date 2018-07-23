@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="exploded-ear" name="WoPeD-Text2Process:javaEEApplication exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/WoPeD_Text2Process_javaEEApplication_exploded</output-path>
-    <root id="root">
-      <element id="javaee-facet-resources" facet="WoPeD-Text2Process/javaeeApplication/javaEEApplication" />
-      <element id="module-output" name="WoPeD-Text2Process" />
-    </root>
-  </artifact>
-</component>
