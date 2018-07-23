@@ -27,8 +27,8 @@
 /WoPeD-IZPack/
 
 # Intelij Idea Files
-.idea/
-*.iml
+#.idea/
+#*.iml
 log.md
 
 # Process2Text Output

@@ -43,6 +43,7 @@ public class T2PServlet extends HttpServlet {
                   -> reset the Instances accordingly, next request will trigger a reload*/
                 controller.resetNLPTools();
                 response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                writer.append(e.getMessage());
             }
             finally
              {
