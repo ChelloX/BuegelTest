@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="bin">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bin/stanford-parser-2010-08-16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/stanford-parser.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dom4j-1.6.1/dom4j-1.6.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
