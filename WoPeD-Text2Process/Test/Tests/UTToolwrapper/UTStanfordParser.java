@@ -40,5 +40,6 @@ public class UTStanfordParser {
 
         GrammaticalStructure grammar = analyzedText.getSentence(0).getGrammaticalStructure();
         assertEquals("Stanford Parser Analysis Issue: Grammar not analyzed correctly",true, 12==grammar.dependencies().size());
+        System.out.println("Stanford Parser works.");
     }
 }

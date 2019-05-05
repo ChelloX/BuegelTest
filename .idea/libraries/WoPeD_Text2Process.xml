@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="WoPeD-Text2Process">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/WoPeD_Text2Process_jar/WoPeD-Text2Process.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
