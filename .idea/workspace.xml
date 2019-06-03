@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d744383-901d-4b16-bd6f-2358ae1cdf01" name="Default Changelist" comment="Speech2Test Working Version 1">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/edu_mit_jwi_2_4_01.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sphinx4_core_5prealpha_20160628_232526_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sphinx4_data_5prealpha_20160628_232535_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/stanford_parser_2010_08_161.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-FileInterface/resources/sphinx4-core-5prealpha-20160628.232526-10.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-FileInterface/resources/sphinx4-data-5prealpha-20160628.232535-10.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/images/record.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-FileInterface/WoPeD-FileInterface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-FileInterface/WoPeD-FileInterface.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/T2PUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/T2PUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages_de.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/lib/jwnl14-rc2/jwnl14-rc2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/lib/jwnl14-rc2/jwnl14-rc2.iml" afterDir="false" />
+    <list default="true" id="4d744383-901d-4b16-bd6f-2358ae1cdf01" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/NLPTools/StanfordParser/stanford-corenlp-3.9.2-models.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/NLPTools/StanfordParser/stanford-corenlp-3.9.2.jar" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -317,8 +306,16 @@
       <workItem from="1559138882250" duration="2150000" />
       <workItem from="1559152929079" duration="1467000" />
       <workItem from="1559502997726" duration="2134000" />
-      <workItem from="1559541091494" duration="1852000" />
+      <workItem from="1559541091494" duration="2137000" />
     </task>
+    <task id="LOCAL-00001" summary="Speech2Test Working Version 1">
+      <created>1559544566669</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1559544566669</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -354,10 +351,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22884000" />
+    <option name="totallyTimeSpent" value="23169000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2803838" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
