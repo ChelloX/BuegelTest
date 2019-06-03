@@ -32,9 +32,12 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Port;
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -47,14 +50,20 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingWorker;
 
+import edu.cmu.sphinx.api.LiveSpeechRecognizer;
 import org.woped.core.controller.AbstractApplicationMediator;
 import org.woped.core.controller.IEditor;
-import org.woped.core.controller.IViewController;
 import org.woped.editor.controller.vc.EditorVC;
 import org.woped.file.PNMLImport;
 import org.woped.file.t2p.FileReader.NoFileException;
 import org.woped.gui.lookAndFeel.WopedButton;
 import org.woped.gui.translations.Messages;
+import edu.cmu.sphinx.api.Configuration;
+import edu.cmu.sphinx.api.SpeechResult;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author <a href="mailto:freytag@dhbw-karlsruhe.de">Thomas Freytag </a> <br>
@@ -76,6 +85,30 @@ public class T2PUI extends JDialog {
 	private SwingWorker<HttpResponse, Void> bgTask;
 	
 	private String inputText;
+
+	private boolean recordingFlag = false;
+
+	private WopedButton btnRecording;
+
+	private boolean initialStart = true;
+
+	private String result = "";
+
+	private LiveSpeechRecognizer recognizer;
+
+	private Configuration configuration;
+
+	private boolean speechRecognizerThreadRunning = false;
+
+	private boolean ignoreSpeechRecognitionResults = false;
+
+	private boolean resourcesThreadRunning;
+
+	private String speechRecognitionResult;
+
+	private ExecutorService eventsExecutorService = Executors.newFixedThreadPool(2);
+
+	private Logger logger = Logger.getLogger(getClass().getName());
 	
 	public T2PUI(AbstractApplicationMediator mediator) {
 		this(null, mediator);
@@ -133,6 +166,14 @@ public class T2PUI extends JDialog {
 			String lastTextInput = ((EditorVC) mediator.getViewControllers().get("EDITOR_VC_" + index)).getEditorPanel().getT2PText();
 			textArea.setText(lastTextInput);
 		}
+
+		logger.log(Level.INFO, "Loading Speech Recognizer...\n");
+		configuration = new Configuration();
+
+		configuration.setAcousticModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us");
+		configuration.setDictionaryPath("resource:/edu/cmu/sphinx/models/en-us/cmudict-en-us.dict");
+		configuration.setLanguageModelPath("resource:/edu/cmu/sphinx/models/en-us/en-us.lm.bin");
+
 	}
 	
 	
@@ -202,6 +243,18 @@ public class T2PUI extends JDialog {
 		btnUpload.setMnemonic(KeyEvent.VK_C);
 		btnUpload.setText(Messages.getString("T2PUI.Button.Read.Text"));
 		btnUpload.setIcon(new ImageIcon(getClass().getResource(Messages.getString("T2PUI.Button.Read.Icon"))));
+
+		btnRecording = new WopedButton(new AbstractAction() {
+			public void actionPerformed(ActionEvent arg0) {
+				recording();
+			}
+		});
+
+		btnRecording.setMnemonic(KeyEvent.VK_R);
+		btnRecording.setText(Messages.getString("T2PUI.Button.Record.Speech"));
+		btnRecording.setIcon(new ImageIcon(getClass().getResource(Messages.getString("T2PUI.Button.Record.Icon"))));
+
+		buttonPanel.add(btnRecording);
 		
 		buttonPanel.add(btnUpload);
 		buttonPanel.add(btnErase);
@@ -336,6 +389,7 @@ public class T2PUI extends JDialog {
 	}
 	
 	private void close() {
+		recognizer.stopRecognition();
 		this.dispose();
 	}
 
@@ -353,4 +407,124 @@ public class T2PUI extends JDialog {
 			showErrorPopUp("T2PUI.NoFile.Title", "T2PUI.NoFile.Text");
 		}
 	}
+
+	public void recording() {
+		if(recordingFlag == false) {
+			recordingFlag = true;
+			btnRecording.setText(Messages.getString("T2PUI.Button.Record.Stop"));
+
+			if(initialStart){
+                try{
+                    recognizer = new LiveSpeechRecognizer(configuration);
+                } catch(IOException io) {
+                    logger.log(Level.SEVERE, null, io);
+                }
+
+                startResourcesThread();
+                startSpeechRecognition();
+                initialStart = false;
+            } else {
+			    speechRecognizerThreadRunning = true;
+			    result = "";
+            }
+		} else {
+			recordingFlag = false;
+			btnRecording.setText(Messages.getString("T2PUI.Button.Record.Speech"));
+
+			speechRecognizerThreadRunning = false;
+			//recognizer.stopRecognition();
+			textArea.setText(result);
+		}
+	}
+
+	public synchronized void startSpeechRecognition() {
+
+		//Check lock
+		if (speechRecognizerThreadRunning)
+
+			logger.log(Level.INFO, "Speech Recognition Thread already running...\n");
+		else
+			//Submit to ExecutorService
+			eventsExecutorService.submit(() -> {
+
+				//locks
+				speechRecognizerThreadRunning = true;
+				ignoreSpeechRecognitionResults = false;
+
+				//Start Recognition
+				recognizer.startRecognition(true);
+
+				//Information
+				logger.log(Level.INFO, "You can start to speak...\n");
+
+				try {
+					while (speechRecognizerThreadRunning) {
+						/*
+						 * This method will return when the end of speech is reached. Note that the end pointer will determine the end of speech.
+						 */
+						SpeechResult speechResult = recognizer.getResult();
+
+						//Check if we ignore the speech recognition results
+						if (!ignoreSpeechRecognitionResults) {
+
+							//Check the result
+							if (speechResult == null)
+								logger.log(Level.INFO, "I can't understand what you said.\n");
+							else {
+
+								//Get the hypothesis
+								speechRecognitionResult = speechResult.getHypothesis();
+
+								//You said?
+								System.out.println("You said: [" + speechRecognitionResult + "]\n");
+								result+= speechRecognitionResult +" ";
+							}
+						} else
+							logger.log(Level.INFO, "Ingoring Speech Recognition Results...");
+
+					}
+				} catch (Exception ex) {
+					logger.log(Level.WARNING, null, ex);
+					speechRecognizerThreadRunning = false;
+				}
+
+				logger.log(Level.INFO, "SpeechThread has exited...");
+
+			});
+	}
+
+	/**
+	 * Starting a Thread that checks if the resources needed to the SpeechRecognition library are available
+	 */
+	public void startResourcesThread() {
+
+		//Check lock
+		if (resourcesThreadRunning)
+			logger.log(Level.INFO, "Resources Thread already running...\n");
+		else
+			//Submit to ExecutorService
+			eventsExecutorService.submit(() -> {
+				try {
+
+					//Lock
+					resourcesThreadRunning = true;
+
+					// Detect if the microphone is available
+					while (true) {
+
+						//Is the Microphone Available
+						if (!AudioSystem.isLineSupported(Port.Info.MICROPHONE))
+							logger.log(Level.INFO, "Microphone is not available.\n");
+
+						// Sleep some period
+						Thread.sleep(150);
+					}
+
+				} catch (InterruptedException ex) {
+					logger.log(Level.WARNING, null, ex);
+					resourcesThreadRunning = false;
+				}
+			});
+	}
+
 }
