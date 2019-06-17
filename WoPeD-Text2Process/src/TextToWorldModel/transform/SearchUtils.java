@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
+import edu.stanford.nlp.ling.IndexedWord;
 import worldModel.Action;
 import worldModel.SpecifiedElement;
 import worldModel.Specifier;
@@ -27,7 +28,7 @@ public class SearchUtils {
 	/**
 	 * 
 	 * Counts how many of the children Trees given in the list match one of the provided terms
-	 * @param terms
+	 * @param terms ArrayList of Strings which should be searched in the tree
 	 * @param childrenAsList
 	 * @return
 	 */
@@ -46,27 +47,27 @@ public class SearchUtils {
 	
 	/**
 	 * @param _dependencies
-	 * @param index
-	 * @param index2
+	 * @param start
+	 * @param end
 	 * @return
 	 */
 	public static List<TypedDependency> filter(
 			Collection<TypedDependency> _dependencies, int start, int end) {
 		ArrayList<TypedDependency> _result = new ArrayList<TypedDependency>();
 		for(TypedDependency td:_dependencies) {
-			if(td.reln().getShortName().equals("rcmod") ||
+			/*if(td.reln().getShortName().equals("rcmod") ||
 			   (( start <= td.gov().label().index() && (end >= td.gov().label().index())) 
 					&&
 			   ( start <= td.dep().label().index() && (end >= td.dep().label().index())))) {
 				_result.add(td);
-			}
+			}*/
 		}
 		return _result;
 	}
 
 	/**
-	 * @param string
-	 * @param typedDependenciesCollapsed
+	 * @param relName
+	 * @param dependencies
 	 * @return
 	 */
 	public static List<TypedDependency> findDependency(String relName,
@@ -94,8 +95,8 @@ public class SearchUtils {
 	}
 	
 	/**
-	 * @param string
-	 * @param typedDependenciesCollapsed
+	 * @param relNames
+	 * @param dependencies
 	 * @return
 	 */
 	public static List<TypedDependency> findDependency(List<String> relNames,
@@ -137,8 +138,8 @@ public class SearchUtils {
 	}
 
 	/**
-	 * @param string
-	 * @param _syntax
+	 * @param lookFor
+	 * @param t
 	 * @return
 	 */
 	public static List<Tree> find(String lookFor, Tree t) {
@@ -148,9 +149,9 @@ public class SearchUtils {
 	}
 	
 	/**
-	 * @param string
-	 * @param _syntax
-	 * @return
+	 * @param lookFor
+	 * @param t
+	 * @param excludeTags
 	 */
 	public static List<Tree> find(String lookFor, Tree t,List<String> excludeTags) {
 		ArrayList<String> _lf = new ArrayList<String>(1);
@@ -159,18 +160,18 @@ public class SearchUtils {
 	}
 	
 	/**
-	 * @param string
-	 * @param _syntax
-	 * @return
+	 * @param lookFor
+	 * @param t
+	 * @return List<Tree>
 	 */
 	public static List<Tree> find(List<String> lookFor, Tree t) {
 		return find(lookFor, t,null);
 	}
 	
 	/**
-	 * @param string
-	 * @param _syntax
-	 * @return
+	 * @param lookFor
+	 * @param t
+	 * @return List<Tree>
 	 */
 	public static List<Tree> find(List<String> lookFor, Tree t,List<String> excludeTags) {
 		List<Tree> _result = new ArrayList<Tree>();
@@ -180,7 +181,7 @@ public class SearchUtils {
 				_result.add(t);
 				_found = true;
 				break;
-			}//else
+			}
 		}
 		if(!_found) {
 			for(Tree child:t.children()) {
@@ -193,9 +194,9 @@ public class SearchUtils {
 	
 	/**
 	 * does not take the root node which is provided into account
-	 * @param string
-	 * @param _syntax
-	 * @return
+	 * @param lookFor
+	 * @param t
+	 * @return List<Tree>
 	 */
 	public static List<Tree> findChildren(List<String> lookFor, Tree t) {
 		List<Tree> _result = new ArrayList<Tree>();
@@ -211,7 +212,7 @@ public class SearchUtils {
 	 * 
 	 * @param to
 	 * @param actions 
-	 * @return
+	 * @return Action
 	 */
 	public static Action getAction(SpecifiedElement to, List<Action> actions) {
 		if(to instanceof Action) {
@@ -258,20 +259,19 @@ public class SearchUtils {
 		return false;
 	}
 
-	public static String getFullNounPhrase(TreeGraphNode node) {
-		return getFullPhrase("NP", node);
+	public static String getFullNounPhrase(Tree node, Tree f_root) {
+		return getFullPhrase("NP", node, f_root);
 	}
 	
-	public static String getFullPhrase(String type, TreeGraphNode node) {
-		Tree _subject = getFullPhraseTree(type, node);
+	public static String getFullPhrase(String type, Tree node, Tree f_root) {
+		Tree _subject = getFullPhraseTree(type, node, f_root);
 		return PrintUtils.toString(_subject.getLeaves());
 	}
 
-	public static Tree getFullPhraseTree(String type, TreeGraphNode node) {		
-		TreeGraphNode _subject = node;
+	public static Tree getFullPhraseTree(String type, Tree _subject, Tree f_root) {
 		boolean going_up = true;
-		while((going_up) || _subject.parent().label().value().equals(type)) {
-			_subject = (TreeGraphNode)_subject.parent();
+		while((going_up) || _subject.parent(f_root).label().value().equals(type)) {
+			_subject = _subject.parent(f_root);
 			if(_subject == null) {
 				return null;
 			}
@@ -345,9 +345,10 @@ public class SearchUtils {
 	}
 
 	/**
-	 * @param from
-	 * @param _dobj
-	 * @return
+	 * @param verb
+	 * @param dep
+	 * @param smaller
+	 * @return List<TypedDependency>
 	 */
 	public static List<TypedDependency> filterByIndex(Action verb,List<TypedDependency> dep,boolean smaller) {
 		List<TypedDependency> _result = new ArrayList<TypedDependency>(); 
@@ -361,10 +362,10 @@ public class SearchUtils {
 
 	/**
 	 * @param gov
-	 * @param dependencies
+	 * @param dep
 	 * @return
 	 */
-	public static List<TypedDependency> filterByGov(TreeGraphNode gov,Collection<TypedDependency> dep) {
+	public static List<TypedDependency> filterByGov(IndexedWord gov,Collection<TypedDependency> dep) {
 		List<TypedDependency> _result = new ArrayList<TypedDependency>(); 
 		for(TypedDependency td:dep) {				
 			if(gov.index() == td.gov().index()) {

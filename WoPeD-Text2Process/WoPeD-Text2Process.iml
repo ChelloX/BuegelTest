@@ -280,15 +280,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="stanford-parser-2010-08-16.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/NLPTools/StanfordParser/stanford-parser-2010-08-16.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="FrameNetReader.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/NLPTools/FrameNet/FrameNetReader.jar!/" />
@@ -315,5 +306,24 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/NLPTools/StanfordParser/stanford-corenlp-3.9.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/NLPTools/StanfordParser/stanford-corenlp-3.9.2-models.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="stanford-corenlp-3.9.2-javadoc" level="project" />
   </component>
 </module>

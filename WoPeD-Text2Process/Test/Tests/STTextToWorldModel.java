@@ -23,7 +23,7 @@ public class STTextToWorldModel extends T2PScenarioTest {
     @Test
     public void evaluateWorldModelBuild() {
         filePath = System.getProperty("user.dir");
-        filePath=filePath+"/TestData/";
+        filePath=filePath+"/WoPeD-Text2Process/TestData/";
         WorldModelBuilder WMbuilder;
         for(int i=0;i<TestExamples.length;i++){
             printInfo(i,TestExamples[i]);

@@ -33,7 +33,7 @@ public class STTextToProcess extends T2PScenarioTest {
     @Test
     public void evaluateT2P() throws InterruptedException, InvalidInputException {
         filePath = System.getProperty("user.dir");
-        filePath = filePath + "/TestData/";
+        filePath = filePath + "/WoPeD-Text2Process/TestData/";
 
         WorldModelBuilder WMbuilder;
         PetrinetBuilder PNbuilder;

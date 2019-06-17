@@ -1,8 +1,6 @@
 <component name="libraryTable">
   <library name="stanford-parser-2010-08-16">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/WoPeD-Text2Process/NLPTools/StanfordParser/stanford-parser-2010-08-16.jar!/" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>
