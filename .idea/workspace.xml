@@ -2,26 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d744383-901d-4b16-bd6f-2358ae1cdf01" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/JWNLResource_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/JWNLResource_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/PrincetonResource_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/PrincetonResource_en.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/WordNet-3.0/lib/wnres/license.txt" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/WordNet-3.0/lib/wnres/license.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/WordNet-3.0/lib/wnres/wnb.man" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/WordNet-3.0/lib/wnres/wnb.man" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/WordNet-3.0/lib/wnres/wngloss.man" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/WordNet-3.0/lib/wnres/wngloss.man" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/data/list/package.html" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/data/list/package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/data/package.html" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/data/package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/data/relationship/package.html" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/data/relationship/package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/dictionary/file/package.html" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/dictionary/file/package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/dictionary/file_manager/package.html" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/dictionary/file_manager/package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/dictionary/package.html" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/dictionary/package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/princeton/data/package.html" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/princeton/data/package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/princeton/file/package.html" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/princeton/file/package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/util/cache/package.html" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/util/cache/package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/util/factory/package.html" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/util/factory/package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/util/package.html" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/bin/net/didion/jwnl/util/package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/UTToolwrapper/UTStanfordParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/UTToolwrapper/UTStanfordParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/rrabieyan.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_14.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_16.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_16_revised.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_17.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_17_revised.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_18.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_19.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_20_revised.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_20_revised1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_21.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_22.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_23.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_25.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_26.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_27.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_28.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_29.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_3_revised.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_9.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/STTextToProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/STTextToProcess.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/WoPeD-Text2Process.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/WoPeD-Text2Process.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/WorldModelToPetrinet/PetrinetBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/WorldModelToPetrinet/PetrinetBuilderTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,52 +52,12 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/STTextToWorldModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-              <folding>
-                <element signature="e#2937#2953#0" expanded="true" />
-                <element signature="e#5980#5988#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/STTextToProcess.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-768">
-              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/T2PWebservice/InvalidInputException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/T2PWebservice/T2PController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-485">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/T2PWebservice/T2PServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+            <state relative-caret-position="170">
+              <caret line="25" column="59" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -88,51 +66,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/SentenceWordID.java">
+        <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_29.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserFunctionality.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/Flow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/WorldModelToPetrinet/PetrinetBuilderTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/WordNetInitializer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="23" column="36" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="36" />
+            <state relative-caret-position="21114">
+              <caret line="1242" column="15" selection-start-line="1242" selection-start-column="15" selection-end-line="1242" selection-end-column="15" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>ta</find>
+      <find>departure level reached</find>
+      <find>boarding pass received</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -143,28 +92,124 @@
         <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserInitializer.java" />
         <option value="$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/UTToolwrapper/UTStanfordParser.java" />
         <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/WorldModelToPetrinet/PetrinetBuilderTest.java" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/Test1.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_3.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_1.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_17.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_18.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_20.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_3_revised.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_20_revised.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_20_revised1.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_17_revised.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_2.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_4.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_5.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_6.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_7.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_8.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_9.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_10.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_11.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_12.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_14.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_13.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_15.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_16.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_16_revised.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_19.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_21.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_22.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_23.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_24.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_25.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_26.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_27.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_28.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_29.xml" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/STTextToProcess.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1680" />
-    <option name="height" value="1050" />
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-9" />
+    <option name="width" value="1212" />
+    <option name="height" value="1101" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="woped-code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-FileInterface" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-FileInterface" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-FileInterface" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-FileInterface" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
+              <item name="t2p" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
               <item name="WoPeD-Text2Process" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="woped-code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-Text2Process" type="462c0819:PsiDirectoryNode" />
+              <item name="NLPTools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-Text2Process" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-Text2Process" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="T2PWebservice" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-Text2Process" type="462c0819:PsiDirectoryNode" />
+              <item name="Test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-Text2Process" type="462c0819:PsiDirectoryNode" />
+              <item name="Test" type="462c0819:PsiDirectoryNode" />
+              <item name="Tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
               <item name="WoPeD-Text2Process" type="462c0819:PsiDirectoryNode" />
               <item name="TestData" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -172,15 +217,20 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561112711200" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\rrabieyan\IdeaProjects\code\WoPeD-Text2Process\TestData" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -194,7 +244,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.PetrinetBuilderTest">
+  <component name="RunManager" selected="JUnit.STTextToProcess">
     <configuration name="PetrinetBuilderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="WorldModelToPetrinet.PetrinetBuilderTest" />
       <module name="WoPeD-Text2Process" />
@@ -270,10 +320,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.STTextToProcess" />
         <item itemvalue="Application.PetrinetBuilderTest" />
         <item itemvalue="JUnit.STTextToWorldModel" />
         <item itemvalue="JUnit.STWorldModelToPetriNet" />
-        <item itemvalue="JUnit.STTextToProcess" />
         <item itemvalue="JUnit.UTWordnet" />
       </list>
     </recent_temporary>
@@ -290,57 +340,74 @@
       <updated>1557085509764</updated>
       <workItem from="1557085511769" duration="441000" />
       <workItem from="1557086031016" duration="1727000" />
+      <workItem from="1557135551877" duration="3096000" />
+      <workItem from="1557727865898" duration="2264000" />
+      <workItem from="1558855749586" duration="11094000" />
+      <workItem from="1558941663578" duration="2915000" />
+      <workItem from="1558966136648" duration="2699000" />
+      <workItem from="1559234737302" duration="456000" />
+      <workItem from="1559235576910" duration="3442000" />
+      <workItem from="1559289253455" duration="6075000" />
+      <workItem from="1560420990544" duration="8790000" />
+      <workItem from="1560499318022" duration="3242000" />
+      <workItem from="1560503560465" duration="4635000" />
+      <workItem from="1560756552000" duration="1119000" />
+      <workItem from="1561023998077" duration="6805000" />
+      <workItem from="1561052511129" duration="18099000" />
+      <workItem from="1561360504749" duration="489000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="UTStanfordParser - 2019.05.05 at 22h 00m 37s.xml">
-      <configuration name="UTStanfordParser" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="UTStanfordParser - 2019.05.05 at 22h 02m 42s.xml">
-      <configuration name="UTStanfordParser" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="UTStanfordParser - 2019.05.05 at 22h 04m 33s.xml">
-      <configuration name="UTStanfordParser" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="UTWordnet - 2019.05.05 at 22h 05m 07s.xml">
-      <configuration name="UTWordnet" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="UTStanfordParser - 2019.05.05 at 22h 05m 26s.xml">
-      <configuration name="UTStanfordParser" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="UTStanfordParser - 2019.05.05 at 22h 06m 41s.xml">
-      <configuration name="UTStanfordParser" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="UTWordnet - 2019.05.05 at 22h 06m 58s.xml">
-      <configuration name="UTWordnet" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="STTextToProcess - 2019.05.05 at 22h 13m 07s.xml">
+    <history-entry file="STTextToProcess - 2019.06.21 at 10h 58m 36s.xml">
       <configuration name="STTextToProcess" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="STWorldModelToPetriNet - 2019.05.05 at 22h 14m 09s.xml">
-      <configuration name="STWorldModelToPetriNet" configurationId="JUnit" />
+    <history-entry file="STTextToProcess - 2019.06.21 at 11h 02m 36s.xml">
+      <configuration name="STTextToProcess" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="STTextToWorldModel - 2019.05.05 at 22h 15m 44s.xml">
-      <configuration name="STTextToWorldModel" configurationId="JUnit" />
+    <history-entry file="STTextToProcess - 2019.06.21 at 11h 08m 38s.xml">
+      <configuration name="STTextToProcess" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="STTextToProcess - 2019.06.21 at 11h 21m 08s.xml">
+      <configuration name="STTextToProcess" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="STTextToProcess - 2019.06.21 at 11h 25m 40s.xml">
+      <configuration name="STTextToProcess" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="STTextToProcess - 2019.06.21 at 11h 38m 12s.xml">
+      <configuration name="STTextToProcess" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="STTextToProcess - 2019.06.21 at 11h 41m 16s.xml">
+      <configuration name="STTextToProcess" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="STTextToProcess - 2019.06.21 at 11h 54m 30s.xml">
+      <configuration name="STTextToProcess" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="STTextToProcess - 2019.06.21 at 12h 01m 02s.xml">
+      <configuration name="STTextToProcess" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="STTextToProcess - 2019.06.21 at 12h 08m 53s.xml">
+      <configuration name="STTextToProcess" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2168000" />
+    <option name="totallyTimeSpent" value="77388000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25274727" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2194332" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info id="Image Layers" order="6" />
+      <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32959184" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4270941" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -349,14 +416,14 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.29081634" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.29057187" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
       <window_info anchor="bottom" id="Version Control" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24939272" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.32955465" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="CDI" order="6" />
@@ -364,6 +431,41 @@
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Theme Preview" order="9" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29042554" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Capture Tool" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Image Layers" order="6" />
+      <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24715616" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.29057187" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24939272" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.32955465" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="CDI" order="6" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -390,72 +492,111 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/T2PScenarioTest.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserInitializer.java">
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/DummyAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="64" column="65" selection-start-line="64" selection-start-column="65" selection-end-line="64" selection-end-column="65" />
+        <state relative-caret-position="85">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/UTToolwrapper/UTStanfordParser.java">
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/Configuration.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="42" column="50" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/UTToolwrapper/UTWordnet.java">
+    <entry file="file://$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/T2PUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="2125">
+          <caret line="182" column="8" selection-start-line="182" selection-start-column="8" selection-end-line="182" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/WordNetInitializer.java">
+    <entry file="file://$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/PlainTextFileReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="23" column="36" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="36" />
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Resource_Bike_Manufacturing.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22134">
+          <caret line="1302" column="68" selection-start-line="1302" selection-start-column="68" selection-end-line="1302" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/Test1.xml" />
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_3.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="520" selection-start-line="3" selection-start-column="520" selection-end-line="3" selection-end-column="520" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/HttpRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/JTextAreaWithHint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/STTextToWorldModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
+        <state relative-caret-position="-1768">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding>
-            <element signature="e#2937#2953#0" expanded="true" />
-            <element signature="e#5980#5988#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/STTextToProcess.java">
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/STWorldModelToPetriNet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-768">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        <state relative-caret-position="-646">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/T2PWebservice/InvalidInputException.java">
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/T2PScenarioTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="-1105">
+          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/T2PWebservice/T2PController.java">
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/T2PTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-485">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="25">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/T2PUnitTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/diff_match_patch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4250">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/T2PWebservice/T2PServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
+        <state>
           <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -463,31 +604,248 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/SentenceWordID.java">
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Ressource_Hotel_Service.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state relative-caret-position="-414" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_17.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="702" column="23" selection-start-line="702" selection-start-column="23" selection-end-line="702" selection-end-column="23" />
+          <folding>
+            <element signature="e#3272#3277#0" expanded="true" />
+            <element signature="e#7778#7783#0" expanded="true" />
+            <element signature="e#16087#16092#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserFunctionality.java">
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_20.xml" />
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_3_revised.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state relative-caret-position="185">
+          <caret line="555" column="15" selection-start-line="555" selection-start-column="15" selection-end-line="555" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/Flow.java">
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_20_revised.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="786">
+          <caret line="1011" column="15" selection-start-line="1011" selection-start-column="15" selection-end-line="1011" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/WorldModelToPetrinet/PetrinetBuilderTest.java">
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_20_revised1.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        <state relative-caret-position="326">
+          <caret line="944" column="15" selection-start-line="944" selection-start-column="15" selection-end-line="944" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_1.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14042">
+          <caret line="826" column="13" selection-start-line="826" selection-start-column="13" selection-end-line="826" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_17_revised.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="841">
+          <caret line="944" column="15" selection-start-line="944" selection-start-column="15" selection-end-line="944" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="406" column="15" selection-start-line="406" selection-start-column="15" selection-end-line="406" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_4.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="332" column="15" selection-start-line="332" selection-start-column="15" selection-end-line="332" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_5.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="674" column="27" lean-forward="true" selection-start-line="674" selection-start-column="27" selection-end-line="674" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_6.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="778" column="15" selection-start-line="778" selection-start-column="15" selection-end-line="778" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_7.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="460" column="15" selection-start-line="460" selection-start-column="15" selection-end-line="460" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_8.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="531" column="15" selection-start-line="531" selection-start-column="15" selection-end-line="531" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_9.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="691" column="15" lean-forward="true" selection-start-line="691" selection-start-column="15" selection-end-line="691" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_10.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="366" column="15" selection-start-line="366" selection-start-column="15" selection-end-line="366" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_11.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="836" column="15" selection-start-line="836" selection-start-column="15" selection-end-line="836" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_12.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="758" column="15" selection-start-line="758" selection-start-column="15" selection-end-line="758" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_14.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="565" column="15" selection-start-line="565" selection-start-column="15" selection-end-line="565" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_13.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="973" column="15" selection-start-line="973" selection-start-column="15" selection-end-line="973" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_15.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="673" column="14" selection-start-line="673" selection-start-column="14" selection-end-line="673" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_16.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="968">
+          <caret line="932" column="15" selection-start-line="932" selection-start-column="15" selection-end-line="932" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_16_revised.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="896" column="15" selection-start-line="896" selection-start-column="15" selection-end-line="896" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_18.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1836">
+          <caret line="3" column="506" selection-start-line="3" selection-start-column="506" selection-end-line="3" selection-end-column="506" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_19.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="905" column="15" selection-start-line="905" selection-start-column="15" selection-end-line="905" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_21.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="543" column="15" selection-start-line="543" selection-start-column="15" selection-end-line="543" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_22.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="771" column="15" selection-start-line="771" selection-start-column="15" selection-end-line="771" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_23.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="1679" column="15" selection-start-line="1679" selection-start-column="15" selection-end-line="1679" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_24.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="619" column="15" selection-start-line="619" selection-start-column="15" selection-end-line="619" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_25.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="878" column="15" selection-start-line="878" selection-start-column="15" selection-end-line="878" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_26.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="1977" column="15" selection-start-line="1977" selection-start-column="15" selection-end-line="1977" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_27.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="2676" column="15" selection-start-line="2676" selection-start-column="15" selection-end-line="2676" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_28.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="764" column="15" selection-start-line="764" selection-start-column="15" selection-end-line="764" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/STTextToProcess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="25" column="59" selection-start-line="25" selection-start-column="59" selection-end-line="25" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_29.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21114">
+          <caret line="1242" column="15" selection-start-line="1242" selection-start-column="15" selection-end-line="1242" selection-end-column="15" />
         </state>
       </provider>
     </entry>
