@@ -23,7 +23,7 @@ import static org.junit.Assert.assertEquals;
 
 public class STTextToProcess extends T2PScenarioTest {
 
-    private static String [] TestExamples ={"ST_Testfall_29.xml"};
+    private static String [] TestExamples ={"ST_Testfall_4.xml"};
     private final static double acceptanceThreshold = 0.4;
     private static final String [] ELEMENT_TYPE_PLACE = {"places","place"};
     private static final String [] ELEMENT_TYPE_TRANSITION ={"transitions","transition"};
