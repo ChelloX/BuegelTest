@@ -86,9 +86,9 @@ public class StanfordParserFunctionality {
             _s.setTree(tree);
 
             GrammaticalStructure gs = gsf.newGrammaticalStructure(tree);
-            System.out.println("enhanced: "+gs.typedDependenciesEnhancedPlusPlus());
-            System.out.println(tree);
-            System.out.println(posTags);
+            //System.out.println("enhanced: "+gs.typedDependenciesEnhancedPlusPlus());
+            //System.out.println(tree);
+            //System.out.println(posTags);
             _s.setGrammaticalStructure(gs);
 
             _result.addSentence(_s);

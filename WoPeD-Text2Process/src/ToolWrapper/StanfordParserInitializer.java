@@ -39,8 +39,9 @@ public class StanfordParserInitializer {
         try{
             Properties props = new Properties();
 
-            props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner,parse,dcoref");
+            props.setProperty("annotators", "tokenize,ssplit,pos,lemma,ner,parse,depparse,dcoref");
             props.setProperty("parse.model", "edu/stanford/nlp/models/lexparser/englishPCFG.ser.gz");
+            props.setProperty("depparse.model", "edu/stanford/nlp/models/parser/nndep/english_UD.gz");
             pipeline = new StanfordCoreNLP(props);
             tlp = new PennTreebankLanguagePack();
             gsf = tlp.grammaticalStructureFactory();

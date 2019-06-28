@@ -13,7 +13,6 @@ import ToolWrapper.WordNetFunctionality;
 import TextToWorldModel.processing.ProcessingUtils;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.IndexedWord;
-import edu.stanford.nlp.pipeline.CoreDocument;
 import worldModel.T2PSentence;
 import worldModel.Action;
 import worldModel.Actor;
@@ -23,15 +22,23 @@ import worldModel.SpecifiedElement;
 import worldModel.Specifier;
 import worldModel.Specifier.SpecifierType;
 import edu.stanford.nlp.trees.Tree;
-import edu.stanford.nlp.trees.TreeGraphNode;
 import edu.stanford.nlp.trees.TypedDependency;
 
 public class ElementsBuilder {
-	
-	public static Actor createActor(Tree f_root, T2PSentence origin, List<Tree> fullSentence, IndexedWord indexedWord, Collection<TypedDependency> dependencies) {
+
+    /**
+     * Creates an Actor object out of the extracted subject
+     * @param f_root Tree structure of the whole sentence with the root node included
+     * @param origin original T2P sentence
+     * @param fullSentence Tree structure of the whole sentence without the root node
+     * @param determinedActor ActorWord that had been extracted from the sentence
+     * @param dependencies Collection of all TypedDependencies of the sentence
+     * @return created Actor _a
+     */
+	public static Actor createActor(Tree f_root, T2PSentence origin, List<Tree> fullSentence, IndexedWord determinedActor, Collection<TypedDependency> dependencies) {
 		Actor _a = null;
-		Tree node = fullSentence.get(indexedWord.index()-1);
-		String _fullNoun = getFullNoun(indexedWord, dependencies);
+		Tree node = fullSentence.get(determinedActor.index()-1);
+		String _fullNoun = getFullNoun(determinedActor, dependencies);
 		WordNetFunctionality wnf = new WordNetFunctionality();
 		if(!wnf.canBePersonOrSystem(_fullNoun, node.value().toLowerCase())) {
 			//try to extract the real actor here?
@@ -49,29 +56,49 @@ public class ElementsBuilder {
 				}
 			}
 			if(_a == null) {
-				_a = createActorInternal(f_root, origin, fullSentence, indexedWord,dependencies);
+				_a = createActorInternal(f_root, origin, fullSentence, determinedActor,dependencies);
 				_a.setUnreal(true);
 			}
 		}else {
-			_a = createActorInternal(f_root, origin, fullSentence, indexedWord, dependencies);
+			_a = createActorInternal(f_root, origin, fullSentence, determinedActor, dependencies);
 		}
 		if(Constants.DEBUG_EXTRACTION) System.out.println("Identified actor: "+_a);
 		return _a;
 	}
 
-	private static Actor createActorInternal(Tree f_root, T2PSentence origin,
-			 List<Tree> fullSentence, IndexedWord indexedWord,
+    /**
+     * Creates an Actor object out of the extracted subject
+     * @param f_root Tree structure of the whole sentence with the root node included
+     * @param origin original T2P sentence
+     * @param fullSentence Tree structure of the whole sentence without the root node
+     * @param determinedActor ActorWord that had been extracted from the sentence
+     * @param dependencies Collection of all TypedDependencies of the sentence
+     * @return created Actor _a
+     */
+	private static Actor createActorInternal(Tree f_root, T2PSentence origin, List<Tree> fullSentence, IndexedWord determinedActor,
 			Collection<TypedDependency> dependencies) {
-		Actor _a = new Actor(origin,indexedWord.index(),indexedWord.value().toLowerCase());
+		Actor _a = new Actor(origin,determinedActor.index(),determinedActor.value().toLowerCase());
 		WordNetFunctionality wnf = new WordNetFunctionality();
-		determineNounSpecifiers(f_root, origin, fullSentence, indexedWord, dependencies, _a);
-		if(wnf.isMetaActor(getFullNoun(indexedWord, dependencies),indexedWord.value())) {
+		determineNounSpecifiers(f_root, origin, fullSentence, determinedActor, dependencies, _a);
+		if(wnf.isMetaActor(getFullNoun(determinedActor, dependencies),determinedActor.value())) {
 			_a.setMetaActor(true);
 		}	
 		return _a;
 	}
 
+    /**
+     * Creates an Action object out of the extracted subject
+     * @param f_root Tree structure of the whole sentence with the root node included
+     * @param origin original T2P sentence
+     * @param fullSentence Tree structure of the whole sentence without the root node
+     * @param node Treenode of the extracted verb
+     * @param dependencies Collection of all TypedDependencies of the sentence
+     * @param active indicates if the sentence is a passive or active sentence
+     * @return created Action _result
+     */
 	public static Action createAction(T2PSentence origin, List<Tree> fullSentence, Tree node,Collection<TypedDependency> dependencies,boolean active, Tree f_root) {
+	    CoreLabel label = (CoreLabel) node.label();
+	    node.setValue(label.lemma());
 	    Action _result = new Action(origin,origin.indexOf(node),node.value());
 		//search for an auxiliary verb
 		String _aux = getAuxiliaries(node, dependencies);
@@ -105,16 +132,16 @@ public class ElementsBuilder {
 		List<TypedDependency> _toCheck = SearchUtils.findDependency(ListUtils.getList("xcomp","dep"),dependencies);
 		for(TypedDependency td:_toCheck) {
 			if(td.gov().equals(node)) {
-				TreeGraphNode _xcompNode = null;
+				Tree _xcompNode = null;
 				if(td.reln().getShortName().equals("dep")) {
 					//only consider verbs and forwards dependencies
-					_xcompNode = new TreeGraphNode(td.dep(), fullSentence);
-					if(!_xcompNode.parent().value().startsWith("V") || (_xcompNode.index()<td.gov().index())) {
+					_xcompNode = fullSentence.get(td.dep().index()-1);
+					if(!_xcompNode.parent(f_root).value().startsWith("V") || (td.dep().index()<td.gov().index())) {
 						continue;
 					}
 				}
-				Action _xcomp = createAction(origin, fullSentence, _xcompNode, dependencies, true, f_root);
-				_result.setXcomp(_xcomp);
+					Action _xcomp = createAction(origin, fullSentence, _xcompNode, dependencies, true, f_root);
+					_result.setXcomp(_xcomp);
 				break;
 			}
 		}
@@ -127,12 +154,13 @@ public class ElementsBuilder {
 		return _result;
 	}
 
-	/**
-	 * @param node
-	 * @param dependencies
-	 * @param fullSentence 
-	 * @return
-	 */
+    /**
+     * Checks sentence for dobj dependencies
+     * @param origin original T2P sentence
+     * @param fullSentence Tree structure of the whole sentence without the root node
+     * @param node Treenode of the extracted verb
+     * @param dependencies Collection of all TypedDependencies of the sentence
+     */
 	private static void checkDobj(Tree node, Collection<TypedDependency> dependencies,Action result,T2PSentence origin, List<Tree> fullSentence) {
 		List<String> _lookFor = ListUtils.getList("dobj");
 		List<TypedDependency> _toCheck = SearchUtils.findDependency(_lookFor,dependencies);
@@ -148,10 +176,10 @@ public class ElementsBuilder {
 		}		
 	}
 
-	/**
-	 * @param node
-	 * @param dependencies
-	 * @return
+	/**Checks sentence for cop dependencies
+	 * @param node Treenode of the extracted verb
+	 * @param dependencies Collection of all TypedDependencies of the sentence
+	 * @return IndexedWord of the node that has a cop dependency to the node
 	 */
 	private static IndexedWord getCop(Tree node, Collection<TypedDependency> dependencies) {
 		List<TypedDependency> _toCheck = SearchUtils.findDependency(ListUtils.getList("cop"),dependencies);
@@ -165,8 +193,8 @@ public class ElementsBuilder {
 	}
 	
 	/**
-	 * @param node
-	 * @param dependencies
+	 * @param node Treenode of the extracted verb
+	 * @param dependencies Collection of all TypedDependencies of the sentence
 	 * @return
 	 */
 	private static String getPrt(Tree node, Collection<TypedDependency> dependencies) {
@@ -216,11 +244,25 @@ public class ElementsBuilder {
 		return false;
 	}
 
+    /**
+     *
+     * @param node
+     * @param dependencies
+     * @return
+     */
 	private static String getAuxiliaries(Tree node, Collection<TypedDependency> dependencies) {
 		List<String> _lookFor = ListUtils.getList("aux","auxpass");
 		return findDependants(node, dependencies, _lookFor,true);
 	}
 
+    /**
+     *
+     * @param node
+     * @param dependencies
+     * @param lookFor
+     * @param isGovernor
+     * @return
+     */
 	private static String findDependants(Tree node,Collection<TypedDependency> dependencies, List<String> lookFor,boolean isGovernor) {
 		List<TypedDependency> _toCheck = SearchUtils.findDependency(lookFor,dependencies);
 		StringBuilder _b = new StringBuilder();
@@ -242,7 +284,13 @@ public class ElementsBuilder {
 		if(_b.length() > 0)_b.deleteCharAt(_b.length()-1);
 		return _b.toString();
 	}
-	
+
+    /**
+     *
+     * @param node
+     * @param dependencies
+     * @return
+     */
 	private static IndexedWord getModifiers(Tree node, Collection<TypedDependency> dependencies) {
 		List<TypedDependency> _toCheck = SearchUtils.findDependency(ListUtils.getList("advmod","acomp"),dependencies);
 		for(TypedDependency td:_toCheck) {
@@ -257,7 +305,7 @@ public class ElementsBuilder {
 		return null;
 	}
 	
-	public static Action createActionSyntax(T2PSentence origin, List<Tree> fullSentence, Tree vpHead,boolean active) {
+	public static Action createActionSyntax(T2PSentence origin, List<Tree> fullSentence, Tree vpHead, boolean active) {
 		List<Tree> _verbParts = extractVerbParts(vpHead,active);
 		int index = 0;
 		if(vpHead.getLeaves().get(0) instanceof Tree) {
@@ -473,7 +521,7 @@ public class ElementsBuilder {
 						}
 						Specifier _sp = new Specifier(origin,td.dep().index(),_phrase);
 						_sp.setSpecifierType(SpecifierType.PP);
-						TreeGraphNode TDnode = new TreeGraphNode(td.dep(), fullSentence);
+						Tree TDnode = fullSentence.get(td.dep().index()-1);
 						if(TDnode.parent().parent().value().startsWith("NP")) {
 							ExtractedObject _object = createObject(node, origin, fullSentence, td.dep(), dependencies);
 							_sp.setObject(_object);	
@@ -488,7 +536,16 @@ public class ElementsBuilder {
 			}
 		}
 	}
-	
+
+    /**
+     *
+     * @param origin
+     * @param element
+     * @param node
+     * @param dependencies
+     * @param fullSentence
+     * @param f_root
+     */
 	private static void extractRCMODSpecifier(T2PSentence origin, SpecifiedElement element,Tree node, Collection<TypedDependency> dependencies, List<Tree> fullSentence, Tree f_root) {
 		//search for a rcmod determiner
 		List<TypedDependency> _toCheck = SearchUtils.findDependency(ListUtils.getList("rcmod"),dependencies);

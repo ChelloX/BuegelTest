@@ -14,7 +14,6 @@ import worldModel.SpecifiedElement;
 import worldModel.Specifier;
 
 import edu.stanford.nlp.trees.Tree;
-import edu.stanford.nlp.trees.TreeGraphNode;
 import edu.stanford.nlp.trees.TypedDependency;
 
 /**
@@ -51,16 +50,14 @@ public class SearchUtils {
 	 * @param end
 	 * @return
 	 */
-	public static List<TypedDependency> filter(
-			Collection<TypedDependency> _dependencies, int start, int end) {
+	public static List<TypedDependency> filter(	Collection<TypedDependency> _dependencies, int start, int end) {
 		ArrayList<TypedDependency> _result = new ArrayList<TypedDependency>();
 		for(TypedDependency td:_dependencies) {
-			/*if(td.reln().getShortName().equals("rcmod") ||
-			   (( start <= td.gov().label().index() && (end >= td.gov().label().index())) 
+			if(td.reln().getShortName().equals("rcmod") || (( start <= td.gov().index() && (end >= td.gov().index()))
 					&&
-			   ( start <= td.dep().label().index() && (end >= td.dep().label().index())))) {
+			   ( start <= td.dep().index() && (end >= td.dep().index())))) {
 				_result.add(td);
-			}*/
+			}
 		}
 		return _result;
 	}
