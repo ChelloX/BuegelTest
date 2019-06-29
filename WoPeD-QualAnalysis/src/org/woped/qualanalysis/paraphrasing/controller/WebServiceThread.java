@@ -61,7 +61,8 @@ public class WebServiceThread extends Thread {
 		int n = editor.getModelProcessor().getElementContainer().getRootElements().size();
 		if (n > 3) {
 // Use Webservice to call P2T
-			try {
+
+		/*	try {
 				ByteArrayOutputStream stream = new ByteArrayOutputStream();
 				new PNMLExport().saveToStream(editor, stream);
 				String text = stream.toString();
@@ -87,9 +88,9 @@ public class WebServiceThread extends Thread {
 				paraphrasingPanel.showLoadingAnimation(false);
 				paraphrasingPanel.enableButtons(true);
 				paraphrasingPanel.setThreadInProgress(false);
-			}
+			}*/
+
 //	Alternative code for calling P2T locally (not via Webservice)
-			/**
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 			new PNMLExport().saveToStream(editor, stream);
 			String text = stream.toString();
@@ -117,58 +118,58 @@ public class WebServiceThread extends Thread {
 			JOptionPane.showMessageDialog(null, Messages.getString("Paraphrasing.Webservice.Numberelements.Message"),
 					Messages.getString("Paraphrasing.Webservice.Numberelements.Title"), JOptionPane.INFORMATION_MESSAGE);
 		}
-	}
-
-	 * Extracts the phrases from an PNML file and saves it to the result variable
-	 *
-	 * @throws XmlException
-	 * @author Martin Meitz
-	 */
-			/**
-	@SuppressWarnings("unused")
-	private String extractDescriptionFromWebservice(String xmlString) throws XmlException {
-		DocumentBuilderFactory xmlBuilderFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder xmlBuilder;
-		String result = null;
-		try {
-			xmlBuilder = xmlBuilderFactory.newDocumentBuilder();
-			Document document = xmlBuilder.parse(new InputSource(new StringReader(xmlString)));
-			XPath xPath = XPathFactory.newInstance().newXPath();
-			result = xPath.evaluate("/pnml/text", document.getChildNodes());
-
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
-		return result;
-	}
+/**
+ * Extracts the phrases from an PNML file and saves it to the result variable
+ *
+ * @throws XmlException
+ * @author Martin Meitz
+ */
+		/**
+		 @SuppressWarnings("unused") private String extractDescriptionFromWebservice(String xmlString) throws XmlException {
+		 DocumentBuilderFactory xmlBuilderFactory = DocumentBuilderFactory.newInstance();
+		 DocumentBuilder xmlBuilder;
+		 String result = null;
+		 try {
+		 xmlBuilder = xmlBuilderFactory.newDocumentBuilder();
+		 Document document = xmlBuilder.parse(new InputSource(new StringReader(xmlString)));
+		 XPath xPath = XPathFactory.newInstance().newXPath();
+		 result = xPath.evaluate("/pnml/text", document.getChildNodes());
 
-	@SuppressWarnings("unused")
-	private void extractDescription(String xmlString) throws XmlException {
+		 } catch (Exception e) {
+		 e.printStackTrace();
+		 }
+		 return result;
+		 }
 
-		PnmlDocument pnmlDoc = PnmlDocument.Factory.parse(xmlString);
-		PnmlType pnmlTag = pnmlDoc.getPnml();
+		 @SuppressWarnings("unused") private void extractDescription(String xmlString) throws XmlException {
 
-		if (pnmlTag.getNetArray().length > 0) {
-			NetType netTag = pnmlTag.getNetArray(0);
+		 PnmlDocument pnmlDoc = PnmlDocument.Factory.parse(xmlString);
+		 PnmlType pnmlTag = pnmlDoc.getPnml();
 
-			if (netTag.isSetText()) {
-				TextType textTag = netTag.getText();
+		 if (pnmlTag.getNetArray().length > 0) {
+		 NetType netTag = pnmlTag.getNetArray(0);
 
-				if (textTag.getPhraseArray().length > 0) {
-					PhraseType[] phraseTag = textTag.getPhraseArray();
+		 if (netTag.isSetText()) {
+		 TextType textTag = netTag.getText();
 
-					this.result = new String[phraseTag.length][2];
-					for (int i = 0; i < phraseTag.length; i++) {
-						this.result[i][0] = phraseTag[i].getIds().trim();
-						this.result[i][1] = phraseTag[i].getStringValue().trim();
-					}
-				} else {
-					JOptionPane.showMessageDialog(null,
-							Messages.getString("Paraphrasing.Webservice.Parsing.Empty.Message"),
-							Messages.getString("Paraphrasing.Webservice.Parsing.Empty.Title"),
-							JOptionPane.INFORMATION_MESSAGE);
-				}
-			}**/
-		}
-	}
+		 if (textTag.getPhraseArray().length > 0) {
+		 PhraseType[] phraseTag = textTag.getPhraseArray();
+
+		 this.result = new String[phraseTag.length][2];
+		 for (int i = 0; i < phraseTag.length; i++) {
+		 this.result[i][0] = phraseTag[i].getIds().trim();
+		 this.result[i][1] = phraseTag[i].getStringValue().trim();
+		 }
+		 } else {
+		 JOptionPane.showMessageDialog(null,
+		 Messages.getString("Paraphrasing.Webservice.Parsing.Empty.Message"),
+		 Messages.getString("Paraphrasing.Webservice.Parsing.Empty.Title"),
+		 JOptionPane.INFORMATION_MESSAGE);
+		 }
+		 }
+		 }
+		 }**/
+	//}
 }
+

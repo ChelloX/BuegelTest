@@ -18,6 +18,8 @@ import javax.swing.event.HyperlinkListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.text.BadLocationException;
 
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
 import org.woped.core.controller.IEditor;
 import org.woped.core.model.ModelElementContainer;
 import org.woped.core.utilities.LoggerManager;
@@ -35,11 +37,13 @@ import org.woped.qualanalysis.service.QualAnalysisServiceFactory;
  */
 public class P2TSideBar extends JPanel implements ActionListener {
 
+	private static final String VOICENAME="kevin16";
 	private IEditor editor = null;
 	private JEditorPane textpane = null;
 	private Process2Text naturalTextParser = null;
 	private JButton buttonLoad = null;
 	private JButton buttonExport = null;
+	private JButton buttonSprachausgabe = null;
 	private JLabel labelLoading = null;
 	private WebServiceThread webService = null;
 	private boolean threadInProgress = false;
@@ -122,6 +126,18 @@ public class P2TSideBar extends JPanel implements ActionListener {
 
 		return buttonExport;
 	}
+	public JButton getButtonSprachausgabe() {
+		if (buttonSprachausgabe == null) {
+			buttonSprachausgabe = new JButton();
+			buttonSprachausgabe.setIcon(Messages.getImageIcon("Paraphrasing.Sprachausgabe"));
+			buttonSprachausgabe.setToolTipText(Messages.getString("Paraphrasing.Sprachausgabe.Title"));
+			buttonSprachausgabe.setEnabled(true);
+			buttonSprachausgabe.addActionListener(this);
+			defineButtonSize(buttonSprachausgabe);
+			buttonSprachausgabe.setBorderPainted(false);
+		}
+		return buttonSprachausgabe;
+	}
 
 	/**
 	 * Method to initialize and add the the components to the sidebar
@@ -134,6 +150,7 @@ public class P2TSideBar extends JPanel implements ActionListener {
 		buttonPanel.setLayout(new FlowLayout());
 		buttonPanel.add(getbuttonLoad());
 		buttonPanel.add(getbuttonExport());
+		buttonPanel.add(getButtonSprachausgabe());
 
 		this.add(buttonPanel, BorderLayout.NORTH);
 
@@ -313,6 +330,21 @@ public class P2TSideBar extends JPanel implements ActionListener {
 				JOptionPane.showMessageDialog(null, Messages.getString("Paraphrasing.Export.Numberelements.Message"),
 						Messages.getString("Paraphrasing.Export.Numberelements.Title"),
 						JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+		else if (e.getSource() == buttonSprachausgabe){
+			Voice voice;
+			VoiceManager vm = VoiceManager.getInstance();
+			voice= vm.getVoice(VOICENAME);
+
+			voice.allocate();
+
+			try {
+				voice.speak(textpane.getText().replaceAll("\\<.*?>",""));
+
+			} catch (Exception e2) {
+
+				JOptionPane.showMessageDialog(null,e2.getMessage(),"Fehler", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
