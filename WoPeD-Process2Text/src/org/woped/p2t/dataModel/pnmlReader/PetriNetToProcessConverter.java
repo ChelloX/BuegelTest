@@ -39,12 +39,13 @@ public class PetriNetToProcessConverter {
 
     private int x = 0;
     private static String xorTitle;
+    private static String andTitle;
 
     private void transformElem(org.woped.p2t.dataModel.pnmlReader.PetriNet.Element elem, int precElem, PetriNet petriNet, org.woped.p2t.dataModel.process.ProcessModel model, org.woped.p2t.dataModel.process.Pool pool, org.woped.p2t.dataModel.process.Lane lane) {
         // Id of current petri net element
         String elemId = elem.getId();
         String elemType = "";
-        // If element not already ecists
+        // If element not already exists
         if (!transformedElems.keySet().contains(elemId)) {
 
             // Places ...
@@ -202,7 +203,8 @@ public class PetriNetToProcessConverter {
                         //Normal Transition
                         int newId = model.getNewId();
                         String label = elem.getLabel();
-                        model.addActivity(new org.woped.p2t.dataModel.process.Activity(newId, label, roleAsLane, roleAsPool, ActivityType.NONE));
+                        int type = elem.getId().contains("sub") ? ActivityType.TYPE_MAP.get("Subprocess") : ActivityType.NONE;
+                        model.addActivity(new org.woped.p2t.dataModel.process.Activity(newId, label, roleAsLane, roleAsPool, type));
                         transformedElems.put(elemId, newId);
                         transformedElemsRev.put(newId, elemId);
                         if (precElem != -1) {
@@ -239,18 +241,97 @@ public class PetriNetToProcessConverter {
                     loopSet[x] = elemId + ": AND Split";
                     and_split++;
                     // Create new element
-                    int newId = model.getNewId();
-                    model.addGateway(new org.woped.p2t.dataModel.process.Gateway(newId, "", lane, pool, org.woped.p2t.dataModel.process.GatewayType.AND));
-                    transformedElems.put(elemId, newId);
-                    transformedElemsRev.put(newId, elemId);
-                    if (precElem != -1) {
-                        model.addArc(new org.woped.p2t.dataModel.process.Arc(model.getNewId(), "", model.getElem(precElem), model.getElem(newId)));
+
+                    // get AND Label
+                    String labelAND = elem.getLabel();
+                    andTitle = labelAND;
+
+                    //Create Gateway if Split/Transition is not important for context
+                    if (andTitle.contains("split")){
+                        int newId = model.getNewId();
+                        model.addGateway(new org.woped.p2t.dataModel.process.Gateway(newId, "", lane, pool, org.woped.p2t.dataModel.process.GatewayType.AND));
+
+                        transformedElems.put(elemId, newId);
+                        transformedElemsRev.put(newId, elemId);
+                        if (precElem != -1) {
+                            model.addArc(new org.woped.p2t.dataModel.process.Arc(model.getNewId(), "", model.getElem(precElem), model.getElem(newId)));
+                        }
+
+                        for (String suc : petriNet.getSuccessor(elemId)) {
+                            transformElem(petriNet.getElements().get(suc), newId, petriNet, model, pool, lane);
+                        }
+                    }
+                    //Alternative 1: Transform AND Split as Gateway Type "Event"
+                    /**
+                     else {
+                     int newId = model.getNewId();
+                     model.addGateway(new org.woped.p2t.dataModel.process.Gateway(newId, "", lane, pool, org.woped.p2t.dataModel.process.GatewayType.EVENT));
+
+                     transformedElems.put(elemId, newId);
+                     transformedElemsRev.put(newId, elemId);
+                     if (precElem != -1) {
+                     model.addArc(new org.woped.p2t.dataModel.process.Arc(model.getNewId(), "", model.getElem(precElem), model.getElem(newId)));
+                     }
+
+                     for (String suc : petriNet.getSuccessor(elemId)) {
+                     transformElem(petriNet.getElements().get(suc), newId, petriNet, model, pool, lane);
+                     }
+                     }**/
+                    //Alternative 2: Transform AND Split as Activity with additional Gateway
+
+                    else {
+
+                        int newId = model.getNewId();
+
+                        org.woped.p2t.dataModel.process.Pool roleAsPool = new org.woped.p2t.dataModel.process.Pool(elem.getRole());
+                        org.woped.p2t.dataModel.process.Lane roleAsLane = new org.woped.p2t.dataModel.process.Lane(elem.getRole());
+                        model.addActivity(new org.woped.p2t.dataModel.process.Activity(newId,andTitle, roleAsLane, roleAsPool, ActivityType.NONE));
+
+                        transformedElems.put(elemId, newId);
+                        transformedElemsRev.put(newId, elemId);
+                        if (precElem != -1) {
+                            model.addArc(new org.woped.p2t.dataModel.process.Arc(model.getNewId(), "", model.getElem(precElem), model.getElem(newId)));
+                        }
+
+                        for (String suc : petriNet.getSuccessor(elemId)) {
+                            transformElem(petriNet.getElements().get(suc), newId, petriNet, model, pool, lane);
+                        }
+
+                        int newId2 = model.getNewId();
+                        model.addGateway(new org.woped.p2t.dataModel.process.Gateway(newId2, "", lane, pool, org.woped.p2t.dataModel.process.GatewayType.AND));
+
+                        transformedElems.put(elemId, newId2);
+                        transformedElemsRev.put(newId2, elemId);
+                        if (precElem != -1) {
+                            model.addArc(new org.woped.p2t.dataModel.process.Arc(model.getNewId(), "", model.getElem(precElem), model.getElem(newId2)));
+                        }
+
+                        for (String suc : petriNet.getSuccessor(elemId)) {
+                            transformElem(petriNet.getElements().get(suc), newId2, petriNet, model, pool, lane);
+                        }
                     }
 
-                    // Recursively go through the model
-                    for (String suc : petriNet.getSuccessor(elemId)) {
-                        transformElem(petriNet.getElements().get(suc), newId, petriNet, model, pool, lane);
-                    }
+                    //Alternative 3: Create XOR Transition as Activity (not Gateway)
+                    /**String labelAND = elem.getLabel();
+                     andTitle = labelAND;
+                     org.woped.p2t.dataModel.process.Pool roleAsPool = new org.woped.p2t.dataModel.process.Pool(elem.getRole());
+                     org.woped.p2t.dataModel.process.Lane roleAsLane = new org.woped.p2t.dataModel.process.Lane(elem.getRole());
+                     model.addActivity(new org.woped.p2t.dataModel.process.Activity(newId,andTitle, roleAsLane, roleAsPool, ActivityType.NONE));
+
+                     //Original Code
+                     int newId = model.getNewId();
+                     model.addGateway(new org.woped.p2t.dataModel.process.Gateway(newId, "", lane, pool, org.woped.p2t.dataModel.process.GatewayType.AND));
+
+                     transformedElems.put(elemId, newId);
+                     transformedElemsRev.put(newId, elemId);
+                     if (precElem != -1) {
+                     model.addArc(new org.woped.p2t.dataModel.process.Arc(model.getNewId(), "", model.getElem(precElem), model.getElem(newId)));
+                     }
+
+                     // Recursively go through the model
+                     for (String suc : petriNet.getSuccessor(elemId)) {
+                     transformElem(petriNet.getElements().get(suc), newId, petriNet, model, pool, lane);
+                     }**/
                 }
             }
         } else {

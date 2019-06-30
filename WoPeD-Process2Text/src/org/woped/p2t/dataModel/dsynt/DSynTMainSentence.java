@@ -9,9 +9,9 @@ import org.woped.p2t.textPlanning.IntermediateToDSynTConverter;
 import java.util.ArrayList;
 
 public class DSynTMainSentence extends DSynTSentence {
-    private Element verb;
-    private Element object;
-    private Element role;
+    public Element verb;
+    public Element object;
+    public Element role;
 
     public DSynTMainSentence(ExecutableFragment eFrag) {
         this.eFrag = eFrag;
@@ -85,6 +85,10 @@ public class DSynTMainSentence extends DSynTSentence {
 
     public Element getVerb() {
         return verb;
+    }
+
+    public Element getObject(){
+        return  object;
     }
 
     public Document getDSynT() {

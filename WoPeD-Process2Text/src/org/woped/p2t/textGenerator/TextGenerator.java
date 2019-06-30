@@ -1,7 +1,14 @@
 package org.woped.p2t.textGenerator;
 
+import de.hpi.bpt.process.Process;
+import org.apache.xerces.dom.AttrImpl;
+import org.apache.xerces.dom.ElementImpl;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import org.woped.p2t.contentDetermination.labelAnalysis.EnglishLabelDeriver;
 import org.woped.p2t.contentDetermination.labelAnalysis.EnglishLabelHelper;
+import org.woped.p2t.dataModel.dsynt.DSynTMainSentence;
 import org.woped.p2t.dataModel.dsynt.DSynTSentence;
 import org.woped.p2t.dataModel.pnmlReader.PNMLReader;
 import org.woped.p2t.dataModel.pnmlReader.PetriNet.PetriNet;
@@ -18,12 +25,19 @@ import org.woped.p2t.sentencePlanning.SentenceAggregator;
 import org.woped.p2t.sentenceRealization.SurfaceRealizer;
 import org.woped.p2t.textPlanning.PlanningHelper;
 import org.woped.p2t.textPlanning.TextPlanner;
+import org.xml.sax.InputSource;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.ByteArrayInputStream;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.ListIterator;
 
 public class TextGenerator {
     private String contextPath = "";
+    ArrayList<String> values= new ArrayList<String>();
 
     public TextGenerator(String contextPath) {
         this.contextPath = contextPath;
@@ -44,6 +58,13 @@ public class TextGenerator {
         PetriNetToProcessConverter pnConverter = new PetriNetToProcessConverter();
         ProcessModel model = pnConverter.convertToProcess(petriNet);
 
+        //check number splits/joins
+        pnConverter.printConversion();
+
+        //Show Activities
+        System.out.println(model.getActivites());
+
+
         HashMap<Integer, String> transformedElemsRev = pnConverter.transformedElemsRev;
 
         EnglishLabelHelper lHelper = new EnglishLabelHelper(contextPath);
@@ -54,7 +75,7 @@ public class TextGenerator {
 
         // Convert to RPST
         FormatConverter formatConverter = new FormatConverter();
-        de.hpi.bpt.process.Process p = formatConverter.transformToRPSTFormat(model);
+        Process p = formatConverter.transformToRPSTFormat(model);
         RPST<ControlFlow, Node> rpst = new RPST<>(p);
 
         // Check for Rigids
@@ -74,6 +95,7 @@ public class TextGenerator {
         TextPlanner converter = new TextPlanner(rpst, model, lDeriver, lHelper, imperativeRole, false, false);
         converter.convertToText(rpst.getRoot(), 0);
         ArrayList<DSynTSentence> sentencePlan = converter.getSentencePlan();
+
 
         // Aggregation
         SentenceAggregator sentenceAggregator = new SentenceAggregator();
