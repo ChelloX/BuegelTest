@@ -584,8 +584,7 @@ public class ConfNLPToolsPanel extends AbstractConfPanel {
 		URL url = null;
 		String connection = "http://" + getServerURLText().getText() + ":"
 				+ getServerPortText().getText()
-				+ getManagerPathText().getText() +
-				"/ProcessToTextWebService?wsdl";
+				+ getManagerPathText().getText();
 		String arg[] = {connection};
 
 		try {
