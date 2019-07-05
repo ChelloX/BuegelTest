@@ -10,13 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fe078b1-bc4e-4c3c-990f-f7f38dbe9262" name="Default" comment="Updated Woflan Link">
-      <change afterPath="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/images/Text2Speech.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/p2t.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/p2t.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/t2p.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/t2p.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/marytts_client_5_2_jar_with_dependencies.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/images/icons8-windows-metro-26.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/src/org/woped/p2t/dataModel/dsynt/DSynTMainSentence.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/src/org/woped/p2t/dataModel/dsynt/DSynTMainSentence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/src/org/woped/p2t/textGenerator/TextGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/src/org/woped/p2t/textGenerator/TextGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-AProMoRe/WoPeD-AProMoRe.eml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-BPELExport/WoPeD-BPELExport.eml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Configuration/WoPeD-Configuration.eml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Core/WoPeD-Core.eml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Editor/WoPeD-Editor.eml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-FileInterface/WoPeD-FileInterface.eml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Flamingo/WoPeD-Flamingo.eml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Installer/WoPeD-Installer.eml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-ProcessMetrics/WoPeD-ProcessMetrics.eml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-QualAnalysis/WoPeD-QualAnalysis.eml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-QualAnalysis/WoPeD-QualAnalysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-QualAnalysis/WoPeD-QualAnalysis.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WoPeD-QualAnalysis/src/org/woped/qualanalysis/p2t/P2TSideBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-QualAnalysis/src/org/woped/qualanalysis/p2t/P2TSideBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-QualAnalysis/src/org/woped/qualanalysis/paraphrasing/controller/WebServiceThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-QualAnalysis/src/org/woped/qualanalysis/paraphrasing/controller/WebServiceThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-QuantAnalysis/WoPeD-QuantAnalysis.eml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Starter/WoPeD-Starter.eml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/WoPeD-Text2Process.eml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-UnitTests/WoPeD-UnitTests.eml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codewoped.eml" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,15 +50,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WoPeD-QualAnalysis/src/org/woped/qualanalysis/p2t/P2TSideBar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="48" column="45" lean-forward="true" selection-end-line="463" selection-end-column="1" />
+            <state relative-caret-position="119">
+              <caret line="325" selection-start-line="325" selection-end-line="325" />
               <folding>
-                <element signature="e#11899#11900#0" expanded="true" />
-                <element signature="e#11926#11927#0" expanded="true" />
-                <element signature="e#12111#12112#0" expanded="true" />
-                <element signature="e#12141#12142#0" expanded="true" />
-                <element signature="e#12630#12631#0" expanded="true" />
-                <element signature="e#12671#12672#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#11656#11657#0" expanded="true" />
+                <element signature="e#11685#11686#0" expanded="true" />
+                <element signature="e#11859#11860#0" expanded="true" />
+                <element signature="e#12416#12417#0" expanded="true" />
+                <element signature="e#12459#12460#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -64,10 +78,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Testb</find>
-      <find>193.196.</find>
-      <find>aproImport</find>
-      <find>Apromore</find>
       <find>importA</find>
       <find>Apromore.</find>
       <find>193.196</find>
@@ -94,6 +104,10 @@
       <find>paraphrasing</find>
       <find>toText</find>
       <find>P2TSideBar</find>
+      <find>lautsprecher.png</find>
+      <find>Paraphra</find>
+      <find>para</find>
+      <find>showLoadingAnimation</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -148,7 +162,6 @@
         <option value="$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/controller/vep/FileEventProcessor.java" />
         <option value="$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/PlainTextFileReader.java" />
         <option value="$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/T2PUI.java" />
-        <option value="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages_de.properties" />
         <option value="$PROJECT_DIR$/WoPeD-Installer/build-tools/Changelog.txt" />
         <option value="$PROJECT_DIR$/WoPeD-Installer/build-tools/setup/Linux/shortcut-linux.xml" />
         <option value="$PROJECT_DIR$/WoPeD-Installer/build-tools/launcher/Linux/WoPeD" />
@@ -160,7 +173,6 @@
         <option value="$PROJECT_DIR$/WoPeD-Core/src/org/woped/core/config/DefaultStaticConfiguration.java" />
         <option value="$PROJECT_DIR$/WoPeD-Configuration/src/org/woped/config/general/WoPeDconfig.xml" />
         <option value="$PROJECT_DIR$/WoPeD-Process2Text/src/org/woped/p2t/textPlanning/TextToIntermediateConverter.java" />
-        <option value="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages.properties" />
         <option value="$PROJECT_DIR$/WoPeD-Editor/src/org/woped/editor/gui/config/ConfNLPToolsPanel.java" />
         <option value="$PROJECT_DIR$/WoPeD-UnitTests/tests/org/woped/editor/controller/vc/EditorVCTest.java" />
         <option value="$PROJECT_DIR$/WoPeD-UnitTests/tests/org/woped/qualanalysis/coverabilitygraph/gui/CoverabilityGraphFrameControllerTest.java" />
@@ -171,11 +183,13 @@
         <option value="$PROJECT_DIR$/WoPeD-Starter/src/org/woped/starter/MainFrame.java" />
         <option value="$PROJECT_DIR$/../Test/WoPeD-Process2Text/lib/jwnl14-rc2/src/net/didion/jwnl/util/MessageLog.java" />
         <option value="$PROJECT_DIR$/../Test/WoPeD-Text2Process/src/ToolWrapper/WordNetFunctionality.java" />
-        <option value="$PROJECT_DIR$/WoPeD-Process2Text/src/org/woped/p2t/dataModel/pnmlReader/PetriNetToProcessConverter.java" />
         <option value="$PROJECT_DIR$/WoPeD-Process2Text/src/org/woped/p2t/textGenerator/TextGenerator.java" />
         <option value="$PROJECT_DIR$/WoPeD-QualAnalysis/src/org/woped/qualanalysis/paraphrasing/controller/WebServiceThread.java" />
         <option value="$PROJECT_DIR$/WoPeD-GUI/bin/org/woped/gui/translations/Messages.properties" />
         <option value="$PROJECT_DIR$/WoPeD-GUI/bin/org/woped/gui/translations/Messages_de.properties" />
+        <option value="$PROJECT_DIR$/WoPeD-Process2Text/src/org/woped/p2t/dataModel/pnmlReader/PetriNetToProcessConverter.java" />
+        <option value="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages.properties" />
+        <option value="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages_de.properties" />
         <option value="$PROJECT_DIR$/WoPeD-QualAnalysis/src/org/woped/qualanalysis/p2t/P2TSideBar.java" />
       </list>
     </option>
@@ -188,8 +202,8 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="89" />
-    <option name="y" value="-19" />
+    <option name="x" value="296" />
+    <option name="y" value="103" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -201,51 +215,63 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="code_rouven" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WoPeD-GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="Code_Seminar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-BPELExport" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="code_rouven" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WoPeD-GUI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Code_Seminar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-CommonLibs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="code_rouven" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WoPeD-GUI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="translations" type="462c0819:PsiDirectoryNode" />
+              <item name="Code_Seminar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-CommonLibs" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="code_rouven" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WoPeD-GUI" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="analytics" type="462c0819:PsiDirectoryNode" />
+              <item name="Code_Seminar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-Process2Text" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="code_rouven" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Code_Seminar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-Process2Text" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Code_Seminar" type="b2602c69:ProjectViewProjectNode" />
               <item name="WoPeD-QualAnalysis" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="code_rouven" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Code_Seminar" type="b2602c69:ProjectViewProjectNode" />
               <item name="WoPeD-QualAnalysis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="code_rouven" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Code_Seminar" type="b2602c69:ProjectViewProjectNode" />
               <item name="WoPeD-QualAnalysis" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="qualanalysis" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Code_Seminar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-QualAnalysis" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="qualanalysis" type="462c0819:PsiDirectoryNode" />
               <item name="p2t" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Code_Seminar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-Text2Process" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -258,13 +284,13 @@
     <property name="SearchEverywhereHistoryKey" value="null)&#9;null&#9;null&#10;System.out.println&#9;null&#9;null&#10;Prozess ist sound&#9;null&#9;null&#10;ModelElement&#9;PSI&#9;JAVA://org.woped.core.model.ModelElementContainer" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561829116845" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1562324332731" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/WoPeD-Process2Text/src/org/woped/p2t/contentDetermination" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/WoPeD-Text2Process/NLPTools/WordNet/edu.mit.jwi_2.4.0.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/WoPeD-CommonLibs/lib" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15136719" />
     <property name="project.structure.side.proportion" value="0.3164557" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -276,7 +302,17 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\a.rothmann.SCHREMPP-LAHR\Desktop\Code_Seminar\WoPeD-CommonLibs\lib" />
+      <recent name="C:\Users\a.rothmann.SCHREMPP-LAHR\Desktop\code_rouven\WoPeD-GUI\src\org\woped\gui\images" />
+      <recent name="$PROJECT_DIR$/WoPeD-Process2Text/res" />
+      <recent name="$PROJECT_DIR$/WoPeD-Process2Text" />
+      <recent name="$PROJECT_DIR$/WoPeD-Text2Process/test" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -285,16 +321,6 @@
       <recent name="$PROJECT_DIR$/WoPeD-Installer/dist/launch/test" />
       <recent name="$PROJECT_DIR$/WoPeD-Process2Text" />
       <recent name="$PROJECT_DIR$/WoPeD-Process2Text/bin/test" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\a.rothmann.SCHREMPP-LAHR\Desktop\code_rouven\WoPeD-GUI\src\org\woped\gui\images" />
-      <recent name="$PROJECT_DIR$/WoPeD-Process2Text/res" />
-      <recent name="$PROJECT_DIR$/WoPeD-Process2Text" />
-      <recent name="$PROJECT_DIR$/WoPeD-Text2Process/test" />
-      <recent name="$PROJECT_DIR$/WoPeD-Text2Process/test/Test" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -764,6 +790,11 @@
       <workItem from="1559547403553" duration="2812000" />
       <workItem from="1561367008457" duration="3362000" />
       <workItem from="1561827777013" duration="1325000" />
+      <workItem from="1561916971346" duration="1467000" />
+      <workItem from="1561918576338" duration="1843000" />
+      <workItem from="1561971267419" duration="1096000" />
+      <workItem from="1562184279044" duration="2818000" />
+      <workItem from="1562229032095" duration="4464000" />
     </task>
     <task id="LOCAL-00001" summary="Adapted master build to IntelliJ">
       <created>1532514709268</created>
@@ -1003,7 +1034,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561367705473</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Updated P2TSideBar">
+      <created>1562323539935</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1562323539935</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1039,7 +1077,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209042000" />
+    <option name="totallyTimeSpent" value="220993000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1054,7 +1092,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49510762" visible="true" weight="0.20362474" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49510762" visible="true" weight="0.19616205" />
       <window_info id="Structure" order="1" sideWeight="0.50489235" side_tool="true" weight="0.3168264" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1065,18 +1103,18 @@
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.62460065" weight="0.4661972" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.5394036" weight="0.18418202" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.58848614" visible="true" weight="0.11666667" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.53837955" weight="0.18418202" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5847548" weight="0.4611111" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49946752" weight="0.3033586" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49307036" weight="0.28111112" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4989339" weight="0.32666665" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.41151386" side_tool="true" visible="true" weight="0.11666667" />
-      <window_info anchor="bottom" id="Application Servers" order="11" sideWeight="0.49863762" weight="0.3261105" />
-      <window_info anchor="bottom" id="Spring" order="12" weight="0.32936078" />
-      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.4392971" weight="0.48212352" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49840087" weight="0.32666665" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.56449896" side_tool="true" visible="true" weight="0.4811111" />
+      <window_info anchor="bottom" id="Application Servers" order="11" sideWeight="0.4978678" weight="0.32555556" />
+      <window_info anchor="bottom" id="Spring" order="12" sideWeight="0.49946696" weight="0.3288889" />
+      <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.43550107" visible="true" weight="0.4811111" />
       <window_info anchor="bottom" id="Inspection Results" order="14" sideWeight="0.4988372" weight="0.32733813" />
       <window_info anchor="bottom" id="Java Enterprise" order="15" sideWeight="0.5200286" weight="0.32827735" />
       <window_info anchor="bottom" id="Thumbnails" order="16" weight="0.3291714" />
@@ -1153,7 +1191,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Renamed webservice name back to ProcessToTextWebServiceService (for backbward compatibility)&#10;Fixed build of P2T webservice" />
     <MESSAGE value="Renamed P2T webservice to /p2t" />
     <MESSAGE value="Streamlined project structure and build files" />
     <MESSAGE value="Make use of new version of P2T server" />
@@ -1178,7 +1215,8 @@
     <MESSAGE value="Updated Woflan Link" />
     <MESSAGE value="Problems with build paths" />
     <MESSAGE value="Highlighting angepasst. &#10;Adrian Rothmann" />
-    <option name="LAST_COMMIT_MESSAGE" value="Highlighting angepasst. &#10;Adrian Rothmann" />
+    <MESSAGE value="Updated P2TSideBar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated P2TSideBar" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1262,55 +1300,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/T2PUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="218" column="8" selection-start-line="218" selection-start-column="8" selection-end-line="218" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Starter/src/org/woped/starter/MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="483" column="139" selection-start-line="483" selection-start-column="134" selection-end-line="483" selection-end-column="139" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/T2PWebservice/T2PServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/T2PWebservice/T2PController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Process2Text/test/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1710">
-          <caret line="120" column="39" selection-start-line="120" selection-start-column="39" selection-end-line="120" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-QualAnalysis/src/org/woped/qualanalysis/p2t/Process2Text.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Process2Text/src/processtotext/ws/ProcessToTextWebService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="24" column="34" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/WoPeD-Installer/dist/mac/WoPeD.app/Contents/Java/WoPeD-classes-3.7.1.jar!/org/woped/qualanalysis/paraphrasing/controller/WebServiceThread.class" />
     <entry file="file://$PROJECT_DIR$/WoPeD-Editor/src/org/woped/editor/controller/vc/EditorPanel.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1418,13 +1407,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Process2Text/src/org/woped/p2t/dataModel/pnmlReader/PetriNetToProcessConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4046">
-          <caret line="243" column="49" lean-forward="true" selection-start-line="243" selection-start-column="49" selection-end-line="243" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WoPeD-Process2Text/src/org/woped/p2t/dataModel/process/GatewayType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -1457,13 +1439,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Editor/src/org/woped/editor/controller/vep/EditorEventProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5355">
-          <caret line="334" selection-start-line="334" selection-end-line="334" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WoPeD-Core/src/org/woped/core/controller/AbstractApplicationMediator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2125">
@@ -1478,13 +1453,6 @@
           <folding>
             <element signature="e#404#405#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-QualAnalysis/src/org/woped/qualanalysis/paraphrasing/controller/WebServiceThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="29" column="34" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -1507,34 +1475,100 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/images/lautsprecher.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-QualAnalysis/src/org/woped/qualanalysis/paraphrasing/controller/WebServiceThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="120" selection-start-line="120" selection-end-line="120" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WoPeD-Process2Text/lib/uma-1.2.4.jar!/hub/top/petrinet/unfold/DNodeSys_PetriNet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="45" column="32" selection-start-line="45" selection-start-column="32" selection-end-line="45" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/WoPeD-Process2Text/lib/pnapi-java-1.0.5.jar!/hub/top/petrinet/PetriNet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4505">
+          <caret line="279" column="27" selection-start-line="279" selection-start-column="27" selection-end-line="279" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Process2Text/src/org/woped/p2t/dataModel/pnmlReader/PetriNetToProcessConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4964">
+          <caret line="297" column="25" selection-start-line="297" selection-start-column="25" selection-end-line="297" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Editor/src/org/woped/editor/controller/vep/EditorEventProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5355">
+          <caret line="334" selection-start-line="334" selection-end-line="334" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WoPeD-Process2Text/src/org/woped/p2t/sentenceRealization/SurfaceRealizer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
+        <state relative-caret-position="-69">
           <caret line="62" column="18" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WoPeD-Process2Text/src/org/woped/p2t/textGenerator/TextGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="116" column="46" selection-start-line="116" selection-start-column="46" selection-end-line="116" selection-end-column="46" />
+        <state relative-caret-position="261">
+          <caret line="116" column="43" lean-forward="true" selection-start-line="116" selection-start-column="43" selection-end-line="116" selection-end-column="43" />
           <folding>
-            <element signature="e#1717#1725#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1775#1776#0" expanded="true" />
+            <element signature="e#1821#1822#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages.properties">
+      <provider editor-type-id="ResourceBundle" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="2344" selection-start-line="2344" selection-end-line="2345" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages_de.properties">
+      <provider editor-type-id="ResourceBundle" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="1711" column="79" selection-start-line="1711" selection-start-column="79" selection-end-line="1711" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-CommonLibs/lib/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_151/jre/lib/rt.jar!/java/awt/event/ActionListener.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WoPeD-QualAnalysis/src/org/woped/qualanalysis/p2t/P2TSideBar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="48" column="45" lean-forward="true" selection-end-line="463" selection-end-column="1" />
+        <state relative-caret-position="119">
+          <caret line="325" selection-start-line="325" selection-end-line="325" />
           <folding>
-            <element signature="e#11899#11900#0" expanded="true" />
-            <element signature="e#11926#11927#0" expanded="true" />
-            <element signature="e#12111#12112#0" expanded="true" />
-            <element signature="e#12141#12142#0" expanded="true" />
-            <element signature="e#12630#12631#0" expanded="true" />
-            <element signature="e#12671#12672#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#11656#11657#0" expanded="true" />
+            <element signature="e#11685#11686#0" expanded="true" />
+            <element signature="e#11859#11860#0" expanded="true" />
+            <element signature="e#12416#12417#0" expanded="true" />
+            <element signature="e#12459#12460#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1546,17 +1580,17 @@
         <settings>
           <artifact-editor>
             <show-content>
-              <type id="javaee-facet-resources" />
               <type id="jpa-descriptors" />
-              <type id="artifact" />
               <type id="library" />
+              <type id="javaee-facet-resources" />
+              <type id="artifact" />
             </show-content>
           </artifact-editor>
           <last-edited>t2p</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.3164557" />
                 <option value="0.5" />
               </list>
             </option>
@@ -1569,7 +1603,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.3164557" />
               </list>
             </option>
           </splitter-proportions>
@@ -1593,7 +1627,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.3164557" />
               </list>
             </option>
           </splitter-proportions>
@@ -1625,7 +1659,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>AntelopeTasks_3.4.2</last-edited>
+          <last-edited>marytts-client-5.2-jar-with-dependencies</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -1,22 +1,5 @@
 package org.woped.qualanalysis.p2t;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
-import java.util.LinkedHashMap;
-
-import javax.swing.JButton;
-import javax.swing.JEditorPane;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.event.HyperlinkEvent;
-import javax.swing.event.HyperlinkListener;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.text.BadLocationException;
 
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
@@ -28,6 +11,17 @@ import org.woped.qualanalysis.paraphrasing.Constants;
 import org.woped.qualanalysis.paraphrasing.controller.WebServiceThread;
 import org.woped.qualanalysis.service.IQualanalysisService;
 import org.woped.qualanalysis.service.QualAnalysisServiceFactory;
+import javax.swing.*;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.text.BadLocationException;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.util.LinkedHashMap;
 
 @SuppressWarnings("serial")
 /**
@@ -37,7 +31,7 @@ import org.woped.qualanalysis.service.QualAnalysisServiceFactory;
  */
 public class P2TSideBar extends JPanel implements ActionListener {
 
-	private static final String VOICENAME="kevin16";
+	private static final String VOICENAME = "kevin16";
 	private IEditor editor = null;
 	private JEditorPane textpane = null;
 	private Process2Text naturalTextParser = null;
@@ -50,9 +44,7 @@ public class P2TSideBar extends JPanel implements ActionListener {
 	private boolean firstTimeDisplayed = false;
 
 	/**
-	 * 
-	 * @param currentEditor
-	 *            Editor in which the instance of the sidebar is used
+	 * @param currentEditor Editor in which the instance of the sidebar is used
 	 */
 	public P2TSideBar(IEditor currentEditor) {
 		super();
@@ -64,7 +56,7 @@ public class P2TSideBar extends JPanel implements ActionListener {
 
 	/**
 	 * Getter for the used parser
-	 * 
+	 *
 	 * @return org.woped.qualanalysis.p2t.Process2Text used parser
 	 */
 	public org.woped.qualanalysis.p2t.Process2Text getNaturalTextParser() {
@@ -73,9 +65,8 @@ public class P2TSideBar extends JPanel implements ActionListener {
 
 	/**
 	 * Setter for the used parser
-	 * 
-	 * @param naturalTextParser
-	 *            Parser instance to be used in this sidebar
+	 *
+	 * @param naturalTextParser Parser instance to be used in this sidebar
 	 */
 	public void setNaturalTextParser(org.woped.qualanalysis.p2t.Process2Text naturalTextParser) {
 		this.naturalTextParser = naturalTextParser;
@@ -83,7 +74,7 @@ public class P2TSideBar extends JPanel implements ActionListener {
 
 	/**
 	 * Getter for the IEditor
-	 * 
+	 *
 	 * @return IEditor the editor in which the instance of the sidebar is used
 	 */
 	public IEditor getEditor() {
@@ -126,6 +117,7 @@ public class P2TSideBar extends JPanel implements ActionListener {
 
 		return buttonExport;
 	}
+
 	public JButton getButtonSprachausgabe() {
 		if (buttonSprachausgabe == null) {
 			buttonSprachausgabe = new JButton();
@@ -175,15 +167,14 @@ public class P2TSideBar extends JPanel implements ActionListener {
 
 	/**
 	 * Method to handle the highlighting of the elements and in the text
-	 * 
-	 * @param ids;
-	 *            ID of the element and the text-passage to be highlighted
+	 *
+	 * @param ids; ID of the element and the text-passage to be highlighted
 	 */
 	private void highlightElement(String ids) {
 		String[] singleIDs = ids.split(",");
 
 		for (String id : singleIDs) {
-			if(id.contains("t")) {
+			if (id.contains("t")) {
 				highlightIDinText(id);
 				id = id.split("_op_")[0]; // ignore the path option
 				highlightIDinProcess(id);
@@ -193,9 +184,8 @@ public class P2TSideBar extends JPanel implements ActionListener {
 
 	/**
 	 * Handles the highlighting of the elements in the text
-	 * 
-	 * @param id;
-	 *            ID of the element to be set highlighted
+	 *
+	 * @param id; ID of the element to be set highlighted
 	 */
 	private void highlightIDinProcess(String id) {
 		ModelElementContainer mec = editor.getModelProcessor().getElementContainer();
@@ -203,11 +193,9 @@ public class P2TSideBar extends JPanel implements ActionListener {
 	}
 
 	/**
-	 * 
 	 * Highlights passages linked to the given ID within the displayed text
-	 * 
-	 * @param id,
-	 *            ID of the element of which the corresponding text is to be
+	 *
+	 * @param id, ID of the element of which the corresponding text is to be
 	 *            highlighted
 	 */
 	public void highlightIDinText(String id) {
@@ -332,6 +320,7 @@ public class P2TSideBar extends JPanel implements ActionListener {
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
+
 		else if (e.getSource() == buttonSprachausgabe){
 			Voice voice;
 			VoiceManager vm = VoiceManager.getInstance();
@@ -349,116 +338,115 @@ public class P2TSideBar extends JPanel implements ActionListener {
 		}
 	}
 
-	/**
-	 * Starts the webservice to get the description of the Petri-Net.
-	 */
-	private void getText() {
-		this.textpane.setText(Messages.getString("P2T.loading"));
-		clean();
+		/**
+		 * Starts the webservice to get the description of the Petri-Net.
+		 */
+		private void getText () {
+			this.textpane.setText(Messages.getString("P2T.loading"));
+			clean();
 
-		// Ensure their are no arc weights
-		if(editor.getModelProcessor().usesArcWeights()){
-			this.textpane.setText(Messages.getString("P2T.Error.ArcWeights.title"));
-			showErrorMessage("P2T.Error.ArcWeights");
-			return;
-		}
-
-		this.setThreadInProgress(true);
-		webService = new WebServiceThread(this);
-		webService.start();
-		while (!webService.getIsFinished()) {
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e1) {
-				// ignore
+			// Ensure their are no arc weights
+			if (editor.getModelProcessor().usesArcWeights()) {
+				this.textpane.setText(Messages.getString("P2T.Error.ArcWeights.title"));
+				showErrorMessage("P2T.Error.ArcWeights");
+				return;
 			}
-		}
-		this.textpane.setText("");
 
-		if (naturalTextParser != null)
-			this.textpane.setText(naturalTextParser.getHtmlText());
-
-		setThreadInProgress(false);
-		webService = null;
-	}
-
-	private void showErrorMessage(String resourceKey) {
-		Component parent = editor.getMediator().getUi().getComponent();
-		String message = Messages.getString(resourceKey + ".message");
-		String title = Messages.getString(resourceKey + ".title");
-		JOptionPane.showMessageDialog(parent, message, title, JOptionPane.ERROR_MESSAGE);
-	}
-
-	/**
-	 * Setter of the thread-in-progress flag
-	 * 
-	 * @param b sets the in-progress-state-flag of the webservice
-	 */
-	public void setThreadInProgress(boolean b) {
-		threadInProgress = b;
-	}
-
-	/**
-	 * Getter of the Thread in
-	 * 
-	 * @return boolean; returns true if the webservice is still supposed to be
-	 *         in progress
-	 */
-	private boolean getThreadInProgress() {
-		return threadInProgress;
-	}
-
-	/**
-	 * Removes the highlights from the elements and the text. Afterwards those
-	 * are repainted.
-	 */
-	public void clean() {
-		textpane.getHighlighter().removeAllHighlights();
-		ModelElementContainer mec = editor.getModelProcessor().getElementContainer();
-		mec.removeAllHighlighting();
-		editor.getGraph().refreshNet();
-		editor.getGraph().repaint();
-	}
-
-	/**
-	 * Shows or hides the loading animation label.
-	 * 
-	 * @param show
-	 */
-	public void showLoadingAnimation(boolean show) {
-		this.labelLoading.setVisible(show);
-	}
-
-	/**
-	 * Shows or hides the buttons.
-	 * 
-	 * @param enable
-	 */
-	public void enableButtons(boolean enable) {
-		this.buttonLoad.setEnabled(enable);
-		this.buttonExport.setEnabled(enable);
-	}
-
-	/**
-	 * Callback method which automatically gets called every time the side bar
-	 * gets displayed or hidden. Can be used to prepare / update the displayed
-	 * content, if required.
-	 * 
-	 * @param visible
-	 */
-
-	public void onSideBarShown(boolean visible) {
-		//checkt, ob der Prozess sound ist, bevor er an den Webservice übergeben wird. Alle anderen Prozesse werden nicht übersetzt.
-		IQualanalysisService analyseService = QualAnalysisServiceFactory.createNewQualAnalysisService(editor);
-		if(analyseService.isWorkflowNet()) {
-			if (visible == true && this.firstTimeDisplayed == false) {
-				getText();
-				this.firstTimeDisplayed = true;
+			this.setThreadInProgress(true);
+			webService = new WebServiceThread(this);
+			webService.start();
+			while (!webService.getIsFinished()) {
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e1) {
+					// ignore
+				}
 			}
+			this.textpane.setText("");
+
+			if (naturalTextParser != null)
+				this.textpane.setText(naturalTextParser.getHtmlText());
+
+			setThreadInProgress(false);
+			webService = null;
 		}
-		else
-			JOptionPane.showMessageDialog(null,
-					Messages.getString("PetriNet.NotSound"),
-					Messages.getString("AnalysisSideBar.SoundnessAnalysis"), JOptionPane.ERROR_MESSAGE);
+
+		private void showErrorMessage (String resourceKey){
+			Component parent = editor.getMediator().getUi().getComponent();
+			String message = Messages.getString(resourceKey + ".message");
+			String title = Messages.getString(resourceKey + ".title");
+			JOptionPane.showMessageDialog(parent, message, title, JOptionPane.ERROR_MESSAGE);
+		}
+
+		/**
+		 * Setter of the thread-in-progress flag
+		 *
+		 * @param b sets the in-progress-state-flag of the webservice
+		 */
+		public void setThreadInProgress ( boolean b){
+			threadInProgress = b;
+		}
+
+		/**
+		 * Getter of the Thread in
+		 *
+		 * @return boolean; returns true if the webservice is still supposed to be
+		 *         in progress
+		 */
+		private boolean getThreadInProgress () {
+			return threadInProgress;
+		}
+
+		/**
+		 * Removes the highlights from the elements and the text. Afterwards those
+		 * are repainted.
+		 */
+		public void clean () {
+			textpane.getHighlighter().removeAllHighlights();
+			ModelElementContainer mec = editor.getModelProcessor().getElementContainer();
+			mec.removeAllHighlighting();
+			editor.getGraph().refreshNet();
+			editor.getGraph().repaint();
+		}
+
+		/**
+		 * Shows or hides the loading animation label.
+		 *
+		 * @param show
+		 */
+		public void showLoadingAnimation ( boolean show){
+			this.labelLoading.setVisible(show);
+		}
+
+		/**
+		 * Shows or hides the buttons.
+		 *
+		 * @param enable
+		 */
+		public void enableButtons ( boolean enable){
+			this.buttonLoad.setEnabled(enable);
+			this.buttonExport.setEnabled(enable);
+		}
+
+		/**
+		 * Callback method which automatically gets called every time the side bar
+		 * gets displayed or hidden. Can be used to prepare / update the displayed
+		 * content, if required.
+		 *
+		 * @param visible
+		 */
+
+		public void onSideBarShown ( boolean visible){
+			//checkt, ob der Prozess sound ist, bevor er an den Webservice übergeben wird. Alle anderen Prozesse werden nicht übersetzt.
+			IQualanalysisService analyseService = QualAnalysisServiceFactory.createNewQualAnalysisService(editor);
+			if (analyseService.isWorkflowNet()) {
+				if (visible == true && this.firstTimeDisplayed == false) {
+					getText();
+					this.firstTimeDisplayed = true;
+				}
+			} else
+				JOptionPane.showMessageDialog(null,
+						Messages.getString("PetriNet.NotSound"),
+						Messages.getString("AnalysisSideBar.SoundnessAnalysis"), JOptionPane.ERROR_MESSAGE);
+		}
 	}
-}
