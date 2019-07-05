@@ -27,5 +27,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lib" level="application" />
+    <orderEntry type="module" module-name="WoPeD-Text2Process" />
   </component>
 </module>

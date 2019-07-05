@@ -71,12 +71,3 @@ public class HttpRequest {
 	}
 }
 
-class HttpResponse {
-	int responseCode;
-	String body;
-	
-	public HttpResponse(int code, String body) {
-		this.responseCode = code;
-		this.body = body;
-	}
-}
