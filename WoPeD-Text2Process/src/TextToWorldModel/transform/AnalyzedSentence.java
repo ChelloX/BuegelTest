@@ -3,14 +3,10 @@
  */
 package TextToWorldModel.transform;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import TextToWorldModel.Constants;
 import TextToWorldModel.processing.ProcessingUtils;
-import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.IndexedWord;
 import worldModel.T2PSentence;
 import TextToWorldModel.transform.ConjunctionElement.ConjunctionType;
@@ -81,9 +77,6 @@ public class AnalyzedSentence {
 	}
 
 
-
-
-
 	/**
 	 *  determines if there are conjunctions connecting Actions over sub-sentence boundaries
 	 */
@@ -129,7 +122,7 @@ public class AnalyzedSentence {
 		//checking if the sentence contains several sub-sentences
 		int _sCount = determineSubSentenceCount(_mainSentence);
 		if(_sCount == 0) {
-			//no, this is a simple sentence, it okay to proceed
+			//no, this is a simple sentence, it is okay to proceed
 			extractElements(f_root, _mainSentence,dependencies);
 		}else if(_sCount == 1) {
 			//we have a sub-sentence with something surrounding it here
@@ -198,8 +191,8 @@ public class AnalyzedSentence {
 	}
 	
 	/**
-	 * @param sentence
-	 * @return List<Tree>
+	 * @param sentence Tree structure of the sentence without the root node
+	 * @return List<Tree> of subsentences that the sentence contains
 	 */
 	private List<Tree> findSubSentences(Tree sentence) {
 		List<Tree> _result = SearchUtils.findChildren(f_sentenceTags, sentence);
@@ -217,7 +210,7 @@ public class AnalyzedSentence {
 	}
 
 
-	/**
+	/** Determine the number of subsentence that the current sentence contains
 	 * @param sentence
 	 * @return int SubSentenceCount
 	 */
@@ -271,9 +264,10 @@ public class AnalyzedSentence {
 	}
 	
 	/**
+	 * Extracts all elements (Actors, Actions and Resources) that can be found in the sentence
 	 * @param f_root
-	 * @param mainsentence
-	 * @param dependencies
+	 * @param mainsentence Tree structure of the sentence without the root node
+	 * @param dependencies Collection of all the dependencies of the mainsentence
 	 */
 	private void extractElements(Tree f_root, Tree mainsentence,Collection<TypedDependency> dependencies) {
 		if(Constants.DEBUG_EXTRACTION) System.out.println("-----------------------------------");
@@ -300,8 +294,10 @@ public class AnalyzedSentence {
 			}
 		}
 		
-		List<Action> _finalActions = new ArrayList<Action>();
+		//List<Action> _finalActions = new ArrayList<Action>();
 		//combining elements
+		//TRYOUT
+		/*
 		if(_actors.size() > 0) {
 			for(Actor a:_actors) {
 				for(Action v:_actions) {
@@ -312,7 +308,8 @@ public class AnalyzedSentence {
 			}		
 		}else {
 			_finalActions.addAll(_actions);
-		}		
+		}
+		*/
 		//adding everything to the worldModel
 		for(Actor a:_actors) {
 			f_world.addActor(a);
@@ -324,7 +321,7 @@ public class AnalyzedSentence {
 				f_world.addResource((Resource) se);
 			}
 		}
-		for(Action a:_finalActions) {
+		for(Action a:_actions) {
 			f_actions.add(a);
 			if(a.getXcomp() != null) {
 				if(a.getXcomp().getActorFrom() != null)
@@ -341,8 +338,8 @@ public class AnalyzedSentence {
 	}
 	
 	
-	/**
-	 * @param verbs
+	/**Checks if verb is part of an example sentence, if yes it removes the verb from the list
+	 * @param verbs list of all verbs that could get extracted from the sentences
 	 */
 	private void removeExamples(List<Action> verbs) {
 		for(int i=0;i<verbs.size();i++) {
@@ -361,7 +358,7 @@ public class AnalyzedSentence {
 	 * if one of the specifiers contains a subject (in passive sentences)
 	 * it is removed to make the verb leaner
 	 * @param verb
-	 * @param actors
+	 * @param actors list of all actors that were extracted from the sentences
 	 */
 	private void filterVerb(Action verb, List<Actor> actors,List<ExtractedObject> objects) {
 		ArrayList<SpecifiedElement> _toCheck = new ArrayList<SpecifiedElement>();
@@ -420,16 +417,18 @@ public class AnalyzedSentence {
 	/**
 	 * Checks whether the sentence is an active or passive sentence by analyzing the dependencies that indicate the presence of an active/passive sentence
 	 * @param f_root Treestructure of the T2P Sentence
-	 * @param mainsentence T2P sentence with rootnode removed
+	 * @param mainsentence Tree structure of the sentence without the root node
 	 * @param dependencies Collection of the dependencies of the sentence
 	 * @return boolean that is true when the sentence is an active sentence
 	 */
 	private boolean isActive(Tree f_root, Tree mainsentence, Collection<TypedDependency> dependencies ) {
 		List<TypedDependency> _nsubj = SearchUtils.findDependency(ListUtils.getList("nsubj","csubj","dobj"),dependencies);
+		excludeRelativeClauses(f_root, mainsentence,_nsubj);
 		if(_nsubj.size() > 0) {
 			return true;
 		}	
 		List<TypedDependency> _nsubjpass = SearchUtils.findDependency(ListUtils.getList("nsubjpass","csubjpass","agent"),dependencies);
+		excludeRelativeClauses(f_root, mainsentence,_nsubj);
 		if(_nsubjpass.size() > 0) {
 			return false;
 		}
@@ -442,10 +441,11 @@ public class AnalyzedSentence {
 	 * extracts the subjects (actors) of the activity
 	 * can be null (in case of a passive sentence) or a relative pronoun
 	 * which then has to be resolved
-	 * @param f_root
-	 * @param mainsentence
-	 * @param dependencies
-	 * @param active 
+	 * @param f_root Treestructure of the T2P Sentence
+	 * @param mainsentence Tree structure of the sentence without the root node
+	 * @param dependencies Collection of the dependencies of the sentence
+	 * @param active boolean value that is true when the sentence is an active sentence
+     * @return List of Actors that could get extracted from the sentence
 	 */	
 	private List<Actor> determineSubjects(Tree f_root, Tree mainsentence, Collection<TypedDependency> dependencies, boolean active ) {
 		ArrayList<Actor> _result = new ArrayList<Actor>();
@@ -453,35 +453,48 @@ public class AnalyzedSentence {
 		IndexedWord _mainActor = null;
 		if(active) {
 			List<TypedDependency> _nsubj = SearchUtils.findDependency("nsubj",dependencies);
-			List<TypedDependency> _nmod_to = SearchUtils.findDependency("nmod:to",dependencies);
+			List<TypedDependency> _nmod_to = SearchUtils.findDependency("nmod",dependencies);
 			List<TypedDependency> _det = SearchUtils.findDependency("det",dependencies);
-			if(_det.size()!=0) {
-				if (_nsubj.size()!= 0) {
-					if(_nsubj.size() > 1) {
-						int count = 0;
-						for (TypedDependency td : _nsubj) {
-							if (td.dep().value() == _det.get(0).gov().value()) {
-								_mainActor = td.dep();
-								count++;
+			excludeRelativeClauses(f_root, mainsentence,_nsubj);
+			if(_nsubj.size() > 0){
+				ArrayList<IndexedWord> allActors = new ArrayList<>();
+				if(_det.size()>0){
+					for(TypedDependency TDsubj : _nsubj){
+						for(TypedDependency TDdet : _det){
+							if(TDsubj.dep().value().equals(TDdet.gov().value())){
+								Tree helpNode = f_fullSentence.get(TDsubj.dep().index()-1);
+								if (!helpNode.parent(f_root).label().value().equals("NNP")){
+                                    allActors.add(TDsubj.dep());
+                                }
 							}
 						}
-						if (count > 1) {
-							_mainActor = null;
-							System.out.println("Sentence has more then one subject");
-							if (Constants.DEBUG_EXTRACTION) printToConsole(_nsubj);
+					}
+				}
+				if(_nmod_to.size()>0){
+					for(TypedDependency TDdet : _det){
+						for(TypedDependency TDnmod : _nmod_to){
+							if(TDdet.gov().value().equals(TDnmod.dep().value())){
+								allActors.add(TDdet.gov());
+							}
 						}
 					}
+				}
+				if (allActors.size()>1){
+					System.out.println("Sentence has more than one subject");
+					if (Constants.DEBUG_EXTRACTION) printToConsole(_nsubj);
+					for(IndexedWord mainActor: allActors){
+						Actor actor = ElementsBuilder.createActor(f_root, f_sentence, f_fullSentence, mainActor, dependencies);
+						_result.add(actor);
 					}
-				} else {
-					if (_nmod_to != null) {
-						if (_nmod_to.get(0).dep().value()==_det.get(0).gov().value()){
-							_mainActor = _det.get(0).gov();
-						}
+				}
+				else if (allActors.size()==1){
+					_mainActor = allActors.get(0);
 				}
 			}
 		}else {
 			//passive sentence
 			List<TypedDependency> _agent = SearchUtils.findDependency("agent",dependencies);
+			excludeRelativeClauses(f_root, mainsentence,_agent);
 			if(_agent.size() == 0) {	
 				if(Constants.DEBUG_EXTRACTION) System.out.println("Sentence contains no subject!");
 			}else {
@@ -508,6 +521,14 @@ public class AnalyzedSentence {
 		return _result;
 	}
 
+
+	/**
+	 * @param dependencies
+	 * @param current
+	 * @param object
+	 * @param active boolean value that is true when the sentence is an active sentence
+	 * @return ArrayList<SpecifiedElement>
+	 */
 	private ArrayList<SpecifiedElement> checkConjunctions(Collection<TypedDependency> dependencies, SpecifiedElement current, boolean object, boolean active) {
 		return checkConjunctions(dependencies, current, object, false, active);
 	}		
@@ -519,10 +540,10 @@ public class AnalyzedSentence {
 	 * @param current
 	 * @param object
 	 * @param actor
-	 * @param active
+	 * @param active boolean value that is true when the sentence is an active sentence
 	 */
 	private ArrayList<SpecifiedElement> checkConjunctions(Collection<TypedDependency> dependencies,SpecifiedElement current,boolean object,boolean actor,boolean active) {
-		// checking or conjunctions
+		// checking conjunctions
 		ArrayList<SpecifiedElement> _result = new ArrayList<SpecifiedElement>();
 		List<TypedDependency> _conj = SearchUtils.findDependency("conj", dependencies);
 		List<TypedDependency> _cop = SearchUtils.findDependency("cop", dependencies);
@@ -550,17 +571,9 @@ public class AnalyzedSentence {
 						if(_xcompHit) {
 							//copy full action and only replace xcomp
 							_newEle = a.clone();
-							CoreLabel label = (CoreLabel)_otherNodeTGN.label();
-							_otherNodeTGN.setValue(label.lemma());
-							if(!_otherNodeTGN.value().equals("be")) {
 								((Action) _newEle).setXcomp(ElementsBuilder.createAction(f_sentence, f_fullSentence, _otherNodeTGN, dependencies, true, f_root));
-							}
 						}else {
-							CoreLabel label = (CoreLabel)_otherNodeTGN.label();
-							_otherNodeTGN.setValue(label.lemma());
-							if(!_otherNodeTGN.value().equals("be")) {
 								_newEle = ElementsBuilder.createAction(f_sentence, f_fullSentence, _otherNodeTGN, dependencies, active, f_root);
-							}
 						}
 					}
 					if(td.gov().index() != td.dep().index()) {
@@ -573,7 +586,12 @@ public class AnalyzedSentence {
 		return _result;		
 	}
 
-
+	/**
+	 *
+	 * @param current
+	 * @param td
+	 * @param _newEle
+	 */
 	private void buildLink(SpecifiedElement current, TypedDependency td, SpecifiedElement _newEle) {
 		ConjunctionElement _conj = null;
 		if(td.reln().getSpecific().equals("or")) {
@@ -595,42 +613,106 @@ public class AnalyzedSentence {
 
 
 	/**
-	 * @param f_root
-	 * @param mainsentence
-	 * @param active
-	 * @param dependencies
-	 * @return
+	 * Extracts the relevant verbs from the sentence in order to create the Actions for the WorldModel.
+	 * A distinction is made between active and passive sentences
+	 * @param f_root Tree structure of the whole sentence with the root node included
+	 * @param mainsentence Tree structure of the sentence without the root node
+	 * @param active Indicates if the sentence is an active or passive sentence
+	 * @param dependencies List of all dependencies of the Sentence
+	 * @return List of all Actions that could be found in the sentence
 	 */
 	private List<Action> determineVerb(Tree f_root, Tree mainsentence,boolean active,Collection<TypedDependency> dependencies) {
-		IndexedWord _mainPredicate = null;
+ 		IndexedWord _mainPredicate = null;
 		List<Action> _result = new ArrayList<Action>();
+		boolean foundVerb = false;
 		if(active) {
 			List<TypedDependency> _nsubj = SearchUtils.findDependency("nsubj",dependencies);
-			if(_nsubj.size() == 0) {
-				//hmm...
-				//could be an imperative, look for a dobj relation
-				List<TypedDependency> _dobj = SearchUtils.findDependency("dobj",dependencies);
-				if(_dobj.size() >= 1) {
-					_mainPredicate = _dobj.get(0).gov(); //here several are possible "leave the house and close the window" -> conj will find the rest
-				}
-			}else if(_nsubj.size() > 1) {
+			List<TypedDependency> _dobj = SearchUtils.findDependency("dobj",dependencies);
+			List<TypedDependency> _nmod = SearchUtils.findDependency("nmod", dependencies);
+            List<TypedDependency> _advmod = SearchUtils.findDependency("advmod", dependencies);
+			excludeRelativeClauses(f_root, mainsentence,_nsubj);
+			if(_nsubj.size() > 1) {
 				System.out.println("Sentence has more than one active predicate");
-				if(Constants.DEBUG_EXTRACTION) printToConsole(_nsubj);
-			}else if(_nsubj.size() == 1) {
-				_mainPredicate = _nsubj.get(0).gov();
-				//check if we do not have a cop present, if so we have to change the main verb
-				List<TypedDependency> _cop = SearchUtils.findDependency("cop",dependencies);
-				for(TypedDependency td: _cop) {
-					if(td.gov().equals(_mainPredicate)) {
-						//okay found it
-						_mainPredicate = td.dep();
-						break;						
+                ArrayList<IndexedWord> _allPredicates = new ArrayList<>();
+				for (TypedDependency tdNsubj : _nsubj){
+				    for(TypedDependency tdDobj: _dobj){
+				        if(tdNsubj.gov().value() == tdDobj.gov().value()){
+				        	Tree treeNode = f_fullSentence.get(tdNsubj.gov().index()-1);
+				        	if(!treeNode.parent(f_root).label().value().equals("VBP")){
+								_allPredicates.add(tdNsubj.gov());
+							}
+                        }
+                    }
+                }
+                for(IndexedWord verb: _allPredicates) {
+                    Tree _PredicatesNode = f_fullSentence.get(verb.index() - 1);
+                    Tree _vpHead = SearchUtils.getFullPhraseTree("VP", _PredicatesNode, f_root);
+                    Action _a = ElementsBuilder.createAction(f_sentence, f_fullSentence, _PredicatesNode, dependencies, active, f_root);
+                    checkForSubSentences(_vpHead, dependencies, _a, false);
+                    _result.add(_a);
+                    foundVerb = true;
+                }
+				if (Constants.DEBUG_EXTRACTION) printToConsole(_nsubj);
+			}
+			else if(_nsubj.size()==1){
+				for (TypedDependency tdNsubj : _nsubj) {
+					for (TypedDependency tdDobj : _dobj) {
+						if (tdNsubj.gov().value() == tdDobj.gov().value()) {
+							Tree treeNode = f_fullSentence.get(tdNsubj.gov().index()-1);
+							if(!treeNode.parent(f_root).label().value().equals("VBP")) {
+								_mainPredicate = tdNsubj.gov();
+								foundVerb = true;
+							}
+						}
 					}
 				}
-			}						
+			}
+			else {
+			    ArrayList<IndexedWord> _allPredicates = new ArrayList<>();
+			    if(_advmod.size()>0){
+                    for (TypedDependency tdAdvmod : _advmod) {
+                        for (TypedDependency tdDobj : _dobj) {
+                            if (tdAdvmod.gov().value() == tdDobj.gov().value()) {
+                                    _allPredicates.add(tdAdvmod.gov());
+                                    foundVerb = true;
+                            }
+                        }
+                    }
+                }
+                else {
+                    for (TypedDependency tdNmod : _nmod) {
+                        for (TypedDependency tdDobj : _dobj) {
+                            if (tdNmod.gov().value() == tdDobj.gov().value()) {
+                                Tree treeNode = f_fullSentence.get(tdNmod.gov().index() - 1);
+                                if (!treeNode.parent(f_root).label().value().equals("VBP")) {
+                                    _allPredicates.add(tdNmod.gov());
+                                    foundVerb = true;
+                                }
+                            }
+                        }
+                    }
+                }
+                for (int i = 0; i < _allPredicates.size()-1; i++) {
+                    IndexedWord a = _allPredicates.get(i);
+                    IndexedWord b = _allPredicates.get(i+1);
+                         if (a.index() == b.index()){
+                             _allPredicates.remove(a);
+                             i--;
+                         }
+                }
+                for(IndexedWord verb: _allPredicates) {
+                    Tree _PredicatesNode = f_fullSentence.get(verb.index() - 1);
+                    Tree _vpHead = SearchUtils.getFullPhraseTree("VP", _PredicatesNode, f_root);
+                    Action _a = ElementsBuilder.createAction(f_sentence, f_fullSentence, _PredicatesNode, dependencies, active, f_root);
+                    checkForSubSentences(_vpHead, dependencies, _a, false);
+                    _result.add(_a);
+                    foundVerb = true;
+                }
+            }
 		}else {
 			//passive sentence
 			List<TypedDependency> _nsubjpass = SearchUtils.findDependency("nsubjpass",dependencies);
+			excludeRelativeClauses(f_root, mainsentence,_nsubjpass);
 			if(_nsubjpass.size() > 1) {
 				System.out.println("Sentence has more than one passive predicate:");
 				if(Constants.DEBUG_EXTRACTION) printToConsole(_nsubjpass);
@@ -639,32 +721,20 @@ public class AnalyzedSentence {
 				_mainPredicate = _nsubjpass.get(0).gov();
 			}			
 		}
-		if(_mainPredicate == null) {
+		if(!foundVerb) {
 			//determine through syntax tree only - less accurate
-			List<Tree> _verbs = SearchUtils.find("VP",mainsentence,ListUtils.getList("SBAR","S")); //prüfen
-			if(_verbs.size() == 0) {
+			List<Tree> _verbSentences = SearchUtils.find("VP",mainsentence,ListUtils.getList("SBAR","S")); //prüfen
+			if(_verbSentences.size() == 0) {
 				System.out.println("Sentence contains no action?!?");
-			}else if(_verbs.size() > 1) {
+			}else if(_verbSentences.size() > 1) {
 				System.out.println("Sentence has more than one verb phrase!");
-			}else {
-				Tree _vp = _verbs.get(0);
-				Action _a = ElementsBuilder.createActionSyntax(f_sentence, f_fullSentence, _vp, active);
-				checkForSubSentences(_vp,dependencies,_a,false);
-				_result.add(_a);
-
-
-			}	
-		}else {
+			}
+		}else if(_mainPredicate !=null){
 			Tree _mainPredicateNode = f_fullSentence.get(_mainPredicate.index()-1);
                 Tree _vpHead = SearchUtils.getFullPhraseTree("VP", _mainPredicateNode, f_root);
-			CoreLabel label = (CoreLabel)_mainPredicateNode.label();
-			_mainPredicateNode.setValue(label.lemma());
-			if(!_mainPredicateNode.value().equals("be")) {
 				Action _a = ElementsBuilder.createAction(f_sentence, f_fullSentence, _mainPredicateNode, dependencies, active, f_root);
 				checkForSubSentences(_vpHead, dependencies, _a, false);
 				_result.add(_a);
-			}
-
 		}
 		if(_result.size()>0) {			
 			for(SpecifiedElement el: checkConjunctions(dependencies, _result.get(0), false,active)){
@@ -676,7 +746,9 @@ public class AnalyzedSentence {
 	
 	/**
 	 * @param head
-	 * @param dependencies 
+	 * @param dependencies
+	 * @param object
+	 * @param isNP
 	 */
 	private void checkForSubSentences(Tree head, Collection<TypedDependency> dependencies,SpecifiedElement object,boolean isNP) {
 		if(f_sentenceTags.contains(head.value())) {
@@ -713,8 +785,8 @@ public class AnalyzedSentence {
 
 
 	/**
-	 * @param sentence
-	 * @param _active
+	 * @param sentence Tree structure of the sentence without the root node
+	 * @param _active boolean value that is true when the sentence is an active sentence
 	 * @param verb
 	 * @param dependencies
 	 * @param active
@@ -734,6 +806,7 @@ public class AnalyzedSentence {
 		if(!_active) {
 			//passive sentence -  the beauty of an nsubjpass relation			
 			List<TypedDependency> _nsubjpass = SearchUtils.findDependency("nsubjpass", dependencies);
+			excludeRelativeClauses(f_root, sentence,_nsubjpass);
 			if(_nsubjpass.size() == 0) {
 				//use dobj if available instead
 				determineObjectFromDOBJ(verb, dependencies, _result);	
@@ -751,8 +824,8 @@ public class AnalyzedSentence {
 				ExtractedObject _obj = ElementsBuilder.createObject(f_root, f_sentence, f_fullSentence, _object,dependencies);
 				_obj.setSubjectRole(true); //although it is an object it is the syntactic subject of the sentence
 				_result.add(_obj);
-				Tree _objectTGN = f_fullSentence.get(_object.index()-1);
-				checkNPForSubsentence(_objectTGN,dependencies,_obj);
+				Tree _objectNode = f_fullSentence.get(_object.index()-1);
+				checkNPForSubsentence(_objectNode,dependencies,_obj);
 			}			
 		}else {			
 			determineObjectFromDOBJ(verb, dependencies, _result);			
@@ -768,6 +841,12 @@ public class AnalyzedSentence {
 	}
 
 
+    /**
+     *
+     * @param verb
+     * @param dependencies
+     * @param _result
+     */
 	private void determineObjectFromDOBJ(Action verb,
 			Collection<TypedDependency> dependencies,
 			List<ExtractedObject> _result) {
@@ -842,8 +921,9 @@ public class AnalyzedSentence {
 	
 	
 	/**
+     * Checks if noun phrase contains subsentences
 	 * @param node
-	 * @param dependencies
+	 * @param dependencies collection of all TypedDependencies of the sentence
 	 * @param obj
 	 */
 	private void checkNPForSubsentence(Tree node,Collection<TypedDependency> dependencies,ExtractedObject obj) {
@@ -853,9 +933,41 @@ public class AnalyzedSentence {
 		}
 	}
 
-
 	/**
-	 * @param list
+     * @param f_root Tree structure of the whole sentence with the root node included
+	 * @param sentence Tree structure of the sentence without the root node
+	 * @param list list of all dependencies
+	 */
+	private void excludeRelativeClauses(Tree f_root, Tree sentence, List<TypedDependency> list) {
+		for(int i=0;i<list.size();i++) {
+			TypedDependency _td = list.get(i);
+			if(_td.reln().getShortName().equals("rcmod")) {
+				continue;
+			}
+			Tree _dep = f_fullSentence.get(_td.gov().index()-1);
+			int _sentenceIndex = SearchUtils.getIndex(f_fullSentence, sentence.getLeaves());
+            //get the top most sentence node
+			while(!(_dep = _dep.parent(f_root)).value().equals("ROOT")) {
+				if(sentence.value().equals(_dep.parent(f_root).value())) {
+					int _partIndex = SearchUtils.getIndex(f_fullSentence, _dep.parent(f_root).getLeaves());
+					if(_sentenceIndex >= _partIndex) {
+						break;
+					}
+				}
+
+				if((_dep.parent(f_root).value().equals("SBAR") || _dep.parent(f_root).value().equals("S") || _dep.parent(f_root).value().equals("PRN"))
+						&& (!_dep.parent(f_root).parent(f_root).value().equals("SBAR"))) { //hack for relative clause TextToWorldModel.processing
+					list.remove(i);
+					i--;
+					break;
+				}
+			}
+		}
+	}
+
+
+	/** Prints out all dependencies to the console
+	 * @param list of all dependencies of the sentence
 	 */
 	private void printToConsole(List<TypedDependency> list) {
 		for(TypedDependency td:list) {
@@ -901,8 +1013,8 @@ public class AnalyzedSentence {
 	}
 
 
-	/**
-	 * @param me removes action me from the list of Actions extracted
+	/**removes action me from the list of Actions extracted
+	 * @param me Action that should be removed
 	 */
 	public void removeAction(Action me) {
 		f_actions.remove(me);

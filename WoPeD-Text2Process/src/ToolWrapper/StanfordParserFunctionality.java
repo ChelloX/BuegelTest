@@ -43,35 +43,13 @@ public class StanfordParserFunctionality {
         List<CoreMap> sentences = document.get(SentencesAnnotation.class);
 
 
-        List<String> lemmatizedArray = new ArrayList<>();
-        String lemmatizedText ="";
-
-        /**for (CoreMap sentence : sentences) {
-            if(sentence.get(TokensAnnotation.class).get(0).value().equals("#")){
-                continue;
-            }
-
-            for (CoreLabel token : sentence.get(TokensAnnotation.class)) {
-                if(token.get(PartOfSpeechAnnotation.class).equals("VBZ") || token.get(PartOfSpeechAnnotation.class).equals("VBG")|| token.get(PartOfSpeechAnnotation.class).equals("VBP")){
-                    token.setValue(token.lemma());
-                }
-                lemmatizedArray.add(token.value());
-            }
-        }
-        for (String str: lemmatizedArray){
-            lemmatizedText+=str+" ";
-        }
-        System.out.println(lemmatizedText);
-
-        document = new Annotation(lemmatizedText);
-        pipeline.annotate(document);
-
-        sentences = document.get(SentencesAnnotation.class); **/
-
         ArrayList<CoreLabel> _list = new ArrayList<CoreLabel>();
 
         for(CoreMap sentence : sentences) {
-            System.out.println("Satz" +sentence);
+            //ignore Comments
+            if(sentence.get(TokensAnnotation.class).get(0).value().equals("#")){
+                continue;
+            }
             ArrayList<String> posTags = new ArrayList<>();
             for(CoreLabel token: sentence.get(TokensAnnotation.class)){
                 _list.add(token);
@@ -86,9 +64,6 @@ public class StanfordParserFunctionality {
             _s.setTree(tree);
 
             GrammaticalStructure gs = gsf.newGrammaticalStructure(tree);
-            System.out.println("enhanced: "+gs.typedDependenciesEnhancedPlusPlus());
-            System.out.println(tree);
-            System.out.println(posTags);
             _s.setGrammaticalStructure(gs);
 
             _result.addSentence(_s);

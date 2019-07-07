@@ -14,7 +14,6 @@ import worldModel.SpecifiedElement;
 import worldModel.Specifier;
 
 import edu.stanford.nlp.trees.Tree;
-import edu.stanford.nlp.trees.TreeGraphNode;
 import edu.stanford.nlp.trees.TypedDependency;
 
 /**
@@ -45,22 +44,21 @@ public class SearchUtils {
 		return _result;
 	}
 	
-	/**
-	 * @param _dependencies
-	 * @param start
-	 * @param end
-	 * @return
+	/**Remove all dependencies from the dependency list, that do not belong to the determined
+     * subsentence
+	 * @param _dependencies collection of all dependencies of the sentence
+	 * @param start startindex of the subsentence
+	 * @param end endindex of the subsentence
+	 * @return list of dependencies without the ones that do not belong to the subsentence
 	 */
-	public static List<TypedDependency> filter(
-			Collection<TypedDependency> _dependencies, int start, int end) {
+	public static List<TypedDependency> filter(	Collection<TypedDependency> _dependencies, int start, int end) {
 		ArrayList<TypedDependency> _result = new ArrayList<TypedDependency>();
 		for(TypedDependency td:_dependencies) {
-			/*if(td.reln().getShortName().equals("rcmod") ||
-			   (( start <= td.gov().label().index() && (end >= td.gov().label().index())) 
+			if(td.reln().getShortName().equals("rcmod") || (( start <= td.gov().index() && (end >= td.gov().index()))
 					&&
-			   ( start <= td.dep().label().index() && (end >= td.dep().label().index())))) {
+			   ( start <= td.dep().index() && (end >= td.dep().index())))) {
 				_result.add(td);
-			}*/
+			}
 		}
 		return _result;
 	}
@@ -84,20 +82,19 @@ public class SearchUtils {
 	
 	public static List<TypedDependency> filterByGov(Action verb,List<TypedDependency> dep) {
 		List<TypedDependency> _result = new ArrayList<TypedDependency>(); 
-		for(TypedDependency td:dep) {				
-			if(verb.getWordIndex() == td.gov().index() ||
-				verb.getCopIndex() == td.gov().index() 
-				/*|| (verb.getXcomp() != null && verb.getXcomp().getWordIndex() == td.gov().index())*/) {
+		for(TypedDependency td:dep) {
+			if(verb.getWordIndex() == td.gov().index() || verb.getCopIndex() == td.gov().index()) {
 				_result.add(td);
 			}
 		}
 		return _result;
 	}
 	
-	/**
+	/**Returns all dependencies in the sentence with the specific dependency type
+     *
 	 * @param relNames
 	 * @param dependencies
-	 * @return
+	 * @return List of dependencies with the dependency types of in the relNames List
 	 */
 	public static List<TypedDependency> findDependency(List<String> relNames,
 			Collection<TypedDependency> dependencies) {

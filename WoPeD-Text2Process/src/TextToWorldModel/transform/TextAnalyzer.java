@@ -79,7 +79,6 @@ public class TextAnalyzer {
 			f_text = textToAnalyze;			
 			for(int i = 0;i<f_text.getSentences().size();i++) {
 				T2PSentence s = f_text.getSentences().get(i);
-				System.out.println(s.getTree().toString());
 					AnalyzedSentence _sentence = new AnalyzedSentence(s,i);
 					_sentence.analyze(f_world);
 					f_analyzedSentences.add(_sentence);
@@ -180,7 +179,7 @@ private void createFinalLabelsForActions(){
 		if(_a2 == null) {
 			return false;
 		}
-		if(_a1.getVerb().equals(_a2.getVerb())){
+ 		if(_a1.getVerb().equals(_a2.getVerb())){
 			if(_a1.isNegated() != _a2.isNegated()) {
 				return false;
 			}
@@ -758,18 +757,6 @@ private void createFinalLabelsForActions(){
 		return _result;
 	}
 
-	/**
-	 * @param action
-	 * @return
-	 
-		private boolean hasLinks(Action action) {
-			for(Action a:f_world.getActions()) {
-				if(a.getLink()!= null && a.getLink().equals(action)) {
-					return true;
-				}
-			}
-			return false;
-	}*/
 
 	private void buildJoin(Flow _flow,List<Action> cameFrom ,Action action) {
 		//several actions in came from -> make a join
