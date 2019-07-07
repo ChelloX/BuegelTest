@@ -1,8 +1,5 @@
 package org.woped.qualanalysis.paraphrasing.controller;
 
-import P2TWebservice.P2TController;
-import P2TWebservice.P2TServlet;
-import org.apache.xmlbeans.XmlException;
 import org.woped.core.config.ConfigurationManager;
 import org.woped.core.controller.IEditor;
 import org.woped.file.t2p.HttpRequest;
@@ -17,8 +14,6 @@ import org.woped.qualanalysis.paraphrasing.webservice.ProcessToTextWebServiceImp
 import javax.swing.*;
 import javax.xml.ws.WebServiceException;
 import java.io.ByteArrayOutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 public class WebServiceThread extends Thread {
 
@@ -56,6 +51,7 @@ public class WebServiceThread extends Thread {
 				ProcessToTextWebServiceImpl pttService = new ProcessToTextWebServiceImpl();
 				ProcessToTextWebService port = pttService.getProcessToTextWebServicePort();
 				output = port.generateTextFromProcessSpecification(text);
+
 
 				// new WebService
 				/*
