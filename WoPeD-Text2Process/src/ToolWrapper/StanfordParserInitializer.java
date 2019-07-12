@@ -7,34 +7,48 @@ import edu.stanford.nlp.trees.TreebankLanguagePack;
 
 import java.util.Properties;
 
+
 public class StanfordParserInitializer {
 
     private static StanfordParserInitializer SPinitializer;
     private static StanfordCoreNLP pipeline;
-    TreebankLanguagePack tlp;
-    GrammaticalStructureFactory gsf;
+    private TreebankLanguagePack tlp;
+    private GrammaticalStructureFactory gsf;
 
-    private StanfordParserInitializer(){}
+    private StanfordParserInitializer(){
+    }
 
-    public synchronized  static StanfordParserInitializer getInstance(){
-        if(SPinitializer == null){
-            synchronized (StanfordParserInitializer.class){
-                if(SPinitializer == null){
+    /*
+    * Returns current Instance of the StanfordParserInitializer if it already exists.
+    * If not, it creates a new Instance of the StanfordParserInitializer and initializes its values.
+     */
+    public synchronized static StanfordParserInitializer getInstance(){
+        if (SPinitializer == null){
+            synchronized (StanfordParserInitializer.class) {
+                if (SPinitializer == null) {
                     SPinitializer = new StanfordParserInitializer();
                     SPinitializer.init();
                 }
             }
+
         }
         return SPinitializer;
     }
 
+    /*
+    * Sets the current StanfordParserInstance to null
+     */
     public static synchronized void resetInstance(){
         SPinitializer=null;
     }
 
     public synchronized StanfordCoreNLP getPipeline() {return pipeline;};
-    public synchronized GrammaticalStructureFactory getGrammaticalStructure() {return gsf;};
+    public synchronized GrammaticalStructureFactory getGrammaticalStructure(){return gsf;}
 
+    /*
+    * Initializes the StanfordParserInitializer values by creating an Annotation pipeline with the respective
+    * chosen Annotators and creating a GrammaticalStructureFactory.
+     */
     private void init(){
         try{
             Properties props = new Properties();
@@ -45,13 +59,9 @@ public class StanfordParserInitializer {
             pipeline = new StanfordCoreNLP(props);
             tlp = new PennTreebankLanguagePack();
             gsf = tlp.grammaticalStructureFactory();
-        }
-        catch(Exception ex) {
+        }catch(Exception ex) {
             ex.printStackTrace();
         }
     }
-
-
-
 
 }

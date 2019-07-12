@@ -3,8 +3,6 @@ package TextToWorldModel;
 import TextToWorldModel.transform.DummyAction;
 import ToolWrapper.FrameNetFunctionality;
 import WorldModelToPetrinet.IDHandler;
-import edu.stanford.nlp.ling.CoreLabel;
-import edu.stanford.nlp.ling.Label;
 import edu.stanford.nlp.ling.Word;
 import worldModel.*;
 
@@ -32,11 +30,9 @@ public class MockWorldModel {
                 {"Otherwise", "he", "throws", "it", "in", "the", "bin", "."}};
         Text mockTextT2P = new Text();
         for (int i = 0; i < mockText.length; i++) {
-            ArrayList<CoreLabel> WordList = new ArrayList<CoreLabel>();
+            ArrayList<Word> WordList = new ArrayList<Word>();
             for (int j = 0; j < mockText[i].length; j++) {
-                CoreLabel label = new CoreLabel();
-                label.setValue(mockText[i][j]);
-                WordList.add(label);
+                WordList.add(new Word(mockText[i][j]));
             }
             mockTextT2P.addSentence(new T2PSentence(WordList));
         }

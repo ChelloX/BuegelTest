@@ -71,7 +71,7 @@ public class T2PSentence extends ArrayList {
 	/*public int getCharLength() {
 		return getEndPosition() - getBeginPosition();
 
-	}*/
+	}
 
 	/**
 	 * return the position of the first letter of the first word in the original text.
@@ -82,7 +82,7 @@ public class T2PSentence extends ArrayList {
 			return this.get(0).beginPosition()-f_offset;
 		}
 		return -1;
-	}*/
+	}
 
 	/**
 	 * returns the position of the last letter of the last word in the original text.
@@ -117,7 +117,7 @@ public class T2PSentence extends ArrayList {
 
 
 	/**
-	 * sets the grammatical structure containing the stanford 
+	 * sets the grammatical structure containing the stanford
 	 * dependencies
 	 * @param gs
 	 */
