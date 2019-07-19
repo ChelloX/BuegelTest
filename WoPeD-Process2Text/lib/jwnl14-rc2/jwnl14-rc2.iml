@@ -27,5 +27,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="sphinx4-core-5prealpha-20160628.232526-10" level="project" />
+    <orderEntry type="library" name="sphinx4-data-5prealpha-20160628.232535-10" level="project" />
   </component>
 </module>

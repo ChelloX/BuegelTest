@@ -2,76 +2,196 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d744383-901d-4b16-bd6f-2358ae1cdf01" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/rrabieyan.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_11.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_15.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_16.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_16_revised.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_17.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_17_revised.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_18.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_19.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_20_revised.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_20_revised1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_21.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_22.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_23.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_26.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_27.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_28.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_29.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_3_revised.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/TestData/ST_Testfall_9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/edu_mit_jwi_2_4_01.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/sphinx4_core_5prealpha_20160628_232526_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/sphinx4_data_5prealpha_20160628_232535_10.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/stanford_corenlp_3_9_2_javadoc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/stanford_corenlp_full_2018_10_05.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/stanford_parser_2010_08_16.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/stanford_parser_2010_08_16.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/stanford_parser_2010_08_161.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-FileInterface/resources/sphinx4-core-5prealpha-20160628.232526-10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-FileInterface/resources/sphinx4-data-5prealpha-20160628.232535-10.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/T2PUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/T2PUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/images/record.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages_de.properties" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages_de.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/lib/jwnl14-rc2/jwnl14-rc2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/lib/jwnl14-rc2/jwnl14-rc2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/NLPTools/StanfordParser/englishFactored.ser.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/NLPTools/StanfordParser/stanford-corenlp-3.9.2-models.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/NLPTools/StanfordParser/stanford-corenlp-3.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/NLPTools/StanfordParser/stanford-parser-2010-08-16.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/STTextToProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/STTextToProcess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/STTextToWorldModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/STTextToWorldModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/UTToolwrapper/UTStanfordParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/UTToolwrapper/UTStanfordParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/WoPeD-Text2Process.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/WoPeD-Text2Process.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/bin/StanfordParser/stanford-corenlp-3.9.2-models.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/bin/StanfordParser/stanford-corenlp-3.9.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/MockWorldModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/MockWorldModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/Attribute.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/Branch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/CDATA.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/CharacterData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/Comment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/Document.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/DocumentException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/DocumentFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/DocumentHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/DocumentType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/Element.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/ElementHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/ElementPath.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/Entity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/IllegalAddException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/InvalidXPathException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/Namespace.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/Node.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/NodeFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/ProcessingInstruction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/QName.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/Text.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/Visitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/VisitorSupport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/XPath.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/XPathException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/bean/BeanAttribute.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/bean/BeanAttributeList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/bean/BeanDocumentFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/bean/BeanElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/bean/BeanMetaData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/bean/package.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/datatype/DatatypeAttribute.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/datatype/DatatypeDocumentFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/datatype/DatatypeElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/datatype/DatatypeElementFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/datatype/InvalidSchemaException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/datatype/NamedTypeResolver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/datatype/SchemaParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/datatype/package.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dom/DOMAttribute.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dom/DOMAttributeNodeMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dom/DOMCDATA.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dom/DOMComment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dom/DOMDocument.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dom/DOMDocumentFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dom/DOMDocumentType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dom/DOMElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dom/DOMEntityReference.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dom/DOMNamespace.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dom/DOMNodeHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dom/DOMProcessingInstruction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dom/DOMText.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dom/package.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dtd/AttributeDecl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dtd/ElementDecl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dtd/ExternalEntityDecl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dtd/InternalEntityDecl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/dtd/package.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/DOMReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/DOMWriter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/DispatchHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/DocumentInputSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/DocumentResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/DocumentSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/ElementModifier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/ElementStack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/HTMLWriter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/JAXPHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/OutputFormat.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/PruningDispatchHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/PruningElementStack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/SAXContentHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/SAXEventRecorder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/SAXHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/SAXModifier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/SAXModifyContentHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/SAXModifyElementHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/SAXModifyException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/SAXModifyReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/SAXReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/SAXValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/SAXWriter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/STAXEventReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/STAXEventWriter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/XMLResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/XMLWriter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/XPP3Reader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/XPPReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/io/package.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/jaxb/JAXBModifier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/jaxb/JAXBObjectHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/jaxb/JAXBObjectModifier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/jaxb/JAXBReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/jaxb/JAXBRuntimeException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/jaxb/JAXBSupport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/jaxb/JAXBWriter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/package.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/rule/Action.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/rule/Mode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/rule/NullAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/rule/Pattern.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/rule/Rule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/rule/RuleManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/rule/RuleSet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/rule/Stylesheet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/rule/package.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/rule/pattern/DefaultPattern.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/rule/pattern/NodeTypePattern.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/swing/BranchTreeNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/swing/DocumentTreeModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/swing/LeafTreeNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/swing/XMLTableColumnDefinition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/swing/XMLTableDefinition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/swing/XMLTableModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/swing/package.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/AbstractAttribute.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/AbstractBranch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/AbstractCDATA.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/AbstractCharacterData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/AbstractComment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/AbstractDocument.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/AbstractDocumentType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/AbstractElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/AbstractEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/AbstractNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/AbstractProcessingInstruction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/AbstractText.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/BackedList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/BaseElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/ConcurrentReaderHashMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/ContentListFacade.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/DefaultAttribute.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/DefaultCDATA.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/DefaultComment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/DefaultDocument.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/DefaultDocumentType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/DefaultElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/DefaultEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/DefaultNamespace.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/DefaultProcessingInstruction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/DefaultText.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/ElementIterator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/ElementNameIterator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/ElementQNameIterator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/FilterIterator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/FlyweightAttribute.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/FlyweightCDATA.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/FlyweightComment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/FlyweightEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/FlyweightProcessingInstruction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/FlyweightText.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/NamespaceCache.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/NamespaceStack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/QNameCache.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/SingleIterator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/package.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/util/AttributeHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/util/IndexedDocumentFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/util/IndexedElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/util/NodeComparator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/util/NonLazyDocumentFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/util/NonLazyElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/util/PerThreadSingleton.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/util/ProxyDocumentFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/util/SimpleSingleton.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/util/SingletonStrategy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/util/UserDataAttribute.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/util/UserDataDocumentFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/util/UserDataElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/util/XMLErrorHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/util/package.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/xpath/DefaultNamespaceContext.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/xpath/DefaultXPath.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/xpath/XPathPattern.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/xpath/overview.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/xpath/package.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/xpp/ProxyXmlStartTag.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/xpp/package.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/WorldModelBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/WorldModelBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/AnalyzedSentence.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/AnalyzedSentence.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/ElementsBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/ElementsBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/ListUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/ListUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/SearchUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/SearchUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/TextAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/TextAnalyzer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserFunctionality.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserFunctionality.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/WorldModelToPetrinet/PetrinetBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/WorldModelToPetrinet/PetrinetBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/T2PSentence.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/T2PSentence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/Actor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/WorldModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/WorldModel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -122,6 +242,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="SearchUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/SearchUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="6001">
+              <caret line="372" column="5" selection-start-line="372" selection-start-column="5" selection-end-line="372" selection-end-column="5" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Action.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/Action.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -140,69 +273,11 @@
       <file leaf-file-name="TextAnalyzer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/TextAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="1296" column="25" selection-start-line="1296" selection-start-column="25" selection-end-line="1296" selection-end-column="25" />
+            <state relative-caret-position="120">
+              <caret line="80" column="61" selection-start-line="80" selection-start-column="61" selection-end-line="80" selection-end-column="61" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#1653#1671#0" expanded="true" />
-                <element signature="e#1754#1786#0" expanded="true" />
-                <element signature="e#4099#4107#0" expanded="true" />
-                <element signature="e#4714#4725#0" expanded="true" />
-                <element signature="e#10245#10253#0" expanded="true" />
-                <element signature="e#10298#10306#0" expanded="true" />
-                <element signature="e#10604#10612#0" expanded="true" />
-                <element signature="e#11103#11111#0" expanded="true" />
-                <element signature="e#15871#15878#0" expanded="true" />
-                <element signature="e#16243#16251#0" expanded="true" />
-                <element signature="e#16299#16307#0" expanded="true" />
-                <element signature="e#18213#18221#0" expanded="true" />
-                <element signature="e#22922#22930#0" expanded="true" />
-                <element signature="e#23568#23576#0" expanded="true" />
-                <element signature="e#24205#24213#0" expanded="true" />
-                <element signature="e#25213#25219#0" expanded="true" />
-                <element signature="e#27937#27945#0" expanded="true" />
-                <element signature="e#28198#28215#0" expanded="true" />
-                <element signature="e#30380#30398#0" expanded="true" />
-                <element signature="e#38596#38604#0" expanded="true" />
-                <element signature="e#41591#41599#0" expanded="true" />
-                <element signature="e#43994#44011#0" expanded="true" />
-                <element signature="e#44876#44902#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="T2PSentence.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/T2PSentence.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-323">
-              <caret line="31" column="36" lean-forward="true" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/SearchUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ElementsBuilder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/ElementsBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="623">
-              <caret line="734" lean-forward="true" selection-start-line="734" selection-end-line="734" />
-              <folding>
-                <element signature="e#12750#12756#0" expanded="true" />
-                <element signature="e#23469#23477#0" expanded="true" />
-                <element signature="e#23889#23897#0" expanded="true" />
-                <element signature="e#27298#27315#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -211,23 +286,24 @@
       <file leaf-file-name="AnalyzedSentence.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/AnalyzedSentence.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="555" selection-start-line="555" selection-end-line="555" />
+            <state relative-caret-position="137">
+              <caret line="274" column="29" selection-start-line="274" selection-start-column="29" selection-end-line="274" selection-end-column="29" />
               <folding>
-                <element signature="e#1002#1010#0" expanded="true" />
-                <element signature="e#1079#1099#0" expanded="true" />
-                <element signature="e#1155#1163#0" expanded="true" />
-                <element signature="e#4713#4730#0" expanded="true" />
-                <element signature="e#9945#9953#0" expanded="true" />
-                <element signature="e#10009#10027#0" expanded="true" />
-                <element signature="e#12273#12291#0" expanded="true" />
-                <element signature="e#12401#12412#0" expanded="true" />
-                <element signature="e#15853#15860#0" expanded="true" />
-                <element signature="e#19464#19482#0" expanded="true" />
-                <element signature="e#22678#22686#0" expanded="true" />
-                <element signature="e#30279#30296#0" expanded="true" />
-                <element signature="e#30467#30484#0" expanded="true" />
-                <element signature="e#33656#33673#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#37933#37934#0" expanded="true" />
+                <element signature="e#37980#37981#0" expanded="true" />
+                <element signature="e#38091#38092#0" expanded="true" />
+                <element signature="e#38121#38122#0" expanded="true" />
+                <element signature="e#38236#38237#0" expanded="true" />
+                <element signature="e#38260#38261#0" expanded="true" />
+                <element signature="e#38392#38393#0" expanded="true" />
+                <element signature="e#38415#38416#0" expanded="true" />
+                <element signature="e#38570#38571#0" expanded="true" />
+                <element signature="e#38591#38592#0" expanded="true" />
+                <element signature="e#38738#38739#0" expanded="true" />
+                <element signature="e#38765#38766#0" expanded="true" />
+                <element signature="e#38806#38807#0" expanded="true" />
+                <element signature="e#38841#38842#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -236,26 +312,17 @@
       <file leaf-file-name="StanfordParserInitializer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserInitializer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="49" column="67" selection-start-line="49" selection-start-column="67" selection-end-line="49" selection-end-column="67" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1200#1201#0" expanded="true" />
-                <element signature="e#1234#1235#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="137">
+              <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StanfordParserFunctionality.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StanfordParserFunctionality.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserFunctionality.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1173">
-              <caret line="71" column="23" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1487#1498#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="340">
+              <caret line="51" column="13" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -282,6 +349,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>new Actor</find>
       <find>Action</find>
       <find>Actor</find>
       <find>new Action</find>
@@ -311,7 +379,6 @@
       <find>System</find>
       <find>sy</find>
       <find>satz</find>
-      <find>beginPos</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\D067795\IdeaProjects\integrationsseminar\woped-code\WoPeD-Text2Process</dir>
@@ -331,20 +398,19 @@
         <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/Action.java" />
         <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/SpecifiedElement.java" />
         <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/processing/ProcessingUtils.java" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserInitializer.java" />
         <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/WorldModel.java" />
         <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/Actor.java" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/SearchUtils.java" />
         <option value="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/ElementPath.java" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/ElementsBuilder.java" />
         <option value="$PROJECT_DIR$/WoPeD-Text2Process/dom4j-1.6.1/src/java/org/dom4j/tree/AbstractBranch.java" />
         <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/WorldModelBuilder.java" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/AnalyzedSentence.java" />
         <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/Specifier.java" />
         <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/Constants.java" />
-        <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserInitializer.java" />
-        <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserFunctionality.java" />
-        <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/AnalyzedSentence.java" />
-        <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/ElementsBuilder.java" />
         <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/TextAnalyzer.java" />
-        <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/SearchUtils.java" />
-        <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/T2PSentence.java" />
+        <option value="$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserFunctionality.java" />
       </list>
     </option>
   </component>
@@ -369,16 +435,18 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="y" value="-10" />
-    <option name="width" value="1940" />
-    <option name="height" value="1050" />
+    <option name="x" value="951" />
+    <option name="width" value="978" />
+    <option name="height" value="1039" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -500,11 +568,6 @@
             <path>
               <item name="woped-code" type="b2602c69:ProjectViewProjectNode" />
               <item name="WoPeD-Text2Process" type="462c0819:PsiDirectoryNode" />
-              <item name="TestData" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="woped-code" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WoPeD-Text2Process" type="462c0819:PsiDirectoryNode" />
               <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -537,9 +600,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -547,10 +607,10 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559154469311" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../woped-code-013a7696fac9ce49d99ed1f5b705a8c41cc449be" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
@@ -723,7 +783,6 @@
       <workItem from="1562162064690" duration="11586000" />
       <workItem from="1562227795038" duration="602000" />
       <workItem from="1562487243545" duration="1024000" />
-      <workItem from="1562931101934" duration="3254000" />
     </task>
     <task id="LOCAL-00001" summary="New Stanford CoreNLP">
       <created>1559302159520</created>
@@ -768,85 +827,48 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142496000" />
+    <option name="totallyTimeSpent" value="139207000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="9" />
-      <window_info id="Image Layers" order="7" />
-      <window_info anchor="bottom" id="Java Enterprise" order="12" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32909605" />
       <window_info anchor="right" id="Maven Projects" order="6" weight="0.3295302" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.509887" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.108757064" />
-      <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24563758" />
-      <window_info id="Web" order="3" side_tool="true" />
       <window_info anchor="right" id="Database" order="8" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="5" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.0" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.28672317" />
+      <window_info anchor="right" id="Palette&#9;" order="9" />
+      <window_info id="Image Layers" order="7" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.509887" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.108757064" />
+      <window_info anchor="bottom" id="Spring" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24228188" />
+      <window_info id="Web" order="3" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="10" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="CDI" order="7" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.28672317" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" id="Maven" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Coverage" order="11" side_tool="true" weight="0.3295302" />
     </layout>
-    <layout-to-restore>
-      <window_info anchor="right" id="Maven" order="3" />
-      <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info id="Image Layers" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.108757064" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="CDI" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.32909605" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="8" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Java Enterprise" order="12" />
-      <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.509887" />
-      <window_info anchor="right" id="Maven Projects" order="6" weight="0.3295302" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24563758" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.28672317" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info id="Web" order="3" side_tool="true" />
-      <window_info anchor="right" id="Palette&#9;" order="9" />
-      <window_info anchor="right" id="Theme Preview" order="10" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Coverage" order="11" side_tool="true" weight="0.3295302" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.0" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1754,8 +1776,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/Test/Tests/STTextToProcess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="25" column="65" selection-start-line="25" selection-start-column="65" selection-end-line="25" selection-end-column="65" />
+        <state relative-caret-position="714">
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
         </state>
       </provider>
     </entry>
@@ -1763,6 +1785,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="79">
           <caret line="30" column="5" lean-forward="true" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/T2PSentence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="53" column="37" selection-start-line="53" selection-start-column="37" selection-end-line="53" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -1903,112 +1932,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserInitializer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="49" column="67" selection-start-line="49" selection-start-column="67" selection-end-line="49" selection-end-column="67" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1200#1201#0" expanded="true" />
-            <element signature="e#1234#1235#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserFunctionality.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="71" column="23" selection-start-line="71" selection-start-column="23" selection-end-line="71" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1487#1498#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/AnalyzedSentence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="555" selection-start-line="555" selection-end-line="555" />
-          <folding>
-            <element signature="e#1002#1010#0" expanded="true" />
-            <element signature="e#1079#1099#0" expanded="true" />
-            <element signature="e#1155#1163#0" expanded="true" />
-            <element signature="e#4713#4730#0" expanded="true" />
-            <element signature="e#9945#9953#0" expanded="true" />
-            <element signature="e#10009#10027#0" expanded="true" />
-            <element signature="e#12273#12291#0" expanded="true" />
-            <element signature="e#12401#12412#0" expanded="true" />
-            <element signature="e#15853#15860#0" expanded="true" />
-            <element signature="e#19464#19482#0" expanded="true" />
-            <element signature="e#22678#22686#0" expanded="true" />
-            <element signature="e#30279#30296#0" expanded="true" />
-            <element signature="e#30467#30484#0" expanded="true" />
-            <element signature="e#33656#33673#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/ElementsBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="734" lean-forward="true" selection-start-line="734" selection-end-line="734" />
+        <state relative-caret-position="238">
+          <caret line="98" column="18" selection-start-line="98" selection-start-column="18" selection-end-line="98" selection-end-column="18" />
           <folding>
-            <element signature="e#12750#12756#0" expanded="true" />
-            <element signature="e#23469#23477#0" expanded="true" />
-            <element signature="e#23889#23897#0" expanded="true" />
-            <element signature="e#27298#27315#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/SearchUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="6001">
+          <caret line="372" column="5" selection-start-line="372" selection-start-column="5" selection-end-line="372" selection-end-column="5" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/TextAnalyzer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="1296" column="25" selection-start-line="1296" selection-start-column="25" selection-end-line="1296" selection-end-column="25" />
+        <state relative-caret-position="120">
+          <caret line="80" column="61" selection-start-line="80" selection-start-column="61" selection-end-line="80" selection-end-column="61" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#1653#1671#0" expanded="true" />
-            <element signature="e#1754#1786#0" expanded="true" />
-            <element signature="e#4099#4107#0" expanded="true" />
-            <element signature="e#4714#4725#0" expanded="true" />
-            <element signature="e#10245#10253#0" expanded="true" />
-            <element signature="e#10298#10306#0" expanded="true" />
-            <element signature="e#10604#10612#0" expanded="true" />
-            <element signature="e#11103#11111#0" expanded="true" />
-            <element signature="e#15871#15878#0" expanded="true" />
-            <element signature="e#16243#16251#0" expanded="true" />
-            <element signature="e#16299#16307#0" expanded="true" />
-            <element signature="e#18213#18221#0" expanded="true" />
-            <element signature="e#22922#22930#0" expanded="true" />
-            <element signature="e#23568#23576#0" expanded="true" />
-            <element signature="e#24205#24213#0" expanded="true" />
-            <element signature="e#25213#25219#0" expanded="true" />
-            <element signature="e#27937#27945#0" expanded="true" />
-            <element signature="e#28198#28215#0" expanded="true" />
-            <element signature="e#30380#30398#0" expanded="true" />
-            <element signature="e#38596#38604#0" expanded="true" />
-            <element signature="e#41591#41599#0" expanded="true" />
-            <element signature="e#43994#44011#0" expanded="true" />
-            <element signature="e#44876#44902#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/worldModel/T2PSentence.java">
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/TextToWorldModel/transform/AnalyzedSentence.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-323">
-          <caret line="31" column="36" lean-forward="true" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+        <state relative-caret-position="137">
+          <caret line="274" column="29" selection-start-line="274" selection-start-column="29" selection-end-line="274" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#37933#37934#0" expanded="true" />
+            <element signature="e#37980#37981#0" expanded="true" />
+            <element signature="e#38091#38092#0" expanded="true" />
+            <element signature="e#38121#38122#0" expanded="true" />
+            <element signature="e#38236#38237#0" expanded="true" />
+            <element signature="e#38260#38261#0" expanded="true" />
+            <element signature="e#38392#38393#0" expanded="true" />
+            <element signature="e#38415#38416#0" expanded="true" />
+            <element signature="e#38570#38571#0" expanded="true" />
+            <element signature="e#38591#38592#0" expanded="true" />
+            <element signature="e#38738#38739#0" expanded="true" />
+            <element signature="e#38765#38766#0" expanded="true" />
+            <element signature="e#38806#38807#0" expanded="true" />
+            <element signature="e#38841#38842#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserInitializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="27" column="16" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-Text2Process/src/ToolWrapper/StanfordParserFunctionality.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="51" column="13" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -2066,7 +2056,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>WoPeD-Text2Process</last-edited>
+          <last-edited>WoPeD-FileInterface</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -2090,7 +2080,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>.mylyn</last-edited>
+          <last-edited>sphinx4-data-5prealpha-20160628.232535-10</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

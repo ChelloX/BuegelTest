@@ -38,11 +38,11 @@ import worldModel.Specifier.SpecifierType;
 import edu.stanford.nlp.trees.TypedDependency;
 
 public class TextAnalyzer {
-
-
-	private static final int SUBJECT_ROLE_SCORE = 10;
+	
+	
+	private static final int SUBJECT_ROLE_SCORE = 10;	
 	private static final int OBJECT_ROLE_SCORE = 10; //for cop sentences
-	private static final int ROLE_MATCH_SCORE = 20;
+	private static final int ROLE_MATCH_SCORE = 20;	
 	private static final int SENTENCE_DISTANCE_PENALTY = 15;
 
 	public enum AnimateType{
@@ -54,14 +54,14 @@ public class TextAnalyzer {
 	private IDHandler dummyIDHandler;
 	private Text f_text;
 	private ArrayList<AnalyzedSentence> f_analyzedSentences = new ArrayList<AnalyzedSentence>();
-
+	
 	private HashMap<SentenceWordID, SentenceWordID> f_referenceMap = new HashMap<SentenceWordID, SentenceWordID>();
-
+	
 	private WorldModel f_world = new WorldModel();
 	private Flow f_lastSplit;
-
+	
 	/**
-	 *
+	 * 
 	 */
 	public TextAnalyzer() {
 		dummyIDHandler=new IDHandler(1);
@@ -76,14 +76,14 @@ public class TextAnalyzer {
 			T2PSentence.resetIDs();
 			f_world.clear();
 			f_analyzedSentences.clear();
-			f_text = textToAnalyze;
+			f_text = textToAnalyze;			
 			for(int i = 0;i<f_text.getSentences().size();i++) {
 				T2PSentence s = f_text.getSentences().get(i);
-				AnalyzedSentence _sentence = new AnalyzedSentence(s,i);
-				_sentence.analyze(f_world);
-				f_analyzedSentences.add(_sentence);
+					AnalyzedSentence _sentence = new AnalyzedSentence(s,i);
+					_sentence.analyze(f_world);
+					f_analyzedSentences.add(_sentence);
 			}
-
+			
 			referenceResolution();
 			markerDetection();
 			combineActions();
@@ -92,33 +92,33 @@ public class TextAnalyzer {
 
 			createFinalLabelsForActions();
 
-
+			
 			if(Constants.DEBUG_FINAL_ACTIONS_RESULT) {
 				for(AnalyzedSentence s:f_analyzedSentences) {
 					PrintUtils.printExtractedActions(s);
 				}
 				for(Flow f:f_world.getFlows()) {
 					System.out.println(f);
-				}
-			}
+				}	
+			}					
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
+	}	
+
+	
+private void createFinalLabelsForActions(){
+	List<Action> actions = f_world.getActions();
+	Iterator<Action> i = actions.iterator();
+	ProcessLabelGenerator pg = new ProcessLabelGenerator();
+	while(i.hasNext()){
+		Action a = i.next();
+		a.setFinalLabel(pg.createTaskText(a));
 	}
 
-
-	private void createFinalLabelsForActions(){
-		List<Action> actions = f_world.getActions();
-		Iterator<Action> i = actions.iterator();
-		ProcessLabelGenerator pg = new ProcessLabelGenerator();
-		while(i.hasNext()){
-			Action a = i.next();
-			a.setFinalLabel(pg.createTaskText(a));
-		}
-
-	}
+}
 	/**
-	 *
+	 * 
 	 */
 	private void determineLinks() {
 		List<Action> _actions = f_world.getActions();
@@ -151,7 +151,7 @@ public class TextAnalyzer {
 			AnalyzedSentence _tOrigin = f_analyzedSentences.get(linkTarget.getOrigin().getID());
 			ArrayList<Action> _result = new ArrayList<Action>();
 			DetermineConjResult _linkResult = determineConjunctElements(_tOrigin.getExtractedConjunctions(), linkTarget, _result, _tOrigin.getExtractedActions());
-			if(_linkResult.getType() == ConjunctionType.OR || "if".equals(linkTarget.getMarker())
+			if(_linkResult.getType() == ConjunctionType.OR || "if".equals(linkTarget.getMarker()) 
 					|| Constants.f_sequenceIndicators.contains(linkTarget.getPreAdvMod())) {
 				return ActionLinkType.JUMP;
 			}
@@ -165,7 +165,7 @@ public class TextAnalyzer {
 			List<Specifier> _toCheck = new ArrayList<Specifier>(linkSource.getSpecifiers(SpecifierType.AMOD));
 			if(linkSource.getObject() != null)
 				_toCheck.addAll(linkSource.getObject().getSpecifiers(SpecifierType.AMOD));
-
+			
 			for(Specifier spec:_toCheck) {
 				if(Constants.f_acceptedForForwardLink.contains(spec.getName())){
 					return ActionLinkType.LOOP;
@@ -179,12 +179,12 @@ public class TextAnalyzer {
 		if(_a2 == null) {
 			return false;
 		}
-		if(_a1.getVerb().equals(_a2.getVerb())){
+ 		if(_a1.getVerb().equals(_a2.getVerb())){
 			if(_a1.isNegated() != _a2.isNegated()) {
 				return false;
 			}
 			if(_a1.getCop() != null && !_a1.getCop().equals(_a2.getCop())) {
-				return false;
+					return false;
 			}
 			if(!(_a1.getActorFrom() == null && _a1.getActorFrom() == null)) {
 				if(_a1.getActorFrom() == null) {
@@ -204,7 +204,7 @@ public class TextAnalyzer {
 					return false;
 				}
 			}
-
+			
 			if(!(_a1.getObject() == null && _a2.getObject() == null)) {
 				if(_a1.getObject() == null) {
 					return false;
@@ -222,7 +222,7 @@ public class TextAnalyzer {
 				if(_to2 == null || !exObEquals(_to1,_to2)) {
 					return false;
 				}
-			}
+			}		
 			if(!(_a1.getXcomp() == null && _a2.getXcomp() == null)) {
 				if(_a1.getXcomp() == null) {
 					return false;
@@ -283,7 +283,7 @@ public class TextAnalyzer {
 	 * @param headWord
 	 * @return
 	 */
-	private boolean checkSpecifierEqual(SpecifiedElement _from1,SpecifiedElement _from2,SpecifierType toCheck,String headWord) {
+	private boolean checkSpecifierEqual(SpecifiedElement _from1,SpecifiedElement _from2,SpecifierType toCheck,String headWord) {		
 		outer: for(Specifier spec1:_from1.getSpecifiers(toCheck)) {
 			//only check if it is not an acceptable AMOD (next, following)
 			if(headWord.length()!=0 && !headWord.equals(spec1.getHeadWord())) {
@@ -294,15 +294,15 @@ public class TextAnalyzer {
 					if(spec1.getName().equals(spec2.getName())) {
 						continue outer;
 					}
-				}
+				}	
 				//looked through all of them, not found
 				return false;
 			}
 		}
 		//found all
-		return true;
+		return true;		
 	}
-
+	
 	/**
 	 * if headWord is null it is not checked
 	 * @param _from1
@@ -311,7 +311,7 @@ public class TextAnalyzer {
 	 * @param headWordForUnknowns
 	 * @return
 	 */
-	private boolean checkSpecifierEqual(SpecifiedElement _from1,SpecifiedElement _from2,SpecifierType toCheck,List<String> headWordForUnknowns) {
+	private boolean checkSpecifierEqual(SpecifiedElement _from1,SpecifiedElement _from2,SpecifierType toCheck,List<String> headWordForUnknowns) {		
 		outer: for(Specifier spec1:_from1.getSpecifiers(toCheck)) {
 			boolean _check = false;
 			if(spec1.getPhraseType() == PhraseType.CORE || spec1.getPhraseType() == PhraseType.GENITIVE) {
@@ -326,16 +326,16 @@ public class TextAnalyzer {
 						if(spec1.getName().equals(spec2.getName())) {
 							continue outer;
 						}
-					}
+					}	
 					//looked through all of them, not found
 					return false;
 				}
 			}
 		}
 		//found all
-		return true;
+		return true;		
 	}
-
+	
 	private boolean hasIncomingLink(Action linkTarget,ActionLinkType type) {
 		for(Action a:f_world.getActions()) {
 			if(linkTarget.equals(a.getLink())) {
@@ -348,7 +348,7 @@ public class TextAnalyzer {
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	private void buildFlows() {
 		f_lastSplit = null;
@@ -356,8 +356,8 @@ public class TextAnalyzer {
 		List<Action> _openSplit = new ArrayList<Action>();
 		for(AnalyzedSentence sentence:f_analyzedSentences) {
 			T2PSentence _base = sentence.getBaseSentence();
-			List<Action> _actions = sentence.getExtractedActions();
-			List<ConjunctionElement> _conjs = sentence.getExtractedConjunctions();
+			List<Action> _actions = sentence.getExtractedActions();					
+			List<ConjunctionElement> _conjs = sentence.getExtractedConjunctions();			
 			ArrayList<Action> _processed = new ArrayList<Action>();
 			for(Action a:_actions) {
 				if(a.getLink() != null && a.getLinkType().equals(ActionLinkType.JUMP)) {
@@ -372,9 +372,9 @@ public class TextAnalyzer {
 					Flow _flow = new Flow(_base);
 					ArrayList<Action> _conjoined = new ArrayList<Action>();
 					DetermineConjResult _type = determineConjunctElements(_conjs, a, _conjoined,_actions);
-					if(_conjoined.size() == 1) {
+					if(_conjoined.size() == 1) {						
 						handleSingleAction(_base,_flow,_conjoined.get(0),_cameFrom,_openSplit);
-					}else {
+					}else {						
 						if(_cameFrom.size() > 0) {
 							_flow.setSingleObject(_cameFrom.get(0));//effectively only for size == 1
 						}
@@ -387,9 +387,9 @@ public class TextAnalyzer {
 							if(_type.getStatusCode() == DLRStatusCode.ACTOR_SUBJECT) {
 								createDummyStartNode(_cameFrom,_flow);
 								buildGateway(_cameFrom, _openSplit, _base,_processed, _flow, _conjoined,FlowType.concurrency);
-							}else {
+							}else {								
 								if(_cameFrom.size() == 1) {
-									//simple sequence case
+									//simple sequence case 
 									handleSingleAction(_base,_flow, _conjoined.get(0), _cameFrom,_openSplit);
 									_processed.add(_conjoined.get(0));
 								}else if(_cameFrom.size() > 1) {
@@ -409,9 +409,9 @@ public class TextAnalyzer {
 							handleMixedSituation(_base,_flow,_conjs,_actions,_cameFrom);
 							_processed.addAll(_actions);
 						}
-					}
-				}
-			}
+					}					
+				}						
+			}	
 			for(Action a:_actions) {
 				if(a.getLink() != null) {
 					//"weak" link
@@ -430,7 +430,7 @@ public class TextAnalyzer {
 						f_world.addAction(_da);
 						if(_fIn.getDirection() == FlowDirection.join) {
 							_fIn.setSingleObject(_da);
-
+							
 							_fOut.setSingleObject(_da);
 							_fOut.getMultipleObjects().add(a);
 							_fOut.setType(FlowType.choice);
@@ -440,9 +440,9 @@ public class TextAnalyzer {
 							}
 							_fIn.getMultipleObjects().add(_da);
 							_fIn.setType(FlowType.choice);
-
+							
 						}
-
+						
 						//build a join in front of the link target
 						_fIn = findFlow(_link, true);
 						if(_fIn.getDirection() == FlowDirection.split) {
@@ -461,13 +461,13 @@ public class TextAnalyzer {
 							_fIn.getMultipleObjects().add(a);
 						}
 						if(_cameFrom.contains(a)) {
-							_cameFrom.remove(a);
+							_cameFrom.remove(a);		
 							_cameFrom.add(_da);
 						}
 					}
 				}
-			}
-		}
+			}	
+		}		
 	}
 
 	private Flow joinOnDummyNode(List<Action> cameFrom, T2PSentence base,Flow flow) {
@@ -514,27 +514,27 @@ public class TextAnalyzer {
 			_entries.add(_daStart);
 			DummyAction _daEnd = new DummyAction(_actions.get(0),dummyIDHandler);
 			f_world.addAction(_daEnd);
-			_exits.add(_daEnd);
-			buildBlock(base,_daStart,_daEnd,_actions,conjs);
+			_exits.add(_daEnd);			
+			buildBlock(base,_daStart,_daEnd,_actions,conjs);			
 		}
-
+		
 		flow.setMultipleObjects(_entries);
 		flow.setType(FlowType.concurrency);
 		f_world.addFlow(flow);
-
+		
 
 		DummyAction _da = new DummyAction(allActions.get(0),dummyIDHandler);
 		f_world.addAction(_da);
-
+		
 		Flow _join = new Flow(base);
 		_join.setDirection(FlowDirection.join);
 		_join.setType(FlowType.concurrency);
 		_join.setMultipleObjects(_exits);
 		_join.setSingleObject(_da);
 		f_world.addFlow(_join);
-
+		
 		from.clear();
-		from.add(_da);
+		from.add(_da);	
 	}
 
 	/**
@@ -589,10 +589,10 @@ public class TextAnalyzer {
 	}
 
 	private void buildGateway(List<Action> cameFrom, List<Action> openSplit,
-							  T2PSentence base, ArrayList<Action> processed, Flow flow,
-							  ArrayList<Action> gatewayActions,FlowType type) {
+			T2PSentence base, ArrayList<Action> processed, Flow flow,
+			ArrayList<Action> gatewayActions,FlowType type) {
 		if("if".equals(gatewayActions.get(0).getMarker()) || "otherwise".equals(gatewayActions.get(0).getPreAdvMod()) ||
-				Constants.f_sequenceIndicators.contains(gatewayActions.get(0).getPreAdvMod())){
+				Constants.f_sequenceIndicators.contains(gatewayActions.get(0).getPreAdvMod())){ 
 			if(!Constants.f_sequenceIndicators.contains(gatewayActions.get(0).getPreAdvMod())) {
 				openSplit.clear();
 			}
@@ -600,21 +600,21 @@ public class TextAnalyzer {
 				//adding gateway block in a sub branch of this if/else split
 				DummyAction _da = new DummyAction(gatewayActions.get(0),dummyIDHandler);
 				f_world.addAction(_da);
-				openSplit.addAll(getEnds(f_lastSplit.getMultipleObjects())); //marking all open ends
+				openSplit.addAll(getEnds(f_lastSplit.getMultipleObjects())); //marking all open ends	
 				f_lastSplit.getMultipleObjects().add(_da);
 				cameFrom.clear();
 				cameFrom.add(_da);
 				flow.setSingleObject(_da);
-			}
+			}			
 			//clear in case of an otherwise, as it is the last action
 			if("otherwise".equals(gatewayActions.get(0).getPreAdvMod())) {
-				cameFrom.addAll(openSplit);
+				cameFrom.addAll(openSplit);		
 				clearSplit(openSplit);
 			}
 		}else {
 			//clearing open split
-			cameFrom.addAll(openSplit);
-			clearSplit(openSplit);
+			cameFrom.addAll(openSplit);		
+			clearSplit(openSplit);	
 		}
 		//we need to do this with an xor
 		if(cameFrom.size() > 1) {
@@ -628,8 +628,8 @@ public class TextAnalyzer {
 				cameFrom.add(a);
 			}else {
 				System.out.println("Left out action, due to JUMP link!");
-			}
-		}
+			}			
+		}	
 		//it could happen that we cleaned all branches!
 		if(cameFrom.size() == 0) {
 			DummyAction _da = new DummyAction(gatewayActions.get(0),dummyIDHandler);
@@ -639,23 +639,23 @@ public class TextAnalyzer {
 		}
 		processed.addAll(gatewayActions);
 		f_world.addFlow(flow);
-	}
-
+	}	
+	
 	/**
 	 * returns a boolean indicating if a new flow was created or not
-	 * @param _base
-	 * @param openSplit
+	 * @param _base 
+	 * @param openSplit 
 	 */
 	private void handleSingleAction(T2PSentence _base, Flow flow,Action action,List<Action> cameFrom, List<Action> openSplit) {
 		if(!"if".equals(action.getMarker()) && !"otherwise".equals(action.getPreAdvMod()) && !Constants.f_sequenceIndicators.contains(action.getPreAdvMod()) && openSplit.size()>0) {
 			//finishing all the open ends
-			cameFrom.addAll(openSplit);
+			cameFrom.addAll(openSplit);		
 			clearSplit(openSplit);
 		}
 		if(cameFrom.size() == 0) {
-			createDummyStartNode(cameFrom, flow);
+			createDummyStartNode(cameFrom, flow);		
 		}
-		if(cameFrom.size() >= 1) {
+		if(cameFrom.size() >= 1) {			
 			if(cameFrom.size() > 1)  {
 				Flow _dummyFlow = new Flow(_base);
 				DummyAction _da = new DummyAction(action,dummyIDHandler);
@@ -676,7 +676,7 @@ public class TextAnalyzer {
 			//do we need to create a split?
 			else if("whereas".equals(action.getMarker()) || "if".equals(action.getMarker()) || "otherwise".equals(action.getPreAdvMod())) {
 				if("except".equals(action.getPrepc())) {
-					flow.setType(FlowType.exception);
+					flow.setType(FlowType.exception);	
 					clearSplit(openSplit);
 				}else {
 					if(f_lastSplit != null || "whereas".equals(action.getMarker()) || "otherwise".equals(action.getPreAdvMod())) {
@@ -688,9 +688,9 @@ public class TextAnalyzer {
 						openSplit.addAll(getEnds(f_lastSplit.getMultipleObjects())); //marking all open ends
 						f_lastSplit.getMultipleObjects().add(action);
 						cameFrom.clear();
-						cameFrom.add(action); //setting new came from
+						cameFrom.add(action); //setting new came from 
 						if("whereas".equals(action.getMarker())) {
-							cameFrom.addAll(openSplit);
+							cameFrom.addAll(openSplit);		
 							clearSplit(openSplit);
 						}
 						return;
@@ -703,10 +703,10 @@ public class TextAnalyzer {
 				_actions.add(action);
 				flow.setMultipleObjects(_actions); //is only 1 action
 				cameFrom.clear();
-				cameFrom.add(action); //setting new came from
+				cameFrom.add(action); //setting new came from				
 			}else {
 				//standard sequence
-				standardSequence(cameFrom, flow, action);
+				standardSequence(cameFrom, flow, action);	
 				if(!Constants.f_sequenceIndicators.contains(action.getPreAdvMod()))
 					clearSplit(openSplit);
 			}
@@ -768,8 +768,8 @@ public class TextAnalyzer {
 			_flow.setType(_otherFlow.getType());
 		}
 		cameFrom.clear();
-		cameFrom.add(action);
-		//f_lastSplit = null;
+		cameFrom.add(action);	
+		//f_lastSplit = null;		
 	}
 
 	/**
@@ -784,11 +784,11 @@ public class TextAnalyzer {
 				return f;
 			}//else{
 			return findSplit(f.getSingleObject());
-			//}
-		}
+			//}				
+		}		
 		return null;
 	}
-
+	
 	private Flow findFlow(Action action,boolean target) {
 		ArrayList<Flow> _lookHere = new ArrayList<Flow>(f_world.getFlows());
 		Collections.reverse(_lookHere);
@@ -796,7 +796,7 @@ public class TextAnalyzer {
 			if(target ^ f.getDirection() == FlowDirection.join) { //XOR fixes the need to have another if split....
 				if(f.getMultipleObjects().contains(action)) {
 					return f;
-				}
+				}			
 			}else {
 				if(f.getSingleObject().equals(action)) {
 					return f;
@@ -804,10 +804,10 @@ public class TextAnalyzer {
 			}
 		}
 		return null;
-	}
+	}	
 
 	private DetermineConjResult determineConjunctElements(List<ConjunctionElement> conjunctions, Action action,
-														  List<Action> resultList, List<Action> actions) {
+			List<Action> resultList, List<Action> actions) {
 		ConjunctionType _type = null;
 		resultList.add(action);
 		DLRStatusCode _status = DLRStatusCode.NOT_CONTAINED;
@@ -841,7 +841,7 @@ public class TextAnalyzer {
 		return new DetermineConjResult(_type,_status);
 	}
 
-
+	
 
 	/**
 	 * returns a status code to show the kind of relationship
@@ -849,7 +849,7 @@ public class TextAnalyzer {
 	 * 1 - contained as action
 	 * 2 - contained as actor (subject)
 	 * 3 - contained as actor (object)
-	 * 4 - contained as resource
+	 * 4 - contained as resource 
 	 * @param part
 	 * @param resultList
 	 * @return
@@ -863,7 +863,7 @@ public class TextAnalyzer {
 			}
 			return DLRStatusCode.NOT_CONTAINED;
 		}
-
+		
 		for(Action ac:resultList) {
 			if(ac.getActorFrom() != null && ac.getActorFrom().equals(part)) {
 				return DLRStatusCode.ACTOR_SUBJECT;
@@ -874,9 +874,9 @@ public class TextAnalyzer {
 				}
 				return DLRStatusCode.RESOURCE;
 			}
-
-
-		}
+			
+			
+		}		
 		return DLRStatusCode.NOT_CONTAINED;
 	}
 
@@ -887,7 +887,7 @@ public class TextAnalyzer {
 		_actions.add(action);
 		flow.setMultipleObjects(_actions); //is only 1 action
 		cameFrom.clear();
-		cameFrom.add(_actions.get(0)); //setting new came from
+		cameFrom.add(_actions.get(0)); //setting new came from 
 	}
 
 
@@ -895,8 +895,8 @@ public class TextAnalyzer {
 		List<ExtractedObject> _toCheck = new ArrayList<ExtractedObject>(f_world.getActors());
 		_toCheck.addAll(f_world.getResources());
 		for(ExtractedObject a:_toCheck) {
-			if(a.needsResolve()) {
-				if(Constants.DEBUG_REFERENCE_RESOLUTION) System.out.println("resolving:"+a);
+			if(a.needsResolve()) {			
+				if(Constants.DEBUG_REFERENCE_RESOLUTION) System.out.println("resolving:"+a);				
 				//check manual resolutions
 				SentenceWordID _swid = new SentenceWordID(a);
 				if(f_referenceMap.containsKey(_swid)) {
@@ -905,7 +905,7 @@ public class TextAnalyzer {
 					SpecifiedElement _t = toElement(_target);
 					a.setReference(_t);
 					if(Constants.DEBUG_REFERENCE_RESOLUTION) System.out.println("manual resolution: "+_t);
-				}else {
+				}else {				
 					//an actor can point to another actor (PRP) or a whole action (DT)
 					int _id = a.getOrigin().getID();
 					if(_id >= 0 ) {
@@ -918,18 +918,18 @@ public class TextAnalyzer {
 							Action _containingAction = SearchUtils.getAction(a, f_world.getActions(a.getOrigin()));
 							boolean _invertRoleMatch = _containingAction.getCop()!= null || ProcessingUtils.isRCPronoun(a.getName());
 							ExtractedObject _ref = findReference(_id,a,_animate,_invertRoleMatch );
-							a.setReference(_ref);
+							a.setReference(_ref);							
 							if(Constants.DEBUG_REFERENCE_RESOLUTION) System.out.println("resolution result: "+_ref);
 						}
 					}
 				}
 			}
-
-
-		}
+				
+			
+		}		
 	}
-
-
+	
+	
 
 	/**
 	 * @param a
@@ -949,7 +949,7 @@ public class TextAnalyzer {
 			}
 		}
 		return AnimateType.ANIMATE;
-
+		 
 	}
 
 	/**
@@ -962,7 +962,7 @@ public class TextAnalyzer {
 		for(SpecifiedElement a:new ArrayList<SpecifiedElement>(_toCheck)) {
 			Action xc = ((Action)a).getXcomp();
 			if(xc != null) {
-				_toCheck.add(xc);
+				_toCheck.add(xc);				
 			}
 		}
 		_toCheck.addAll(f_world.getActors(_origin));
@@ -987,7 +987,7 @@ public class TextAnalyzer {
 			}else if(a.getObject() != null && a.getObject().getReference() != null) {
 				if(a.getObject().getReference() instanceof Action) {
 					_refAction = (Action) a.getObject().getReference();
-				}else {
+				}else {					
 					_refAction =  SearchUtils.getAction(a.getObject().getReference(), f_world.getActions());
 				}
 			}
@@ -997,10 +997,10 @@ public class TextAnalyzer {
 					merge(_refAction,a,false);
 				}else if(canBeMerged(_refAction,a,true)) {
 					if(Constants.DEBUG_MARKING) System.out.println("copying attributes: -"+_refAction +"- to -"+a+"-");
-					copy(_refAction,a);
+					copy(_refAction,a);					
 				}
-			}
-		}
+			}			
+		}		
 	}
 
 	/**
@@ -1032,7 +1032,7 @@ public class TextAnalyzer {
 		}
 		//action is merged
 		if(_mergeMe.getActorFrom() != null) {
-			if(_main.getActorFrom() == null) {
+			if(_main.getActorFrom() == null) {				
 				Actor _check = null;
 				if(!_mergeMe.getActorFrom().needsResolve()) {
 					_check = _mergeMe.getActorFrom();
@@ -1043,7 +1043,7 @@ public class TextAnalyzer {
 				}
 				if(_check != null) {
 					_main.setActorFrom(_mergeMe.getActorFrom());
-				}
+				}								
 			}else {
 				if(_main.getActorFrom().needsResolve() && !_mergeMe.getActorFrom().needsResolve()) {
 					_main.setActorFrom(_mergeMe.getActorFrom());
@@ -1055,7 +1055,7 @@ public class TextAnalyzer {
 				_main.setObject(_mergeMe.getObject());
 			}
 		}
-
+		
 		for(Specifier spec:_mergeMe.getSpecifiers(SpecifierType.PP)) {
 			_main.addSpecifiers(spec);
 		}
@@ -1081,11 +1081,11 @@ public class TextAnalyzer {
 			if((wnf.isWeakAction(a) ) || (wnf.isWeakAction(b))) {
 				if((a.getMarker()==null && b.getMarker()==null) || a.getMarker().equals(b.getMarker())) {
 					if(a.getActorFrom() == null || a.getActorFrom().needsResolve() || a.getActorFrom().isMetaActor() ||
-							b.getActorFrom() == null || b.getActorFrom().needsResolve() || b.getActorFrom().isMetaActor()) {
-						if(a.getObject() == null || a.getObject().needsResolve() /*|| ProcessingUtils.isMetaActor(a.getObject())*/ ||
-								b.getObject() == null || b.getObject().needsResolve() /*|| ProcessingUtils.isMetaActor(b.getObject())*/) {
+					   b.getActorFrom() == null || b.getActorFrom().needsResolve() || b.getActorFrom().isMetaActor()) {
+						if(a.getObject() == null || a.getObject().needsResolve() /*|| ProcessingUtils.isMetaActor(a.getObject())*/ || 
+						   b.getObject() == null || b.getObject().needsResolve() /*|| ProcessingUtils.isMetaActor(b.getObject())*/) {
 							return true;
-						}
+						}						
 					}
 				}
 			}
@@ -1094,7 +1094,7 @@ public class TextAnalyzer {
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	private void markerDetection() {
 		for(AnalyzedSentence sentence:f_analyzedSentences) {
@@ -1106,11 +1106,11 @@ public class TextAnalyzer {
 				Action _a = findAction(_lookFor,sentence.getExtractedActions(),_deps);
 				if(_a != null) {
 					String _val = td.dep().value().toLowerCase();
-					if(Constants.DEBUG_MARKING)
+					if(Constants.DEBUG_MARKING)					
 						System.out.println("marking: "+_a +" with (marker)"+_val);
-					_a.setMarker(_val);
+					_a.setMarker(_val);	
 				}
-			}
+			}			
 			_markers = SearchUtils.findDependency(ListUtils.getList("advmod"),_deps);
 			for(TypedDependency td:_markers) {
 				IndexedWord _lookFor = td.gov();
@@ -1148,7 +1148,7 @@ public class TextAnalyzer {
 						if(Constants.f_conditionIndicators.contains(_val)) {
 							_val = "if-complm";
 						}
-						if(Constants.DEBUG_MARKING)
+						if(Constants.DEBUG_MARKING)						
 							System.out.println("marking: "+_a +" with (marker-complm) "+_val);
 						_a.setMarker(_val);
 					}
@@ -1167,7 +1167,7 @@ public class TextAnalyzer {
 				for(Specifier spec:_check) {
 					if(SearchUtils.startsWithAny(spec.getPhrase(),Constants.f_conditionIndicators)) {
 						if(a.getMarker() == null) {
-							if(Constants.DEBUG_MARKING)
+							if(Constants.DEBUG_MARKING)						
 								System.out.println("marking: "+a +" with (marker) "+spec.getPhrase() +"(if)");
 							a.setMarker("if");
 							if(!Constants.f_conditionIndicators.contains(spec.getPhrase())) {
@@ -1185,12 +1185,12 @@ public class TextAnalyzer {
 					}
 					if(Constants.f_parallelIndicators.contains(spec.getPhrase())) {
 						if(a.getMarker() == null) {
-							if(Constants.DEBUG_MARKING)
+							if(Constants.DEBUG_MARKING)						
 								System.out.println("marking: "+a +" with (marker) "+spec.getPhrase() +"(while)");
 							a.setMarker("while");
 						}
 					}
-				}
+				}		
 			}
 		}
 		//now setting implicit markers (if no marker set so far)
@@ -1211,11 +1211,11 @@ public class TextAnalyzer {
 				if(!_linked.contains(a)) {
 					_nextMark = null;
 				}
-				if((Constants.f_conditionIndicators.contains(a.getMarker()) && !a.isMarkerFromPP()) ||
-						Constants.f_conditionIndicators.contains(a.getPreAdvMod())) {
-					_nextMark = "then";
-					determineConjunctElements(sentence.getExtractedConjunctions(), a,_linked,_actions);
-				}
+				if((Constants.f_conditionIndicators.contains(a.getMarker()) && !a.isMarkerFromPP()) || 
+					Constants.f_conditionIndicators.contains(a.getPreAdvMod())) {
+					_nextMark = "then";					
+					determineConjunctElements(sentence.getExtractedConjunctions(), a,_linked,_actions);					
+				}				
 			}
 		}
 		//propagation of signaling words through Conjunctions
@@ -1234,7 +1234,7 @@ public class TextAnalyzer {
 					}
 				}
 			}
-		}
+		}		
 		//now that everything is marked, correct order in marked sentences
 		for(AnalyzedSentence sentence:f_analyzedSentences) {
 			List<Action> _actions = sentence.getExtractedActions();
@@ -1242,7 +1242,7 @@ public class TextAnalyzer {
 				Action a = _actions.get(i);
 				if("if-complm".equals(a.getMarker())) {
 					a.setMarker("if"); //removing complm for whether sentences
-				}else if("if".equals(a.getMarker())) {
+				}else if("if".equals(a.getMarker())) {	
 					if(i>0) {
 						//okay switch those items
 						Action _switcher = _actions.get(i-1);
@@ -1251,14 +1251,14 @@ public class TextAnalyzer {
 						f_world.switchPositions(a,_switcher);
 					}
 					//only one if per sentence is treated
-					//further ifs stay as they are!
+					//further ifs stay as they are!	
 					break;
-				}
+				}				
 			}
-		}
+		}		
 	}
-
-
+	
+	
 
 	/**
 	 * @param indexedWord
@@ -1277,11 +1277,11 @@ public class TextAnalyzer {
 			if(td.gov().equals(indexedWord)) {
 				return findAction(td.dep(), list, deps);
 			}
-		}
+		}		
 		return null;
 	}
 
-
+	
 	/**
 	 * for reference resolution
 	 * @param id
@@ -1305,7 +1305,7 @@ public class TextAnalyzer {
 		return findAction(id -1,forThis);
 	}
 
-
+	
 	/**
 	 * @param id
 	 * @param resolveMe
@@ -1313,7 +1313,7 @@ public class TextAnalyzer {
 	 * @param copSentence
 	 * @return ExtractedObject
 	 */
-	private ExtractedObject findReference(int id,ExtractedObject resolveMe, AnimateType type, boolean copSentence) {
+	private ExtractedObject findReference(int id,ExtractedObject resolveMe, AnimateType type, boolean copSentence) {		
 		HashMap<ExtractedObject, Integer> _candidates = getReferenceCandidates(id,resolveMe,type,copSentence);
 		int max = ROLE_MATCH_SCORE + (copSentence ? OBJECT_ROLE_SCORE :SUBJECT_ROLE_SCORE);
 		while((id >=0) && getMaxScore(_candidates) < max) {
@@ -1324,9 +1324,9 @@ public class TextAnalyzer {
 				_candidates.putAll(_newCand);
 		}
 		return getMaxScoreElements(_candidates);
-
+		
 	}
-
+	
 	/**
 	 * @param candidates
 	 * @return ExtractedObject
@@ -1379,7 +1379,7 @@ public class TextAnalyzer {
 			//remove all Meta Actors
 			if(a.isMetaActor()) {
 				_toCheck.remove(i);
-				i--;
+				i--;		
 				continue;
 			}
 			//each is an Actor, we know that
@@ -1400,7 +1400,7 @@ public class TextAnalyzer {
 					}
 				}
 			}
-
+			
 		}
 		if(type != AnimateType.ANIMATE) {
 			_toCheck.addAll(f_world.getResources(_lookHere));
@@ -1432,13 +1432,13 @@ public class TextAnalyzer {
 				_score += TextAnalyzer.SUBJECT_ROLE_SCORE;
 			}else if(cop && !exObj.isSubjectRole()) {
 				_score += TextAnalyzer.OBJECT_ROLE_SCORE;
-			}
-			_result.put(exObj, _score);
+			}		
+			_result.put(exObj, _score);				
 		}
 		return _result;
-
+		
 	}
-
+	
 
 
 	/**
@@ -1469,7 +1469,7 @@ public class TextAnalyzer {
 	}
 
 	/**
-	 *
+	 * 
 	 */
 	public void clear() {
 		f_referenceMap.clear();
@@ -1486,9 +1486,9 @@ public class TextAnalyzer {
 		for(Resource res:f_world.getResources()) {
 			if(res.needsResolve()) _result++;
 		}
-		return _result;
+		return _result;		
 	}
-
+	
 	/**
 	 * @return int
 	 */
@@ -1499,7 +1499,7 @@ public class TextAnalyzer {
 				_result++;
 			}
 		}
-		return _result;
+		return _result;		
 	}
-
+	
 }
