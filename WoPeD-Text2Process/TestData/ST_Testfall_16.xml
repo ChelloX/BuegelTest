@@ -1,0 +1,945 @@
+<?xml version = "1.0"?>
+<TestInstance>
+    <PlainTextDescription>
+        The selection of a Nobel Prize Laureate is a lengthy and carefully executed process. The processes slightly differ for
+        each of the six prizes; the results are the same for each of the six categories.
+        Following is the description for the Nobel Prize in Medicine. The main actors in the processes for Nomination, Selection
+        and Accepting and Receiving the award are the:
+        • Nobel Committee for Medicine,
+        • Nominators,
+        • Specially appointed experts,
+        • Nobel Assembly and
+        • Nobel Laureates.
+        Each year in September, in the year preceding the year the Prize is awarded, around 3000 invitations or confidential
+        nomination forms are sent out by the Nobel Committee for Medicine to selected Nominators.
+        The Nominators are given the opportunity to nominate one or more Nominees. The completed forms must be made
+        available to the Nobel Committee for Medicine for the selection of the preliminary candidates.
+        The Nobel Committee for Medicine performs a first screening and selects the preliminary candidates.
+        Following this selection, the Nobel Committee for Medicine may request the assistance of experts. If so, it sends the list
+        with the preliminary candidates to these specially appointed experts with the request to assess the preliminary candidates’
+        work.
+        From this, the recommended final candidate laureates and associated recommended final works are selected and the
+        Nobel Committee for Medicine writes the reports with recommendations.
+        The Nobel Committee for Medicine submits the report with recommendations to the Nobel Assembly. This report
+        contains the list of final candidates and associated works.
+        The Nobel Assembly chooses the Nobel Laureates in Medicine and associated through a majority vote and the names of
+        the Nobel Laureates and associated works are announced. The Nobel Assembly meets twice for this selection. In the first
+        meeting of the Nobel Assembly the report is discussed. In the second meeting the Nobel Laureates in Medicine and
+        associated works are chosen.
+        The Nobel Prize Award Ceremony is held in Stockholm.
+    </PlainTextDescription>
+    <WorldModel>
+        <Actions>
+            <Action id="1"><Name>manufacture</Name></Action>
+            <Action id="2"><Name>receive</Name></Action>
+            <Action id="3"><Name>creat</Name></Action>
+            <Action id="4"><Name>reject</Name></Action>
+            <Action id="5"><Name>accept</Name></Action>
+            <Action id="6"><Name>finish</Name></Action>
+            <Action id="7"><Name>inform</Name></Action>
+            <Action id="8"><Name>process</Name></Action>
+            <Action id="9"><Name>check</Name></Action>
+            <Action id="10"><Name>reserve</Name></Action>
+            <Action id="11"><Name>back-order</Name></Action>
+            <Action id="12"><Name>prepare</Name></Action>
+            <Action id="13"><Name>assemble</Name></Action>
+            <Action id="14"><Name>ship</Name></Action>
+        </Actions>
+        <Actors>
+            <Actor id="1"><Name>company</Name></Actor>
+            <Actor id="2"><Name>sales department</Name></Actor>
+            <Actor id="3"><Name>member of sales department</Name></Actor>
+            <Actor id="4"><Name>storehouse</Name></Actor>
+            <Actor id="5"><Name>engineering department</Name></Actor>
+        </Actors>
+        <Resources>
+            <Resource id="1"><Name>customized bicycles</Name></Resource>
+            <Resource id="2"><Name>order</Name></Resource>
+            <Resource id="3"><Name>process instance</Name></Resource>
+            <Resource id="4"><Name>part list</Name></Resource>
+            <Resource id="5"><Name>part</Name></Resource>
+            <Resource id="6"><Name>bicycle</Name></Resource>
+        </Resources>
+    </WorldModel>
+    <PetriNet>
+        <places>
+        <place id="p1">
+            <name>
+                <text>start</text>
+                <graphics>
+                    <offset x="70" y="200"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="70" y="160"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        <place id="p2">
+            <name>
+                <text>final candidates and their works selected</text>
+                <graphics>
+                    <offset x="1930" y="460"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="1928" y="415"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        <place id="p3">
+            <name>
+                <text>Nomination Form sent</text>
+                <graphics>
+                    <offset x="300" y="200"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="301" y="160"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        <place id="p4">
+            <name>
+                <text>completed forms collected</text>
+                <graphics>
+                    <offset x="560" y="200"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="560" y="160"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        <place id="p5">
+            <name>
+                <text>preliminary candidates screened and selected</text>
+                <graphics>
+                    <offset x="950" y="200"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="955" y="160"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        <place id="p6">
+            <name>
+                <text>need for expert assitance determined</text>
+                <graphics>
+                    <offset x="1260" y="240"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="1255" y="201"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        <place id="p7">
+            <name>
+                <text>need for expert assistance determined</text>
+                <graphics>
+                    <offset x="1150" y="490"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="1145" y="449"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        <place id="p8">
+            <name>
+                <text>list of selected preliminary candidates sent</text>
+                <graphics>
+                    <offset x="1440" y="490"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="1444" y="452"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        <place id="p9">
+            <name>
+                <text>candidates work assessment reports collected</text>
+                <graphics>
+                    <offset x="1640" y="440"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="1668" y="402"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        <place id="p10">
+            <name>
+                <text>recommendations report written</text>
+                <graphics>
+                    <offset x="2090" y="290"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="2090" y="250"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        <place id="p12">
+            <name>
+                <text>end</text>
+                <graphics>
+                    <offset x="2630" y="300"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="2630" y="260"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        <place id="p11">
+            <name>
+                <text>report with recommendations submittted</text>
+                <graphics>
+                    <offset x="2360" y="310"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="2359" y="272"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        </places>
+        <transitions>
+        <transition id="t4">
+            <name>
+                <text>screen and select preliminary candidates</text>
+                <graphics>
+                    <offset x="710" y="200"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="710" y="160"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+            <toolspecific tool="WoPeD" version="1.0">
+                <time>0</time>
+                <timeUnit>1</timeUnit>
+                <orientation>1</orientation>
+            </toolspecific>
+        </transition>
+        <transition id="t6">
+            <name>
+                <text>hold nobel Prize award cermony</text>
+                <graphics>
+                    <offset x="2460" y="210"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="2460" y="170"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+            <toolspecific tool="WoPeD" version="1.0">
+                <time>0</time>
+                <timeUnit>1</timeUnit>
+                <orientation>1</orientation>
+            </toolspecific>
+        </transition>
+        <transition id="t7_op_1">
+            <name>
+                <text>determine need for expert assitance</text>
+                <graphics>
+                    <offset x="1050" y="310"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="1054" y="265"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+            <toolspecific tool="WoPeD" version="1.0">
+                <operator id="t7" type="104"/>
+                <time>0</time>
+                <timeUnit>1</timeUnit>
+                <orientation>1</orientation>
+            </toolspecific>
+        </transition>
+        <transition id="t7_op_2">
+            <name>
+                <text>determine need for expert assitance</text>
+                <graphics>
+                    <offset x="1050" y="310"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="1054" y="265"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+            <toolspecific tool="WoPeD" version="1.0">
+                <operator id="t7" type="104"/>
+                <time>0</time>
+                <timeUnit>1</timeUnit>
+                <orientation>1</orientation>
+            </toolspecific>
+        </transition>
+        <transition id="t8">
+            <name>
+                <text>send list of selected preliminary candidates</text>
+                <graphics>
+                    <offset x="1310" y="560"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="1314" y="521"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+            <toolspecific tool="WoPeD" version="1.0">
+                <time>0</time>
+                <timeUnit>1</timeUnit>
+                <orientation>1</orientation>
+            </toolspecific>
+        </transition>
+        <transition id="sub2">
+            <name>
+                <text>submit report with recommendations</text>
+                <graphics>
+                    <offset x="2210" y="230"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="2215" y="191"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+            <toolspecific tool="WoPeD" version="1.0">
+                <subprocess>true</subprocess>
+                <time>0</time>
+                <timeUnit>1</timeUnit>
+                <orientation>1</orientation>
+            </toolspecific>
+        </transition>
+        <transition id="sub1">
+            <name>
+                <text>send Nomination Form</text>
+                <graphics>
+                    <offset x="170" y="200"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="170" y="160"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+            <toolspecific tool="WoPeD" version="1.0">
+                <subprocess>true</subprocess>
+                <time>0</time>
+                <timeUnit>1</timeUnit>
+                <orientation>1</orientation>
+            </toolspecific>
+        </transition>
+        <transition id="t10">
+            <name>
+                <text>collect candidates work assessment reports</text>
+                <graphics>
+                    <offset x="1540" y="570"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="1545" y="516"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+            <toolspecific tool="WoPeD" version="1.0">
+                <time>0</time>
+                <timeUnit>1</timeUnit>
+                <orientation>1</orientation>
+            </toolspecific>
+        </transition>
+        <transition id="t1">
+            <name>
+                <text>select final candidates and their works</text>
+                <graphics>
+                    <offset x="1800" y="550"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="1799" y="517"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+            <toolspecific tool="WoPeD" version="1.0">
+                <time>0</time>
+                <timeUnit>1</timeUnit>
+                <orientation>1</orientation>
+            </toolspecific>
+        </transition>
+        <transition id="t2_op_1">
+            <name>
+                <text>write recommendations report</text>
+                <graphics>
+                    <offset x="1900" y="290"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="1895" y="248"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+            <toolspecific tool="WoPeD" version="1.0">
+                <operator id="t2" type="102"/>
+                <time>0</time>
+                <timeUnit>1</timeUnit>
+                <orientation>3</orientation>
+            </toolspecific>
+        </transition>
+        <transition id="t3">
+            <name>
+                <text>collect completed forms</text>
+                <graphics>
+                    <offset x="420" y="200"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="420" y="160"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+            <toolspecific tool="WoPeD" version="1.0">
+                <time>0</time>
+                <timeUnit>1</timeUnit>
+                <orientation>1</orientation>
+            </toolspecific>
+        </transition>
+        </transitions>
+        <arcs>
+        <arc id="a21" source="t10" target="p9">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a24" source="sub2" target="p11">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a23" source="p10" target="sub2">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a26" source="t6" target="p12">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a25" source="p11" target="t6">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a19" source="t8" target="p8">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a18" source="p7" target="t8">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a1" source="p9" target="t1">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a2" source="sub1" target="p3">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a3" source="t1" target="p2">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a4" source="p1" target="sub1">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a5" source="p3" target="t3">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a6" source="t3" target="p4">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a7" source="p4" target="t4">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a8" source="t4" target="p5">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a20" source="p8" target="t10">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a15" source="t7_op_2" target="p7">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a11" source="p5" target="t7_op_1">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a11" source="p5" target="t7_op_2">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a13" source="t7_op_1" target="p6">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a9" source="p6" target="t2_op_1">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a12" source="p2" target="t2_op_1">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a16" source="t2_op_1" target="p10">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        </arcs>
+        <toolspecific tool="WoPeD" version="1.0">
+            <bounds>
+                <position x="2" y="25"/>
+                <dimension x="1130" y="434"/>
+            </bounds>
+            <scale>70</scale>
+            <treeWidthRight>878</treeWidthRight>
+            <overviewPanelVisible>true</overviewPanelVisible>
+            <treeHeightOverview>100</treeHeightOverview>
+            <treePanelVisible>true</treePanelVisible>
+            <verticalLayout>false</verticalLayout>
+            <resources/>
+            <simulations/>
+            <partnerLinks/>
+            <variables/>
+        </toolspecific>
+        <places>
+        <place id="p11">
+            <name>
+                <text>report with recommendations submittted</text>
+                <graphics>
+                    <offset x="720" y="190"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="700" y="150"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        <place id="p10">
+            <name>
+                <text>recommendations report written</text>
+                <graphics>
+                    <offset x="30" y="200"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="10" y="160"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        <place id="sub2_p1">
+            <name>
+                <text>Nominations (meeting 1) discussed</text>
+                <graphics>
+                    <offset x="220" y="150"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="220" y="110"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        <place id="sub2_p2">
+            <name>
+                <text>Laureates (meeting 2) selected</text>
+                <graphics>
+                    <offset x="440" y="170"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="440" y="130"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+        </place>
+        </places>
+        <transitions>
+        <transition id="sub2_t1">
+            <name>
+                <text>discuss nominations (meeting 1)</text>
+                <graphics>
+                    <offset x="140" y="200"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="140" y="160"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+            <toolspecific tool="WoPeD" version="1.0">
+                <time>0</time>
+                <timeUnit>1</timeUnit>
+                <orientation>1</orientation>
+            </toolspecific>
+        </transition>
+        <transition id="sub2_t2">
+            <name>
+                <text>select laureates (meeting 2)</text>
+                <graphics>
+                    <offset x="330" y="260"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="330" y="220"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+            <toolspecific tool="WoPeD" version="1.0">
+                <time>0</time>
+                <timeUnit>1</timeUnit>
+                <orientation>1</orientation>
+            </toolspecific>
+        </transition>
+        <transition id="sub2_t3">
+            <name>
+                <text>Announce nobel prize laureates</text>
+                <graphics>
+                    <offset x="580" y="260"/>
+                </graphics>
+            </name>
+            <graphics>
+                <position x="580" y="220"/>
+                <dimension x="40" y="40"/>
+            </graphics>
+            <toolspecific tool="WoPeD" version="1.0">
+                <time>0</time>
+                <timeUnit>1</timeUnit>
+                <orientation>1</orientation>
+            </toolspecific>
+        </transition>
+        </transitions>
+        <arcs>
+        <arc id="a1" source="p10" target="sub2_t1">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a2" source="sub2_t1" target="sub2_p1">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a3" source="sub2_p1" target="sub2_t2">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a4" source="sub2_t2" target="sub2_p2">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a5" source="sub2_p2" target="sub2_t3">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        <arc id="a6" source="sub2_t3" target="p11">
+            <inscription>
+                <text>1</text>
+                <graphics>
+                    <offset x="500.0" y="-12.0"/>
+                </graphics>
+            </inscription>
+            <graphics/>
+            <toolspecific tool="WoPeD" version="1.0">
+                <probability>1.0</probability>
+                <displayProbabilityOn>false</displayProbabilityOn>
+                <displayProbabilityPosition x="500.0" y="12.0"/>
+            </toolspecific>
+        </arc>
+        </arcs>
+        <toolspecific tool="WoPeD" version="1.0">
+            <bounds>
+                <position x="0" y="0"/>
+                <dimension x="600" y="408"/>
+            </bounds>
+            <treeWidthRight>500</treeWidthRight>
+            <overviewPanelVisible>true</overviewPanelVisible>
+            <treeHeightOverview>100</treeHeightOverview>
+            <treePanelVisible>true</treePanelVisible>
+        </toolspecific>
+    </PetriNet>
+</TestInstance>
