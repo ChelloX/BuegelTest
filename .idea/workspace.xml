@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d744383-901d-4b16-bd6f-2358ae1cdf01" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/NLPTools/StanfordParser/stanford-corenlp-3.9.2-models.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WoPeD-Text2Process/NLPTools/StanfordParser/stanford-corenlp-3.9.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/T2PUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/T2PUI.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,27 +19,30 @@
     <session id="-1195135823">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
-          <entry key="project.open.time.10" value="2" />
-          <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.13" value="1" />
-          <entry key="project.open.time.14" value="1" />
+          <entry key="project.closed" value="17" />
+          <entry key="project.open.time.10" value="3" />
+          <entry key="project.open.time.11" value="2" />
+          <entry key="project.open.time.12" value="2" />
+          <entry key="project.open.time.13" value="2" />
+          <entry key="project.open.time.14" value="2" />
+          <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.25" value="1" />
-          <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.open.time.9" value="2" />
+          <entry key="project.opened" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="1" />
+          <entry key="JAVA" value="3" />
           <entry key="Properties" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="299" />
+          <entry key="JAVA" value="1294" />
           <entry key="PLAIN_TEXT" value="29" />
           <entry key="Properties" value="2" />
         </counts>
@@ -48,16 +51,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/T2PUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-180">
-              <caret line="391" column="37" selection-start-line="391" selection-start-column="37" selection-end-line="391" selection-end-column="37" />
+            <state relative-caret-position="148">
+              <caret line="170" column="35" selection-start-line="170" selection-start-column="35" selection-end-line="170" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#14794#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#3424#3425#0" expanded="true" />
+                <element signature="e#3451#3452#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/JavaSoundRecorder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -71,6 +99,7 @@
         <option value="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages_de.properties" />
         <option value="$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages.properties" />
         <option value="$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/T2PUI.java" />
+        <option value="$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/JavaSoundRecorder.java" />
       </list>
     </option>
   </component>
@@ -87,14 +116,15 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="width" value="1536" />
+    <option name="height" value="864" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -107,6 +137,36 @@
               <item name="woped-code" type="b2602c69:ProjectViewProjectNode" />
               <item name="WoPeD-FileInterface" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="woped-code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-FileInterface" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="sphinx4-core-5prealpha-20160628.232526-10.jar" type="ab9368bb:PsiFileNode" />
+            </path>
+            <path>
+              <item name="woped-code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-FileInterface" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="sphinx4-data-5prealpha-20160628.232535-10.jar" type="ab9368bb:PsiFileNode" />
+            </path>
+            <path>
+              <item name="woped-code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-FileInterface" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="woped-code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-FileInterface" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="woped-code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WoPeD-FileInterface" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="file" type="462c0819:PsiDirectoryNode" />
+              <item name="t2p" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="woped-code" type="b2602c69:ProjectViewProjectNode" />
@@ -159,14 +219,13 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559154469311" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564565603872" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/WoPeD-FileInterface/resources/sphinx4-data-5prealpha-20160628.232535-10.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -306,7 +365,16 @@
       <workItem from="1559138882250" duration="2150000" />
       <workItem from="1559152929079" duration="1467000" />
       <workItem from="1559502997726" duration="2134000" />
-      <workItem from="1559541091494" duration="2137000" />
+      <workItem from="1559541091494" duration="2498000" />
+      <workItem from="1561027303307" duration="5222000" />
+      <workItem from="1561359774757" duration="2163000" />
+      <workItem from="1561958098375" duration="3253000" />
+      <workItem from="1562080471115" duration="4839000" />
+      <workItem from="1562135966161" duration="2417000" />
+      <workItem from="1562143043295" duration="959000" />
+      <workItem from="1562246216596" duration="3088000" />
+      <workItem from="1562573188182" duration="1235000" />
+      <workItem from="1564564655474" duration="860000" />
     </task>
     <task id="LOCAL-00001" summary="Speech2Test Working Version 1">
       <created>1559544566669</created>
@@ -315,7 +383,14 @@
       <option name="project" value="LOCAL" />
       <updated>1559544566669</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Merge branch 'T2P_19' of ssh://git.code.sf.net/p/woped/code into T2P_19">
+      <created>1559544822687</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1559544822687</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -351,13 +426,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23169000" />
+    <option name="totallyTimeSpent" value="47566000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2803838" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24733475" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
@@ -367,7 +442,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34924078" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26681128" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -401,7 +476,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Speech2Test Working Version 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Speech2Test Working Version 1" />
+    <MESSAGE value="Merge branch 'T2P_19' of ssh://git.code.sf.net/p/woped/code into T2P_19" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'T2P_19' of ssh://git.code.sf.net/p/woped/code into T2P_19" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -520,25 +596,48 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages.properties">
+      <provider editor-type-id="ResourceBundle" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="473">
           <caret line="1098" column="48" selection-start-line="1098" selection-start-column="48" selection-end-line="1098" selection-end-column="48" />
         </state>
       </provider>
-      <provider editor-type-id="ResourceBundle" />
     </entry>
     <entry file="file://$PROJECT_DIR$/WoPeD-GUI/src/org/woped/gui/translations/Messages_de.properties">
+      <provider editor-type-id="ResourceBundle" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="652" column="51" selection-start-line="652" selection-start-column="51" selection-end-line="652" selection-end-column="51" />
         </state>
       </provider>
-      <provider editor-type-id="ResourceBundle" />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/awt/event/ActionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="49" column="16" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="16" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/T2PUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-180">
-          <caret line="391" column="37" selection-start-line="391" selection-start-column="37" selection-end-line="391" selection-end-column="37" />
+        <state relative-caret-position="148">
+          <caret line="170" column="35" selection-start-line="170" selection-start-column="35" selection-end-line="170" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#14794#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3424#3425#0" expanded="true" />
+            <element signature="e#3451#3452#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WoPeD-FileInterface/src/org/woped/file/t2p/JavaSoundRecorder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
