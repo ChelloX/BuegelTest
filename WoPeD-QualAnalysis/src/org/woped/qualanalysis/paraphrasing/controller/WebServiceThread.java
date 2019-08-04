@@ -8,8 +8,6 @@ import org.woped.gui.translations.Messages;
 import org.woped.qualanalysis.p2t.P2TSideBar;
 import org.woped.qualanalysis.p2t.Process2Text;
 import org.woped.qualanalysis.paraphrasing.webservice.PNMLExport;
-import org.woped.qualanalysis.paraphrasing.webservice.ProcessToTextWebService;
-import org.woped.qualanalysis.paraphrasing.webservice.ProcessToTextWebServiceImpl;
 
 import javax.swing.*;
 import javax.xml.ws.WebServiceException;
@@ -35,34 +33,23 @@ public class WebServiceThread extends Thread {
 		String url = "http://" + ConfigurationManager.getConfiguration().getProcess2TextServerHost() + ":"
 				+ ConfigurationManager.getConfiguration().getProcess2TextServerPort()
 				+ ConfigurationManager.getConfiguration().getProcess2TextServerURI()
-				+ "/ProcessToTextWebService?wsdl";
+				+ "/generate";
 
 		String[] arg = {url};
 
 		if (editor.getModelProcessor().getElementContainer().getRootElements().size() > 3) {
 // Use Webservice to call P2T
+
 			try {
 				ByteArrayOutputStream stream = new ByteArrayOutputStream();
 				new PNMLExport().saveToStream(editor, stream);
 				String text = stream.toString();
 				String output;
 
-				// old Webservice
-				ProcessToTextWebServiceImpl pttService = new ProcessToTextWebServiceImpl();
-				ProcessToTextWebService port = pttService.getProcessToTextWebServicePort();
-				output = port.generateTextFromProcessSpecification(text);
-
-
-				// new WebService
-				/*
-				url = "http://" + ConfigurationManager.getConfiguration().getProcess2TextServerHost() + ":"
-				+ ConfigurationManager.getConfiguration().getProcess2TextServerPort()
-				+ ConfigurationManager.getConfiguration().getProcess2TextServerURI()
-				+ "/generate";
+				// WebService
 				HttpRequest req = new HttpRequest(url, text);
 				HttpResponse res = req.getResponse();
 				output = res.getBody();
-				*/
 
 				//End Comment here!
 				//Do Not Comment the Following!!

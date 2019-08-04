@@ -6,13 +6,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
+// WebServlet value = URL to call the Webservice from
 @WebServlet(value = {"/P2T"})
 public class P2TServlet extends HttpServlet {
+
+    // P2T Servlet is the main servlet class which is being uploaded to wildfly
+    // with the automatically created .war file. This class calls the P2T Controller
+    // class to translate a petri net to text.
+    // The value for the URL can be changed with the WebServlet value above
+
 
     //Restricts the maximum of concurrently processed HTTP requests to avoid DOS
     public static final int MAX_CONCURRENT_HTTP_REQUESTS = 6;
     private int serviceCounter = 0;
 
+    // Call P2TController's generateText Method
     public String createText (String text) {
         P2TController control = new P2TController();
         return control.generateText(text);
@@ -21,6 +29,8 @@ public class P2TServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException{
+        // doPost is automatically called by the main program when calling the Webservice
+        // If you want to change something about web service, you probably gonna do it in this method
 
         PrintWriter writer = response.getWriter();
 
@@ -31,6 +41,7 @@ public class P2TServlet extends HttpServlet {
 
                 response.setContentType("text/html");
                 response.setCharacterEncoding("UTF-8");
+                // get request, create natural language and put it into the HTML Body
                 String text= getBody(request);
                 writer.append(createText(text));
             } catch(IOException e){

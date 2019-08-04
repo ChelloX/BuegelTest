@@ -76,7 +76,7 @@ public class SurfaceRealizer {
 
         String surfaceTextLower =surfaceText.toLowerCase();
         if(surfaceTextLower.contains("xor")) {
-            surfaceText = surfaceTextLower.replaceAll("xor", "process is split up into parallel paths");
+            surfaceText = surfaceTextLower.replaceAll("xor", "process is split up into one of two paths");
         }
             else if(surfaceTextLower.contains("and")){
                 surfaceText = surfaceTextLower.replaceAll("and","Process runs in parallel ");

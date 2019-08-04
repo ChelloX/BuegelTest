@@ -1,13 +1,11 @@
 package org.woped.core.config;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
+import org.woped.config.ApromoreServer;
+
+import java.awt.*;
 import java.io.File;
 import java.util.Locale;
 import java.util.Vector;
-
-import org.woped.config.ApromoreServer;
 
 /**
  * Class that provides fallback configuration settings for the general WoPeD
@@ -85,7 +83,7 @@ public class DefaultStaticConfiguration implements IGeneralConfiguration {
 
 	public static String DEFAULT_PROCESS2TEXT_HOST = "woped.dhbw-karlsruhe.de";
 	public static int DEFAULT_PROCESS2TEXT_PORT = 8080;
-	public static String DEFAULT_PROCESS2TEXT_URI = "/p2t";
+	public static String DEFAULT_PROCESS2TEXT_URI = "/P2T";
 	public static boolean DEFAULT_PROCESS2TEXT_USE = false;
 
 	public static String DEFAULT_TEXT2PROCESS_HOST = "woped.dhbw-karlsruhe.de";
