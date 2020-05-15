@@ -28,14 +28,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0fe078b1-bc4e-4c3c-990f-f7f38dbe9262" name="Default" comment="Moved NLP libraries of T2P module into lib folder&#10;Tidy up project structure">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/CommonLibs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/FlamingoLibs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/WoPeD-Text2Process.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/WoPeD-Text2Process.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WoPeD-Text2Process/src/WorldModelToPetrinet/ANDJoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Text2Process/src/WorldModelToPetrinet/ANDJoin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-AProMoRe/WoPeD-AProMoRe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-AProMoRe/WoPeD-AProMoRe.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-BPELExport/WoPeD-BPELExport.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-BPELExport/WoPeD-BPELExport.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-CommonLibs/WoPeD-CommonLibs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-CommonLibs/WoPeD-CommonLibs.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-CommonLibs/lib/commons-logging-1.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-CommonLibs/lib/junit-4.8.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-CommonLibs/lib/log4j-1.2.8.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Configuration/WoPeD-Configuration.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Configuration/WoPeD-Configuration.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Core/WoPeD-Core.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Core/WoPeD-Core.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Editor/WoPeD-Editor.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Editor/WoPeD-Editor.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-FileInterface/WoPeD-FileInterface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-FileInterface/WoPeD-FileInterface.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Flamingo/WoPeD-Flamingo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Flamingo/WoPeD-Flamingo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-GUI/WoPeD-GUI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-GUI/WoPeD-GUI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Process2Text/WoPeD-Process2Text.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Process2Text/WoPeD-Process2Text.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-ProcessMetrics/WoPeD-ProcessMetrics.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-ProcessMetrics/WoPeD-ProcessMetrics.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-QualAnalysis/WoPeD-QualAnalysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-QualAnalysis/WoPeD-QualAnalysis.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-QuantAnalysis/WoPeD-QuantAnalysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-QuantAnalysis/WoPeD-QuantAnalysis.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WoPeD-Starter/WoPeD-Starter.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WoPeD-Starter/WoPeD-Starter.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/WoPeD$test_in_WoPeD_Text2Process.ic" NAME="test in WoPeD-Text2Process Coverage Results" MODIFIED="1533649897634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
@@ -65,6 +89,9 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
   <component name="ProjectId" id="1bXFv61T5eSV7ia7BCyHg2Eyd0W" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -75,6 +102,7 @@
     <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
@@ -83,12 +111,14 @@
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="null)&#9;null&#9;null&#10;System.out.println&#9;null&#9;null&#10;Prozess ist sound&#9;null&#9;null&#10;ModelElement&#9;PSI&#9;JAVA://org.woped.core.model.ModelElementContainer" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/WoPeD-Process2Text/src/org/woped/p2t/contentDetermination" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -103,7 +133,17 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/WoPeD-Text2Process/lib" />
+      <recent name="$PROJECT_DIR$/WoPeD-Text2Process/NLPTools/Stanford" />
+      <recent name="$PROJECT_DIR$/WoPeD-Text2Process" />
+      <recent name="$PROJECT_DIR$/WoPeD-Process2Text/res" />
+      <recent name="$PROJECT_DIR$/WoPeD-Process2Text" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -112,16 +152,6 @@
       <recent name="$PROJECT_DIR$/WoPeD-Installer/dist/launch/test" />
       <recent name="$PROJECT_DIR$/WoPeD-Process2Text" />
       <recent name="$PROJECT_DIR$/WoPeD-Process2Text/bin/test" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/WoPeD-Text2Process/lib" />
-      <recent name="$PROJECT_DIR$/WoPeD-Text2Process/NLPTools/Stanford" />
-      <recent name="$PROJECT_DIR$/WoPeD-Text2Process" />
-      <recent name="$PROJECT_DIR$/WoPeD-Process2Text/res" />
-      <recent name="$PROJECT_DIR$/WoPeD-Process2Text" />
     </key>
   </component>
   <component name="RunManager" selected="Application.RunWoPeD">
@@ -329,6 +359,7 @@
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
         <option name="Make" enabled="true" />
+        <option name="BSP.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -577,6 +608,8 @@
       <workItem from="1589037251492" duration="2091000" />
       <workItem from="1589126975733" duration="1413000" />
       <workItem from="1589177736921" duration="363000" />
+      <workItem from="1589527108504" duration="9533000" />
+      <workItem from="1589544176322" duration="599000" />
     </task>
     <task id="LOCAL-00001" summary="Adapted master build to IntelliJ">
       <created>1532514709268</created>
@@ -910,6 +943,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Moved NLP libraries of T2P module into lib folder&#10;Tidy up project structure" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="440" y="94" key="#Project_Structure" timestamp="1589530673172">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1589530673172" />
     <state x="1677" y="412" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog" timestamp="1589127198677">
       <screen x="0" y="23" width="2560" height="1361" />
     </state>
@@ -922,42 +959,58 @@
       <screen x="0" y="23" width="2560" height="1361" />
     </state>
     <state x="1001" y="351" width="1257" height="831" key="CommitChangelistDialog2/0.23.2560.1361@0.23.2560.1361" timestamp="1589128307601" />
+    <state x="757" y="395" key="DetectedRootsChooserDialog" timestamp="1589530774951">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="757" y="395" key="DetectedRootsChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589530774951" />
     <state x="261" y="335" width="1651" height="880" key="DiffContextDialog" timestamp="1589128273878">
       <screen x="0" y="23" width="2560" height="1361" />
     </state>
     <state x="261" y="335" width="1651" height="880" key="DiffContextDialog/0.23.2560.1361@0.23.2560.1361" timestamp="1589128273878" />
-    <state width="1459" height="335" key="GridCell.Tab.0.bottom" timestamp="1589128392028">
-      <screen x="0" y="23" width="2560" height="1361" />
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1589540355514">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589540355514" />
     <state width="1459" height="335" key="GridCell.Tab.0.bottom/0.23.2560.1361@0.23.2560.1361" timestamp="1589128392028" />
-    <state width="1459" height="335" key="GridCell.Tab.0.center" timestamp="1589128392027">
-      <screen x="0" y="23" width="2560" height="1361" />
+    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1589540355514">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589540355514" />
     <state width="1459" height="335" key="GridCell.Tab.0.center/0.23.2560.1361@0.23.2560.1361" timestamp="1589128392027" />
-    <state width="1459" height="335" key="GridCell.Tab.0.left" timestamp="1589128392027">
-      <screen x="0" y="23" width="2560" height="1361" />
+    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1589540355514">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589540355514" />
     <state width="1459" height="335" key="GridCell.Tab.0.left/0.23.2560.1361@0.23.2560.1361" timestamp="1589128392027" />
-    <state width="1459" height="335" key="GridCell.Tab.0.right" timestamp="1589128392028">
-      <screen x="0" y="23" width="2560" height="1361" />
+    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1589540355514">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589540355514" />
     <state width="1459" height="335" key="GridCell.Tab.0.right/0.23.2560.1361@0.23.2560.1361" timestamp="1589128392028" />
-    <state width="1459" height="374" key="GridCell.Tab.1.bottom" timestamp="1589030037537">
-      <screen x="0" y="23" width="2560" height="1361" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1589540355514">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589540355514" />
     <state width="1459" height="374" key="GridCell.Tab.1.bottom/0.23.2560.1361@0.23.2560.1361" timestamp="1589030037537" />
-    <state width="1459" height="374" key="GridCell.Tab.1.center" timestamp="1589030037536">
-      <screen x="0" y="23" width="2560" height="1361" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1589540355514">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589540355514" />
     <state width="1459" height="374" key="GridCell.Tab.1.center/0.23.2560.1361@0.23.2560.1361" timestamp="1589030037536" />
-    <state width="1459" height="374" key="GridCell.Tab.1.left" timestamp="1589030037536">
-      <screen x="0" y="23" width="2560" height="1361" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1589540355514">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589540355514" />
     <state width="1459" height="374" key="GridCell.Tab.1.left/0.23.2560.1361@0.23.2560.1361" timestamp="1589030037536" />
-    <state width="1459" height="374" key="GridCell.Tab.1.right" timestamp="1589030037536">
-      <screen x="0" y="23" width="2560" height="1361" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1589540355514">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589540355514" />
     <state width="1459" height="374" key="GridCell.Tab.1.right/0.23.2560.1361@0.23.2560.1361" timestamp="1589030037536" />
+    <state x="619" y="222" key="RollbackChangesDialog" timestamp="1589529267867">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="619" y="222" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589529267867" />
     <state x="913" y="278" width="1555" height="837" key="SettingsEditor" timestamp="1589178100096">
       <screen x="0" y="23" width="2560" height="1361" />
     </state>
@@ -1014,6 +1067,11 @@
           <url>file://$PROJECT_DIR$/WoPeD-Editor/src/org/woped/editor/controller/vep/EditorEventProcessor.java</url>
           <line>334</line>
           <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/WoPeD-Starter/src/org/woped/starter/controller/vc/DefaultApplicationMediator.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="98" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

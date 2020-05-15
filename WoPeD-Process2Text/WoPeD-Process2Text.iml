@@ -156,5 +156,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="CommonLibs" level="project" />
   </component>
 </module>
