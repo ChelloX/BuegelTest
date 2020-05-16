@@ -978,7 +978,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
             t2pBand.addCommandButton(getT2PButton(), RibbonElementPriority.TOP);
         }
 
-        return p2tBand;
+        return t2pBand;
     }
 
     private JRibbonBand getWindowsBand() {
