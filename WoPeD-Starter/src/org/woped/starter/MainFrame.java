@@ -45,7 +45,7 @@ import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
 
 public class MainFrame extends JRibbonFrame implements IUserInterface {
-	//
+    //
 
     private static final long serialVersionUID = 1L;
 
@@ -76,6 +76,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
     private JRibbonBand analyzeBand = null;
     private JRibbonBand metricsBand = null;
     private JRibbonBand p2tBand = null;
+    private JRibbonBand t2pBand = null;
     private JRibbonBand optionsAndHelpBand = null;
     private JRibbonBand tokengameCloseBand = null;
     private JRibbonBand tokengameStepBand = null;
@@ -148,7 +149,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
 
     private JCommandButton p2tButton = null;
     private JCommandButton t2pButton = null;
-    
+
     private JCommandButton configurationButton = null;
     private JCommandButton manualButton = null;
     private JCommandButton contentsButton = null;
@@ -170,7 +171,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
     private JCommandButton pauseButton = null;
 
     private JCommandButton facebookButton = null;
-//    private JCommandButton googleplusButton = null;
+    //    private JCommandButton googleplusButton = null;
     private JCommandButton twitterButton = null;
     private JCommandButton signUpButton = null;
     private JCommandButton communityButton = null;
@@ -349,7 +350,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
     }
 
 
-	/* OSX MENU */
+    /* OSX MENU */
     /*********/
 
     /**
@@ -411,12 +412,12 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
         OSXMenu p2tMenu = new OSXMenu(Messages.getString("P2T.openP2T.text"));
         p2tMenu.addMenuItem(Messages.getString("P2T.text")).addAction(m_mediator, ActionFactory.ACTIONID_P2T, AbstractViewEvent.P2T);
         osxAnalyzeMenu.addSubMenu(p2tMenu);
-        
+
         OSXMenu t2pMenu = new OSXMenu(Messages.getString("T2P.openT2P.text"));
-		t2pMenu.addMenuItem(Messages.getString("T2P.text")).addAction(m_mediator, ActionFactory.ACTIONID_T2P, AbstractViewEvent.T2P);
-		osxAnalyzeMenu.addSubMenu(t2pMenu);
-        
-        
+        t2pMenu.addMenuItem(Messages.getString("T2P.text")).addAction(m_mediator, ActionFactory.ACTIONID_T2P, AbstractViewEvent.T2P);
+        osxAnalyzeMenu.addSubMenu(t2pMenu);
+
+
         menuAdapter.addMenu(osxAnalyzeMenu);
     }
 
@@ -481,7 +482,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
         //AbstractApplicationMediator mediator = m_mediator;
         osxCommunityMenu = new OSXMenu(Messages.getTitle("Task.Community"));
         osxCommunityMenu.addMenuItem(Messages.getString("Community.Facebook.text")).addAction(m_mediator, ActionFactory.ACTIONID_FACEBOOK, AbstractViewEvent.FACEBOOK);
- //       osxCommunityMenu.addMenuItem(Messages.getString("Community.Googleplus.text")).addAction(m_mediator, ActionFactory.ACTIONID_GOOGLEPLUS, AbstractViewEvent.GOOGLEPLUS);
+        //       osxCommunityMenu.addMenuItem(Messages.getString("Community.Googleplus.text")).addAction(m_mediator, ActionFactory.ACTIONID_GOOGLEPLUS, AbstractViewEvent.GOOGLEPLUS);
         osxCommunityMenu.addMenuItem(Messages.getString("Community.Twitter.text")).addAction(m_mediator, ActionFactory.ACTIONID_TWITTER, AbstractViewEvent.TWITTER);
         osxCommunityMenu.addSeparator();
         osxCommunityMenu.addMenuItem(Messages.getString("Community.Register.text")).addAction(m_mediator, ActionFactory.ACTIONID_REGISTER, AbstractViewEvent.REGISTER);
@@ -645,7 +646,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
 
 
     /***********/
-	/* TASKBAR */
+    /* TASKBAR */
 
     private JCommandButton getTaskbarButtonPaste() {
 
@@ -745,15 +746,15 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
         if (analyzeTask == null) {
             if (ConfigurationManager.getConfiguration().isUseMetrics()) {
                 if (ConfigurationManager.getConfiguration().getProcess2TextUse()) {
-                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand(), getMetricsBand(), getP2TBand());
+                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand(), getMetricsBand(), getP2TBand(), getT2PBand());
                 } else {
-                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand(), getMetricsBand());
+                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand(), getMetricsBand(), getT2PBand());
                 }
             } else {
                 if (ConfigurationManager.getConfiguration().getProcess2TextUse()) {
-                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand(), getP2TBand());
+                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand(), getP2TBand(), getT2PBand());
                 } else {
-                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand());
+                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand(), getT2PBand());
                 }
             }
 
@@ -771,7 +772,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
         return analyzeTask;
     }
     /*********/
-	/* TASKS */
+    /* TASKS */
 
     private RibbonTask getViewTask() {
 
@@ -854,7 +855,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
     }
 
     /*********/
-	/* BANDS */
+    /* BANDS */
 
     private JRibbonBand getApromoreBand() {
 
@@ -961,7 +962,20 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
             p2tBand.startGroup();
 
             p2tBand.addCommandButton(getP2TButton(), RibbonElementPriority.TOP);
-            p2tBand.addCommandButton(getT2PButton(), RibbonElementPriority.TOP);
+            //p2tBand.addCommandButton(getT2PButton(), RibbonElementPriority.TOP);
+        }
+
+        return p2tBand;
+    }
+
+    private JRibbonBand getT2PBand() {
+        if (t2pBand == null) {
+            t2pBand = new JRibbonBand(Messages.getString("T2P.textBandTitle"), new text_to_process());
+            t2pBand.setResizePolicies(CoreRibbonResizePolicies.getCorePoliciesNone(t2pBand));
+            t2pBand.startGroup();
+
+            //t2pBand.addCommandButton(getP2TButton(), RibbonElementPriority.TOP);
+            t2pBand.addCommandButton(getT2PButton(), RibbonElementPriority.TOP);
         }
 
         return p2tBand;
@@ -1129,7 +1143,7 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
         return recentButton;
     }
     /***********/
-	/* BUTTONS */
+    /* BUTTONS */
 
     private JCommandPopupMenu getRecentMenu() {
         m_recentMenu = new JCommandPopupMenu();
@@ -1562,18 +1576,18 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
 
         return p2tButton;
     }
-    
+
     private JCommandButton getT2PButton() {
-		if (t2pButton == null) {
-			t2pButton = new JCommandButton(Messages.getString("T2P.text"), new text_to_process()); //T2P
-			t2pButton.addActionListener(new ActionButtonListener(m_mediator, ActionFactory.ACTIONID_T2P, AbstractViewEvent.T2P, t2pButton));
+        if (t2pButton == null) {
+            t2pButton = new JCommandButton(Messages.getString("T2P.text"), new text_to_process()); //T2P
+            t2pButton.addActionListener(new ActionButtonListener(m_mediator, ActionFactory.ACTIONID_T2P, AbstractViewEvent.T2P, t2pButton));
 //			TODO(optional):
 //			addShortcutToJCommandButton("Metrics.processmetrics", processMetricsButton, ActionFactory.ACTIONID_METRIC);
-			setTooltip(t2pButton, "T2P");
-		}
+            setTooltip(t2pButton, "T2P");
+        }
 
-		return t2pButton;
-	}
+        return t2pButton;
+    }
 
     private JCommandButton getChangeOrientationButton() {
 
@@ -2103,14 +2117,14 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
     public void addEditor(IEditor editor) {
         getRibbon().setSelectedTask(getEditTask());
     }
-    
+
     @Override
     public void addTextEditor(IEditor editor) {
-       // getRibbon().setSelectedTask(getEditTask());
+        // getRibbon().setSelectedTask(getEditTask());
     }
-    
-    
-    
+
+
+
 
     @Override
     public void removeEditor(IEditor editor) {
