@@ -1,5 +1,6 @@
 package org.woped.file.t2p;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
@@ -8,19 +9,19 @@ import org.woped.core.utilities.FileFilterImpl;
 import org.woped.core.utilities.Platform;
 
 import java.awt.*;
-import java.io.FileInputStream;
-import java.io.FilenameFilter;
+import java.io.*;
 import java.util.Optional;
 import java.util.Scanner;
 import javax.swing.*;
-import java.io.File;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class PlainTextFileReader implements FileReader {
 	private JFileChooser chooser = new JFileChooser();
-	private StringBuilder sb; 
-	
+	private StringBuilder sb;
+
+	/**
+	 * @latestEditors <a href="mailto:bielefeld.moritz@student.dhbw-karlsruhe.de">Moritz Bielefeld</a>, <a href="mailto:geist.semjon@student.dhbw-karlsruhe.de">Semjon Geist</a>, <a href="mailto:kanzler.benjamin@student.dhbw-karlsruhe.de">Benjamin Kanzler</a>
+	 * @return
+	 */
 	@Override
 	public String read()  {
 		sb = new StringBuilder();
@@ -53,7 +54,7 @@ public class PlainTextFileReader implements FileReader {
 				abspath = file.getAbsolutePath();
 
 				String[] regExps = {"docx?+", "txt"};
-				String fileType = getExtensionByStringHandling(abspath).get();
+				String fileType = getExtensionByStringHandling(file).get();
 
 				switch (fileType) {
 					case "doc":
@@ -113,7 +114,8 @@ public class PlainTextFileReader implements FileReader {
 	/**
 	 * This method reads the plain text information of a txt-file.
 	 *
-	 * @author Moritz Bielefeld, Semjon Geist, Benjamin Kanzler
+	 * @latestEditors <a href="mailto:bielefeld.moritz@student.dhbw-karlsruhe.de">Moritz Bielefeld</a>, <a href="mailto:geist.semjon@student.dhbw-karlsruhe.de">Semjon Geist</a>, <a href="mailto:kanzler.benjamin@student.dhbw-karlsruhe.de">Benjamin Kanzler</a>
+	 * @author <a href="mailto:bielefeld.moritz@student.dhbw-karlsruhe.de">Moritz Bielefeld</a>, <a href="mailto:geist.semjon@student.dhbw-karlsruhe.de">Semjon Geist</a>, <a href="mailto:kanzler.benjamin@student.dhbw-karlsruhe.de">Benjamin Kanzler</a>
 	 * @param file
 	 * @return
 	 */
@@ -126,8 +128,8 @@ public class PlainTextFileReader implements FileReader {
 				sb.append('\n');
 			}
 			input.close();
-		} catch (Exception e) {
-			// TODO log information about the exception
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 			return false;
 		}
 		return true;
@@ -135,32 +137,39 @@ public class PlainTextFileReader implements FileReader {
 
 	/**
 	 *
-	 * @author Moritz Bielefeld, Semjon Geist, Benjamin Kanzler
-	 * @param filename
+	 * @latestEditors <a href="mailto:bielefeld.moritz@student.dhbw-karlsruhe.de">Moritz Bielefeld</a>, <a href="mailto:geist.semjon@student.dhbw-karlsruhe.de">Semjon Geist</a>, <a href="mailto:kanzler.benjamin@student.dhbw-karlsruhe.de">Benjamin Kanzler</a>
+	 * @author <a href="mailto:bielefeld.moritz@student.dhbw-karlsruhe.de">Moritz Bielefeld</a>, <a href="mailto:geist.semjon@student.dhbw-karlsruhe.de">Semjon Geist</a>, <a href="mailto:kanzler.benjamin@student.dhbw-karlsruhe.de">Benjamin Kanzler</a>
+	 * @param file
 	 * @return
 	 */
-	public Optional<String> getExtensionByStringHandling(String filename) {
-		return Optional.ofNullable(filename)
+	public Optional<String> getExtensionByStringHandling(File file) {
+		return Optional.ofNullable(file.getAbsolutePath())
 				.filter(f -> f.contains("."))
-				.map(f -> f.substring(filename.lastIndexOf(".") + 1));
+				.map(f -> f.substring(file.getAbsolutePath().lastIndexOf(".") + 1));
 	}
 
 	/**
 	 * Method to read text from doc and docx files
 	 *
-	 * @author Moritz Bielefeld, Semjon Geist, Benjamin Kanzler
+	 * @latestEditors <a href="mailto:bielefeld.moritz@student.dhbw-karlsruhe.de">Moritz Bielefeld</a>, <a href="mailto:geist.semjon@student.dhbw-karlsruhe.de">Semjon Geist</a>, <a href="mailto:kanzler.benjamin@student.dhbw-karlsruhe.de">Benjamin Kanzler</a>
+	 * @author <a href="mailto:bielefeld.moritz@student.dhbw-karlsruhe.de">Moritz Bielefeld</a>, <a href="mailto:geist.semjon@student.dhbw-karlsruhe.de">Semjon Geist</a>, <a href="mailto:kanzler.benjamin@student.dhbw-karlsruhe.de">Benjamin Kanzler</a>
 	 * @param file
 	 * @return
 	 */
-	private boolean readTextFromWordDocument(File file){
+	private boolean readTextFromWordDocument(File file) {
 		try {
 			FileInputStream fis = new FileInputStream(file.getAbsoluteFile());
 			XWPFDocument xdoc = new XWPFDocument(OPCPackage.open(fis));
 			XWPFWordExtractor extractor = new XWPFWordExtractor(xdoc);
 			sb.append(extractor.getText());
-		} catch(Exception ex) {
-			ex.printStackTrace();
-			// TODO Errorwindow
+		} catch (InvalidFormatException e) {
+			e.printStackTrace();
+			return false;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
+			e.printStackTrace();
 			return false;
 		}
 		return true;
