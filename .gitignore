@@ -1,0 +1,10 @@
+# Git-Configuration
+.git
+.settings
+
+# IntelliJIDEA files
+.idea
+*.iws
+# Auto-Impoort-File
+*.iml
+*.ipr
