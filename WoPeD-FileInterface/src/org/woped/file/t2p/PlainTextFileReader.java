@@ -22,6 +22,8 @@ public class PlainTextFileReader implements FileReader {
 	 * @latestEditors <a href="mailto:bielefeld.moritz@student.dhbw-karlsruhe.de">Moritz Bielefeld</a>, <a href="mailto:geist.semjon@student.dhbw-karlsruhe.de">Semjon Geist</a>, <a href="mailto:kanzler.benjamin@student.dhbw-karlsruhe.de">Benjamin Kanzler</a>
 	 * @return
 	 */
+
+
 	@Override
 	public String read()  {
 		sb = new StringBuilder();
@@ -53,16 +55,15 @@ public class PlainTextFileReader implements FileReader {
 				file = chooser.getSelectedFile();
 				abspath = file.getAbsolutePath();
 
-				String[] regExps = {"docx?+", "txt"};
 				String fileType = getExtensionByStringHandling(file).get();
 
 				switch (fileType) {
 					case "doc":
 					case "docx":
-						if (!readTextFromWordDocument(file)) return null;
+						sb = readTextFromWordDocument(file, sb);
 						break;
 					case "txt":
-						if (!readTxtFile(file)) return null;
+						sb = readTxtFile(file, sb);
 						break;
 					default:
 						//JFrame errorDialog: file extension not known
@@ -101,7 +102,7 @@ public class PlainTextFileReader implements FileReader {
 
 			file = new File(abspath);
 
-			if (!readTxtFile(file)) return null;
+			sb = readTxtFile(file, sb);
 		}
 
 		// Set the new working dir to the current files location
@@ -119,7 +120,7 @@ public class PlainTextFileReader implements FileReader {
 	 * @param file
 	 * @return
 	 */
-	private boolean readTxtFile(File file) {
+	public StringBuilder readTxtFile(File file, StringBuilder sb) {
 		// Reading the information from the choosen file
 		try {
 			Scanner input = new Scanner(file);
@@ -130,9 +131,9 @@ public class PlainTextFileReader implements FileReader {
 			input.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
-		return true;
+			return sb;
 	}
 
 	/**
@@ -142,7 +143,7 @@ public class PlainTextFileReader implements FileReader {
 	 * @param file
 	 * @return
 	 */
-	public Optional<String> getExtensionByStringHandling(File file) {
+	private Optional<String> getExtensionByStringHandling(File file) {
 		return Optional.ofNullable(file.getAbsolutePath())
 				.filter(f -> f.contains("."))
 				.map(f -> f.substring(file.getAbsolutePath().lastIndexOf(".") + 1));
@@ -156,7 +157,7 @@ public class PlainTextFileReader implements FileReader {
 	 * @param file
 	 * @return
 	 */
-	private boolean readTextFromWordDocument(File file) {
+	public StringBuilder readTextFromWordDocument(File file, StringBuilder sb) {
 		try {
 			FileInputStream fis = new FileInputStream(file.getAbsoluteFile());
 			XWPFDocument xdoc = new XWPFDocument(OPCPackage.open(fis));
@@ -164,15 +165,15 @@ public class PlainTextFileReader implements FileReader {
 			sb.append(extractor.getText());
 		} catch (InvalidFormatException e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		} catch (IOException e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
-		return true;
+		return sb;
 	}
 
 }
