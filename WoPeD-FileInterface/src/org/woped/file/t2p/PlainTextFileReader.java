@@ -1,9 +1,17 @@
 package org.woped.file.t2p;
 
+
+import org.apache.poi.OldFileFormatException;
+import org.apache.poi.hwpf.extractor.Word6Extractor;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.openxml4j.exceptions.OLE2NotOfficeXmlFileException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.hwpf.HWPFOldDocument;
+import org.apache.poi.hwpf.HWPFDocument;
+import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.woped.core.config.ConfigurationManager;
 import org.woped.core.utilities.FileFilterImpl;
 import org.woped.core.utilities.Platform;
@@ -58,9 +66,9 @@ public class PlainTextFileReader implements FileReader {
 				String fileType = getExtensionByStringHandling(file).get();
 
 				switch (fileType) {
-					case "doc":
 					case "docx":
-						sb = readTextFromWordDocument(file, sb);
+					case "doc":
+						sb = readTextFromWordDocumentX(file, sb);
 						break;
 					case "txt":
 						sb = readTxtFile(file, sb);
@@ -157,12 +165,14 @@ public class PlainTextFileReader implements FileReader {
 	 * @param file
 	 * @return
 	 */
-	public StringBuilder readTextFromWordDocument(File file, StringBuilder sb) {
+	public StringBuilder readTextFromWordDocumentX(File file, StringBuilder sb) {
 		try {
 			FileInputStream fis = new FileInputStream(file.getAbsoluteFile());
 			XWPFDocument xdoc = new XWPFDocument(OPCPackage.open(fis));
 			XWPFWordExtractor extractor = new XWPFWordExtractor(xdoc);
 			sb.append(extractor.getText());
+		} catch (OLE2NotOfficeXmlFileException e) {
+			readTextFromWordDocument(file, sb);
 		} catch (InvalidFormatException e) {
 			e.printStackTrace();
 			return null;
@@ -176,6 +186,40 @@ public class PlainTextFileReader implements FileReader {
 		return sb;
 	}
 
-}
+	private StringBuilder readTextFromWordDocument(File file, StringBuilder sb) {
+		try {
+			FileInputStream fis = new FileInputStream(file.getAbsolutePath());
+			HWPFDocument doc = new HWPFDocument(fis);
+			WordExtractor extractor = new WordExtractor(doc);
+			sb.append(extractor.getText());
+		} catch (OldFileFormatException e) {
+			readTextFromWordDocumentOLD(file, sb);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return sb;
+	}
 
+	private StringBuilder readTextFromWordDocumentOLD(File file, StringBuilder sb) {
+		try {
+			FileInputStream fis = new FileInputStream(file.getAbsolutePath());
+			POIFSFileSystem fs = new POIFSFileSystem(fis);
+			HWPFOldDocument doc = new HWPFOldDocument(fs);
+			Word6Extractor extractor = new Word6Extractor(doc);
+			sb.append(extractor.getText());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return sb;
+	}
+
+}
 
