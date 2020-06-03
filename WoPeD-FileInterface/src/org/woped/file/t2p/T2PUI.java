@@ -33,6 +33,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.*;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
@@ -49,6 +50,7 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingWorker;
 
 import java.net.HttpURLConnection;
+import java.util.concurrent.ExecutionException;
 
 import org.woped.core.controller.AbstractApplicationMediator;
 import org.woped.core.controller.IEditor;
@@ -75,7 +77,8 @@ public class T2PUI extends JDialog {
 	private AbstractApplicationMediator mediator;
 	
 	private boolean requested = false;
-	private SwingWorker<HttpResponse, Void> bgTask;
+	private SwingWorker<HttpURLConnection, Void> bgTask;
+	private SwingWorker<HttpResponse, Void> bgTaskHttp;
 	
 	private String inputText;
 	
@@ -222,11 +225,12 @@ public class T2PUI extends JDialog {
 
 		if (!inputText.isEmpty()) {
 
+
 			// new worker calling the T2P-SpringBoot-Server with json-Objects
-			//jsonBackgroundWorker(inputText);
+			jsonBackgroundWorker(inputText);
 			// old worker call JBoss-Server
-			httpBackgroundWorker(inputText);
-			// does not work proper with the jsonBackgroudWorkerMethod yet
+			//httpBackgroundWorker(inputText);
+			// display loading box
 			showLoadingBox();
 /*			try {
 				T2PController tp = new T2PController(inputText);
@@ -244,13 +248,13 @@ public class T2PUI extends JDialog {
 	
 	private void showLoadingBox() {
 		JOptionPane jop = new JOptionPane();
-	    jop.setMessageType(JOptionPane.INFORMATION_MESSAGE);
-	    jop.setMessage(Messages.getString("T2PUI.Loading.Text"));
-	    
-	    loadDialog = jop.createDialog(this, Messages.getString("T2PUI.Loading.Title"));
-	    jop.setOptions(new String[]{Messages.getString("T2PUI.Loading.Cancel")});
-	    loadDialog.setVisible(true);
-	    
+		jop.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+		jop.setMessage(Messages.getString("T2PUI.Loading.Text"));
+
+		loadDialog = jop.createDialog(this, Messages.getString("T2PUI.Loading.Title"));
+		jop.setOptions(new String[]{Messages.getString("T2PUI.Loading.Cancel")});
+		loadDialog.setVisible(true);
+
 	    // Thread gets blocked and awaits an UI action.
 	    
 	    if (bgTask != null && !bgTask.isDone() && !bgTask.isCancelled()) {
@@ -305,78 +309,101 @@ public class T2PUI extends JDialog {
 	 */
 	private void jsonBackgroundWorker(String text) {
 
-		try {
-			// Forming the Url out of the configuration
-			URL t2pUrl = new URL("http://" + ConfigurationManager.getConfiguration().getText2ProcessServerHost() + ":" + ConfigurationManager.getConfiguration().getText2ProcessServerPort() + ConfigurationManager.getConfiguration().getText2ProcessServerURI() + "/generatePNML");
-			HttpURLConnection connection;
-			connection = (HttpURLConnection) t2pUrl.openConnection();
 
-			// Setting the connection properties
-			connection.setRequestMethod("POST");
-			connection.setRequestProperty("Content-Type", "application/json; UTF-8");
-			connection.setRequestProperty("Accept", "application/json");
-			connection.setDoOutput(true);
 
-			// Establishing an output stream and write the text as json
-			OutputStream outputStream = connection.getOutputStream();
-			byte[] input = text.getBytes("utf-8");
-			outputStream.write(input, 0, input.length);
 
-			switch (connection.getResponseCode()){
-				case 200:
-				case 201:
-				case 202:
-				case 204:
-					// Reading the response
-					BufferedReader bufferedReader = new BufferedReader(
-							new InputStreamReader(connection.getInputStream())
-					);
-					StringBuilder responseJson = new StringBuilder();
-					String responseLine;
-					// Reading the incoming json line by line and transforming it to a single String
-					while ((responseLine = bufferedReader.readLine()) != null) {
-						responseJson.append(responseLine.trim());
-					}
-					System.out.println(responseJson.toString());
-					String pnml = responseJson.toString();
-					// Extracting the pnml-xml from the json body
-					if (!pnml.isEmpty()) {
-						displayPMNL(pnml);
-					} else {
-						// TODO: error handling
-						if (loadDialog != null) loadDialog.dispose();
-					}
-					break;
-				case 400:
-					showErrorPopUp("T2PUI.400Error.Title", "T2PUI.400Error.Text");
-					break;
-				case 500:
-					showErrorPopUp("T2PUI.500Error.Title", "T2PUI.GeneralError.Text");
-					break;
-				case 503:
-					showErrorPopUp("T2PUI.503Error.Title", "T2PUI.503Error.Text");
-					break;
-				default:
-					showErrorPopUp("T2PUI.GeneralError.Title", "T2PUI.GeneralError.Text");
-					break;
+		bgTask = new SwingWorker<HttpURLConnection, Void>() {
+			@Override
+			protected HttpURLConnection doInBackground() throws IOException {
+				// Forming the Url out of the configuration
+				URL t2pUrl = new URL("http://" + ConfigurationManager.getConfiguration().getText2ProcessServerHost() + ":" + ConfigurationManager.getConfiguration().getText2ProcessServerPort() + ConfigurationManager.getConfiguration().getText2ProcessServerURI() + "/generatePNML");
+				HttpURLConnection connection;
+				connection = (HttpURLConnection) t2pUrl.openConnection();
+
+				// Setting the connection properties
+				connection.setRequestMethod("POST");
+				connection.setRequestProperty("Content-Type", "application/json; UTF-8");
+				connection.setRequestProperty("Accept", "application/json");
+				connection.setDoOutput(true);
+
+				// Establishing an output stream and write the text as json
+				OutputStream outputStream = connection.getOutputStream();
+				byte[] input = text.getBytes("utf-8");
+				outputStream.write(input, 0, input.length);
+
+				return connection;
 			}
-		} catch (MalformedURLException e) {
-			System.err.println("The URL is malformed, please check it.");
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.err.println("Was not able to establish the connection with the given URL. Make sure the server is " +
-					"running, url and port are correct and you have a working internet connection.");
-			e.printStackTrace();
-		}
+
+			@Override
+			protected void done() {
+				try {
+					if (loadDialog != null) loadDialog.dispose();
+					HttpURLConnection connection = get();
+					switch (connection.getResponseCode()){
+						case 200:
+						case 201:
+						case 202:
+						case 204:
+							// Reading the response
+							BufferedReader bufferedReader = new BufferedReader(
+									new InputStreamReader(connection.getInputStream())
+							);
+							StringBuilder responseJson = new StringBuilder();
+							String responseLine;
+							// Reading the incoming json line by line and transforming it to a single String
+							while ((responseLine = bufferedReader.readLine()) != null) {
+								responseJson.append(responseLine.trim());
+							}
+							System.out.println(responseJson.toString());
+							String pnml = responseJson.toString();
+							// Extracting the pnml-xml from the json body
+							if (!pnml.isEmpty()) {
+								displayPMNL(pnml);
+							} else {
+								// TODO: error handling
+
+							}
+							break;
+						case 400:
+							showErrorPopUp("T2PUI.400Error.Title", "T2PUI.400Error.Text");
+							break;
+						case 500:
+							showErrorPopUp("T2PUI.500Error.Title", "T2PUI.GeneralError.Text");
+							break;
+						case 503:
+							showErrorPopUp("T2PUI.503Error.Title", "T2PUI.503Error.Text");
+							break;
+						default:
+							showErrorPopUp("T2PUI.GeneralError.Title", "T2PUI.GeneralError.Text");
+							break;
+					}
+				} catch (MalformedURLException e) {
+					System.err.println("The URL is malformed, please check it.");
+					e.printStackTrace();
+				} catch (IOException e) {
+					System.err.println("Was not able to establish the connection with the given URL. Make sure the server is " +
+							"running, url and port are correct and you have a working internet connection.");
+					e.printStackTrace();
+				}catch ( InterruptedException e) {
+					System.err.println("Connection was interrupted.");
+					e.printStackTrace();
+				}catch ( ExecutionException e) {
+					System.err.println("Your request couldn't be processed.");
+					e.printStackTrace();
+				}
+			}
+		};
+
+		bgTask.execute();
 	}
 	
 	private void httpBackgroundWorker(String text) {
-		if (bgTask != null && !bgTask.isDone()) return;
+		if (bgTaskHttp != null && !bgTaskHttp.isDone()) return;
 
 
 		String url = "http://" + ConfigurationManager.getConfiguration().getText2ProcessServerHost() + ":" + ConfigurationManager.getConfiguration().getText2ProcessServerPort() + ConfigurationManager.getConfiguration().getText2ProcessServerURI() + "/generate";
 
-		bgTask = new SwingWorker<HttpResponse, Void>() {
+		bgTaskHttp = new SwingWorker<HttpResponse, Void>() {
 			HttpRequest req;
 			
 			@Override
@@ -417,8 +444,8 @@ public class T2PUI extends JDialog {
 				}
 			}			
 		};
-		
-		bgTask.execute();
+
+		bgTaskHttp.execute();
 	}
 	
 	private void close() {
