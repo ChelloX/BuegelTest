@@ -309,9 +309,6 @@ public class T2PUI extends JDialog {
 	 */
 	private void jsonBackgroundWorker(String text) {
 
-
-
-
 		bgTask = new SwingWorker<HttpURLConnection, Void>() {
 			@Override
 			protected HttpURLConnection doInBackground() throws IOException {

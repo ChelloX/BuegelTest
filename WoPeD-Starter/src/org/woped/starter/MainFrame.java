@@ -76,7 +76,6 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
     private JRibbonBand analyzeBand = null;
     private JRibbonBand metricsBand = null;
     private JRibbonBand p2tBand = null;
-    private JRibbonBand t2pBand = null;
     private JRibbonBand optionsAndHelpBand = null;
     private JRibbonBand tokengameCloseBand = null;
     private JRibbonBand tokengameStepBand = null;
@@ -746,15 +745,15 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
         if (analyzeTask == null) {
             if (ConfigurationManager.getConfiguration().isUseMetrics()) {
                 if (ConfigurationManager.getConfiguration().getProcess2TextUse()) {
-                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand(), getMetricsBand(), getP2TBand(), getT2PBand());
+                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand(), getMetricsBand(), getP2TBand());
                 } else {
-                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand(), getMetricsBand(), getT2PBand());
+                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand(), getMetricsBand());
                 }
             } else {
                 if (ConfigurationManager.getConfiguration().getProcess2TextUse()) {
-                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand(), getP2TBand(), getT2PBand());
+                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand(), getP2TBand());
                 } else {
-                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand(), getT2PBand());
+                    analyzeTask = new RibbonTask(Messages.getTitle("Task.Analyze"), getAnalyzeBand());
                 }
             }
 
@@ -962,23 +961,10 @@ public class MainFrame extends JRibbonFrame implements IUserInterface {
             p2tBand.startGroup();
 
             p2tBand.addCommandButton(getP2TButton(), RibbonElementPriority.TOP);
-            //p2tBand.addCommandButton(getT2PButton(), RibbonElementPriority.TOP);
+            p2tBand.addCommandButton(getT2PButton(), RibbonElementPriority.TOP);
         }
 
         return p2tBand;
-    }
-
-    private JRibbonBand getT2PBand() {
-        if (t2pBand == null) {
-            t2pBand = new JRibbonBand(Messages.getString("T2P.textBandTitle"), new text_to_process());
-            t2pBand.setResizePolicies(CoreRibbonResizePolicies.getCorePoliciesNone(t2pBand));
-            t2pBand.startGroup();
-
-            //t2pBand.addCommandButton(getP2TButton(), RibbonElementPriority.TOP);
-            t2pBand.addCommandButton(getT2PButton(), RibbonElementPriority.TOP);
-        }
-
-        return t2pBand;
     }
 
     private JRibbonBand getWindowsBand() {
