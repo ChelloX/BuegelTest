@@ -228,6 +228,7 @@ public class T2PUI extends JDialog {
 
 			// new worker calling the T2P-SpringBoot-Server with json-Objects
 			jsonBackgroundWorker(inputText);
+
 			// old worker call JBoss-Server
 			//httpBackgroundWorker(inputText);
 			// display loading box
